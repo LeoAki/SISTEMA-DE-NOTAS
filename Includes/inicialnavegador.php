@@ -21,20 +21,13 @@
               <li class="dropdown">
                   <a id="consult"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-search"></i>CONSULTAR<b class="caret"></b></a>
                 <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-                <?php
-                if($_SESSION['niveldeuser']==50){
-                ?>
                   <li><a tabindex="-1" href="#"><i class="icon-user"></i>Alumnos</a></li>
-                  <li><a id=""tabindex="-1" href="vistadegrados.php"><i class="icon-road"></i>Grados</a></li>
+                  <li><a id=""tabindex="-1" href="#"><i class="icon-road"></i>Grados</a></li>
                   <li><a id=""tabindex="-1" href="#"><i class="icon-chevron-up"></i>Niveles</a></li>  
                   <li><a tabindex="-1" href="#"><i class="icon-user"></i>Profesores</a></li>
                   <li><a tabindex="-1" href="#"><i class="icon-folder-open"></i>Secciones</a></li>
                   <li class="divider"></li>
                   <li><a tabindex="-1" href="#">Registro De Notas</a></li>
-                <?php
-                }
-                  ?>
-                  <li><a tabindex="-1" href="vistadegrados.php"><i class="icon-book"></i>Indicadores</a></li>
                 </ul>
               </li>
               <?php 

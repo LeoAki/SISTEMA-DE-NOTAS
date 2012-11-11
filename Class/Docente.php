@@ -131,5 +131,26 @@ class Docente extends Conection{
        return $profe;
    }
    
+   public function RegistroDocente($dni) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $regi= mysql_query("SELECT r.codigo, 
+                            sec.nomnivel, 
+                            sec.grado, 
+                            sec.nombreseccion, 
+                            CONCAT( doc.paterno,  ' ', doc.materno,  ' ,', doc.nombres ) AS Docente, 
+                            doc.dni, 
+                            dasi.asinatura, 
+                            dasi.abreviatura
+                            FROM Registro r
+                            LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
+                            LEFT JOIN Docente doc ON r.codigodocente = doc.codigo
+                            LEFT JOIN descripcionsinature dasi ON r.codigoasinatura = dasi.codigo
+                            WHERE doc.dni =  '".$dni."' order by r.codigo");
+       $cone->CLOSE();
+       unset($cone);
+       return $regi;
+   }
+   
 }
 ?>

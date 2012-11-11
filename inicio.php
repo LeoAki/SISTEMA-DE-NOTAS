@@ -44,7 +44,7 @@
         <center>
         <code>BIENVENIDOS AL SISTEMA DE NOTAS ONLINE DEL COLEGIO LICEO NAVAL C. DE CORBETA<BR>
             <em>"MANUEL CLAVERO MUGA"</em></code>
-        </center> 
+        </center>
         <div>
             <center><legend><em>Clavero "Siempre Primero"</em></legend></center>
         </div>

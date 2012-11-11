@@ -25,18 +25,23 @@
 
     </head>
     <body>
-        <?php require_once 'Includes/navegador.php';    ?>
+        <?php 
+        require_once 'Includes/navegador.php';    
+        require_once 'Class/Docente.php';
+        $Doce= new Docente();
+        $dni=$_SESSION['dni'];
+        ?>
         <div style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">Registro De Notas Por Bimestre:</h3></center>
             <form >
                 <fieldset>
                     <legend>Bimestre Actual:IV</legend>
-                    <table class="display">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">Registro</th>
-                                <th style="width: 10%;">Secci&oacute;n</th>
-                                <th style="width: 40%">Asignatura</th>
+                                <th style="width: 15%;">Registro</th>
+                                <th style="width: 22%;">Secci&oacute;n</th>
+                                <th style="width: 23%">Asignatura</th>
                                 <th style="width: 8%;">I</th>
                                 <th style="width: 8%;">II</th>
                                 <th style="width: 8%;">III</th>
@@ -44,6 +49,25 @@
                                 <th style="width: 8%;">Anual</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <?php 
+                            $lista=$Doce->RegistroDocente($dni);
+                            while ($row = mysql_fetch_array($lista)) {
+                                echo "
+                                    <tr>
+                                        <td>REGISTRO N° ".$row[0]."</td>
+                                        <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
+                                        <td>".$row[7]."</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    ";
+                            }
+                            ?>
+                        </tbody>
                     </table>
                 </fieldset>
             </form>

@@ -25,21 +25,48 @@
                     $_SESSION['USERLNCCNOTAS']=$usuariolncc;
                     $_SESSION['codigo']=$usuariolncc->getCODIGO();
                     $_SESSION['dni']=$usuariolncc->getCONTRASENA();
-                    $_SESSION['definemenu']=$usuariolncc->getIDPERFIL();
+                    $_SESSION['definemenu']=$usuariolncc->getIDPERFIL();#perfil
                     $_SESSION['idpersona']=$usuariolncc->getIDPERSONA();
                     $_SESSION['fechainicio']=$usuariolncc->getINSCRIPCION();
-                    $_SESSION['niveldeuser']=$usuariolncc->getNIVEL();
+                    $_SESSION['niveldeuser']=$usuariolncc->getNIVEL();#tutor/coordinador/director/simple/auxiliar
                     $_SESSION['ultimavez']=$usuariolncc->getULTIMASESION();
                     $_SESSION['usuario']=$usuariolncc->getUSUARIO();
-                    $_SESSION['tipodeusuario']=$usuariolncc->getESTADO();
-                    echo $_SESSION['dni'];
-                    header('Location: inicio.php');
+                    $_SESSION['tipodeusuario']=$usuariolncc->getESTADO();#profe/alumno
+//                    echo $_SESSION['dni'];
+                    if($_SESSION['niveldeuser']==1){
+                        echo "<script>window.location = 'regcomponent.php'</script>";
+                    }
+                    if($_SESSION['niveldeuser']==2){
+                        echo "<script>window.location = 'regnota.php'</script>";
+                    }
+                    if($_SESSION['niveldeuser']==3){
+                        echo "<script>window.location = 'regnota.php'</script>";
+                    }           
+                    if($_SESSION['niveldeuser']==9){
+                        echo "<script>window.location = 'regnota.php'</script>";
+                    }                                        
+                    if($_SESSION['niveldeuser']==4){
+                        echo "<script>window.location = 'inicio.php'</script>";
+                    }                                                     
+                    if($_SESSION['niveldeuser']==5){
+                        echo "<script>window.location = 'inicio.php'</script>";
+                    }                             
+                    if($_SESSION['niveldeuser']==6){
+                        echo "<script>window.location = 'inicio.php'</script>";
+                    }                             
+                    if($_SESSION['niveldeuser']==7){
+                        echo "<script>window.location = 'inicio.php'</script>";
+                    }                             
+                    if($_SESSION['niveldeuser']==8){
+                        echo "<script>window.location = 'inicio.php'</script>";
+                    }                                                                         
+//                    header('Location: inicio.php');
                 }
                 }else {
                 session_destroy();
-                header('Location: index.php');
                 echo "<script type='text/javascript'>alert('NO SE PUDO CONECTAR');</script>";
                 echo "Contraseña Inválida";
+                header('Location: index.php');
                 }
             }
         

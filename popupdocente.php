@@ -66,7 +66,7 @@ $DOCENTE= new Docente();
                         echo "
                             <tr>
                             <td class='center'><a href='javascript: seleccionar(\"$row[0]\",\".$row[1].".$row[2].".".$row[3]."\")'>" . $row[0]. "</a></td>
-                            <td>".$row[1].$row[2].$row[3]."</td>
+                            <td>".$row[1]." ".$row[2].", ".$row[3]."</td>
                             <td>".$row[4]."</td>
                             <td>".$row[5]."</td>
                             </tr>
