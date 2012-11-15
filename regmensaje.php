@@ -25,7 +25,10 @@
 
     </head>
     <body>
-        <?php require_once 'Includes/navegador.php';    ?>
+        <?php
+        require_once 'Includes/navegador.php';
+        include_once 'Class/Conection.php';
+        ?>
         <div style="margin-left: 15%;margin-right: 15%;" id="primer">
             <center><h3 style="color: green">Escriba el comentario u observación sobre el desempeño de sus alumnos de tutor&iacute;a en el presente Bimestre.</h3></center>
             <br><a href="javascript:imprSelec('primer')"><i class="icon-print"></i>Imprimir Registro De Observaciones</a>
@@ -38,9 +41,25 @@
                             <td style="width: 46%;">Alumno</td>
                             <td>Observaci&oacute;n</td>
                         </tr>
+<?php
+$cone=new Conection();
+$cone->CONECT();
+$lista=  mysql_query("Call Listar_ALumnos_Seccion(131);");
+while ($row = mysql_fetch_array($lista)) {
+    echo "
+        <tr>
+        <td>".$row[0]."</td>
+        <td>".$row[1]."  ".$row[2]."  ,".$row[3]."</td>
+        <td><input type='text' style='width:90%'/></td>
+        </tr>
+        ";
+//    print_r($row[0].$row[1]."  ".$row[2]."  ,".$row[3]);echo "<br>";
+}
+?>
                     </table>
                 </fieldset>
             </form>
+
         </div>
         <?php require_once 'Includes/modal-footer.php'; ?>
     </body>

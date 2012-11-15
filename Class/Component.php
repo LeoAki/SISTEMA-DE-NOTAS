@@ -82,6 +82,13 @@ class Component extends Conection{
        return $resultado;
    }
 
+   public function LISTGENERAL($compo) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $result=  mysql_query("Select * from Indicador where idcomponente='".$compo."'");
+       $cone->CLOSE();
+       return $result;
+   }
 
 }
 

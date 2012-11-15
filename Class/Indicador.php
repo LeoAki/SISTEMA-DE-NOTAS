@@ -80,20 +80,20 @@ class Indicador extends Conection{
        $cone->CONECT();
        $resultado=  mysql_query("Select i.codigo, c.componente,i.criterio,i.nro_criterio from 
                                 Indicador i inner join Component c 
-                                on i.idcomponente=c.codigo where i.idcomponente='".$componente."';");
+                                on i.idcomponente=c.codigo where i.idcomponente='".$componente."' order by i.nro_criterio;");
        $cone->CLOSE();
        unset($cone);
        return $resultado;
    }
-   
-   public function LISTGENERAL($compo) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $result=  mysql_query("Select * from Indicador where idcomponente='".$compo."'");
-       $cone->CLOSE();
-       return $result;
-   }
 
+    public function nombresalumnos($seccion) {
+        $cone= new Conection();
+        $cone->CONECT();
+        $lista=mysql_query("Call  Listar_ALumnos_Seccion ('".$seccion."');");
+        $cone->CLOSE();
+        unset ($cone);
+        return $lista;
+    }
 
    public function BUSCAR($codigocomponente) {
         $conectar=new Conection();
@@ -111,7 +111,6 @@ class Indicador extends Conection{
         unset($conectar);
         return $INDICADOR;
     }
-   
 }
 
 ?>

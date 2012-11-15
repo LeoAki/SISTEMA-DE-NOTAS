@@ -141,7 +141,9 @@ class Docente extends Conection{
                             CONCAT( doc.paterno,  ' ', doc.materno,  ' ,', doc.nombres ) AS Docente, 
                             doc.dni, 
                             dasi.asinatura, 
-                            dasi.abreviatura
+                            dasi.abreviatura,
+                            r.codigoasinatura,
+                            r.codigoseccion
                             FROM Registro r
                             LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
                             LEFT JOIN Docente doc ON r.codigodocente = doc.codigo

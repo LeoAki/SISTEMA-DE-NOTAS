@@ -61,7 +61,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        <td><a  TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
                                         <td></td>
                                     </tr>
                                     ";

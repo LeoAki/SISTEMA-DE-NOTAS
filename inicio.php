@@ -1,4 +1,4 @@
-<?php session_start();#DT25735742?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
     <head>
