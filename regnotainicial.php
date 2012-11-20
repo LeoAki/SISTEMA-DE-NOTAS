@@ -33,19 +33,8 @@
         ?>
         <div style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">Registro De Notas Por Bimestre:</h3></center>
-            
-            
-            <?php 
-            if($dni==08690825 or $dni==06777861 or $dni==10618561 or $dni==22083058 or
-               $dni==09461579 or $dni==25704169 or $dni==25684322 or $dni==25748449 or $dni==25818987
-                    ){?>
-            <div id="soloinicial">
-            <?php echo "PROFESORA DE INICIAL HAGA CLIC  <a href='regnotainicial.php' class='btn btn-primary'>AQU&Iacute;</a> Y OBVIE LO DE ABAJO";?>    
-                
-            </div>
-            <?php }?>
-            
-            
+
+            <a>Ahora si misses, guarden con letras, que no habra problema alguno</a>
             <form >
                 <fieldset>
                     <legend>Bimestre Actual:IV</legend>
@@ -74,7 +63,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><a  TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
+                                        <td><a  TARGET = '_blank' href='registrainicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
                                         <td></td>
                                     </tr>
                                     ";

@@ -23,9 +23,9 @@ echo "<script>window.location = 'index.php'</script>";
 require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
-require_once 'Class/RegistroAlumno.php';
+require_once 'Class/RegistroAlumnoInicial.php';
 $INDICAXD= new Indicador();
-$REGISTROALUMNO= new RegistroAlumno();
+$REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
 <center><h3 style="color: green">Registro De Notas por asignatura- IV BIMESTRE</h3>
     <h4>Indicadores</h4>
@@ -133,16 +133,16 @@ echo "
 }
 ?>
 </table>
-<?php echo "<a TARGET = '_blank' href='imprimir_reg.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresión</a>";?>
+
 <?php
 echo
 "
     <center>
-    <h4>".$variable1." Grado De " .$variable2."    "." Asignatura: ".$variable3." </h4>
+    <h4>".$variable1." " .$variable2."    "." Asignatura: ".$variable3." </h4>
     </center>    ";
 ?>
 <center><h3 style="color: green">Lista De Alumnos</h3></center>
-<form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
+<form name="frmregistro" method="post" action="registrainicial.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
 <center>
 <table class="">
 <thead>
@@ -170,7 +170,7 @@ echo "
 </tr>
 </thead>
 <?php
-$reAl = new RegistroAlumno();
+$reAl = new RegistroAlumnoInicial();
 $listaalumnado=$reAl->ListaAlumnoSeccion($seccion);
 
 while ($alumno = mysql_fetch_array($listaalumnado)) {
@@ -191,33 +191,24 @@ $td=$COMPONENTE->LISTAR($asina);
         while ($row22 = mysql_fetch_array($lista)) {
 
 
-$listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
+$listadice=  RegistroAlumnoInicial::LISTAR($alumno[4].$seccion.$asina);
 
 while ($row11 = mysql_fetch_array($listadice)) {
-    $cuenta;
-                $valorcelda=$ro[1].$row22[3];
-                $valueespacio=$row11["p$valorcelda"];
-
-                $suma+=$valueespacio ;
-                $cuenta=$cuenta+1;
-                if ($valueespacio==0){
-                    $valueespacio="";
-                }
-                #$compromedio=$row11["promedio$valorcelda"]=($suma/$cuenta);
+    
+    $valorcelda=$ro[1].$row22[3];   
+    $valueespacio=$row11["p$valorcelda"];
+    $valorpromedio=$row11["promedio1"];                
+    $pb=$row11["pb"];
 }
-
             echo "
 <td class='center' width:3%;><input tabindex='".$row22[0]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);' onChange='validaNum(this.value,5,20)'; /></td>
                 ";
-        }
-$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
-        echo "<td><input type='text' style='width:80%;'  value=".$compromedio." id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."' readonly/></td>";
-$suma=0;
-$cuenta=0;
+}
+
+        echo "<td><input type='text' style='width:80%;'  value='$valorpromedio' id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."'/></td>";
     }
-    $suma=0;
-    $cuenta=0;
-echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' name='".$alumno[0]."pb' readonly/></td>";
+    
+echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' name='".$alumno[0]."pb'  value='$pb' /></td>";
 echo "
 </tr>
 ";
@@ -256,11 +247,7 @@ require_once 'Includes/modal-footer.php';?>
 <script type="text/javascript">
 function justNumbers(e)
 {
-    var keynum = window.event ? window.event.keyCode : e.which;
-    if ((keynum == 8) || (keynum == 46))
-    return true;
 
-    return /\d/.test(String.fromCharCode(keynum));
 }
 
 function tabular(e,obj) {
@@ -277,19 +264,11 @@ function tabular(e,obj) {
 
 function validaNum(n,mini,maxi)
 {
-n = parseInt(n)
-if ( n<mini || n>maxi )
-alert("El valor debe ser entre 05 y 20");
-n.value()=0;
+
 }
 
 function sumar(n,orden,compo) {
-n=parseInt(n);
-var suma=n+n;
-var orden=orden;
-var compone=compo;
-var sumado=orden+""+compone;
-document.frmregistro.sumado.value=suma/2;
+
 }
 
 </script>

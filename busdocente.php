@@ -87,55 +87,18 @@
         ?>
         <div>
             <?php echo "<form name='frmdocente' id='frmdocente' method='post' action='docente.php?GRABAR='".$codigo."'>"; ?>
-            <fieldset>
-                <center><legend>DOCENTES 2012</legend>
-                    <table id="tableseccion" class="table">
-                        <caption>..:SECCIONES:...</caption>
-                    <center><h3>Mantenimiento De Docentes y sus funciones</h3></center>
-                    <tr>
-                        <td style="display: none;"><a>CODIGO: </a><input type='text' id='txtcodigo' name='txtcodigo' <?php echo "value='".$codigo."'";?>></td>
-                        <td style="display: none;"><a>CODIGO: </a><input type='text' id='txtpersona' name='txtpersona' <?php echo "value='".$codigopersona."'";?>></td>
-                        <td><a>Apellido Paterno :</a><input type="text" id="txtpaterno" name="txtpaterno" <?php echo "value='".$paterno."'";?></td>
-                        <td><a>Apellido Materno :</a><input type="text" id="txtmaterno" name="txtmaterno" <?php echo "value='".$materno."'";?></td>
-                    </tr>
-                    <tr>
-                        <td><a>Nombres  :</a><input type="text" id="txtnombres" name="txtnombres" <?php echo "value='".$nombres."'";?></td>
-                        <td><a>DNI  :</a><input type="text" id="txtdni" name="txtdni" <?php echo "value='".$dni."'";?></td>                        
-                    </tr>
-                    <tr>
-                        <td colspan="2"><a>Tipo De Profe: </a>
-                            <select name='txttipo' id='txttipo'>
-                                <?php 
-                                $filas=$DOCENTE->TipoProfe();
-                                while ($row = mysql_fetch_array($filas)) {
-                                    echo "
-                                    <option value='".$row[0]."'>".$row[1]."</option>
-                                    ";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    </table>
-                </center>
-            </fieldset>
-                        <center>
-                        <div class="form-actions">
-                            <button type="submit"class="btn btn-primary" id="btnsave" name="btnsave">GRABAR</button>
-                            <button type="button" id="btnlist" name="btnlist" class="btn btn-danger">EXPORTAR A EXCEL</button>
-                        </div>
-                        </center>            
+         
             <fieldset>
                 <legend>LISTA DE DOCENTES</legend>
                 <table id='listadocentes' name='listadocentes' class="display">
                     <thead>
                         <tr class="gradeU">
                             <th>CODIGO</th>
-                            <th>PATERNO</th>
-                            <th>MATERNO</th>
+                            <th>APELLIDOS</th>
                             <th>NOMBRES</th>
                             <th>DNI</th>
                             <th>TIPO</th>
+                            <th>Ver Registros</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,12 +107,12 @@
                         while ($row1 = mysql_fetch_array($lista)) {
                             echo "
                                 <tr class='gradeA'>
-                                    <td class='center'><a href='docente?search=". '"' .$row1[0]. '"' . "'>" . $row1[0]. "</a></td>
-                                    <td>".$row1[1]."</td>
-                                    <td>".$row1[2]."</td>
+                                    <td class='center'><a>" . $row1[0]. "</a></td>
+                                    <td>".$row1[1]." ".$row1[2]."</td>
                                     <td>".$row1[3]."</td>
                                     <td>".$row1[4]."</td>
                                     <td>".$row1[5]."</td>
+                                    <td><a href='listreg.php?dnidocente=".$row1[4]."'>Ver Registros</a></td>
                                 </tr>
                                 ";
                         }

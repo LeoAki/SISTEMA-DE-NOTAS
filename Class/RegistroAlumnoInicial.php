@@ -1,6 +1,6 @@
 <?php
 require_once 'Conection.php';
-class RegistroAlumno extends Conection{
+class RegistroAlumnoInicial extends Conection{
 
     private $alumnoregistro;
     private $situacion;
@@ -582,8 +582,8 @@ class RegistroAlumno extends Conection{
     public function GRABAR() {
         try {
             $this->CONECT();
-            mysql_query("Call Sp_alumnoregistro(
-                '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
+            mysql_query("call Sp_alumnoregistroinicial(
+                ".$this->alumnoregistro.",'".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
                 '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
                 '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
                 '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
@@ -604,7 +604,7 @@ class RegistroAlumno extends Conection{
    public function LISTAR($alreg){
        $cone=new Conection();
        $cone->CONECT();
-       $lista=  mysql_query("SELECT * FROM `Alumno_Registro` where idalumnoregistro=".$alreg.";");
+       $lista=  mysql_query("SELECT * FROM  Alumno_Registroinicial where idalumnoregistro=".$alreg.";");
        $cone->CLOSE();
        unset($cone);
        return $lista;
