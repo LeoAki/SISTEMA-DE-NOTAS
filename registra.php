@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<title>LNCC ONLINE--REGISTRA LAS NOTAS DOCENTE</title>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
@@ -17,6 +17,18 @@ echo "<script>window.location = 'index.php'</script>";
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
+<script type="text/javascript">
+    function cambiaColor(){
+    var i
+    for (i=0;i<document.frmregistro.group1.length;i++){
+       if (document.frmregistro.group1[i].checked)
+          break;
+    }
+    valorcombonavegacion=document.frmregistro.group1[i].value;
+    alert('has elegido llenar registros de manera: '+ valorcombonavegacion);
+    document.cookie='valuecombix='+valorcombonavegacion;
+}
+</script>
 </head>
     <body>
 <?php
@@ -26,6 +38,7 @@ require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumno.php';
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumno();
+$_COOKIE["valuecombix"];
 ?>
 <center><h3 style="color: green">Registro De Notas por asignatura- IV BIMESTRE</h3>
     <h4>Indicadores</h4>
@@ -135,6 +148,7 @@ echo "
 </table>
 <?php echo "<a TARGET = '_blank' href='imprimir_reg.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresión</a>";?>
 <?php
+$miVariable =  $_COOKIE["valuecombix"];
 echo
 "
     <center>
@@ -143,6 +157,19 @@ echo
 ?>
 <center><h3 style="color: green">Lista De Alumnos</h3></center>
 <form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
+<div style="background-color: greenyellow;">
+<center>
+<b>LLENAR REGISTROS DE MANERA: </b>
+<input type="Radio" name="group1"  value="horizontal" checked> Horizontal
+<input type="Radio" name="group1"  value="vertical" >Vertical
+<br>
+<input type="Button" name="" value="Cambiar forma de navegación" onclick="cambiaColor();window.location.reload()">
+<br>
+<a>SE LLENARAN LOS REGISTROS DE MANERA : <b><?php echo $miVariable; ?></b></a><BR>
+<a>DOCENTE USA LA TECLA TAB PARA LA NAVEGACI&Oacute;N PORFAVOR</a>
+</center>
+</div>    
+<br>
 <center>
 <table class="">
 <thead>
@@ -200,14 +227,21 @@ while ($row11 = mysql_fetch_array($listadice)) {
 
                 $suma+=$valueespacio ;
                 $cuenta=$cuenta+1;
+                #$compromedio=$row11["promedio$valorcelda"]=($suma/$cuenta);
                 if ($valueespacio==0){
                     $valueespacio="";
                 }
-                #$compromedio=$row11["promedio$valorcelda"]=($suma/$cuenta);
+                $pbb=$row11['9'];
+}
+if($miVariable=="vertical"){
+    $index=0;
+}else{
+    $index=1;
 }
 
+
             echo "
-<td class='center' width:3%;><input tabindex='".$row22[0]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);' onChange='validaNum(this.value,5,20)'; /></td>
+<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);' onChange='validaNum(this.value,5,20)'; /></td>
                 ";
         }
 $compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
@@ -217,7 +251,7 @@ $cuenta=0;
     }
     $suma=0;
     $cuenta=0;
-echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' name='".$alumno[0]."pb' readonly/></td>";
+echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' value=".$pbb."  name='".$alumno[0]."pb' readonly/></td>";
 echo "
 </tr>
 ";
@@ -254,6 +288,31 @@ require_once 'Includes/modal-footer.php';?>
 <script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 
 <script type="text/javascript">
+
+
+     $("input[type='text']").focusout(function () {
+        referencia = this.id;
+        fila = referencia.substring(0,referencia.indexOf('p'));
+        indicador = referencia.substring(referencia.indexOf('p')+1,referencia.indexOf('p')+2);
+        tnota = referencia.substring(0,referencia.indexOf('p')+2);    
+        /*************************PROMEDIO POR COMPONENTE**************************/        
+        $("#"+fila+"promedio"+indicador).val(Math.round(get_promedio(tnota)));
+        /**************************************************************************/    
+        /*************************PROMEDIO POR BIMESTRE****************************/
+        $("#"+fila+"pb").val(Math.round(get_promedio(fila+"promedio")));
+        /**************************************************************************/
+     });
+    function get_promedio(tnota){
+      var promedio=0; var suma = 0; var notas = 0;
+      $('input[name^="'+tnota+'"]').each( function(){
+          notas = notas +1;
+          suma = suma + parseInt($.trim($(this).val()) == '' ? 0 : $(this).val());      
+        });
+        promedio = (suma == 0) ? 0 : suma / notas;
+        return promedio;
+    }
+
+
 function justNumbers(e)
 {
     var keynum = window.event ? window.event.keyCode : e.which;

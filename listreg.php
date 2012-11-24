@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
-        <title>LNCC ONLINE--Registra La Asistencia de tus Secciones</title>
+        <title>LNCC ONLINE--Registra tus notas</title>
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
@@ -29,7 +29,13 @@
         require_once 'Includes/navegador.php';    
         require_once 'Class/Docente.php';
         $Doce= new Docente();
-        $dni=$_GET['dnidocente'];
+        $dnidocente=$_GET['dnidocente'];
+        require_once 'Class/Usuario.php';
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
+    session_destroy();
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
+}else {        
         ?>
         <div style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">Registro De Notas Por Bimestre:</h3></center>
@@ -51,7 +57,7 @@
                         </thead>
                         <tbody>
                             <?php 
-                            $lista=$Doce->RegistroDocente($dni);
+                            $lista=$Doce->RegistroDocente($dnidocente);
                             while ($row = mysql_fetch_array($lista)) {
                                 echo "
                                     <tr>
@@ -74,4 +80,5 @@
         </div>
         <?php require_once 'Includes/modal-footer.php';?>
     </body>
+    <?php }?>    
 </html>

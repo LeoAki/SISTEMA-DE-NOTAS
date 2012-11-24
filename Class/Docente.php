@@ -153,6 +153,87 @@ class Docente extends Conection{
        unset($cone);
        return $regi;
    }
+
+
+   public function DOCENTE_USUARIO($dnidelusuario) {
+        $cone=new Conection();
+        $cone->CONECT();
+        $docentedatos=mysql_query("select * from Docente where dni='".$dnidelusuario."'");
+        $cone->CLOSE();
+        unset ($cone);
+        return $docentedatos;
+   }
+
+   public function ALUMNOSDEMITUTORIA($codigodocente){
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("select ase.idalumnoseccion,
+           ase.nroorden,p.paterno,p.materno,p.nombres,ase.msn4,s.nombreseccion
+           from Alumno_Seccion ase
+           inner join Alumno_Excel ae
+           on ase.idalumno=ae.idalumno
+           inner join Persona p on ae.idpersona=p.codigo
+           inner join Seccion s on ase.idseccion=s.codigo
+           where  s.cod_tutor=".$codigodocente."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
+   public function NAMESECCIOMICARGO($codigodocente) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("select
+           distinct s.grado,s.nombreseccion,s.nomnivel
+           from Alumno_Seccion ase
+           inner join Alumno_Excel ae
+           on ase.idalumno=ae.idalumno
+           inner join Persona p on ae.idpersona=p.codigo
+           inner join descripcionseccion s on ase.idseccion=s.codigo
+           inner join Seccion sec on s.codigo=sec.codigo
+           where  sec.cod_tutor=".$codigodocente."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
+
+   public function SECCIONAUXILIAR($dnidelauxiliar) {
+        $cone=new Conection();
+        $cone->CONECT();
+        $seccauxi=mysql_query("select  s.codigo,
+                            dsec.grado,
+                            dsec.nombreseccion,
+                            dsec.nomnivel,
+                            dsec.TUTOR
+                            from Seccion s
+                            inner join Docente d on s.cod_auxiliar=d.codigo
+                            inner join descripcionseccion dsec on s.codigo=dsec.codigo
+                            where dni=".$dnidelauxiliar." order by d.paterno;");
+        $cone->CLOSE();
+        unset ($cone);
+        return $seccauxi;
+   }
+
+   public function ALUMNOSDELAUXILIAR($sectionauxi){
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("select
+           ase.idalumnoseccion,
+           ase.nroorden,
+           p.paterno,
+           p.materno,
+           p.nombres,
+           ase.fj4,ase.fi4,ase.t4,
+           s.nombreseccion
+           from Alumno_Seccion ase
+           inner join Alumno_Excel ae
+           on ase.idalumno=ae.idalumno
+           inner join Persona p on ae.idpersona=p.codigo
+           inner join Seccion s on ase.idseccion=s.codigo
+           where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
    
 }
 ?>

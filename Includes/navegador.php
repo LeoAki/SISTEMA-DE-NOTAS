@@ -26,17 +26,12 @@
                         or $_SESSION['niveldeuser']==7 or $_SESSION['niveldeuser']==8
                         ){
                 ?>
-                  <li><a tabindex="-1" href="#"><i class="icon-user"></i>Alumnos</a></li>
-                  <li><a id=""tabindex="-1" href="vistadegrados.php"><i class="icon-road"></i>Grados</a></li>
-                  <li><a id=""tabindex="-1" href="#"><i class="icon-chevron-up"></i>Niveles</a></li>  
+ 
                   <li><a tabindex="-1" href="busdocente.php"><i class="icon-user"></i>Profesores</a></li>
-                  <li><a tabindex="-1" href="#"><i class="icon-folder-open"></i>Secciones</a></li>
-                  <li class="divider"></li>
-                  <li><a tabindex="-1" href="#">Registro De Notas</a></li>
                 <?php
                 }
-                  ?>
-                  <li><a tabindex="-1" href="vistadegrados.php"><i class="icon-book"></i>Indicadores</a></li>
+                ?>
+                <li><a tabindex="-1" href="vistadegrados.php"><i class="icon-book"></i>Indicadores</a></li>
                 </ul>
               </li>
               <?php 
@@ -60,7 +55,7 @@
               
               
               <?php
-              if($_SESSION['tipodeusuario']=="profesor" and ($_SESSION['niveldeuser']=='2' or $_SESSION['niveldeuser']=='1' )){
+              if($_SESSION['tipodeusuario']=="profesor" and ($_SESSION['niveldeuser']=='12' or $_SESSION['niveldeuser']=='11' )){
               ?>
               <li class="dropdown">
                   <a id="tutoria"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-bullhorn"></i>TUTORIA<b class="caret"></b></a>
@@ -78,16 +73,12 @@
               
               
               <?php
-              if($_SESSION['definemenu']==300 and ($_SESSION['niveldeuser']!==4 or $_SESSION['niveldeuser']!==5 or 
-                      $_SESSION['niveldeuser']!=6 or $_SESSION['niveldeuser']!=7 or $_SESSION['niveldeuser']!=8
-                      )){
+              if($_SESSION['definemenu']==300){
               ?>              
               <li class="dropdown">
                   <a id="regis"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-th-list"></i>REGISTRA<b class="caret"></b></a>
                 <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                    
                     <li><a id="Registra_Notas" tabindex="-1" href="regnota.php"><i class="icon-book"></i>Notas</a></li>
-                    
                     <?php if($_SESSION['niveldeuser']==1){ ?>
                         <li><a id="acriterios" tabindex="-1" href="regcomponent.php"><i class="icon-pencil"></i>Criterios De Evaluaci&oacute;n</a></li>
                     <?php }?>

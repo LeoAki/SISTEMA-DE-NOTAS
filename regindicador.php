@@ -5,6 +5,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
         <title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<?php
+        require_once 'Class/Usuario.php';
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
+    session_destroy();
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
+}else {
+?>        
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
@@ -80,19 +88,19 @@
                             <td style="display: none;"><a>COMPONENTE: </a><input type='text' id='txtcomponente' name='txtcomponente' <?php echo "value='".$compo."'";?>></td>
                         </tr>
                         <tr>
-                            <td><a>NÂ° Indicador :</a><input class="input-xlarge" id="txtfiu" name="txtfiu" type="text"  <?php echo "value='".$nrocriterio."';"?></td>
+                            <td style="display:none;"><a>N° Indicador :</a><input class="input-xlarge" id="txtfiu" name="txtfiu" type="text"  <?php echo "value='".$nrocriterio."';"?></td>
                         <tr>
                             <td><a>Criterio :<input type='text' id='txtcriterio' name='txtcriterio' style='width: 95%'<?php echo "value='".$criterio."'"; ?>/></a></td>
                         </tr>
                         <tr>
-                            <td><a>Peso<input type='text' id='txtpeso' name='txtpeso'<?php echo "value='".$peso."'"; ?>/></a></td>
+                            <td style="display:none;"><a>Peso<input type='text' id='txtpeso' name='txtpeso'<?php echo "value='".$peso."'"; ?>/></a></td>
                         </tr>
                         </tbody>
                     </table>
             </fieldset>
                         <center>
                         <div class="form-actions">
-                            <button type="submit"class="btn btn-primary" id="btnsave" name="btnsave">AGREGAR UN NUEVO INDICADOR</button>
+                            <button type="submit"class="btn btn-primary" id="btnsave" name="btnsave">AGREGAR/EDITAR INDICADOR</button>
                         </div>        
             <?php 
             echo "</form>"
@@ -100,6 +108,7 @@
         </div>
 <?php require_once 'Includes/modal-footer.php';?>
     </body>
+    <?php }?>    
 </html>
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>

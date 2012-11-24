@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<title>LNCC ONLINE--IMPRIME TU REGISTRO DOCENTE</title>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
@@ -32,7 +32,6 @@ $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];
 $registro=$_GET['registro'];
 
-
 $responsable=$REGISTROALUMNO->Nom_res_registr($registro);
 
 if($rowgeneral=  mysql_fetch_array($responsable)){
@@ -44,8 +43,7 @@ if($rowdocente=  mysql_fetch_array($docentevalor)){
     $maternodocente=$rowdocente['materno'];
     $nombresdocente=$rowdocente['nombres'];
 }
-echo "<a style='font-size:11px;'>Profesor Responsable: ".$paternodocente.$maternodocente." ,".$nombresdocente."</a>";
-
+echo "<a style='font-size:11px;'>Profesor Responsable: ".$paternodocente." ".$maternodocente." ,".$nombresdocente."</a>";
 /*--------------------------------------MANTENIMIENTO-----------------------------------*/
 //Listar registros
 #BUCLE REPETITIVO
@@ -156,7 +154,7 @@ echo
 <table class="">
 <thead>
 <tr class="">
-    <td><a style='font-size: 12px;'>N°</a></td>
+    <td><a style='font-size: 12px;'>N &#176;</a></td>
     <td style="width: 25%;"><a style="font-size: 12px;">Alumno</a></td>
 <?php
 $th=$COMPONENTE->LISTAR($asina);

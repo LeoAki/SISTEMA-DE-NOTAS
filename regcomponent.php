@@ -4,16 +4,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link rel="icon" href="Css/images/favicon.ico">
+        
         <title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
-<?php
-require_once 'Class/Usuario.php';
-if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
-session_destroy();
-header('Location: index.php');
+        <?php
+        require_once 'Class/Usuario.php';
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
+    session_destroy();
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
 }else {
-?>
+?>        
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
@@ -43,7 +45,7 @@ header('Location: index.php');
         if($dni==25704169){
         ?>
 <!---------------------------------------------------------------------------------------------->        
-        <div id="divinicial"style="margin-left: 15%;margin-right: 15%;">
+          <div id="divinicial"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS</h3>
                 <h4>Correspondiente al NIVEL INICIAL</h4>
                 <br>            
@@ -126,7 +128,7 @@ header('Location: index.php');
             </div>
             </center>            
         </div>
-<?php 
+        <?php 
 }
 ?>
 <!---------------------------------------------------------------------------------------------->
@@ -303,7 +305,7 @@ header('Location: index.php');
         if($dni==32296732){        
 ?>
 <div id="divsecundaria"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO MATEM&Aacute;TICA</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE MATEM&Aacute;TICA</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
                 <br>            
             <!---------------------------------------------------------------------------------------->
@@ -422,7 +424,7 @@ header('Location: index.php');
         if($dni==25685585){
 ?>
 <div id="divsecundariacomunicacion"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO COMUNICACI&Oacute;N</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE COMUNICACI&Oacute;N</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
                 <br>            
             <!---------------------------------------------------------------------------------------->
@@ -540,7 +542,7 @@ header('Location: index.php');
         if($dni=='08806831'){
 ?>
 <div id="divsecundariaccss"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO CIENCIAS SOCIALES</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE CIENCIAS SOCIALES</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
                 <br>            
             <!---------------------------------------------------------------------------------------->
@@ -688,7 +690,7 @@ header('Location: index.php');
         if($dni==25688412){
 ?>
 <div id="divsecundariacta"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO CTA</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA CTA</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
                 <br>            
             <!---------------------------------------------------------------------------------------->
@@ -820,7 +822,7 @@ header('Location: index.php');
         if($dni=='07168034'){
 ?>
 <div id="divsecundariaingles"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO INGL&Eacute;S</h3></center>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE INGL&Eacute;S</h3></center>
     <div class="row-fluid">
         <div class="accordion" id="ingleslncc">
 <!---------------------------------------------------------------- PRIMARIA-->   
@@ -1103,10 +1105,10 @@ header('Location: index.php');
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php 
-        if($dni=='08163951'){
+        if($dni=='08163931'){
 ?>
 <div id="divsecundariarlg"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO RELIGI&Oacute;N</h3></center>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE RELIGI&Oacute;N</h3></center>
     <div class="row-fluid">
         <div class="accordion" id="religionlncc">
 <!---------------------------------------------------------------- PRIMARIA-->   
@@ -1393,7 +1395,7 @@ header('Location: index.php');
         if($dni=='07128440'){
 ?>
 <div id="divsecundariaedf"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL CURSO EDUCACI&Oacute;N F&Iacute;SICA</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE EDUCACI&Oacute;N F&Iacute;SICA</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
                 <br></center>
     <div class="row-fluid">
@@ -1953,7 +1955,7 @@ header('Location: index.php');
         if($dni=='08465248'){
 ?>
 <div id="divsecundariapc"style="margin-left: 15%;margin-right: 15%;">
-    <center><h3 style="color: green">REGISTRO DE CRITERIOS DE COMPUTACI&Oacute;N</h3>
+    <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE COMPUTACI&Oacute;N</h3>
 
 
 	<div class="row-fluid">
@@ -2225,6 +2227,6 @@ header('Location: index.php');
 ?>
             
         <?php require_once 'Includes/modal-footer.php';?>
-    <?php }?>            
+            <?php }?>
     </body>
 </html>

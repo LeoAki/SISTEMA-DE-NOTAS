@@ -609,7 +609,6 @@ class RegistroAlumno extends Conection{
        unset($cone);
        return $lista;
    }
-   
    public function Nom_res_registr($registro) {
        $cone=new Conection();
        $cone->CONECT();

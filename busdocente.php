@@ -44,7 +44,16 @@
         </script>
         <title>LNCC OnLine- Docente</title>
     </head>
-    <?php require_once 'Class/Docente.php'; ?>
+    <?php require_once 'Class/Docente.php';
+    
+            require_once 'Class/Usuario.php';
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
+    session_destroy();
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
+}else {
+    
+     ?>
     <body>
         <?php require_once 'Includes/navegador.php';
         //Variables Locales
@@ -52,7 +61,7 @@
         $paterno="";
         $materno="";
         $nombres="";
-        $dni="";
+        $dnia="";
         $codigopersona=0;
         $tipoprofe=0;
         $DOCENTE= new Docente();
@@ -80,7 +89,7 @@
             $paterno=$DOCENTE->getPATERNO();
             $materno=$DOCENTE->getMATERNO();
             $nombres=$DOCENTE->getNOMBRES();
-            $dni=$DOCENTE->getDNI();
+            $dnia=$DOCENTE->getDNI();
             $codigopersona=$DOCENTE->getCODIGOPERSONA();
             $tipoprofe=$DOCENTE->getTIPOPROFE();
     }
@@ -125,4 +134,5 @@
         
         <?php require_once 'Includes/modal-footer.php';?>
     </body>
+    <?php }?>    
 </html>

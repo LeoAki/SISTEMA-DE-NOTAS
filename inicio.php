@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +11,8 @@
         require_once 'Class/Usuario.php';
         if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
     session_destroy();
-    header('Location: index.php');
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
@@ -44,20 +47,11 @@
         <center>
         <code>BIENVENIDOS AL SISTEMA DE NOTAS ONLINE DEL COLEGIO LICEO NAVAL C. DE CORBETA<BR>
             <em>"MANUEL CLAVERO MUGA"</em></code>
-        </center>
+        </center> 
         <div>
             <center><legend><em>Clavero "Siempre Primero"</em></legend></center>
         </div>
-        <center>
-                    <div class="td-header">
-                        <ul id="fcabecera" style="list-style: none;">
-                            <li><img src="Css/images/fade1.JPG" alt="" /></li>
-                            <li><img src="Css/images/fade2.JPG" alt="" /></li>
-                            <li><img src="Css/images/fade1.JPG" alt="" /></li>
-                            <li><img src="Css/images/fade2.JPG" alt="" /></li>
-                        </ul>
-                    </div>
-        </center>
+
     <br>
     <!--TABS DE BIENVENIDA-->
     <div class="bs-docs-example">
@@ -78,17 +72,22 @@
             <div class="tab-pane fade in active" id="home">
                 Tengan todos ustedes una cordial bienvenida al Sistema De Notas On-Line de nuestra institución...
                 <br>
-                <code>Nota:</code> Si tienes problemas para ver este sitio, significa que estas usando un navegador como IE, Te recomendamos instalar mejores navegadores:<ul><li><a href="">Mozilla Firefox</a></li><li><a href="">Chrom</a></li>
+                <code>Nota:</code> Si tienes problemas para ver este sitio, significa que estas usando un navegador como IE, Te recomendamos instalar mejores navegadores:<ul><li><a target="_blank" href="http://www.mozilla.org/es-ES/firefox/new/">Mozilla Firefox</a></li><li><a target="_blank" href="https://www.google.com/intl/es/chrome/browser/?hl=es">Chrome</a></li>
                 </ul>
             </div>
             <!--CONTENT COMUNICADOS RECIENTES-->
             <div class="tab-pane fade" id="profile">
                 <h3>COMUNICADOS RECIENTES</h3>
                 <fieldset>
-                    <center><legend>Comunicado N°90</legend></center>
-                    <p>bla bla bla</p>
+                    <center><legend>Comunicado N°94</legend></center>
+                    <p>DSCTO. BIT&Aacute;CORA</p>
+                    
+
+Se&ntilde;or Padre de Familia:<br>
+
+Tengo el agrado de dirigirme a usted para saludarlo cordialmente y a su vez comunicarle que con la finalidad de contar con los recursos necesarios para programar la adquisici&oacute;n de las bit&aacute;coras e impresos y material relacionado al mejoramiento de la calidad educativa correspondiente al a&ntilde;o acad&eacute;mico 2013; la Direcci&oacute;n de Bienestar a trav&eacute;s del Departamento de Educaci&oacute;n ha visto por conveniente hacer llegar a usted el cronograma de pagos y/o descuentos a efectuarse en los mes de Noviembre, Diciembre del presente a&ntilde;o y Enero 2013, se considerar&aacute; los pagos por tesorer&iacute;a y/o descuento por planilla de haberes OGA-CPMP<br>
                 </fieldset>
-                <em>Puedes ver todos los comunicados en nuestra web <a href="http://lncc.edu.pe" target="_blank"><i class="icon-globe"></i></a></em>
+                <em>Puedes ver todos los comunicados en nuestra web <a href="http://www.lncc.edu.pe/index.php/noticias/comunicados" target="_blank"><i class="icon-globe"></i></a></em>
             </div>  
             <!--CONTENT ALUMNO DEL MES-->            
             <div class="tab-pane fade" id="dropdown1">

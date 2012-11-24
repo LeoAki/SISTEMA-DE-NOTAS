@@ -583,7 +583,7 @@ class RegistroAlumnoInicial extends Conection{
         try {
             $this->CONECT();
             mysql_query("call Sp_alumnoregistroinicial(
-                ".$this->alumnoregistro.",'".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
+                '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
                 '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
                 '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
                 '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',

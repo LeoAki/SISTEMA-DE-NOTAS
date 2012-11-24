@@ -42,7 +42,7 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
 ?>
 </table>
 <?php echo 
-"<h4>".$variable1." Grado De " .$variable2."<br>"." Asignatura: ".$variable3." </h4>"?>
+"<h4>".$variable1." Grado De " .$variable2."<br>"." &Aacute;REA: ".$variable3." </h4>"?>
 </center>
     
 <form action="regcomponent" method="get">
@@ -66,7 +66,7 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
                             while ($row2 = mysql_fetch_array($lista)) {
                                 echo "
                                     <tr class='gradeA'>
-                                        <td class='center'><a href='regindicador.php?componente=".$row[0]."&orden=".$row2[3]."&indicador=".$row2[2]."&codeindi=".$row2[0]."' TARGET = '_blank'>" .$row[1].".". $row2[3]. "</a></td>
+<td class='center'><a href='regindicador.php?componente=".$row[0]."&orden=".$row2[3]."&indicador=".$row2[2]."&codeindi=".$row2[0]."' TARGET = '_blank'>" .$row[1].".". $row2[3]. "</a></td>
                                         <td>".$row2[2]."</td>
                                      </tr>
                                     ";

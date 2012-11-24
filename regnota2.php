@@ -5,6 +5,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
         <title>LNCC ONLINE--Registra La Asistencia de tus Secciones</title>
+<?php
+        require_once 'Class/Usuario.php';
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
+    session_destroy();
+#    header('Location: index.php');
+                    echo "<script>window.location = 'index.php'</script>";
+}else {
+?>               
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
@@ -30,20 +38,9 @@
         require_once 'Class/Docente.php';
         $Doce= new Docente();
         $dni=$_SESSION['dni'];
-
-        require_once 'Class/Usuario.php';
-        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
-    session_destroy();
-#    header('Location: index.php');
-                    echo "<script>window.location = 'index.php'</script>";
-}else {
-        
         ?>
         <div style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">Registro De Notas Por Bimestre:</h3></center>
-            <?php echo "<i>si eres profesora de inicial, haz clic <a href='regnotainicial.php' class='btn btn-primary'>AQU&Iacute;</a> y obvie lo de abajo</i>";?>    
-            
-            
             <form >
                 <fieldset>
                     <legend>Bimestre Actual:IV</legend>
@@ -66,13 +63,13 @@
                             while ($row = mysql_fetch_array($lista)) {
                                 echo "
                                     <tr>
-                                        <td>REGISTRO N&#176; ".$row[0]."</td>
+                                        <td>REGISTRO N° ".$row[0]."</td>
                                         <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
                                         <td>".$row[7]."</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><a  TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
                                     ";
@@ -84,6 +81,6 @@
             </form>
         </div>
         <?php require_once 'Includes/modal-footer.php';?>
+            <?php }?>        
     </body>
-    <?php }?>    
 </html>

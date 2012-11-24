@@ -95,6 +95,14 @@ class Indicador extends Conection{
         return $lista;
     }
 
+       public function LISTGENERAL($compo) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $result= mysql_query("Select * from Indicador where idcomponente='".$compo."'");
+       $cone->CLOSE();
+       return $result;
+   }
+
    public function BUSCAR($codigocomponente) {
         $conectar=new Conection();
         $conectar->CONECT();
@@ -111,13 +119,6 @@ class Indicador extends Conection{
         unset($conectar);
         return $INDICADOR;
     }
-       public function LISTGENERAL($compo) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $result= mysql_query("Select * from Indicador where idcomponente='".$compo."'");
-       $cone->CLOSE();
-       return $result;
-   }
 }
 
 ?>

@@ -63,7 +63,7 @@
                         while ($row = mysql_fetch_array($resultado)) {
                             echo "
                                 <tr>
-                                    <td class='center'><a href='javascript: seleccionar(\"$row[0]\",\".$row[1].\")'>" . $row[0]. "</a></td>
+                                    <td class='center'><a href='javascript: seleccionar(\".$row[0].\",\".$row[1].\")'>" . $row[0]. "</a></td>
                                     <td>".$row[1]."</td>
                                     <td>".$row[2]."</td>
                                 </tr>
