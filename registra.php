@@ -289,7 +289,6 @@ require_once 'Includes/modal-footer.php';?>
 
 <script type="text/javascript">
 
-
      $("input[type='text']").focusout(function () {
         referencia = this.id;
         fila = referencia.substring(0,referencia.indexOf('p'));

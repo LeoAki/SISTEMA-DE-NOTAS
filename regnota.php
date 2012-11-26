@@ -53,11 +53,11 @@
                                 <th style="width: 15%;">Registro</th>
                                 <th style="width: 22%;">Secci&oacute;n</th>
                                 <th style="width: 23%">Asignatura</th>
-                                <th style="width: 8%;">I</th>
-                                <th style="width: 8%;">II</th>
-                                <th style="width: 8%;">III</th>
-                                <th style="width: 8%;">IV</th>
-                                <th style="width: 8%;">Anual</th>
+                                <th style="width: 8%;"><center>I</center></th>
+                                <th style="width: 8%;"><center>II</center></th>
+                                <th style="width: 8%;"><center>III</center></th>
+                                <th style="width: 8%;"><center>IV</center></th>
+                                <th style="width: 8%;"><center>Anual</center></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,11 +69,11 @@
                                         <td>REGISTRO N&#176; ".$row[0]."</td>
                                         <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
                                         <td>".$row[7]."</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><a  TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
-                                        <td></td>
+                                        <td><a href='#'><center><i class='icon-eye-open'></i></center></a></td>
+                                        <td><a href='#'><center><i class='icon-eye-open'></i></center></a></td>
+                                        <td><a href='#'><center><i class='icon-eye-open'></i></center></a></td>
+                                        <td><a TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
+                                        <td><a TARGET = '_blank' href='reganual.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'><center><i class='icon-eye-open'></i></center></a></td>
                                     </tr>
                                     ";
                             }

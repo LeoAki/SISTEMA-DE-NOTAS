@@ -38,6 +38,7 @@ echo "<script>window.location = 'index.php'</script>";
                      <th>II</th>
                      <th>III</th>
                      <th>IV</th>
+                     <th>Anual</th>                     
                  </tr>
              </thead>
                 <tbody>
@@ -45,14 +46,16 @@ echo "<script>window.location = 'index.php'</script>";
 <?php
 $misseccionesauxi=$DOCENAUXI->SECCIONAUXILIAR($dnidocenteauxiliar);
 while ($datosseccion = mysql_fetch_array($misseccionesauxi)) {
+    $sectionis=$datosseccion[1].$datosseccion[2]." ".$datosseccion[3];
     echo "
         <tr>
             <td>$datosseccion[1]$datosseccion[2]  $datosseccion[3]</td>
             <td>$datosseccion[4]</td>
-            <td><center><a href='#' tittle='aun no'>ver</a></center></td>
-            <td><center><a>ver</a></center></td>
-            <td><center><a>ver</a></center></td>
+            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=1&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
+            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=2&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
+            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=3&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
             <td><center><a href='rasis.php?seccionauxi=$datosseccion[0]'>Registrar</a></center></td>
+            <td><a TARGET = '_blank' href='verasisanual.php?seccionauxi=$datosseccion[0]&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
         </tr>
         ";
 }

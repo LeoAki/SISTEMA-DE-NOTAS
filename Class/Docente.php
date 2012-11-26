@@ -207,7 +207,7 @@ class Docente extends Conection{
                             from Seccion s
                             inner join Docente d on s.cod_auxiliar=d.codigo
                             inner join descripcionseccion dsec on s.codigo=dsec.codigo
-                            where dni=".$dnidelauxiliar." order by d.paterno;");
+                            where dni=".$dnidelauxiliar." order by s.codigo;");
         $cone->CLOSE();
         unset ($cone);
         return $seccauxi;
@@ -234,6 +234,53 @@ class Docente extends Conection{
        unset ($cone);
        return $misalumnos;
    }
-   
+
+   public function ALUMNOSDELAUXILIARPORBIMESTRE($sectionauxi,$bimestre){
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("select
+           ase.idalumnoseccion,
+           ase.nroorden,
+           p.paterno,
+           p.materno,
+           p.nombres,
+           ase.fj$bimestre,ase.fi$bimestre,ase.t$bimestre,
+           s.nombreseccion
+           from Alumno_Seccion ase
+           inner join Alumno_Excel ae
+           on ase.idalumno=ae.idalumno
+           inner join Persona p on ae.idpersona=p.codigo
+           inner join Seccion s on ase.idseccion=s.codigo
+           where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
+
+   public function ASISTENCIAGLOBAL($sectionauxi){
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("select
+           ase.idalumnoseccion,
+           ase.nroorden,
+           p.paterno,
+           p.materno,
+           p.nombres,
+           ase.fj1,ase.fi1,ase.t1,
+           ase.fj2,ase.fi2,ase.t2,
+           ase.fj3,ase.fi3,ase.t3,
+           ase.fj4,ase.fi4,ase.t4,
+           s.nombreseccion
+           from Alumno_Seccion ase
+           inner join Alumno_Excel ae
+           on ase.idalumno=ae.idalumno
+           inner join Persona p on ae.idpersona=p.codigo
+           inner join Seccion s on ase.idseccion=s.codigo
+           where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
+
 }
 ?>
