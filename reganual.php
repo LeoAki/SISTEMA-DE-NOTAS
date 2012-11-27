@@ -33,12 +33,17 @@ $registro=$_GET['registro'];
 //Listar registros
 #BUCLE REPETITIVO
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
-$queryalu=$REGISTROALUMNO->ListaAlumnoSeccion($seccion);
-
-
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-
-    
+    $REGISTROALUMNO->setIDALUMNOREGISTRO($_REQUEST[$x.'txtalumnoregistro']);
+    $REGISTROALUMNO->setIDREGISTRO($registro);
+    $REGISTROALUMNO->setIDALUMNOSECCION($_REQUEST[$x.'txtidalumno']);
+    $REGISTROALUMNO->setP1($_REQUEST[$x.'b1']);
+    $REGISTROALUMNO->setP2($_REQUEST[$x.'b2']);
+    $REGISTROALUMNO->setP3($_REQUEST[$x.'b3']);
+    $REGISTROALUMNO->setP4($_REQUEST[$x.'b4']);
+    $REGISTROALUMNO->setANUAL($_REQUEST[$x.'anual']);
+    $REGISTROALUMNO->setEXONERADO($_REQUEST[$x.'exonerado']);
+    $REGISTROALUMNO->GRABAR();
 }
 
 echo "<script languaje='javascript' type='text/javascript'>
@@ -82,6 +87,17 @@ $reAl = new RegistraAnual();
 $listaalumnado=$reAl->ListaAlumnoSeccion($seccion);
 
 while ($alumno = mysql_fetch_array($listaalumnado)) {
+    
+    $valores=$REGISTROALUMNO->LISTAR($alumno[4].$seccion.$asina);
+    while ($row = mysql_fetch_array($valores)) {
+     $b1=$row[3];
+     $b2=$row[4];
+     $b3=$row[5];
+     $b4=$row[6];
+     $notaanual=$row[7];
+     $exonealum=$row[8];
+    }
+    
 echo "
 <tr>
     <td style='display:none;'><input type='hidden' name='txtregistro' id='txtregistro' value='".$registro."'/></td>
@@ -89,14 +105,15 @@ echo "
     <td style='display:none;'><input type='hidden' name='".$alumno[0]."txtalumnoregistro' id='".$alumno[0]."txtalumnoregistro' value='".$alumno[4].$seccion.$asina."'/></td>
     <td>".$alumno[0]."</td>
     <td>".$alumno[1]."  ".$alumno[2]."   ,".$alumno[3]."</td>
-    <td><input type='text' name='$alumno[0]b1' id='$alumno[0]b1' style='width:79%;' maxlength=2/></td>
-    <td><input type='text' name='$alumno[0]b2' id='$alumno[0]b2' style='width:79%;' maxlength=2/></td>
-    <td><input type='text' name='$alumno[0]b3' id='$alumno[0]b3' style='width:79%;' maxlength=2/></td>
-    <td><input type='text' name='$alumno[0]b4' id='$alumno[0]b4' style='width:79%;' maxlength=2/></td>
-    <td><input type='text' name='$alumno[0]anual' id='$alumno[0]anual' style='width:79%;' maxlength=2/></td>
-    <td><input type='text' name='$alumno[0]exonerado' id='$alumno[0]exonerado' style='width:79%;' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]b1' id='$alumno[0]b1' style='width:79%;' value='".$b1."' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]b2' id='$alumno[0]b2' style='width:79%;' value='".$b2."' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]b3' id='$alumno[0]b3' style='width:79%;' value='".$b3."' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]b4' id='$alumno[0]b4' style='width:79%;' value='".$b4."' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]anual' id='$alumno[0]anual' style='width:79%;' value='".$notaanual."' maxlength=2/></td>
+    <td><input type='text' name='$alumno[0]exonerado' id='$alumno[0]exonerado' style='width:79%;' value='".$exonealum."' maxlength=2/></td>
 </tr>
 ";
+    
 }
 ?>
 </table>

@@ -101,7 +101,29 @@ class RegistraAnual extends Conection{
     $cone->CLOSE();
     unset ($cone);
     return $listado;
-    }    
+    }
+    
+    public function GRABAR() {
+        try {
+            $this->CONECT();
+            mysql_query("Call Sp_RegAnual('".$this->IDALUMNOREGISTRO."','".$this->IDREGISTRO."','".$this->IDALUMNOSECCION."',
+                                          '".$this->P1."','".$this->P2."','".$this->P3."',
+                                          '".$this->P4."','".$this->ANUAL."','".$this->EXONERADO."');")
+                                            or die(mysql_error());
+            $this->CLOSE();
+        } catch (Exception $exc) {
+            echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
+        }
+   }
+   
+   public function LISTAR($alreg){
+       $cone=new Conection();
+       $cone->CONECT();
+       $lista=  mysql_query("SELECT * FROM `RegistroAnual` where idalumnoregistro=".$alreg.";");
+       $cone->CLOSE();
+       unset($cone);
+       return $lista;
+   }
     
 }
 
