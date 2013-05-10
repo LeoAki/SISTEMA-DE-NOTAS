@@ -295,19 +295,26 @@ require_once 'Includes/modal-footer.php';?>
         indicador = referencia.substring(referencia.indexOf('p')+1,referencia.indexOf('p')+2);
         tnota = referencia.substring(0,referencia.indexOf('p')+2);    
         /*************************PROMEDIO POR COMPONENTE**************************/        
-        $("#"+fila+"promedio"+indicador).val(Math.round(get_promedio(tnota)));
+        $("#"+fila+"promedio"+indicador).val(get_promedio(tnota));
         /**************************************************************************/    
         /*************************PROMEDIO POR BIMESTRE****************************/
-        $("#"+fila+"pb").val(Math.round(get_promedio(fila+"promedio")));
+        $("#"+fila+"pb").val(get_promedio(fila+"promedio"));
         /**************************************************************************/
      });
     function get_promedio(tnota){
-      var promedio=0; var suma = 0; var notas = 0;
+      var promedio=0; var suma = 0; var notas = 0; var notas_validas=true;
       $('input[name^="'+tnota+'"]').each( function(){
           notas = notas +1;
+          if($.trim($(this).val()) == ''){
+            notas_validas = false;
+          }
           suma = suma + parseInt($.trim($(this).val()) == '' ? 0 : $(this).val());      
         });
-        promedio = (suma == 0) ? 0 : suma / notas;
+        if(notas_validas){
+          promedio = (suma == 0) ? 0 : Math.round(suma / notas);  
+        }else{
+          promedio = '';
+        }
         return promedio;
     }
 
