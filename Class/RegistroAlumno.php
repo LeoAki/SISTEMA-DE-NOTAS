@@ -554,12 +554,11 @@ class RegistroAlumno extends Conection{
     public function ListaAlumnoSeccion($seccion) {
     $cone=new Conection();
     $cone->CONECT();
-    $listado=mysql_query("Select ase.nroorden,p.paterno,p.materno,p.nombres,ase.idalumnoseccion
-                            from Alumno_Seccion ase
-                            inner join Alumno_Excel ae on ase.idalumno=ae.idalumno
-                            inner join Persona p on ae.idpersona=p.codigo
-                            where ase.idseccion=".$seccion."
-                            order by ase.nroorden");
+    $listado=mysql_query("      SELECT ase.nroorden, ae.paterno, ae.materno, ae.nombres,ase.idalumnoseccion
+				FROM Alumno_Seccion ase
+				INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
+				WHERE ase.idseccion =".$seccion."
+                                order by ase.nroorden");
     $cone->CLOSE();
     unset ($cone);
     return $listado;
@@ -568,12 +567,9 @@ class RegistroAlumno extends Conection{
     public function contaralumno($seccion) {
     $cone=new Conection();
     $cone->CONECT();
-    $listado=mysql_query("Select count(*)
-                            from Alumno_Seccion ase
-                            inner join Alumno_Excel ae on ase.idalumno=ae.idalumno
-                            inner join Persona p on ae.idpersona=p.codigo
-                            where ase.idseccion=".$seccion."
-                            order by ase.nroorden");
+    $listado=mysql_query("SELECT COUNT( * ) 
+                            FROM Alumno_Seccion
+                            WHERE idseccion =".$seccion);
     $cone->CLOSE();
     unset ($cone);
     return $listado;
@@ -582,7 +578,7 @@ class RegistroAlumno extends Conection{
     public function GRABAR() {
         try {
             $this->CONECT();
-            mysql_query("Call Sp_alumnoregistro(
+            mysql_query("Call Sp_1alumnoregistro(
                 '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
                 '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
                 '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
@@ -604,7 +600,7 @@ class RegistroAlumno extends Conection{
    public function LISTAR($alreg){
        $cone=new Conection();
        $cone->CONECT();
-       $lista=  mysql_query("SELECT * FROM `Alumno_Registro` where idalumnoregistro=".$alreg.";");
+       $lista=  mysql_query("SELECT * FROM `1Alumno_Registro` where idalumnoregistro=".$alreg.";");
        $cone->CLOSE();
        unset($cone);
        return $lista;

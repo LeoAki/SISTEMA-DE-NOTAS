@@ -236,6 +236,13 @@ class Seccion extends Conection{
         unset($cone);
         return $resultado;
     }
+    
+    public function viewNivel($section) {
+        $this->CONECT();
+        $queryviewnivel=  mysql_query("select nomnivel from descripcionseccion where codigo='".$section."'");
+        $this->CLOSE();
+        return $queryviewnivel;
+    }
 }
 
 ?>

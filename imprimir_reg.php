@@ -12,21 +12,17 @@ session_destroy();
 echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
-<!----------------------------------BOOTSTRAP--css-------------------------------------------------->
-
 </head>
     <body>
-        <div>
+<div id="todo" name="todo">
 <?php
-
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumno.php';
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumno();
 ?>
-            <center><a style="font-size: 12px;">Registro De Notas por asignatura- IV BIMESTRE</a>
-    <br>
+<center><a style='color:black;font-size: 11px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2013</b></a></center>
 <?PHP
 $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];
@@ -43,74 +39,7 @@ if($rowdocente=  mysql_fetch_array($docentevalor)){
     $maternodocente=$rowdocente['materno'];
     $nombresdocente=$rowdocente['nombres'];
 }
-echo "<a style='font-size:11px;'>Profesor Responsable: ".$paternodocente." ".$maternodocente." ,".$nombresdocente."</a>";
-/*--------------------------------------MANTENIMIENTO-----------------------------------*/
-//Listar registros
-#BUCLE REPETITIVO
-if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
-$queryalu=$REGISTROALUMNO->ListaAlumnoSeccion($seccion);
 
-while ($rowgeneral = mysql_fetch_array($queryalu)) {
-    $count=$count+1;
-}
-
-for($x =1 ; $x <= 34; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-
-       $REGISTROALUMNO->setAlumnoregistro($_REQUEST[$x.'txtalumnoregistro']);
-       $REGISTROALUMNO->setRegistro($_REQUEST['txtregistro']);
-       $REGISTROALUMNO->setAlumnoseccion($_REQUEST[$x.'txtidalumno']);
-       $REGISTROALUMNO->setSituacion();
-       $REGISTROALUMNO->setPromedio1($_REQUEST[$x.'promedio1']);
-       $REGISTROALUMNO->setPromedio2($_REQUEST[$x.'promedio2']);
-       $REGISTROALUMNO->setPromedio3($_REQUEST[$x.'promedio3']);
-       $REGISTROALUMNO->setPromedio4($_REQUEST[$x.'promedio4']);
-       $REGISTROALUMNO->setPromedio5($_REQUEST[$x.'promedio5']);
-       $REGISTROALUMNO->setPb($_REQUEST[$x.'pb']);
-       
-       $REGISTROALUMNO->setP11($_REQUEST[$x.'p11']);       $REGISTROALUMNO->setP12($_REQUEST[$x.'p12']);
-       $REGISTROALUMNO->setP13($_REQUEST[$x.'p13']);       $REGISTROALUMNO->setP14($_REQUEST[$x.'p14']);
-       $REGISTROALUMNO->setP15($_REQUEST[$x.'p15']);       $REGISTROALUMNO->setP16($_REQUEST[$x.'p16']);
-       $REGISTROALUMNO->setP17($_REQUEST[$x.'p17']);       $REGISTROALUMNO->setP18($_REQUEST[$x.'p18']);
-       $REGISTROALUMNO->setP19($_REQUEST[$x.'p19']);       $REGISTROALUMNO->setP110($_REQUEST[$x.'p110']);
-       
-       $REGISTROALUMNO->setP21($_REQUEST[$x.'p21']);       $REGISTROALUMNO->setP22($_REQUEST[$x.'p22']);
-       $REGISTROALUMNO->setP23($_REQUEST[$x.'p23']);       $REGISTROALUMNO->setP24($_REQUEST[$x.'p24']);
-       $REGISTROALUMNO->setP25($_REQUEST[$x.'p25']);       $REGISTROALUMNO->setP26($_REQUEST[$x.'p26']);
-       $REGISTROALUMNO->setP27($_REQUEST[$x.'p27']);       $REGISTROALUMNO->setP28($_REQUEST[$x.'p28']);
-       $REGISTROALUMNO->setP29($_REQUEST[$x.'p29']);       $REGISTROALUMNO->setP210($_REQUEST[$x.'p210']);
-       
-       $REGISTROALUMNO->setP31($_REQUEST[$x.'p31']);       $REGISTROALUMNO->setP32($_REQUEST[$x.'p32']);
-       $REGISTROALUMNO->setP33($_REQUEST[$x.'p33']);       $REGISTROALUMNO->setP34($_REQUEST[$x.'p34']);
-       $REGISTROALUMNO->setP35($_REQUEST[$x.'p35']);       $REGISTROALUMNO->setP36($_REQUEST[$x.'p36']);
-       $REGISTROALUMNO->setP37($_REQUEST[$x.'p37']);       $REGISTROALUMNO->setP38($_REQUEST[$x.'p38']);
-       $REGISTROALUMNO->setP39($_REQUEST[$x.'p39']);       $REGISTROALUMNO->setP310($_REQUEST[$x.'p310']);
-       
-       $REGISTROALUMNO->setP41($_REQUEST[$x.'p41']);       $REGISTROALUMNO->setP42($_REQUEST[$x.'p42']);
-       $REGISTROALUMNO->setP43($_REQUEST[$x.'p43']);       $REGISTROALUMNO->setP44($_REQUEST[$x.'p44']);
-       $REGISTROALUMNO->setP45($_REQUEST[$x.'p45']);       $REGISTROALUMNO->setP46($_REQUEST[$x.'p46']);
-       $REGISTROALUMNO->setP47($_REQUEST[$x.'p47']);       $REGISTROALUMNO->setP48($_REQUEST[$x.'p48']);
-       $REGISTROALUMNO->setP49($_REQUEST[$x.'p49']);       $REGISTROALUMNO->setP410($_REQUEST[$x.'p410']);
-       
-       $REGISTROALUMNO->setP51($_REQUEST[$x.'p51']);       $REGISTROALUMNO->setP52($_REQUEST[$x.'p52']);
-       $REGISTROALUMNO->setP53($_REQUEST[$x.'p53']);       $REGISTROALUMNO->setP54($_REQUEST[$x.'p54']);
-       $REGISTROALUMNO->setP55($_REQUEST[$x.'p55']);       $REGISTROALUMNO->setP56($_REQUEST[$x.'p56']);
-       $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
-       $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
-       
-       $REGISTROALUMNO->GRABAR();
-}
-   
-echo "<script languaje='javascript' type='text/javascript'>
-                 
-            window.close();</script>";        
-}
-    
-/*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
-?>
-    
-    
-<table>
-<?php
 $COMPO = new Component();
 $mysql=$COMPO->ListarDatosAsignatura($asina);
 if($rowgeneral=  mysql_fetch_array($mysql)){
@@ -118,72 +47,79 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
     $variable2=$rowgeneral['nomnivel'];
     $variable3=$rowgeneral['asinatura'];
 }
+$datitossecciones=$COMPO->SECCIONAME($seccion);
+if($namesection=  mysql_fetch_array($datitossecciones)){
+    $nombredelaseccion=$namesection[1];
+}
+echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$variable1." ".$nombredelaseccion."]- Profesor:[".$paternodocente." ".$maternodocente." ,".$nombresdocente."]- Asignatura:[".$variable3."]</a>";
 ?>
-</table>
 </center>
 
-<table class="display">
+<table>
 <?php
 $COMPONENTE=new Component();
 $listar=$COMPONENTE->LISTAR($asina);
 while ($row = mysql_fetch_array($listar)) {
 echo "
-<tr class='gradeX'>      
+<tr>
 </tr>";
-    $lista=$INDICAXD->LISTAR($row[0]);
-    while ($row2 = mysql_fetch_array($lista)) {
+$lista=$INDICAXD->LISTAR($row[0]);
+while ($row2 = mysql_fetch_array($lista)) {
         echo "
-            <tr class='gradeA'>
-                <td class='center' style='font-size:10px'><a>" .$row[1].".". $row2[3]. "</a></td>
-                <td style='font-size:10px'>".$row2[2]."</td>
+            <tr>
+                <td class='center' style='font-size:7px'><a>[$row[1].$row2[3]]</a></td>
+                <td style='font-size:7px'>$row2[2]</td>
              </tr>
             ";
-    }
+}
 }
 ?>
 </table>
-<?php
-echo
-"
-    <center>
-    <a style='font-size: 12px;'>".$variable1." grado de " .$variable2."    "." Asignatura: ".$variable3." </a>
-    </center>    ";
-?>
-<form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
+<form name="frmregistro" method="post" action=""><!--?sinatura=68&seccion=212&registro=412-->
 <center>
-<table class="">
+<table>
 <thead>
-<tr class="">
-    <td><a style='font-size: 12px;'>N &#176;</a></td>
-    <td style="width: 25%;"><a style="font-size: 12px;">Alumno</a></td>
+<tr>
+    <td><a style='font-size: 10px;'><b>N &#176;</b></a></td>
+    <td style="width: 25%;"><a style="font-size: 10px;"><b>Alumno</b></a></td>
 <?php
 $th=$COMPONENTE->LISTAR($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
             echo "
-    <td style='font-size:10px' class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>
+<td style='font-size:9px' class='center' width:2%;>$roth[1].$rowth[3]</td>
                 ";
         }
 echo "
-    <td style='font-size:10px'><b>P".$roth[1]."</b></td>";
+<td style='font-size:9px'><b>P$roth[1]</b></td>";
     }
 ?>
-    <td style="font-size:10px">PB</td>
+<td style="font-size:9px"><b>PB</b></td>
+<?php
+if($variable2=="PRIMARIA"){
+echo "<td style='font-size:9px'><b>PB</b></td>";
+}
+?>
 </tr>
 </thead>
 <?php
 $reAl = new RegistroAlumno();
 $listaalumnado=$reAl->ListaAlumnoSeccion($seccion);
-
+$count=0;
+$retirado=0;
+$cantexonerado=0;
+$cantidaddead=0;
+$cantidaddea=0;
+$cantidaddeb=0;
+$cantidaddec=0;
 while ($alumno = mysql_fetch_array($listaalumnado)) {
+$count=$count+1;
 echo "
 <tr>
-<td style='font-size:10px'>".$alumno[0]."</td>
-<td style='font-size:10px'>".$alumno[1]." ".$alumno[2]."   ,".$alumno[3]."</td>
-"
-
-    ;
+<td style='font-size:9px'>$alumno[0]</td>
+<td style='font-size:9px'>$alumno[1] $alumno[2] ,$alumno[3]</td>
+";
 
 $td=$COMPONENTE->LISTAR($asina);
     while ($ro = mysql_fetch_array($td)) {
@@ -192,36 +128,91 @@ $td=$COMPONENTE->LISTAR($asina);
 
             
 $listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
-
 while ($row11 = mysql_fetch_array($listadice)) {
-    $cuenta;
-                $valorcelda=$ro[1].$row22[3];
-                $valueespacio=$row11["p$valorcelda"];
-                
-                $suma+=$valueespacio ;
-                $cuenta=$cuenta+1;
-                #$compromedio=$row11["promedio$valorcelda"]=($suma/$cuenta);
+    $exonerado=$row11['p11'];
+    $valorcelda=$ro[1].$row22[3];
+    $valueespacio=$row11["1p$valorcelda"];
+    $pbb=$row11['9'];
+    $promedio=round($row11["1promedio$ro[1]"]);
 }
 if($valueespacio==0){
     $notita="FN";
 }  else {
     $notita=$valueespacio;
 }
-            echo "
-<td class='' style='font-size:10px'>$notita</td>
-                ";            
-        }       
-$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));        
-        echo "<td style='font-size:10px'><b>$compromedio</b></td>";
-$suma=0;
-$cuenta=0;
+if($valueespacio=="-1"){
+    $notita="R";
+}
+if($valueespacio=="-2"){
+    $notita="EX";
+}
+echo "<td class='' style='font-size:9px'>$notita</td>";
+        }
+if($promedio=="-2"){
+    $promedio="EX";
+}
+if($promedio=="-1"){
+    $promedio="R";
+}
+if($promedio=='0'){
+    $promedio="FN";
+}
+echo "<td style='font-size:9px'><b>$promedio</b></td>";
     }
-    $suma=0;
-    $cuenta=0;
-echo "<td style='font-size:10px'>FN</td>";
+
+if($pbb=="-2"){
+    $pbb="EX";
+}
+if ($pbb=="-1"){
+    $pbb="R";
+}
+if($pbb==='0'){
+    $pbb="FN";
+}
+echo "<td style='font-size:9px'>$pbb</td>";
+if($pbb==R){
+    $pb="R";
+}
+if($pbb==EX){
+    $pb="EX";
+}
+if($pbb>16 && $pbb<21){
+    $pb="AD";
+}
+if($pbb>12 && $pbb<17){
+    $pb="A";
+}
+if($pbb==11 || $pbb==12){
+    $pb="B";
+}
+if($pbb>0 && $pbb<11){
+    $pb="C";
+}
+
+if($variable2=="PRIMARIA"){
+echo "<td style='font-size:10px'><b>$pb</b></td>";
+}
 echo "
 </tr>
 ";
+if($exonerado=='-1'){
+    $retirado=$retirado+1;
+}
+if($exonerado=='-2'){
+        $cantexonerado=$cantexonerado+1;
+}
+if($pb=='AD'){
+    $cantidaddead=$cantidaddead+1;
+}
+if($pb=='A'){
+    $cantidaddea=$cantidaddea+1;
+}
+if($pb=='B'){
+    $cantidaddeb=$cantidaddeb+1;
+}
+if($pb=='C'){
+    $cantidaddec=$cantidaddec+1;
+}$pb=0;
 }
 ?>
 </table>
@@ -230,9 +221,48 @@ echo "
 
 
 <?php
-echo "<a style='font-size:11px;'>Fecha: ".date("d-m-Y")."  & Hora: ". date("H:i:s")."</a>";
+$evaluados=$count-($retirado+$cantexonerado);
+$porcentajeaprobado=round((($cantidaddea+$cantidaddead)*100)/$evaluados,2);
+$desaprobadosinicial=$cantidaddeb+$cantidaddec;
+$porcentajedesaprobado=  round(($desaprobadosinicial*100)/$evaluados,2);
+$aprobados=$cantidaddea+$cantidaddead;
+if($variable2=="PRIMARIA"){
+echo "
+    <a style='color:black;font-size: 9px;'>Matriculados: $count Retirados:$retirado Exonerados:$cantexonerado Evaluados:$evaluados</a><br>
+
+    <a style='color:black;font-size: 9px;'>Nota Minima Aprobatoria: [A] Aprobados:$aprobados ($porcentajeaprobado%) Desaprobados:$desaprobadosinicial ($porcentajedesaprobado%)
+    Rendimiento: AD=$cantidaddead; A=$cantidaddea; B=$cantidaddeb; C=$cantidaddec</a>
+
+    <br><br>
+    <center>
+    -------------------<br><a style='color:black;font-size: 9px;'>Prof: $paternodocente $maternodocente ,$nombresdocente<br>
+    Impreso el ".date("d-F-Y")."  .  Id.Registro:$registro
+    </a>
+    </center>
+";}
+$porcentajeaprobadosecu=round((($cantidaddea+$cantidaddead+$cantidaddeb)*100)/$evaluados,2);
+$aprobadossecu=$cantidaddea+$cantidaddead+$cantidaddeb;
+$desaprobadossecu=$cantidaddec;
+$porcentajedesaprobadosecu=  round(($desaprobadossecu*100)/$evaluados,2);
+if($variable2=="SECUNDARIA"){
+echo "
+    <a style='color:black;font-size: 9px;'>Matriculados: $count Retirados:$retirado Exonerados:$cantexonerado Evaluados:$evaluados</a><br>
+
+    <a style='color:black;font-size: 9px;'>Nota Minima Aprobatoria: [A] Aprobados:$aprobadossecu ($porcentajeaprobadosecu%) Desaprobados:$desaprobadossecu ($porcentajedesaprobadosecu%)
+    Rendimiento: AD=$cantidaddead; A=$cantidaddea; B=$cantidaddeb; C=$cantidaddec</a>
+
+    <br><br>
+    <center>
+    -------------------<br><a style='color:black;font-size: 9px;'>Prof: $paternodocente $maternodocente ,$nombresdocente<br>
+    Impreso el ".date("d-F-Y")."  .  Id.Registro:$registro
+    </a>
+    </center>
+";
+}
         }
 ?>
-            </div>
+</div>
+        <a class="button" href="javascript:imprSelec('todo')">IMPRIMIR LA PAGINA</a>
     </body>
+<script type="text/javascript" src="Js/js.js"></script>
 </html>

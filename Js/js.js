@@ -44,7 +44,7 @@ $(document).ready(function(){
 
     /*Event click button btnsave(value="GRABAR")*/
     $('#btnsave').click(function(evento){
-        alert('EL REGISTRO SE HA GRABADO DE FORMA CORRECTA');
+
     });
     /*Ocult or view List*/
     $(document).ready(function(){

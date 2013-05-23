@@ -30,12 +30,12 @@ $quientutor=$_GET['tutoraula'];
 $sectionisquien=$_GET['secc'];
 ?>
 <center>
-<div id="divrasis" style="width: 60%">
+<div id="divrasis" style="width: 80%">
     <?php echo "<h5><a>AULA: ".$sectionisquien."<br>TUTOR: $quientutor</a></h5>";?>
     <br>
 <form id="frmasis" method="post" action="">
     <fieldset>
-        <table class="bordered-table">
+        <table class="table table-hover">
             <tr>
                 <td style="display: none;"></td>
                 <td colspan="2"><center><a style='font-size: 12px;color: blue;'>ALUMNO</a></center></td>
@@ -144,9 +144,9 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
     </fieldset>
 </form>
 </div>
+<br><br><br><br><br><br><br><br>
 </center>
-<?php
-require_once 'Includes/modal-footer.php';?>
+<?php include_once 'Includes/modal-footer.php';?>
 <?php
 }
 ?>

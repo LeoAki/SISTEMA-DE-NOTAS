@@ -122,8 +122,8 @@ class Usuario extends Conection{
         $value=0;
         try {
             $this->CONECT();
-            $resulset=mysql_query("SELECT * from  Usuario
-                Where usuario='" . $usuario . "' and contrasena='" . $password . "';");
+            $resulset=mysql_query("select * from  urp881_nota13.Usuario
+                Where usuario='".$usuario."' and contrasena='".$password."';");
             if($resulset){
                 $value=mysql_num_rows($resulset);
                 if($value > 0){
@@ -157,6 +157,44 @@ class Usuario extends Conection{
         return $consulta;
     }
     
+    public function SESIONBEGIN($usuario){
+        try {
+            $this->CONECT();
+            $fecha= date("Y-m-d H:i:s");
+            mysql_query("Update Usuario set ultimasesion='".$fecha."' where usuario='".$usuario."'") or die(mysql_error());
+            unset($teconecto);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        $this->CLOSE();
+    }
+    
+    public function verultimasesion($usuario){
+        $teconecto= new Conection;
+        $teconecto->CONECT();
+        $veruser=  mysql_query("select ultimasesion from Usuario where usuario='".$usuario."'");
+        $teconecto->CLOSE();
+        return $veruser;
+    }
+    
+    public function verdnisesion($idpersona) {
+        $this->CONECT();
+        $rese=  mysql_query("   SELECT p.dni
+                                FROM Usuario u
+                                INNER JOIN Persona p ON u.idpersona = p.codigo
+                                WHERE u.idpersona ='".$idpersona."';");
+        $this->CLOSE();
+        return $rese;
+    }
+    
+    public function changepassid($idpersona,$newpass) {
+        $this->CONECT();
+        $retnewpass=  mysql_query(" Update Usuario set
+                                    contrasena='".$newpass."'
+                                    where idpersona='".$idpersona."';");
+        $this->CLOSE();
+        return $retnewpass;
+    }
 }
 
 ?>

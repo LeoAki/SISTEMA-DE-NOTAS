@@ -78,6 +78,7 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
     }
     ?>
     </table>
+    <br><br><br><br><br><br>
  <?php require_once 'Includes/modal-footer.php';?>
 <?php
         }

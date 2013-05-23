@@ -91,9 +91,9 @@ class Asinatura extends Conection{
         $this->NUMEROCAPACIDADES=$numerocapacidades;
     }
     
-    public function ListaDescriptiva() {
+    public function ListaDescriptiva($grado,$nomnivel) {
         $this->CONECT();
-        $lista=  mysql_query("select * from descripcionsinature;");
+        $lista=  mysql_query("select * from descripcionsinature where grado='".$grado."' and nomnivel='".$nomnivel."';");
         $this->CLOSE();
         return $lista;
     }
@@ -103,6 +103,16 @@ class Asinatura extends Conection{
         $lista=  mysql_query("");
         $this->CLOSE();
         return $lista;
+    }
+    
+    public function describesinatu($idsection,$idsinau) {
+        $this->CONECT();
+        $queryds=  mysql_query("select r.codigo,dr.paterno,dr.materno,dr.nombres,dr.CODEASINA,dr.asinatura
+                                from Registro r inner join describeregistro dr
+                                on r.codigo=dr.codigo
+                                where r.codigoseccion='".$idsection."' and r.codigoasinatura='".$idsinau."'");
+        $this->CLOSE();
+        return $queryds;
     }
     
 }

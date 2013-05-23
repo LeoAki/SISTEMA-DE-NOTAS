@@ -133,25 +133,25 @@
                         <td style="width: 20%;"><a>TUTOR:</a></td>
                         <td style="width: 60%;"><input type='text' id='txttutornombre' name='txttutornombre' style="width: 100%;"/></td>
                         <td style="display: none;"><input type='text' id='txttutorid' name='txttutorid' style="width: 100%;"/></td>
-                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscatutor" name="buscatutor" onclick="javascript:Abrir_ventana('popuptutor')">BUSCAR</button></td>
+                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscatutor" name="buscatutor" onclick="javascript:Abrir_ventana('popuptutor.php')">BUSCAR</button></td>
                     </tr>
                     <tr>
                         <td style="width: 20%;"><a>AUXILIAR:</a></td>
                         <td style="width: 60%;"><input type='text' id='txtauxiliarnombre' name='txtauxiliarnombre' style="width: 100%;"/></td>
                         <td style="display: none;"><input type='text' id='txtauxiliarid' name='txtauxiliarid' style="width: 100%;"/></td>
-                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscaauxiliar" name="buscaauxiliar" onclick="javascript:Abrir_ventana('popupauxiliar')">BUSCAR</button></td>
+                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscaauxiliar" name="buscaauxiliar" onclick="javascript:Abrir_ventana('popupauxiliar.php')">BUSCAR</button></td>
                     </tr>
                     <tr>
                         <td style="width: 20%;"><a>REGISTRO DE ASISTENCIA:</a></td>
                         <td style="width: 60%;"><input type='text' id='txtasistencianombre' name='txtasistencianombre' style="width: 100%;"/></td>
                         <td style="display: none;"><input type='text' id='txtasistenciaid' name='txtasistenciaid' style="width: 100%;"/></td>
-                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscaasistencia" name="buscaasistencia" onclick="javascript:Abrir_ventana('popupasistencia')">BUSCAR</button></td>
+                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscaasistencia" name="buscaasistencia" onclick="javascript:Abrir_ventana('popupasistencia.php')">BUSCAR</button></td>
                     </tr>
                     <tr>
                         <td style="width: 20%;"><a>PSICOLOGO:</a></td>
                         <td style="width: 60%;"><input type='text' id='txtpsicolonombre' name='txtpsicolonombre' style="width: 100%;"/></td>
                         <td style="display: none;"><input type='text' id='txtpsicoloid' name='txtpsicoloid' style="width: 100%;"/></td>
-                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscapsicologo" name="buscapsicologo" onclick="javascript:Abrir_ventana('popuppsico')">BUSCAR</button></td>
+                        <td style="width: 20%;"><button type="button"class="btn btn-primary" id="buscapsicologo" name="buscapsicologo" onclick="javascript:Abrir_ventana('popuppsico.php')">BUSCAR</button></td>
                     </tr>                    
                 </table>
             </fieldset>
@@ -181,7 +181,7 @@
                             while ($row2 = mysql_fetch_array($lista)) {
                                 echo "
                                     <tr class='gradeA'>
-                                        <td class='center'><a href='seccion?search=". '"' .$row2[0]. '"' . "'>" . $row2[0]. "</a></td>
+                                        <td class='center'><a href='seccion.php?search=". '"' .$row2[0]. '"' . "'>" . $row2[0]. "</a></td>
                                         <td>".$row2[2]."</td>
                                         <td>".$row2[3]."</td>
                                         <td>".$row2[4]."</td>

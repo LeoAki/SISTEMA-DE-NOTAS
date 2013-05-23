@@ -15,8 +15,7 @@ $dnidocenteauxiliar=$_SESSION['dni'];
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
 </head>
-
-    <body>
+<body>
 <?php
 require_once 'Includes/navegador.php';
 require_once 'Class/Docente.php';
@@ -29,15 +28,15 @@ echo "<script>window.location = 'index.php'</script>";
 ?>
         <div style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">SECCIONES A TU CARGO:</h3></center>
-            <table class="table">
+            <table class="table table-hover">
              <thead>
                  <tr class="">
                      <th style="width: 15%;">Secci&oacute;n</th>
                      <th style="width: 50%;">Tutor</th>
-                     <th>I</th>
-                     <th>II</th>
-                     <th>III</th>
-                     <th>IV</th>
+                     <th style="width: 20%;"><center>I</center></th>
+                     <th><center>II</center></th>
+                     <th><center>III</center></th>
+                     <th><center>IV</center></th>
                      <th>Anual</th>                     
                  </tr>
              </thead>
@@ -48,15 +47,30 @@ $misseccionesauxi=$DOCENAUXI->SECCIONAUXILIAR($dnidocenteauxiliar);
 while ($datosseccion = mysql_fetch_array($misseccionesauxi)) {
     $sectionis=$datosseccion[1].$datosseccion[2]." ".$datosseccion[3];
     echo "
-        <tr>
-            <td>$datosseccion[1]$datosseccion[2]  $datosseccion[3]</td>
-            <td>$datosseccion[4]</td>
-            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=1&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
-            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=2&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
-            <td><a href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=3&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
-            <td><center><a href='rasis.php?seccionauxi=$datosseccion[0]'>Registrar</a></center></td>
-            <td><a TARGET = '_blank' href='verasisanual.php?seccionauxi=$datosseccion[0]&tutoraula=$datosseccion[4]&secc=$sectionis'><center><i class='icon-eye-open'></i></center></a></td>
-        </tr>
+<tr>
+    <td>$datosseccion[1]$datosseccion[2] $datosseccion[3]</td>
+    <td>$datosseccion[4]</td>
+    <td>
+        <center>
+        <a href='rasis.php?seccionauxi=$datosseccion[0]'>Registrar</a>
+        <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=1&tutoraula=$datosseccion[4]&secc=$sectionis'>
+        <i class='icon-eye-open'></i></center></a></td>
+        </center>
+    <td>
+        <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=2&tutoraula=$datosseccion[4]&secc=$sectionis'>
+        <center><i class='icon-eye-open'></i></center></a></td>
+    <td>
+        <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=3&tutoraula=$datosseccion[4]&secc=$sectionis'>
+        <center><i class='icon-eye-open'></i></center></a></td>
+<td>
+        <center>
+        <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=4&tutoraula=$datosseccion[4]&secc=$sectionis'>
+        <i class='icon-print'></i></a>
+        </center></td>
+<td>
+        <a TARGET = '_blank' href='verasisanual.php?seccionauxi=$datosseccion[0]&tutoraula=$datosseccion[4]&secc=$sectionis'>
+        <center><i class='icon-eye-open'></i></center></a></td>
+</tr>
         ";
 }
 ?>
@@ -74,8 +88,6 @@ while ($datosseccion = mysql_fetch_array($misseccionesauxi)) {
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>

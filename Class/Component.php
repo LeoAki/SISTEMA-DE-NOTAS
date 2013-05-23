@@ -67,7 +67,7 @@ class Component extends Conection{
     $cone->CONECT();
     $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c 
                              inner join Asinatura asi on c.sinature=asi.codigo 
-                             where c.sinature='".$asinatura."' and bimestre=4;");
+                             where c.sinature='".$asinatura."' and bimestre=1 order by c.nrocomponent ;");
     $cone->CLOSE();
     unset($cone);
     return $resultado;
@@ -86,6 +86,14 @@ class Component extends Conection{
        $cone=new Conection();
        $cone->CONECT();
        $result=  mysql_query("Select * from Indicador where idcomponente='".$compo."'");
+       $cone->CLOSE();
+       return $result;
+   }
+   
+   public function SECCIONAME($seccion){
+       $cone=new Conection();
+       $cone->CONECT();
+       $result=  mysql_query("select codigo,nombreseccion from descripcionseccion where codigo=".$seccion);
        $cone->CLOSE();
        return $result;
    }

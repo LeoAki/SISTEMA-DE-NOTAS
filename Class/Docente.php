@@ -14,6 +14,7 @@ class Docente extends Conection{
     private $DNI;
     private $CODIGOPERSONA;
     private $TIPOPROFE;
+    
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -167,26 +168,27 @@ class Docente extends Conection{
    public function ALUMNOSDEMITUTORIA($codigodocente){
        $cone=new Conection();
        $cone->CONECT();
-       $misalumnos=mysql_query("select ase.idalumnoseccion,
-           ase.nroorden,p.paterno,p.materno,p.nombres,ase.msn4,s.nombreseccion
-           from Alumno_Seccion ase
-           inner join Alumno_Excel ae
-           on ase.idalumno=ae.idalumno
-           inner join Persona p on ae.idpersona=p.codigo
-           inner join Seccion s on ase.idseccion=s.codigo
-           where  s.cod_tutor=".$codigodocente."  order by ase.nroorden;");
+       $misalumnos=mysql_query("
+       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn1, s.nombreseccion
+	FROM Alumno_Seccion ase
+	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
+	INNER JOIN Persona p ON ae.idpersona = p.codigo
+	INNER JOIN Seccion s ON ase.idseccion = s.codigo
+	WHERE s.cod_tutor=".$codigodocente."  order by ase.nroorden;");
        $cone->CLOSE();
        unset ($cone);
        return $misalumnos;
    }
+
+
    public function NAMESECCIOMICARGO($codigodocente) {
        $cone=new Conection();
        $cone->CONECT();
        $misalumnos=mysql_query("select
            distinct s.grado,s.nombreseccion,s.nomnivel
            from Alumno_Seccion ase
-           inner join Alumno_Excel ae
-           on ase.idalumno=ae.idalumno
+           inner join Alumno ae
+           on ase.idalumno=ae.codigo
            inner join Persona p on ae.idpersona=p.codigo
            inner join descripcionseccion s on ase.idseccion=s.codigo
            inner join Seccion sec on s.codigo=sec.codigo
@@ -219,15 +221,14 @@ class Docente extends Conection{
        $misalumnos=mysql_query("select
            ase.idalumnoseccion,
            ase.nroorden,
-           p.paterno,
-           p.materno,
-           p.nombres,
-           ase.fj4,ase.fi4,ase.t4,
+           ae.paterno,
+           ae.materno,
+           ae.nombres,
+           ase.fj1,ase.fi1,ase.t1,
            s.nombreseccion
            from Alumno_Seccion ase
-           inner join Alumno_Excel ae
-           on ase.idalumno=ae.idalumno
-           inner join Persona p on ae.idpersona=p.codigo
+           inner join Alumno ae
+           on ase.idalumno=ae.codigo
            inner join Seccion s on ase.idseccion=s.codigo
            where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
        $cone->CLOSE();
@@ -241,14 +242,14 @@ class Docente extends Conection{
        $misalumnos=mysql_query("select
            ase.idalumnoseccion,
            ase.nroorden,
-           p.paterno,
-           p.materno,
-           p.nombres,
+           ae.paterno,
+           ae.materno,
+           ae.nombres,
            ase.fj$bimestre,ase.fi$bimestre,ase.t$bimestre,
            s.nombreseccion
            from Alumno_Seccion ase
-           inner join Alumno_Excel ae
-           on ase.idalumno=ae.idalumno
+           inner join Alumno ae
+           on ase.idalumno=ae.codigo
            inner join Persona p on ae.idpersona=p.codigo
            inner join Seccion s on ase.idseccion=s.codigo
            where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
@@ -263,23 +264,217 @@ class Docente extends Conection{
        $misalumnos=mysql_query("select
            ase.idalumnoseccion,
            ase.nroorden,
-           p.paterno,
-           p.materno,
-           p.nombres,
+           ae.paterno,
+           ae.materno,
+           ae.nombres,
            ase.fj1,ase.fi1,ase.t1,
            ase.fj2,ase.fi2,ase.t2,
            ase.fj3,ase.fi3,ase.t3,
            ase.fj4,ase.fi4,ase.t4,
            s.nombreseccion
            from Alumno_Seccion ase
-           inner join Alumno_Excel ae
-           on ase.idalumno=ae.idalumno
-           inner join Persona p on ae.idpersona=p.codigo
+           inner join Alumno ae
+           on ase.idalumno=ae.codigo
            inner join Seccion s on ase.idseccion=s.codigo
            where  ase.idseccion=".$sectionauxi."  order by ase.nroorden;");
        $cone->CLOSE();
        unset ($cone);
        return $misalumnos;
+   }
+
+   public function Datosdemiaulacargo($dniprofe) {
+        $cone=new Conection();
+        $cone->CONECT();
+        $datosmiaula=mysql_query("select
+            dse.codigo,
+            dse.nomnivel,
+            dse.grado,
+            dse.nombreseccion,
+            d.codigo,
+            d.paterno,
+            d.materno,
+            d.nombres,
+            d.dni
+            from descripcionseccion dse
+            inner join Seccion s
+            on dse.codigo=s.codigo
+            inner join Docente d
+            on s.cod_tutor=d.codigo
+            where d.dni=$dniprofe;");
+        $cone->CLOSE();
+        unset ($cone);
+        return $datosmiaula;
+   }
+
+   public function NOTASCONSOLIDADOTUTORIA1($codigoalumnoseccion){
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasalumnosregistro=mysql_query("
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.1pb
+               from 1Alumno_Registro ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=$codigoalumnoseccion
+               order by ar.idregistro;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $notasalumnosregistro;
+   }
+
+
+   public function NOTASCONSOLIDADOTUTORIAINiCIAL($codigoalumnoseccion){
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasalumnosregistro=mysql_query("
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.pb,
+               ar.promedio1,
+               ar.promedio2,
+               ar.promedio3,
+               ar.promedio4,
+               ar.promedio5
+               from Alumno_Registroinicial ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=$codigoalumnoseccion
+           order by ar.idregistro;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $notasalumnosregistro;
+   }
+   
+   public function NOTASSECUNDARIAANUAL($codealum) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasanualse=  mysql_query("select ar.idregistro,
+        asin.asinatura,
+        asin.abreviatura,
+        ( (rega.p1+rega.p2+rega.p3+ar.pb)/4) as Promedio
+        from Alumno_Registro ar
+        inner join Registro r
+        on ar.idregistro=r.codigo
+        inner join Asinatura asin
+        on asin.codigo= r.codigoasinatura      
+        inner join RegistroAnual rega 
+        on ar.idalumnoregistro=rega.idalumnoregistro          
+        where ar.idalumnoseccion=$codealum 
+        order by ar.idregistro;");
+       $cone->CLOSE();
+       unset($cone);
+       return $notasanualse;
+   }
+
+   public function NOTASSECUNDARIAIV($codealum) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasanualse=  mysql_query("select ar.idregistro,
+        asin.asinatura,
+        asin.abreviatura,
+        ar.1pb as Promedio
+        from 1Alumno_Registro ar
+        inner join Registro r
+        on ar.idregistro=r.codigo
+        inner join Asinatura asin
+        on asin.codigo= r.codigoasinatura
+        where ar.idalumnoseccion=$codealum 
+        order by ar.idregistro;");
+       $cone->CLOSE();
+       unset($cone);
+       return $notasanualse;
+   }
+
+      public function ALUMNOSDEMITUTORIA2($codigodoseccion){#sube esto y actualiza
+       $cone=new Conection();
+       $cone->CONECT();
+       $misalumnos=mysql_query("
+       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn1, s.nombreseccion
+	FROM Alumno_Seccion ase
+	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
+	INNER JOIN Persona p ON ae.idpersona = p.codigo
+	INNER JOIN Seccion s ON ase.idseccion = s.codigo
+	WHERE s.codigo=".$codigodoseccion."  order by ase.nroorden;");
+       $cone->CLOSE();
+       unset ($cone);
+       return $misalumnos;
+   }
+
+   public function aprobadoareanormal($nota,$sumando) {
+        if($nota>12){
+            $new=1;
+            $sumando=$sumando+$new;
+        }else{
+            $sumando=$sumando+0;
+        }
+        return $sumando;
+   }
+
+   public function aprobadoareaespecial($nota,$sumando) {
+        if($nota>10){
+            $new=1;
+            $sumando=$sumando+$new;
+        }else{
+            $sumando=$sumando+0;
+        }
+        return $sumando;
+   }
+
+   public function cursocargonormalpr($nota,$sumando,$sinature) {
+       $compare=0;
+       if($sinature=="ARTE" || $sinature=="EDUCACION FISICA" || $sinature=="EDUCACION RELIGIOSA" || $sinature=="INGLES" || $sinature=="COMPUTACION"){
+           $compare=10.5;
+       }else{
+           $compare=12.5;
+       }
+       if($nota<$compare){
+           $new=1;
+           $sumando=$sumando+$new;
+       }  else {
+           $sumando;
+       }
+       return $sumando;
+   }
+   
+   public function cursocargonormalsec($nota,$sumando) {
+       if($nota<10.5){
+           $new=1;
+           $sumando=$sumando+$new;
+       }  else {
+           $sumando;
+       }
+       return $sumando;
+   }
+   public function puntajealumnopr($mat,$com,$art,$persoc,$educfis,$educrel,$ing,$comp,$ccaa) {
+        $sumatotal=$mat+$com+$art+$persoc+$educfis+$educrel+$ing+$comp+$ccaa;
+        return $sumatotal;
+   }
+   
+   public function puntajealumnosec($uno,$dos,$tres,$cuatro,$cinco,$seis,$siete,$ocho,$nueve,$diez,$once,$doce) {
+        $sumatotal=$uno+$dos+$tres+$cuatro+$cinco+$seis+$siete+$ocho+$nueve+$diez+$once+$doce;
+        return $sumatotal;
+   }
+
+   public function promedioal($suma,$dividendo) {
+        $prom= round($suma/$dividendo,2);
+        return $prom;
+   }
+   
+   public function pesomat($doble,$num1,$num2) {
+       $suma= round( ( ($doble*4) + ($num1*2) + ($num2*2) )/ 8,0);
+       return $suma;
+   }
+   
+   public function pesocta($mayor,$menor) {
+       $suma= round( ( ($mayor*4) + ($menor*2) )/ 6,0);
+       return $suma;
    }
 
 }

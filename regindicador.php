@@ -9,7 +9,6 @@
         require_once 'Class/Usuario.php';
         if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
     session_destroy();
-#    header('Location: index.php');
                     echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>        
@@ -63,8 +62,6 @@
             $INDICA->setCRITERIO($_REQUEST['txtcriterio']);
             $INDICA->setPESO($_REQUEST['txtpeso']);
             $INDICA->GRABAR();
-            #header("Location:ojalaps");
-//            echo "<script>window.location = 'regcomponent.php'</script>";
             echo "<script languaje='javascript' type='text/javascript'>
                  opener.document.location.reload(); 
             window.close();</script>";
@@ -100,7 +97,7 @@
             </fieldset>
                         <center>
                         <div class="form-actions">
-                            <button type="submit"class="btn btn-primary" id="btnsave" name="btnsave">AGREGAR/EDITAR INDICADOR</button>
+                            <button style="" type="submit"class="btn btn-primary" id="btnsave" name="btnsave">AGREGAR/EDITAR INDICADOR</button>
                         </div>        
             <?php 
             echo "</form>"

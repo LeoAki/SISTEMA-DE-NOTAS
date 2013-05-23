@@ -18,6 +18,10 @@ class RegistroAlumnoInicial extends Conection{
     private $p18;
     private $p19;
     private $p110;
+    private $p111;
+    private $p112;
+    private $p113;
+    private $p114;
     private $promedio1;
 
 
@@ -165,6 +169,38 @@ class RegistroAlumnoInicial extends Conection{
 
     public function setP110($p110) {
         $this->p110 = $p110;
+    }
+
+    public function getP111() {
+        return $this->p111;
+    }
+
+    public function setP111($p111) {
+        $this->p111 = $p111;
+    }
+
+    public function getP112() {
+        return $this->p112;
+    }
+
+    public function setP112($p112) {
+        $this->p112 = $p112;
+    }    
+
+    public function getP113() {
+        return $this->p113;
+    }
+
+    public function setP113($p113) {
+        $this->p113 = $p113;
+    }
+
+    public function getP114() {
+        return $this->p114;
+    }
+
+    public function setP114($p114) {
+        $this->p114 = $p114;
     }
 
     public function getPromedio1() {
@@ -554,11 +590,10 @@ class RegistroAlumnoInicial extends Conection{
     public function ListaAlumnoSeccion($seccion) {
     $cone=new Conection();
     $cone->CONECT();
-    $listado=mysql_query("Select ase.nroorden,p.paterno,p.materno,p.nombres,ase.idalumnoseccion
-                            from Alumno_Seccion ase
-                            inner join Alumno_Excel ae on ase.idalumno=ae.idalumno
-                            inner join Persona p on ae.idpersona=p.codigo
-                            where ase.idseccion=".$seccion."
+    $listado=mysql_query("SELECT ase.nroorden, ae.paterno, ae.materno, ae.nombres,ase.idalumnoseccion
+				FROM Alumno_Seccion ase
+				INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
+				WHERE ase.idseccion =".$seccion."
                             order by ase.nroorden");
     $cone->CLOSE();
     unset ($cone);
@@ -587,6 +622,7 @@ class RegistroAlumnoInicial extends Conection{
                 '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
                 '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
                 '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
+                '".$this->p111."','".$this->p112."','".$this->p113."','".$this->p114."',
                 '".$this->p21."','".$this->p22."','".$this->p23."','".$this->p24."','".$this->p25."',
                 '".$this->p26."','".$this->p27."','".$this->p28."','".$this->p29."','".$this->p210."',
                 '".$this->p31."','".$this->p32."','".$this->p33."','".$this->p34."','".$this->p35."',

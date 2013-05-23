@@ -1,0 +1,68 @@
+body{
+	background:transparent url(fondo.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.pk{
+	color: #E1F5A9;
+	text-transform: uppercase;
+	font-size: 25px;
+	top: 215px;
+	left: 100px;
+	font-weight: bold;
+}
+span{
+	padding: 5px 5px 5px 5px;
+	position: relative;
+}
+#contrasena ,#usuario{
+	border:3px solid #BDBDBD;
+	background-color: #F7FE2E;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 1px;
+}
+#btnlogin{
+	background: #2E9AFE;
+	border: 3px solid #0080FF;
+	border-radius: 11px;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-o-border-radius: 11px;
+	text-align: center;
+	width: 110 px;
+}
+#contrasena{
+	width: 160px;
+}
+#main1{
+	background-color: #EFFBFB;
+	border: 3px solid #6E6E6E;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	margin:0 auto;
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	width: 300px;
+	right: 100px;
+	top: 180px;
+}
+#usuario{
+	width: 270px;
+}
+#video{
+
+}
+.leo{
+	color: #2E9AFE;
+	text-align: center;
+	text-shadow: 5px 5px 10px;
+	-webkit-text-shadow: 5px 5px 10px;
+	-ms-text-shadow: 5px 5px 10px;
+	-moz-text-shadow: 5px 5px 10px;
+}

@@ -33,12 +33,11 @@ $seccionauxi= $_GET['seccionauxi'];
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
     $ALUSEC->setIDALUMNOSECCION($_REQUEST['txtalumnose'.$x]);
-    $ALUSEC->setFJ4($_REQUEST['txtfj'.$x]);
-    $ALUSEC->setFI4($_REQUEST['txtfi'.$x]);
-    $ALUSEC->setT4($_REQUEST['txtt'.$x]);
-    $ALUSEC->UPDATEFIT($_REQUEST['txtalumnose'.$x]);
+    $ALUSEC->setFJ1($_REQUEST['txtfj'.$x]);
+    $ALUSEC->setFI1($_REQUEST['txtfi'.$x]);
+    $ALUSEC->setT1($_REQUEST['txtt'.$x]);
+   # $ALUSEC->UPDATEFIT($_REQUEST['txtalumnose'.$x]);
 }
-    echo "<script> alert ('La asistencia se han guardado de forma correcta.GRACIAS DOCENTE TUTOR');</script>";
     echo "<script>window.location = 'regasistencia.php'</script>";
 }
 /*--------------------------------------------------------------------------------------*/
@@ -74,9 +73,9 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
         <td style='display:none;'><input type='text' id='txtalumnose$filaes[1]' name='txtalumnose$filaes[1]' value='$filaes[0]' /></td>
         <td><center><a style='font-size: 12px; color:black;'>$filaes[1]</a></center></td>
         <td><a style='font-size: 12px; color:black;'>$filaes[2] $filaes[3]  ,$filaes[4]</a></td>
-        <td><input style='width:60%;' type='text' id='txtfj$filaes[1]' name='txtfj$filaes[1]' value='$filaes[5]' maxlength=2/></td>
-        <td><input style='width:60%;' type='text' id='txtfi$filaes[1]' name='txtfi$filaes[1]' value='$filaes[6]' maxlength=2/></td>
-        <td><input style='width:60%;' type='text' id='txtt$filaes[1]' name='txtt$filaes[1]' value='$filaes[7]' maxlength=2/></td>
+        <td><input style='width:60%;' type='text' id='txtfj$filaes[1]' name='txtfj$filaes[1]' value='$filaes[5]' maxlength=2 placeholder='-'/></td>
+        <td><input style='width:60%;' type='text' id='txtfi$filaes[1]' name='txtfi$filaes[1]' value='$filaes[6]' maxlength=2 placeholder='-'/></td>
+        <td><input style='width:60%;' type='text' id='txtt$filaes[1]' name='txtt$filaes[1]' value='$filaes[7]' maxlength=2 placeholder='-'/></td>
     </tr>
         ";
 }
@@ -86,7 +85,7 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
     
 <center>
 <div class="form-actions">
-<button type="submit"class="btn btn-primary">GRABAR/ACTUALIZAR LOS MENSAJES</button>
+<button type="submit"class="btn btn-primary" style="display:none;">GRABAR/ACTUALIZAR LA ASISTENCIA</button>
 </div>
 </center>
 
@@ -94,7 +93,7 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
 </div>
 </center>
 <?php
-require_once 'Includes/modal-footer.php';?>
+?>
 <?php
 }
 ?>

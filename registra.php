@@ -40,8 +40,7 @@ $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumno();
 $_COOKIE["valuecombix"];
 ?>
-<center><h3 style="color: green">Registro De Notas por asignatura- IV BIMESTRE</h3>
-    <h4>Indicadores</h4>
+<center><h3 style="color: green">Registro De Notas por asignatura- I BIMESTRE</h3>
 <?PHP
 $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];
@@ -101,7 +100,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
-       $REGISTROALUMNO->GRABAR();
+       #$REGISTROALUMNO->GRABAR();
 }
 
 echo "<script languaje='javascript' type='text/javascript'>
@@ -121,6 +120,10 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
     $variable1=$rowgeneral['grado'];
     $variable2=$rowgeneral['nomnivel'];
     $variable3=$rowgeneral['asinatura'];
+}
+$datitossecciones=$COMPO->SECCIONAME($seccion);
+if($namesection=  mysql_fetch_array($datitossecciones)){
+    $nombredelaseccion=$namesection[1];
 }
 ?>
 </table>
@@ -152,10 +155,10 @@ $miVariable =  $_COOKIE["valuecombix"];
 echo
 "
     <center>
-    <h4>".$variable1." Grado De " .$variable2."    "." Asignatura: ".$variable3." </h4>
+<h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4>
     </center>    ";
 ?>
-<center><h3 style="color: green">Lista De Alumnos</h3></center>
+
 <form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
 <div style="background-color: greenyellow;">
 <center>
@@ -223,11 +226,9 @@ $listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
 while ($row11 = mysql_fetch_array($listadice)) {
     $cuenta;
                 $valorcelda=$ro[1].$row22[3];
-                $valueespacio=$row11["p$valorcelda"];
-
+                $valueespacio=$row11["1p$valorcelda"];
                 $suma+=$valueespacio ;
                 $cuenta=$cuenta+1;
-                #$compromedio=$row11["promedio$valorcelda"]=($suma/$cuenta);
                 if ($valueespacio==0){
                     $valueespacio="";
                 }
@@ -241,7 +242,7 @@ if($miVariable=="vertical"){
 
 
             echo "
-<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);' onChange='validaNum(this.value,5,20)'; /></td>
+<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);'/></td>
                 ";
         }
 $compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
@@ -258,20 +259,12 @@ echo "
 }
 ?>
 </table>
-</center>
-<center>
 <div class="form-actions">
-<button type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
+<button style="display:none;" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button>
 </div>
 </center>
 </form>
-
-
-<?php
-require_once 'Includes/modal-footer.php';?>
-<?php
-        }
-?>
+<?php         } ?>
     </body>
 </html>
 <!-------------------------------------------------------------------------------------------------->
@@ -289,34 +282,36 @@ require_once 'Includes/modal-footer.php';?>
 
 <script type="text/javascript">
 
-     $("input[type='text']").focusout(function () {
-        referencia = this.id;
-        fila = referencia.substring(0,referencia.indexOf('p'));
-        indicador = referencia.substring(referencia.indexOf('p')+1,referencia.indexOf('p')+2);
-        tnota = referencia.substring(0,referencia.indexOf('p')+2);    
-        /*************************PROMEDIO POR COMPONENTE**************************/        
-        $("#"+fila+"promedio"+indicador).val(get_promedio(tnota));
-        /**************************************************************************/    
-        /*************************PROMEDIO POR BIMESTRE****************************/
-        $("#"+fila+"pb").val(get_promedio(fila+"promedio"));
-        /**************************************************************************/
-     });
-    function get_promedio(tnota){
-      var promedio=0; var suma = 0; var notas = 0; var notas_validas=true;
-      $('input[name^="'+tnota+'"]').each( function(){
-          notas = notas +1;
-          if($.trim($(this).val()) == ''){
-            notas_validas = false;
-          }
-          suma = suma + parseInt($.trim($(this).val()) == '' ? 0 : $(this).val());      
-        });
-        if(notas_validas){
-          promedio = (suma == 0) ? 0 : Math.round(suma / notas);  
-        }else{
-          promedio = '';
-        }
-        return promedio;
-    }
+
+ $("input[type='text']").focusout(function () {
+referencia = this.id;
+fila = referencia.substring(0,referencia.indexOf('p'));
+indicador = referencia.substring(referencia.indexOf('p')+1,referencia.indexOf('p')+2);
+tnota = referencia.substring(0,referencia.indexOf('p')+2);
+/*************************PROMEDIO POR COMPONENTE**************************/
+$("#"+fila+"promedio"+indicador).val(get_promedio(tnota));
+/**************************************************************************/
+/*************************PROMEDIO POR BIMESTRE****************************/
+$("#"+fila+"pb").val(get_promedio(fila+"promedio"));
+/**************************************************************************/
+});
+function get_promedio(tnota){
+var promedio=0; var suma = 0; var notas = 0; var notas_validas=true;
+$('input[name^="'+tnota+'"]').each( function(){
+notas = notas +1;
+if($.trim($(this).val()) == ''){
+notas_validas = false;
+}
+suma = suma + parseInt($.trim($(this).val()) == '' ? 0 : $(this).val());
+});
+if(notas_validas){
+promedio = (suma == 0) ? 0 : Math.round(suma / notas);
+}else{
+promedio = '';
+}
+return promedio;
+}
+
 
 
 function justNumbers(e)

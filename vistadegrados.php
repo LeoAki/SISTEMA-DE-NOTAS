@@ -41,7 +41,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
 
 <!---------------------------------------------------------------------------------------------->
 <!--BEGIN ENCABEZADO-->
-<div class="bs-docs-example">
+<div class="bs-docs-example" style="background-color:#E3F6CE;">
     <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#inicial" data-toggle="tab"><i class="white icon-thumbs-up"></i>INICIAL</a></li>
         <li><a href="#primaria" data-toggle="tab"><i class=" icon-bullhorn"></i>PRIMARIA</a></li>
@@ -53,7 +53,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
 <div id="myTabContent" class="tab-content">
 <!---------------------------------------------------------------------------------------------->
     <div class="tab-pane fade in active" id="inicial">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>GRADO</th>
@@ -77,7 +77,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
         </table>
     </div>
     <div class="tab-pane fade" id="primaria">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>GRADO</th>
@@ -113,7 +113,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
         </table>
     </div>
     <div class="tab-pane fade" id="secundaria">
-         <table class="table">
+         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>GRADO</th>
@@ -154,7 +154,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
 <?php
 if($_SESSION['niveldeuser']=='6'){
 ?>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>GRADO</th>
@@ -226,7 +226,7 @@ if($_SESSION['niveldeuser']=='7'){
 <?php
 if($_SESSION['niveldeuser']=='8'){
 ?>
-         <table class="table">
+         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>GRADO</th>
