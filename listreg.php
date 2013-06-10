@@ -41,30 +41,39 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $lista=$Doce->RegistroDocente($dnidocente);
-                            while ($row = mysql_fetch_array($lista)) {
-                                echo "
-                                    <tr>
-                                        <td>REGISTRO N&#176; ".$row[0]."</td>
-                                        <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
-                                        <td>".$row[7]."</td>
-                                        <td>
-                                     <a id='unover' TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
-                                        	 Ver <i class='icon-eye-open'></i>
-                                     </a>
-                                     <a id='dosver' TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
-                                        	 I <i class='icon-hand-up'></i>
-                                     </a>
-                                        </td>
-                                        <td><i class='icon-eye-close'></i></td>
-                                        <td><i class='icon-eye-close'></i></td>
-                                        <td><i class='icon-eye-close'></i></td>
-                                        <td><i class='icon-eye-close'></i></td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+<?php
+$lista=$Doce->RegistroDocente($dnidocente);
+while ($row = mysql_fetch_array($lista)) {
+    echo "
+        <tr>
+            <td>REGISTRO N&#176; ".$row[0]."</td>
+            <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
+            <td>".$row[7]."</td>
+            <td>
+         <a id='unover' TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
+                     Ver <i class='icon-eye-open'></i>
+         </a>
+         <a id='dosver' TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
+                     I <i class='icon-hand-up'></i>
+         </a>
+            </td>
+
+<td>
+<a id='unover' TARGET = '_blank' href='imprimir_reg1.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
+     Ver <i class='icon-eye-open'></i>
+</a>
+<a id='dosver' TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
+     I <i class='icon-hand-up'></i>
+</a>
+</td>
+
+            <td><i class='icon-eye-close'></i></td>
+            <td><i class='icon-eye-close'></i></td>
+            <td><i class='icon-eye-close'></i></td>
+        </tr>
+        ";
+}
+?>
                         </tbody>
                     </table>
                 </fieldset>

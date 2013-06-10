@@ -212,7 +212,7 @@ if($pb=='B'){
 }
 if($pb=='C'){
     $cantidaddec=$cantidaddec+1;
-}$pb=0;
+}
 }
 ?>
 </table>

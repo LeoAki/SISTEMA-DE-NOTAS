@@ -27,7 +27,7 @@ $DOCENAU=new Docente();
 $ALUSEC=new ALUMNO_SECCION();
 $seccionauxi= $_GET['seccionauxi'];
 $bimestreconsultado=$_GET['bimestre'];
-$quientutor=$_GET['tutoraula'];
+$quientutor=htmlentities($_GET['tutoraula'],ENT_QUOTES,"UTF8");
 $sectionisquien=$_GET['secc'];
 $cantidadalumnos=0;
 $alumn_retirados=0;
@@ -44,7 +44,7 @@ echo "<a style='font-size:12px;'><b>Asistencia del ".$bimestreconsultado." bimes
         <table>
             <tr>
                 <td style="display: none;"></td>
-                <th style="width: 8%;"><center><a style='font-size: 11px;'>N &oacute;rden</a></center></th>
+                <th style="width: 8%;"><center><a style='font-size: 11px;'>N° &Oacute;rden</a></center></th>
                 <th style="width: 40%;"><center><a style='font-size: 11px;'>Alumno</a></center></th>
                 <th style="width: 5%;"><center><a style='font-size: 11px;'>FJ</a></center></th>
                 <th style="width: 5%;"><center><a style='font-size: 11px;'>FI</a></center></th>

@@ -122,7 +122,7 @@ class Usuario extends Conection{
         $value=0;
         try {
             $this->CONECT();
-            $resulset=mysql_query("select * from  urp881_nota13.Usuario
+            $resulset=mysql_query("select * from  Usuario
                 Where usuario='".$usuario."' and contrasena='".$password."';");
             if($resulset){
                 $value=mysql_num_rows($resulset);
@@ -176,25 +176,26 @@ class Usuario extends Conection{
         $teconecto->CLOSE();
         return $veruser;
     }
-    
-    public function verdnisesion($idpersona) {
-        $this->CONECT();
-        $rese=  mysql_query("   SELECT p.dni
-                                FROM Usuario u
-                                INNER JOIN Persona p ON u.idpersona = p.codigo
-                                WHERE u.idpersona ='".$idpersona."';");
-        $this->CLOSE();
-        return $rese;
+
+    public function Ingresos($usuario) {
+        $con= new Conection();
+        $con->CONECT();
+        $viewinput=mysql_query("
+            SELECT  uh.codigo,
+                    CONCAT(pe.paterno,' ',pe.materno,' ,',pe.nombres) as USER,
+                    uh.accion,
+                    uh.descripcion,
+                    user.estado
+            FROM User_history uh
+            inner join Usuario user on uh.usuario=user.usuario
+            inner join Persona pe on user.idpersona=pe.codigo
+            ORDER BY uh.codigo DESC;
+            "
+        );
+        $con->CLOSE();
+        return $viewinput;
     }
     
-    public function changepassid($idpersona,$newpass) {
-        $this->CONECT();
-        $retnewpass=  mysql_query(" Update Usuario set
-                                    contrasena='".$newpass."'
-                                    where idpersona='".$idpersona."';");
-        $this->CLOSE();
-        return $retnewpass;
-    }
 }
 
 ?>

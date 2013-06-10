@@ -55,11 +55,6 @@ while ($secciondate = mysql_fetch_array($datosaula)) {
 <!------------------------------------------------CONTENT I bimestre----------------------------------------------->
 <div class="tab-pane fade in active" id="uno">
 <h5>SECCI&Oacute;N  :<?php echo "[".$gradodelaula.$nombresecciondelaula."] ||| NIVEL:[".$niveldelaula."] ||| "; ?>TUTOR  :<?php echo $profeesaula;?></h5>
-
-    <div id="divtext">Si no puede visualizar el consolidado, 
-clic <a href="consolidadoajax.php?niveldelaula=<?php echo $niveldelaula ?>&codigoseccion=<?php echo $codigoseccion?>&gradodelaula=<?php echo $gradodelaula?>">AQUI</a>
-    </div>
-
     <div id="divconsolidado">
 
     </div>
@@ -93,7 +88,7 @@ clic <a href="consolidadoajax.php?niveldelaula=<?php echo $niveldelaula ?>&codig
 <script type="text/javascript" src="Js/ajax.js"></script>
 <script type="text/javascript">
     window.onload=function(){
-        Mostrarconsolidado(<?php echo $codigoseccion; ?>,'<?PHP echo $niveldelaula; ?>',<?php echo $gradodelaula; ?>);
+        Mostrarconsolidado(<?php  echo $codigoseccion; ?>);
     }
 </script>
 </html>

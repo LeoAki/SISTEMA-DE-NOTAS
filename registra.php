@@ -35,9 +35,9 @@ echo "<script>window.location = 'index.php'</script>";
 require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
-require_once 'Class/RegistroAlumno.php';
+require_once 'Class/RegistroAlumno2.php';
 $INDICAXD= new Indicador();
-$REGISTROALUMNO= new RegistroAlumno();
+$REGISTROALUMNO= new RegistroAlumno2();
 $_COOKIE["valuecombix"];
 ?>
 <center><h3 style="color: green">Registro De Notas por asignatura- I BIMESTRE</h3>
@@ -57,8 +57,7 @@ while ($rowgeneral = mysql_fetch_array($queryalu)) {
     $count=$count+1;
 }
 
-for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-
+for($x =1 ; $x <= 35; $x++){
        $REGISTROALUMNO->setAlumnoregistro($_REQUEST[$x.'txtalumnoregistro']);
        $REGISTROALUMNO->setRegistro($_REQUEST['txtregistro']);
        $REGISTROALUMNO->setAlumnoseccion($_REQUEST[$x.'txtidalumno']);
@@ -100,12 +99,12 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
-       #$REGISTROALUMNO->GRABAR();
+       $REGISTROALUMNO->GRABAR();
 }
 
 echo "<script languaje='javascript' type='text/javascript'>
-
-            window.close();</script>";
+            window.close();
+</script>";
 }
 
 /*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
@@ -149,16 +148,17 @@ echo "
 }
 ?>
 </table>
-<?php echo "<a TARGET = '_blank' href='imprimir_reg.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresión</a>";?>
+<?php 
+echo "<a TARGET = '_blank' href='imprimir_reg.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresión</a>";?>
 <?php
 $miVariable =  $_COOKIE["valuecombix"];
 echo
-"
-    <center>
-<h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4>
+"    <center>
+    <h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4>
     </center>    ";
+;
 ?>
-
+<center><h3 style="color: green">Lista De Alumnos</h3></center>
 <form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
 <div style="background-color: greenyellow;">
 <center>
@@ -260,7 +260,7 @@ echo "
 ?>
 </table>
 <div class="form-actions">
-<button style="display:none;" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button>
+<button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button>
 </div>
 </center>
 </form>
@@ -311,8 +311,6 @@ promedio = '';
 }
 return promedio;
 }
-
-
 
 function justNumbers(e)
 {

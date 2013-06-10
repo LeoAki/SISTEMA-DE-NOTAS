@@ -263,7 +263,7 @@ class ALUMNO_SECCION extends Conection{
                                     where au.idpersona='".$persona."';");
        $cone->CLOSE();
        return $detailals;
-       
+
       }
 
 }

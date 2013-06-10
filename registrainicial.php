@@ -89,7 +89,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
-      # $REGISTROALUMNO->GRABAR();
+       $REGISTROALUMNO->GRABAR();
 }
 
 echo "<script languaje='javascript' type='text/javascript'>
@@ -142,7 +142,7 @@ echo
     <h4>".$variable1." " .$variable2."    "." Asignatura: ".$variable3." </h4>
     </center>    ";
 ?>
-<?php echo "<a TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresi&oacute;n</a>";?>
+<?php echo "<a TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresión</a>";?>
 <form name="frmregistro" method="post" action="registrainicial.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
 <center>
 <table class="">
@@ -152,7 +152,7 @@ echo
     <td></td>
     <td></td>
     <td></td>
-    <td>N</td>
+    <td>N°</td>
     <td>Alumno</td>
 <?php
 $th=$COMPONENTE->LISTAR($asina);
@@ -221,7 +221,7 @@ echo "
 <center>
 <br><br>
 <div class="form-actions">
-<button style="display:none;" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
+<button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
 </div>
 </center>
 </form>

@@ -55,14 +55,13 @@
   <td>".$row[7]."</td>
   <td>
   	<center>
-  	<a  TARGET = '_blank' href='registra.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar<i class='icon-file'></i></a>
+  	<a  TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
   	<a  TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
   	</center>
   </td>
   <td>
   	<center>
-  	<i class='icon-file'></i>
-  	<i class='icon-print'></i>
+  	<a  TARGET = '_blank' href='registra1.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar<i class='icon-file'></i></a>
   	</center>
   </td>
   <td>

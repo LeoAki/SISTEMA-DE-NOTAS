@@ -15,24 +15,13 @@ header('Location: index.php');
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
-<!-------------------------------------------------------------------------------------------------->
-<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js-------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </head>
-    <body>
-        <?php require_once 'Includes/navegador.php';
+    <body style="background-color: linen;">
+        <?php require_once 'Includes/navegador.php';#steelblue
          require_once 'Class/Seccion.php';
          $SEC=new Seccion();?>
 <center><h3 style="color: green">SELECCIONE EL GRADO PARA VER SUS AREAS</h3></center>
-<div style="margin-left: 35%;margin-right: 35%;">
+<div style="margin-left: 25%;margin-right: 25%;">
 
 <!-----DIRECTOR-SUBDIRECTOR GENERAL--->
 <?php
@@ -40,7 +29,7 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
 ?>
 
 <!---------------------------------------------------------------------------------------------->
-<!--BEGIN ENCABEZADO-->
+<!--BEGIN ENCABEZADO--mediumturquoise-->
 <div class="bs-docs-example" style="background-color:#E3F6CE;">
     <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#inicial" data-toggle="tab"><i class="white icon-thumbs-up"></i>INICIAL</a></li>
@@ -62,16 +51,16 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
             </thead>
             <tbody>
             <tr>
-                <td>3° a&ntilde;os</td>
-                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=3">Ver &Aacute;reas</a></td>
+                <td>3° A&Ntilde;OS</td>
+                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=3"><strong>VER &Aacute;REAS</strong></a></td>
             </tr>
             <tr>
-                <td>4° a&ntilde;os</td>
-                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=4">Ver &Aacute;reas</a></td>
+                <td>4° A&Ntilde;OS</td>
+                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=4"><strong>VER &Aacute;REAS</strong></a></td>
             </tr>
             <tr>
-                <td>5° a&ntilde;os</td>
-                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=5">Ver &Aacute;reas</a></td>
+                <td>5° A&Ntilde;OS</td>
+                <td><a TARGET="_blank" href="versinaturas.php?nivel='inicial'&grado=5"><strong>VER &Aacute;REAS</strong></a></td>
             </tr>
             </tbody>
         </table>
@@ -86,28 +75,28 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
             </thead>
             <tbody>
                 <tr>
-                    <td>1° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=1">Ver &Aacute;reas</a></td>
+                    <td>1° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=1"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>2° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=2">Ver &Aacute;reas</a></td>
+                    <td>2° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=2"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>3° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=3">Ver &Aacute;reas</a></td>
+                    <td>3° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=3"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>4° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=4">Ver &Aacute;reas</a></td>
+                    <td>4° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=4"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>5° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=5">Ver &Aacute;reas</a></td>
+                    <td>5° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=5"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>6° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=6">Ver &Aacute;reas</a></td>
+                    <td>6° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='primaria'&grado=6"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
             </tbody>
         </table>
@@ -122,24 +111,24 @@ if($_SESSION['niveldeuser']=='4' or $_SESSION['niveldeuser']=='5'){
             </thead>
             <tbody>
                 <tr>
-                    <td>1° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=1">Ver &Aacute;reas</a></td>
+                    <td>1° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=1"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>2° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=2">Ver &Aacute;reas</a></td>
+                    <td>2° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=2"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>3° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=3">Ver &Aacute;reas</a></td>
+                    <td>3° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=3"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>4° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=4">Ver &Aacute;reas</a></td>
+                    <td>4° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=4"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
                 <tr>
-                    <td>5° grado</td>
-                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=5">Ver &Aacute;reas</a></td>
+                    <td>5° GRADO</td>
+                    <td><a TARGET="_blank" href="versinaturas.php?nivel='secundaria'&grado=5"><strong>VER &Aacute;REAS</strong></a></td>
                 </tr>
             </tbody>
          </table>
@@ -265,4 +254,15 @@ if($_SESSION['niveldeuser']=='8'){
 }
         ?>
     </body>
+<!-------------------------------------------------------------------------------------------------->
+<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="Js/js.js"></script>
+<!----------------------------------BOOTSTRAP--js-------------------------------------------------->
+<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
+<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
+<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

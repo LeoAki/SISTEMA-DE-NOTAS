@@ -39,26 +39,20 @@
                 if($usuariolncc->Validar($user, $contra)>0){
                     $_SESSION['USERLNCCNOTAS']=$usuariolncc;
                     $_SESSION['codigo']=$usuariolncc->getCODIGO();
-                    $_SESSION['usuario']=$usuariolncc->getUSUARIO();
-                    $_SESSION['contrasena']=$usuariolncc->getCONTRASENA();
+                    $_SESSION['dni']=$usuariolncc->getCONTRASENA();
                     $_SESSION['definemenu']=$usuariolncc->getIDPERFIL();
-                    $_SESSION['tipodeusuario']=$usuariolncc->getESTADO();
                     $_SESSION['idpersona']=$usuariolncc->getIDPERSONA();
-                    $_SESSION['niveldeuser']=$usuariolncc->getNIVEL();
                     $_SESSION['fechainicio']=$usuariolncc->getINSCRIPCION();
+                    $_SESSION['niveldeuser']=$usuariolncc->getNIVEL();
                     $_SESSION['ultimavez']=$usuariolncc->getULTIMASESION();
-                    
-                    $idpersonaview=$usuariolncc->getIDPERSONA();#cogeridpersona
-                    $dnifound=$usuariolncc->verdnisesion($idpersonaview);#consulta en la clase
-                    if ($rowuserfound = mysql_fetch_array($dnifound)) {
-                        $_SESSION['dni']=$rowuserfound[0];
-                    }
+                    $_SESSION['usuario']=$usuariolncc->getUSUARIO();
+                    $_SESSION['tipodeusuario']=$usuariolncc->getESTADO();
                     
                     $users=$_SESSION['usuario'];
                     $usuariolncc->SESIONBEGIN($user);
                     
                     if($_SESSION['niveldeuser']==1){
-                        echo "<script>window.location = 'regnota.php'</script>";
+                        echo "<script>window.location = 'regcomponent.php'</script>";
                     }
                     if($_SESSION['niveldeuser']==2){
                         echo "<script>window.location = 'regnota.php'</script>";

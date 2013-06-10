@@ -36,7 +36,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
     $ALUSEC->setFJ1($_REQUEST['txtfj'.$x]);
     $ALUSEC->setFI1($_REQUEST['txtfi'.$x]);
     $ALUSEC->setT1($_REQUEST['txtt'.$x]);
-   # $ALUSEC->UPDATEFIT($_REQUEST['txtalumnose'.$x]);
+    $ALUSEC->UPDATEFIT($_REQUEST['txtalumnose'.$x]);
 }
     echo "<script>window.location = 'regasistencia.php'</script>";
 }
@@ -85,15 +85,14 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
     
 <center>
 <div class="form-actions">
-<button type="submit"class="btn btn-primary" style="display:none;">GRABAR/ACTUALIZAR LA ASISTENCIA</button>
+<button type="submit"class="btn btn-primary">GRABAR/ACTUALIZAR LOS MENSAJES</button>
 </div>
 </center>
 
 </form>
 </div>
 </center>
-<?php
-?>
+
 <?php
 }
 ?>

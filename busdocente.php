@@ -1,107 +1,158 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="shortcut icon" type="image/ico" href="Css/images/favicon.ico"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" type="image/ico" href="Css/images/favicon.ico"/>
 <!----------------------------------BOOTSTRAP---------------------------------------------------->
-        <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
-        <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
+<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+<link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 <!----------------------------------DATA-TABLE--------------------------------------------------->
-        <link href="Include/data-table/css/jquery.dataTables.css" rel="stylesheet"/>
-        <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
-        <link href="Include/data-table/css/demo_table_jui.css" rel="stylesheet"/>
-        <title>LNCC OnLine- Docente</title>
-    </head>
-    <?php
-require_once 'Class/Docente.php';
-require_once 'Class/Usuario.php';
+<style type="text/css">
+    
+    @import "Include/DataTables-1.9.4/media/css/demo_table.css";
+    @import "Include/DataTables-1.9.4/media2/css/ColReorder.css";
+    @import "Include/DataTables-1.9.4/extras/ColVis/media/css/ColVis.css";
+    thead input { width: 100% }
+    input.search_init { color: #999 }
+    .leoaki{width: 97%;}
+</style>
+<title>LNCC OnLine- Docente</title>
+</head>
+<?php
+require_once 'Class/Docente.php';require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
 session_destroy();
 echo "<script>window.location = 'index.php'</script>";
 }else {
     
 ?>
-    <body>
-        <?php require_once 'Includes/navegador.php';
-        //Variables Locales
-        $codigo=0;
-        $paterno="";
-        $materno="";
-        $nombres="";
-        $dnia="";
-        $codigopersona=0;
-        $tipoprofe=0;
-        $DOCENTE= new Docente();
-        ?>
-        <div>
-<?php echo "<form name='frmdocente' id='frmdocente' method='post' action='buscodocente.php'>"; ?>
-         
-            <fieldset>
-                <legend>LISTA DE DOCENTES</legend>
-                <table id='listadocentes' name='listadocentes' class="display">
-                    <thead>
-                        <tr class="gradeU">
-                            <th>CODIGO</th>
-                            <th>APELLIDOS</th>
-                            <th>NOMBRES</th>
-                            <th>DNI</th>
-                            <th>TIPO</th>
-                            <th>Ver Registros</th>
+<body style="background-color: #ffffff">
+<?php require_once 'Includes/navegador.php';
+$DOCENTE= new Docente(); ?>
+<center>
+    <div class="leoaki">
+    <fieldset>
+        
+        <table id='listadocentes' name='listadocentes' class="table table-hover">
+            <thead>
+                <tr class="gradeU">
+                    <th>CODIGO</th>
+                    <th>APELLIDOS</th>
+                    <th>NOMBRES</th>
+                    <th>DNI</th>
+                    <th>TIPO</th>
+                    <th>CARGO</th>
+                    <th>DIRECCION</th>
+                    <th>FIJO/CEL</th>
+                    <th>EMAIL</th>
+                    <th>Ver Registros</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $lista=$DOCENTE->LISTAR();
+                while ($row1 = mysql_fetch_array($lista)) {
+                    echo "
+                        <tr class='gradeA'>
+                            <td class='center'><a>" . $row1[0]. "</a></td>
+                            <td> $row1[1] $row1[2] </td>
+                            <td> $row1[3] </td>
+                            <td> $row1[4]</td>
+                            <td> $row1[5] </td>
+                            <td> $row1[7] </td>
+                            <td> $row1[6] </td>
+                            <td> $row1[8] / $row1[9]</td>
+                            <td> <a href='mailto:$row1[10]'>$row1[10]</a></td>
+                            <td><a href='listreg.php?dnidocente=".$row1[4]."'>Ver Registros</a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        $lista=$DOCENTE->LISTAR();
-                        while ($row1 = mysql_fetch_array($lista)) {
-                            echo "
-                                <tr class='gradeA'>
-                                    <td class='center'><a>" . $row1[0]. "</a></td>
-                                    <td>".$row1[1]." ".$row1[2]."</td>
-                                    <td>".$row1[3]."</td>
-                                    <td>".$row1[4]."</td>
-                                    <td>".$row1[5]."</td>
-                                    <td><a href='listreg.php?dnidocente=".$row1[4]."'>Ver Registros</a></td>
-                                </tr>
-                                ";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </fieldset>
-            <?php echo "</form>";?>
-        </div>
-        <br><br>
-        <?php require_once 'Includes/modal-footer.php';?>
-    </body>
-    <?php }?>
-        <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="Js/js.js"></script>
-                <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-        <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-        <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-        <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-        <script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-        <script type="text/javascript" src="Include/data-table/js/jquery.dataTables.js"></script>
-<!----------------------------------------------------------------------------------------------->
-        <script type="text/javascript" charset="utf-8">
-        /* Define two custom functions (asc and desc) for string sorting */
-			jQuery.fn.dataTableExt.oSort['string-case-asc']  = function(x,y) {
-				return ((x < y) ? -1 : ((x > y) ?  1 : 0));
-			};
+                        ";
+                }
+                ?>
+            </tbody>
+            <tfoot>
+            <tr>
+                    <th>CODIGO</th>
+                    <th>APELLIDOS</th>
+                    <th>NOMBRES</th>
+                    <th>DNI</th>
+                    <th>TIPO</th>
+                    <th>CARGO</th>
+                    <th>DIRECCION</th>
+                    <th>FIJO/CEL</th>
+                    <th>EMAIL</th>
+                    <th>#</th>
+            </tr>
+            </tfoot>
+        </table>
+    </fieldset>
+</div>
+</center>
+<br><br><br><br><br><br>
+</body>
+<?php }?>
+<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="Js/js.js"></script>
+<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
+<script type="text/javascript" src="Include/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="Include/DataTables-1.9.4/media2/js/ColReorder.js"></script>
+<script type="text/javascript" src="Include/DataTables-1.9.4/extras/ColVis/media/js/ColVis.js"></script>
+<!--<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+    $('#listadocentes').dataTable( {
+        "sPaginationType": "full_numbers"
+    } );
+} );
 
-			jQuery.fn.dataTableExt.oSort['string-case-desc'] = function(x,y) {
-				return ((x < y) ?  1 : ((x > y) ? -1 : 0));
-			};
-
+</script>-->
+<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-				/* Build the DataTable with third column using our custom sort functions */
-				$('#listadocentes').dataTable( {
-					"aaSorting": [ [0,'asc'], [1,'asc'] ],
+				var oTable;
+
+				/* Add the events etc before DataTables hides a column */
+				$("thead input").keyup( function () {
+					/* Filter on the column (the index) of this element */
+					oTable.fnFilter( this.value, oTable.oApi._fnVisibleToColumnIndex(
+						oTable.fnSettings(), $("thead input").index(this) ) );
+				} );
+
+				/*
+				 * Support functions to provide a little bit of 'user friendlyness' to the textboxes
+				 */
+				$("thead input").each( function (i) {
+					this.initVal = this.value;
+				} );
+
+				$("thead input").focus( function () {
+					if ( this.className == "search_init" )
+					{
+						this.className = "";
+						this.value = "";
+					}
+				} );
+
+				$("thead input").blur( function (i) {
+					if ( this.value == "" )
+					{
+						this.className = "search_init";
+						this.value = this.initVal;
+					}
+				} );
+
+				oTable = $('#listadocentes').dataTable( {
+					"sDom": 'RC<"clear">lfrtip',
 					"aoColumnDefs": [
-						{ "sType": 'string-case', "aTargets": [ 2 ] }
-					]
+						{ "bVisible": false, "aTargets": [ 5,6 ] }
+					],
+					"oLanguage": {
+						"sSearch": "Haz una búsqueda en todos los campos:"
+					},
+					"bSortCellsTop": true
 				} );
 			} );
-        </script>
+		</script>
 </html>

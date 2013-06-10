@@ -61,10 +61,10 @@ function MostrarComponen(sinatur,seccx,idpersonast){
         ajax.send(null);
 }
 
-function Mostrarconsolidado(datos,nivel,grado){
+function Mostrarconsolidado(datos){
         divResultado = document.getElementById('divconsolidado');
         ajax=objetoAjax();
-        ajax.open("GET","consolidadoajax.php?codigoseccion="+datos+"&niveldelaula="+nivel+"&gradodelaula="+grado);
+        ajax.open("GET","consolidadoajax.php?codigoseccion="+datos);
         ajax.onreadystatechange=function() {
                if (ajax.readyState==4) {
                        divResultado.innerHTML = ajax.responseText
@@ -73,4 +73,33 @@ function Mostrarconsolidado(datos,nivel,grado){
                }
         }
         ajax.send(null)
+}
+
+function Indcompo(componente,numero){
+    divResultado= document.getElementById('divindicador'+numero);
+    ajax=objetoAjax();
+    ajax.open("GET","regcriterioajax.php?compind="+componente+"&idnumero="+numero);
+    ajax.onreadystatechange=function() {
+               if (ajax.readyState==4) {
+                       divResultado.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('divindicador'+numero).innerHTML='Cargando...';
+               }
+        }
+        ajax.send(null)
+}
+
+
+function ajax_4(uno,dos,tres,cuatro,cinco){
+        divResultadoo = document.getElementById('modelo');
+        ajax=objetoAjax();
+        ajax.open("GET", "demoindicador.php?acriterio="+uno+"&acodigo="+dos+"&acomponente="+tres+"&anumero="+cuatro+"&apeso="+cinco);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('modelo').innerHTML='Cargando...';
+               }
+        }
+        ajax.send(null);
 }
