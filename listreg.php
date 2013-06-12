@@ -62,7 +62,7 @@ while ($row = mysql_fetch_array($lista)) {
 <a id='unover' TARGET = '_blank' href='imprimir_reg1.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
      Ver <i class='icon-eye-open'></i>
 </a>
-<a id='dosver' TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
+<a id='dosver' TARGET = '_blank' href='imprimir_reginicial2.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
      I <i class='icon-hand-up'></i>
 </a>
 </td>

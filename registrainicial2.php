@@ -18,7 +18,8 @@ echo "<script>window.location = 'index.php'</script>";
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
 </head>
-    <body>
+
+<body>
 <?php
 require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
@@ -27,9 +28,12 @@ require_once 'Class/RegistroAlumnoInicial.php';
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
-<center><h3 style="color: green">Registro De Notas por asignatura- I BIMESTRE</h3></center>
+<center><h3 style="color: green">Registro De Notas por asignatura- II BIMESTRE</h3></center>
 <?PHP
-$asina = $_GET['sinatura'];$seccion = $_GET['seccion'];$registro=$_GET['registro'];
+$asina = $_GET['sinatura'];
+$seccion = $_GET['seccion'];
+$registro=$_GET['registro'];
+
 /*--------------------------------------MANTENIMIENTO-----------------------------------*/
 //Listar registros
 #BUCLE REPETITIVO
@@ -85,28 +89,29 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
-      # $REGISTROALUMNO->GRABAR();
+       $REGISTROALUMNO->GRABAR2();
 }
 
-echo "<script languaje='javascript' type='text/javascript'>
-            window.close();
-      </script>";
+echo "
+<script languaje='javascript' type='text/javascript'>
+window.close();
+</script>";
 }
 /*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
 ?>
+
 <?php
 $COMPO = new Component();
 $mysql=$COMPO->ListarDatosAsignatura($asina);
 if($rowgeneral=  mysql_fetch_array($mysql)){
-    $variable1=$rowgeneral['grado'];
-    $variable2=$rowgeneral['nomnivel'];
-    $variable3=$rowgeneral['asinatura'];
+    $variable1=$rowgeneral['grado'];    $variable2=$rowgeneral['nomnivel'];    $variable3=$rowgeneral['asinatura'];
 }
 ?>
+
 <table class="display">
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR1($asina);
+$listar=$COMPONENTE->LISTAR($asina);
 while ($row = mysql_fetch_array($listar)) {
 echo "
 <tr class='gradeX'>
@@ -116,18 +121,19 @@ echo "
         echo "
             <tr class='gradeA'>
                 <td class='center'><a>$row[1].$row2[3]</a></td>
-                <td>$row2[2]</td>
-             </tr>";
+                <td>".$row2[2]."</td>
+             </tr>
+            ";
     }
 }
 ?>
 </table>
-<?php
-echo "<center><h4>$variable1 $variable2 Asignatura: $variable3</h4></center>";
-?>
-<?php echo "<a TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$asina."&seccion=".$seccion."&registro=".$registro."' class='btn btn-primary'>Ver como impresi&oacute;n</a>";?>
 
-<form name="frmregistro" method="post" action="registrainicial.php?GRABAR=0">
+<?php
+echo
+"<center><h4> $variable1 $variable2 ASIGNATURA: $variable3 </h4></center>";
+?>
+<form name="frmregistro" method="post" action="registrainicial2.php?GRABAR=0">
 <center>
 <table class="">
 <thead>
@@ -139,13 +145,13 @@ echo "<center><h4>$variable1 $variable2 Asignatura: $variable3</h4></center>";
     <td>N</td>
     <td>Alumno</td>
 <?php
-$th=$COMPONENTE->LISTAR1($asina);
+$th=$COMPONENTE->LISTAR($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
-        echo "<td class='center' width:2%;>$roth[1].$rowth[3]</td>";
+    echo "<td class='center' width:2%;> $roth[1] . $rowth[3] </td>";
         }
-        echo "<td style='color:peru;'>P$roth[1]</td>";
+    echo "<td style='color:peru;'>P".$roth[1]."</td>";
     }
 ?>
     <td style="color:peru;">PB</td>
@@ -161,18 +167,14 @@ echo "
 <td><td><input type='hidden' name='txtregistro' id='txtregistro' value='".$registro."'/></td></td>
 <td><input type='hidden' name='".$alumno[0]."txtidalumno' id='".$alumno[0]."txtidalumno' value='".$alumno[4]."'/></td>
 <td><input type='hidden' name='".$alumno[0]."txtalumnoregistro' id='".$alumno[0]."txtalumnoregistro' value='".$alumno[4].$seccion.$asina."'/></td>
-<td style='width:3%;'>".$alumno[0]."</td>
-<td style='width:25%;'>".$alumno[1]."  ".$alumno[2]."   ,".$alumno[3]."</td>
-";
+<td style='width:3%;'>$alumno[0]</td>
+<td style='width:25%;'>$alumno[1] $alumno[2] ,$alumno[3]</td>";
 
-$td=$COMPONENTE->LISTAR1($asina);
+$td=$COMPONENTE->LISTAR($asina);
     while ($ro = mysql_fetch_array($td)) {
         $lista=$INDICAXD->LISTAR($ro[0]);
         while ($row22 = mysql_fetch_array($lista)) {
-
-
-$listadice=  RegistroAlumnoInicial::LISTAR($alumno[4].$seccion.$asina);
-
+$listadice=  RegistroAlumnoInicial::LISTAR_2($alumno[4].$seccion.$asina);
 while ($row11 = mysql_fetch_array($listadice)) {
 
     $valorcelda=$ro[1].$row22[3];
@@ -180,14 +182,17 @@ while ($row11 = mysql_fetch_array($listadice)) {
     $valorpromedio=$row11["promedio".$ro[1]];
     $pb=$row11["pb"];
 }
-echo "
-<td class='center' width:3%;>
-<input tabindex='".$row22[0]."' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]' value='$valueespacio' style='width:89%;' maxlength=2/>
-</td>";
+echo "<td class='center' width:3%;>
+        <input tabindex='$row22[0]' placeholder='FN' type='text' id='$alumno[0]p.$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]' value='$valueespacio' style='width:89%;' maxlength=2; />
+      </td>";
 }
-echo "<td><input type='text' style='width:80%;'  value='$valorpromedio' id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."'/></td>";
-}
-echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' name='".$alumno[0]."pb'  value='$pb' /></td>";
+
+echo "<td>
+        <input type='text' style='width:80%;'  value='$valorpromedio' id='$alumno[0]promedio$ro[1]' name='$alumno[0]promedio$ro[1]'/>
+      </td>";
+    }
+
+echo "<td><input type='text' style='width:80%;' id='$alumno[0]pb' name='$alumno[0]pb'  value='$pb' /></td>";
 echo "</tr>";
 }
 ?>
@@ -197,13 +202,12 @@ echo "</tr>";
 <center>
 <br><br>
 <div class="form-actions">
-<button style="display:none;" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
+<button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
 </div>
 </center>
 </form>
-<?php     }
-?>
-    </body>
+<?php  }?>
+</body>
 </html>
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>

@@ -22,7 +22,7 @@
             <i class='alert alert-success'>Ahora si misses, guarden con letras, que no habra problema alguno</i>
             <form >
                 <fieldset>
-                    <legend>Bimestre Actual:I</legend>
+                    <legend>Bimestre Actual:II</legend>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -42,19 +42,20 @@
                             while ($row = mysql_fetch_array($lista)) {
                            echo "
                            <tr>
-                           <td><b>REGISTRO N° </b>".$row[0]."</td>
+                           <td><b>REGISTRO N&#176; </b>".$row[0]."</td>
                            <td>".$row[2]." ".$row[3]." DE <b>".$row[1]."</b></td>
                            <td>".$row[7]."</td>
 <td>
    <center>
-   <a TARGET ='_blank' href='registrainicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar<i class='icon-file'></i></a>
    <a TARGET ='_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
-	</center>
+   <a TARGET ='_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
+   </center>
 </td>
 <td>
-	<center>
-	<i class='icon-file'></i><i class='icon-print'></i>
-	</center>
+   <center>
+   <a TARGET ='_blank' href='registrainicial2.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar<i class='icon-file'></i></a>
+   <a TARGET ='_blank' href='imprimir_reginicial2.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
+   </center>
 </td>
 <td>
 	<center>
@@ -66,10 +67,17 @@
 	<i class='icon-file'></i><i class='icon-print'></i>
 	</center>
 </td>
-<td style='display:none;'><a TARGET ='_blank' href='registrainicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a></td>
-<td><i class='icon-print'></i></td>
-                           </tr>
-                                    "; }
+<td style='display:none;'>
+    <a TARGET ='_blank' href='registrainicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Registrar</a>
+</td>
+<td>
+    <center>
+    <i class='icon-print'></i>
+    </center>
+</td>
+
+</tr>
+"; }
                             ?>
                         </tbody>
                     </table>
@@ -81,7 +89,6 @@
 		<i class='icon-file'></i>Abrir Registro
 		<i class='icon-print'></i>Vista Previa
 </center>
-        <br><br><br><br><br><br><br>
         
         <?php require_once 'Includes/modal-footer.php';?>
     </body>
@@ -89,8 +96,6 @@
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>

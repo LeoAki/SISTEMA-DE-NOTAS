@@ -65,8 +65,19 @@ class Component extends Conection{
     public function LISTAR($asinatura) {
     $cone=new Conection();
     $cone->CONECT();
-    $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c 
-                             inner join Asinatura asi on c.sinature=asi.codigo 
+    $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
+                             where c.sinature='".$asinatura."' and bimestre=2 order by c.nrocomponent ;");
+    $cone->CLOSE();
+    unset($cone);
+    return $resultado;
+   }
+
+    public function LISTAR1($asinatura) {
+    $cone=new Conection();
+    $cone->CONECT();
+    $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
                              where c.sinature='".$asinatura."' and bimestre=1 order by c.nrocomponent ;");
     $cone->CLOSE();
     unset($cone);

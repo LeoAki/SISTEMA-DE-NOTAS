@@ -664,5 +664,38 @@ class RegistroAlumnoInicial extends Conection{
        return $docente1;
    }
 
+    public function GRABAR2() {
+        try {
+            $this->CONECT();
+            mysql_query("call Sp_alumnoregistroinicial2(
+                '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
+                '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
+                '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
+                '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
+                '".$this->p111."','".$this->p112."','".$this->p113."','".$this->p114."',
+                '".$this->p21."','".$this->p22."','".$this->p23."','".$this->p24."','".$this->p25."',
+                '".$this->p26."','".$this->p27."','".$this->p28."','".$this->p29."','".$this->p210."',
+                '".$this->p31."','".$this->p32."','".$this->p33."','".$this->p34."','".$this->p35."',
+                '".$this->p36."','".$this->p37."','".$this->p38."','".$this->p39."','".$this->p310."',
+                '".$this->p41."','".$this->p42."','".$this->p43."','".$this->p44."','".$this->p45."',
+                '".$this->p46."','".$this->p47."','".$this->p48."','".$this->p49."','".$this->p410."',
+                '".$this->p51."','".$this->p52."','".$this->p53."','".$this->p54."','".$this->p55."',
+                '".$this->p56."','".$this->p57."','".$this->p58."','".$this->p59."','".$this->p510."'
+                )");
+        } catch (Exception $exc) {
+            echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
+        }
+   }
+
+   public function LISTAR_2($alreg){
+       $cone=new Conection();
+       $cone->CONECT();
+       $lista=  mysql_query("SELECT * FROM  Alumno_Registroinicial2 where idalumnoregistro=".$alreg.";");
+       $cone->CLOSE();
+       unset($cone);
+       return $lista;
+   }
+
+
 }
 ?>

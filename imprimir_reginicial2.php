@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<title>Registro II Bimestre</title>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
@@ -25,23 +25,17 @@ $QUIEN= new Usuario();
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
-    <center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2013</b></a></center>
+<center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL II BIMESTRE-2013</b></a></center>
 <?PHP
-$asina = $_GET['sinatura'];
-$seccion = $_GET['seccion'];
-$registro=$_GET['registro'];
+$asina = $_GET['sinatura'];$seccion = $_GET['seccion'];$registro=$_GET['registro'];
 $responsable=$REGISTROALUMNO->Nom_res_registr($registro);
-if($rowgeneral=  mysql_fetch_array($responsable)){
-    $variable1=$rowgeneral['codigodocente'];
-}
+if($rowgeneral=  mysql_fetch_array($responsable)) $variable1=$rowgeneral['codigodocente'];
+
 $docentevalor=$REGISTROALUMNO->docentevalor($variable1);
 if($rowdocente=  mysql_fetch_array($docentevalor)){
-    $paternodocente=$rowdocente['paterno'];
-    $maternodocente=$rowdocente['materno'];
-    $nombresdocente=$rowdocente['nombres'];
+    $paternodocente=$rowdocente['paterno'];$maternodocente=$rowdocente['materno'];$nombresdocente=$rowdocente['nombres'];
 }
 ?>
-<table>
 <?php
 $COMPO = new Component();
 $mysql=$COMPO->ListarDatosAsignatura($asina);
@@ -55,54 +49,44 @@ if($namesection=  mysql_fetch_array($datitossecciones)){
     $nombredelaseccion=$namesection[1];
 }
 ?>
-</table>
-</center>
 <?php
 echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$variable1." ".$nombredelaseccion."]- Profesor:[".$paternodocente." ".$maternodocente." ,".$nombresdocente."]- Asignatura:[".$variable3."]</a>";
 ?>
 <br>
-<br>
 <table>
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR1($asina);
+$listar=$COMPONENTE->LISTAR($asina);
 while ($row = mysql_fetch_array($listar)) {
-
     $lista=$INDICAXD->LISTAR($row[0]);
     while ($row2 = mysql_fetch_array($lista)) {
-    echo "
-            <tr>
-                <td><a style='color:black;font-size: 11px;'>[" .$row[1].".". $row2[3]. "]</a></td>
-                <td><a style='color:black;font-size: 11px;'>".$row2[2]."</a></td>
-             </tr>
-    ";
-    }
-}
+    echo "   <tr>
+                <td><a style='color:black;font-size: 11px;'>[<strong>$row[1]</strong>.$row2[3]]</a></td>
+                <td><a style='color:black;font-size: 11px;'>$row2[2]</a></td>
+             </tr>";
+}}
 ?>
 </table>
 <br>
-<form name="frmregistro" method="post" action="registrainicial.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
+
 <center>
 <table>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><a style='color:black;font-size: 12px;'><b>N째</b></a></td>
-    <td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><a style='color:black;font-size: 12px;'><b>N°</b></a></td>
+<td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
 <?php
-$th=$COMPONENTE->LISTAR1($asina);
-    while ($roth = mysql_fetch_array($th)) {
+$th=$COMPONENTE->LISTAR($asina);
+while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
-            echo "
-    <td class='center' width:2%;><a style='color:black;font-size: 12px;'>$roth[1].$rowth[3]</a></td>
-                ";
+        echo "<td class='center' width:2%;><a style='color:black;font-size: 12px;'>$roth[1].$rowth[3]</a></td>";
         }
-echo "
-    <td style='color:peru;'><a style='color:black;font-size: 12px;'><b>P$roth[1]</b></a></td>";
-    }
+        echo "<td style='color:peru;'><a style='color:black;font-size: 12px;'><b>P$roth[1]</b></a></td>";
+}
 ?>
     <td><a style='color:black;font-size: 12px;'><b>PB</b></a></td>
 </tr>
@@ -128,13 +112,12 @@ echo "
 <td style='width:50%;'><a style='color:black;font-size: 11px;'>$alumno[1] $alumno[2] ,$alumno[3]</a></td>
 ";
 
-$td=$COMPONENTE->LISTAR1($asina);
+$td=$COMPONENTE->LISTAR($asina);
     while ($ro = mysql_fetch_array($td)) {
         $lista=$INDICAXD->LISTAR($ro[0]);
         while ($row22 = mysql_fetch_array($lista)) {
 
-
-$listadice=  RegistroAlumnoInicial::LISTAR($alumno[4].$seccion.$asina);
+$listadice=  RegistroAlumnoInicial::LISTAR_2($alumno[4].$seccion.$asina);
 
 while ($row11 = mysql_fetch_array($listadice)) {
 
@@ -154,11 +137,8 @@ if($valueespacio=="-1"){
 if($valueespacio==""){
     $valueespacio="FN";
 }
-echo "<td class='center' width:3%;><a style='color:black;font-size: 11px;'>$valueespacio</a></td>
-                ";
+echo "<td class='center' width:3%;><a style='color:black;font-size: 11px;'>$valueespacio</a></td>";
 }
-
-
 if($valorpromedio=="-2"){
     $valorpromedio="EX";
 }
@@ -222,7 +202,6 @@ echo "
 ?>
 </div>
         <a class="button" href="javascript:imprSelec('todo')">IMPRIMIR LA PAGINA</a>
-</form>
 <?php
         }
 ?>
@@ -231,8 +210,6 @@ echo "
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
