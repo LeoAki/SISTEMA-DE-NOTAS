@@ -458,5 +458,46 @@ class Docente extends Conection{
         return $prom;
    }
 
+   public function pesomat($doble,$num1,$num2) {
+       $suma= round( ( ($doble*4) + ($num1*2) + ($num2*2) )/ 8,0);
+       return $suma;
+   }
+
+   public function pesocta($mayor,$menor) {
+       $suma= round( ( ($mayor*4) + ($menor*2) )/ 6,0);
+       return $suma;
+   }
+
+   public function Especiales($dni) {
+        $con=new Conection();
+        $con->CONECT();
+        $result=mysql_query("select cargo from personal_detallado where dni='".$dni."';");
+        $con->CLOSE();
+        return $result;
+   }
+
+   public function RegistroDocentearea($area) {
+       $cone=new Conection();
+       $cone->CONECT();
+       $regi= mysql_query("SELECT r.codigo,
+                            sec.nomnivel,
+                            sec.grado,
+                            sec.nombreseccion,
+                            CONCAT( doc.paterno,  ' ', doc.materno,  ' ,', doc.nombres ) AS Docente,
+                            doc.dni,
+                            dasi.asinatura,
+                            dasi.abreviatura,
+                            r.codigoasinatura,
+                            r.codigoseccion
+                            FROM Registro r
+                            LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
+                            LEFT JOIN Docente doc ON r.codigodocente = doc.codigo
+                            LEFT JOIN descripcionsinature dasi ON r.codigoasinatura = dasi.codigo
+                            WHERE dasi.asinatura like  ('%".$area."%') order by r.codigo");
+       $cone->CLOSE();
+       unset($cone);
+       return $regi;
+   }
+
 }
 ?>

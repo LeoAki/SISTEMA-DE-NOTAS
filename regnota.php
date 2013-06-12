@@ -28,11 +28,71 @@
             <h3 style="color: green">Registro De Notas</h3></center>
 <img src="Css/images/libro.jpeg" style="width:100px;" class="img-circle"/>
             <?php echo "<i class='alert'>si eres profesora de inicial, haz clic <a href='regnotainicial.php' class='btn btn-warning'>AQU&Iacute;</a> y obvie lo de abajo</i>";?>    
-            
-            
+<br><br>
+<?php
+$queryconsult="";
+$rpp="";
+$queryconsult=Docente::Especiales($_SESSION['dni']);
+while ($rpp = mysql_fetch_array($queryconsult)) {
+    echo $rpp[0]."<br>";
+    if($rpp[0]=="DOCENTE EDUCACION FISICA"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE ARTE FOLKLORE"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE ARTE EDUCACION ARTISTICA"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE TALLER  EDUC.ARTISTICA"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE TEATRO"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE TALLER (ELECTRONICA)"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+    if($rpp[0]=="DOCENTE TALLER CARPINTERIA"){
+        echo "<span class='label label-info'>";
+        echo "NOTA: Eres un profesor de una &aacute;rea especial ,haz clic ";
+        echo "<a href='listregarea.php?cargo=".$rpp[0]."' class='btn btn-success'>AQU&Iacute;</a>";
+        echo " para que tengas acceso a todos los registros de tu &aacute;rea";
+        echo "</span>";
+    }
+}
+unset ($queryconsult);
+unset ($rpp[0]);
+?>
+
+
             <form >
                 <fieldset>
-                    <legend>Bimestre Actual:I</legend>
+                    <legend>Bimestre Actual:II</legend>
                     <i class=''>Revisen la lista del alumnado, asi como los registros que aparecen, en caso encuentren equivocaciones comunicar a la Subdireccion correspondiente o acercarse a la Subdireccion General- Oficina De Sistemas </i>
                     <table class="table table-hover">
                             <tr class="success">
@@ -52,7 +112,7 @@
 <tr>
   <td><b>REGISTRO N&#176;</b> ".$row[0]."</td>
   <td>".$row[2]." ".$row[3]." DE <b>".$row[1]."</b></td>
-  <td>".$row[7]."</td>
+  <td>$row[7]</td>
   <td>
   	<center>
   	<a  TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>Ver<i class='icon-print'></i></a>
@@ -102,8 +162,6 @@
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
