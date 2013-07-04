@@ -138,7 +138,7 @@ class Docente extends Conection{
    public function RegistroDocente($dni) {
        $cone=new Conection();
        $cone->CONECT();
-       $regi= mysql_query("SELECT r.codigo, 
+       $regi= mysql_query("SELECT r.codigo,
                             sec.nomnivel, 
                             sec.grado, 
                             sec.nombreseccion, 
@@ -147,7 +147,8 @@ class Docente extends Conection{
                             dasi.asinatura, 
                             dasi.abreviatura,
                             r.codigoasinatura,
-                            r.codigoseccion
+                            r.codigoseccion,
+                            r.activo1,r.activo2,r.activo3,r.activo4
                             FROM Registro r
                             LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
                             LEFT JOIN Docente doc ON r.codigodocente = doc.codigo

@@ -103,3 +103,16 @@ function ajax_4(uno,dos,tres,cuatro,cinco){
         }
         ajax.send(null);
 }
+function MostrarComponen2(sinatur,seccx,idpersonast){
+        divResultadoo = document.getElementById('divcompo2');
+        ajax=objetoAjax();
+        ajax.open("GET", "liscom2.php?idsinau="+sinatur+"&idsecc="+seccx+"&idpersonast="+idpersonast);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('divcompo2').innerHTML='Cargando...';
+               }
+        }
+        ajax.send(null);
+}

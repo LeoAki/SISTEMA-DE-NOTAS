@@ -132,7 +132,7 @@ while ($row11 = mysql_fetch_array($listadice)) {
     $valorcelda=$ro[1].$row22[3];
     $valueespacio=$row11["2p$valorcelda"];
     $pbb=$row11['9'];
-    $promedio=round($row11["1promedio$ro[1]"]);
+    $promedio=round($row11["2promedio$ro[1]"]);
 }
 if($valueespacio==0){
     $notita="FN";

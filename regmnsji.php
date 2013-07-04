@@ -20,14 +20,17 @@ session_destroy();
 echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
-    <body>
+<body>
 <?php
 require_once 'Includes/navegador.php';
 include_once 'Class/Conection.php';
 include_once 'Class/Docente.php';
-include_once 'Class/ALUMNO_SECCION.php';
 $DOCENTE= new Docente();
+include_once 'Class/ALUMNO_SECCION.php';
 $ALUMNOSECCION= new ALUMNO_SECCION();
+include_once 'Class/Alumno_Seccion_Pf.php';
+$AlSECIONPF= new Alumno_Seccion_Pf();
+
 $whoisdocente=$DOCENTE->DOCENTE_USUARIO($dnidocenteusario);
 if($filasiencuentra=  mysql_fetch_array($whoisdocente)){
     $codigodocentenow=$filasiencuentra[0];
@@ -38,9 +41,17 @@ if($filasiencuentra=  mysql_fetch_array($whoisdocente)){
 #BUCLE REPETITIVO
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-
-    $ALUMNOSECCION->setMSN1(htmlentities($_REQUEST['txtmensaje'.$x],ENT_QUOTES,"UTF-8"));
-    $ALUMNOSECCION->UPDATE($_REQUEST['txtcodigo'.$x]);
+    $AlSECIONPF->setCODIGO($_REQUEST['txtcodigo'.$x]);
+    $AlSECIONPF->setCODIGOAS($_REQUEST['txtcodigo'.$x]);
+    $AlSECIONPF->setDPF1($_REQUEST['txtnota1'.$x]);
+    $AlSECIONPF->setDPF2($_REQUEST['txtnota2'.$x]);
+    $AlSECIONPF->setDPF3($_REQUEST['txtnota3'.$x]);
+    $AlSECIONPF->setDPF4($_REQUEST['txtnota4'.$x]);
+    $AlSECIONPF->setDPF5($_REQUEST['txtnota5'.$x]);
+    $AlSECIONPF->setDPF6($_REQUEST['txtnota6'.$x]);
+    $AlSECIONPF->setDPF7($_REQUEST['txtnota7'.$x]);
+    $AlSECIONPF->setDPF8($_REQUEST['txtnota8'.$x]);
+    $AlSECIONPF->GRABAR();
 }
     echo "<script>window.location = 'regmnsji.php'</script>";
 }
@@ -72,12 +83,12 @@ echo "
 <h5 style='color: peru'>TUTOR: ".$apellidosdocentenow."</h5>
 ";
 ?>
-<form id="frmmensaje" method="post" action="regmnsji.php">
+<form id="frmmensaje" method="post" action="regmnsji.php?GRABAR=1">
 <fieldset>
 <table class="table table-hover">
     <tr class="gradeU">
         <td style="display: none;"></td>
-        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N°</b></td>
+        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N &#176;</b></td>
         <td style="width: 30%;color: peru;text-transform: uppercase;"><b>Alumno</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>1</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>2</b></td>
@@ -89,7 +100,7 @@ echo "
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>8</b></td>
     </tr>
 <?php
-$whoisalumno=$DOCENTE->ALUMNOSDEMITUTORIA($codigodocentenow);
+$whoisalumno=$AlSECIONPF->ALUMNOSDEMITUTORIA($codigodocentenow);
 while ($row = mysql_fetch_array($whoisalumno)) {
 echo "
     <tr>
@@ -97,14 +108,14 @@ echo "
     <input type='text' value='$row[0]' id='txtcodigo$row[1]' name='txtcodigo$row[1]'/></td>
     <td><b>$row[1]</b></td>
     <td><b>$row[2] $row[3] ,</b>$row[4]</td>
-    <td><input type='text' value='$row[5]' id='txtmensaje$row[1]' name='txtmensaje$row[1]' placeholder='' style='width:100%;'/></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
-    <td><input type='text' style='width:100%;'></td>
+    <td><input type='text' value='$row[13]' id='txtnota1$row[1]' name='txtnota1$row[1]' placeholder='FN' style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[14]' id='txtnota2$row[1]' name='txtnota2$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[15]' id='txtnota3$row[1]' name='txtnota3$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[16]' id='txtnota4$row[1]' name='txtnota4$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[17]' id='txtnota5$row[1]' name='txtnota5$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[18]' id='txtnota6$row[1]' name='txtnota6$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[19]' id='txtnota7$row[1]' name='txtnota7$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
+    <td><input type='text' value='$row[20]' id='txtnota8$row[1]' name='txtnota8$row[1]' placeholder='FN'style='width:100%;' maxlength=2/></td>
     </tr>
 ";
 }

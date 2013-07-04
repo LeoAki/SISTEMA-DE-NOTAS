@@ -3,7 +3,7 @@ $idperson=$_SESSION['idpersona'];
 require_once 'Class/Alumn.php';
 $ALUMNO= new Alumn();
 ?>
-<div class="bs-docs-example" style="background-color: #0489B1;">
+<div class="text-center">
 <?php
 $infoal=$ALUMNO->InfoAlumno($idperson);
 if ($filainf = mysql_fetch_array($infoal)) {
@@ -17,11 +17,8 @@ if ($filainf = mysql_fetch_array($infoal)) {
         $tuto=$filainf[9];
         $aux=$filainf[10];   
 }
-echo "<a style='color:white;'><b>GRADO:</b><i>".$gradoedu."° </i>
-         <b>SECCION:</b>'<i>".$namesec."' </i>
-         <b>NIVEL:</b><i>".$niveledu."||||||||||</i>
-         <b>TUTOR:</b><i>".$tuto."|</i>
-         <b>AUXILIAR:</b><i>".$aux."</i>
-             </a>";
+echo "<p class='text-success'><b>AULA:</b><i> $gradoedu &#176; $namesec </i><b>NIVEL: </b><i>$niveledu</i><br>
+         <b>TUTOR: </b><i>$tuto</i><br>
+         <b>AUXILIAR: </b><i>$aux</i></p>";
 ?>
 </div>

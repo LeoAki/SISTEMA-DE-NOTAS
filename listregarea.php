@@ -49,6 +49,7 @@ if(
 if($areaprocedente=="DOCENTE TEATRO") $areaquery="Artistica";
 if($areaprocedente=="DOCENTE TALLER (ELECTRONICA)") $areaquery="trabajo";
 if($areaprocedente=="DOCENTE TALLER CARPINTERIA") $areaquery="trabajo";
+if($areaprocedente=="DOCENTE INGLES") $areaquery="ingles";
 #fin de los if
 ?>
 <div style="margin-left: 4%;margin-right: 4%;">

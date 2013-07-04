@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
 <title>LICEO NAVAL CAPIT&Aacute;N DE CORBETA "MANUEL CLAVERO MUGA" ONLINE--BIENVENIDOS</title>
@@ -16,11 +17,9 @@ echo "<script>window.location = 'index.php'</script>";
 <!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
-    </head>
-    <body>
-<?php require_once 'Includes/navegador.php';
-require_once 'Includes/identif.php';
-?>
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<?php require_once 'Includes/navegador.php';?>
 <center>
 <small>BIENVENIDOS AL SISTEMA DE NOTAS ONLINE DEL LICEO NAVAL C. DE CORBETA <em>"MANUEL CLAVERO MUGA"</em></small>
 <legend><em>Con f&eacute;, lealtad y disciplina "Clavero Siempre Primero"</em></legend>
@@ -83,6 +82,13 @@ require_once 'Includes/identif.php';
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js-------------------------------------------------->
+<script type="text/javascript" src="Js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="Js/bootstrap-scrollspy.js"></script>
+<script type="text/javascript" src="Js/bootstrap-button.js"></script>
+<script type="text/javascript" src="Js/bootstrap-typeahead.js"></script>
+<script type="text/javascript" src="Js/bootstrap-affix.js"></script>
+<script src="http://twitter.github.io/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+<script src="http://twitter.github.io/bootstrap/assets/js/application.js"></script>
 <!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
@@ -90,6 +96,7 @@ require_once 'Includes/identif.php';
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>    
 <script type="text/javascript" src="Js/bootstrap-carousel.js"></script>
 <script type="text/javascript" src="Js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 <script type="text/javascript">
     $('#myCarousel').carousel({
     interval: 2000

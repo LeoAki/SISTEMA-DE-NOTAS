@@ -19,79 +19,68 @@ echo "<script>window.location = 'index.php'</script>";
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
 </head>
-<body>
+<body style="background-color: oldlace">
 <?php 
-require_once 'Includes/navegador.php';    
+require_once 'Includes/navegador.php';
+echo '<div id="arriba">';
 require_once 'Includes/infoalumno.php';
+echo '</div>';
 require_once 'Class/Asinatura.php';
 $SINATURAGENERAL=new Asinatura();
 ?>
-        <!--TABS DE BIENVENIDA-->
+<!--TABS DE BIENVENIDA-->
 <center>
 <div class="bs-docs-example" style="width: 80%;text-align: center;">
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#uno" data-toggle="tab"><i class="white icon-thumbs-up"></i>I BIMESTRE</a></li>
-    <li><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
+    <li><a href="#uno" data-toggle="tab"><i class="white icon-thumbs-up"></i>I BIMESTRE</a></li>
+    <li class="active"><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
     <li><a href="#tres" data-toggle="tab"><i class=" icon-bullhorn"></i>III BIMESTRE</a></li>
     <li><a href="#cuatro" data-toggle="tab"><i class=" icon-bullhorn"></i>IV BIMESTRE</a></li>
 </ul>
 <!---------------------BEGIN CONTENT------------------------------------------------------------>
 <div id="myTabContent" class="tab-content">
     <!--CONTENT I-->
-    <div class="tab-pane fade in active" id="uno">
-    
-    <fieldset>
-        <center>
-        <legend style="color: peru">ELIGE EL CURSO Y MIRA EL I BIMESTRE</legend>
+<div class="tab-pane fade" id="uno">
 
+<fieldset>
+<center><legend style="color: peru">MIRA EL AVANCE DE TUS NOTAS DEL I BIMESTRE</legend>
 <form>
 <select onchange="MostrarComponen(this.value,<?php echo $codeidsec;?>,<?php echo $idperson; ?>)">
-        <option value="">Elige Curso</option>
+<option value="">Elige un curso</option>
 <?php
 $sinagene=$SINATURAGENERAL->ListaDescriptiva($gradoedu, $niveledu);
 while ($rowsinaturegene = mysql_fetch_array($sinagene)) {
-    echo "
-        <option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>
-        ";
+echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
 }
 ?>
 </select>
 </form>
-        
-<div id="divcompo"></div>
+<div id="divcompo"></div><br><br><br><br><br><br>
+</center>
+</fieldset>
 
-<br><br><br><br><br><br>
-        </center>
-    </fieldset>
-    
+</div>
+
+    <!------------------CONTENT II-->
+    <div class="tab-pane fade in active" id="dos">
+<fieldset>
+<center><legend style="color: peru">MIRA EL AVANCE DE TUS NOTAS DEL II BIMESTRE</legend>
+<form>
+<select name="iibi" onchange="MostrarComponen2(this.value,<?php echo $codeidsec;?>,<?php echo $idperson; ?>)">
+<option value="">Elige un curso</option>
+<?php
+$sinagene=$SINATURAGENERAL->ListaDescriptiva($gradoedu, $niveledu);
+while ($rowsinaturegene = mysql_fetch_array($sinagene)) {
+echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
+}
+?>
+</select>
+</form>
+<div id="divcompo2"></div><br><br><br><br><br><br><br><br><br><br><br>
+</center>
+</fieldset>
     </div>
-    <!--CONTENT II-->
-    <div class="tab-pane fade" id="dos">
-        <form>
-            <fieldset>
-                <center>
-                <legend style="color: peru">ELIGE EL CURSO Y MIRA EL II BIMESTRE</legend>
-                <table>
-                    <tr>
-                        <td>
-                            <select name="txtuno">
-                                <option value="">Elige Curso</option>
-                            </select>
-                        </td>
-                        <td><button class="btn btn-success">Ver Notas</button></td>
-                    </tr>
-                </table>
-                    <br>
-                <table class="display">
-                    <tr class="gradeX">
-                        <td><strong>Criterios De Evaluaci&oacute;n</strong></td>
-                        <td><strong>Notas</strong></td>
-                    </tr>
-                </table>
-                </center>
-            </fieldset>
-        </form>
-    </div>
+
     <!--CONTENT III-->
     <div class="tab-pane fade" id="tres">
         <form>
@@ -157,7 +146,6 @@ while ($rowsinaturegene = mysql_fetch_array($sinagene)) {
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js-------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>

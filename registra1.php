@@ -32,7 +32,6 @@ echo "<script>window.location = 'index.php'</script>";
 </head>
     <body>
 <?php
-require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumno.php';
@@ -76,6 +75,8 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP15($_REQUEST[$x.'p15']);       $REGISTROALUMNO->setP16($_REQUEST[$x.'p16']);
        $REGISTROALUMNO->setP17($_REQUEST[$x.'p17']);       $REGISTROALUMNO->setP18($_REQUEST[$x.'p18']);
        $REGISTROALUMNO->setP19($_REQUEST[$x.'p19']);       $REGISTROALUMNO->setP110($_REQUEST[$x.'p110']);
+       $REGISTROALUMNO->setP111($_REQUEST[$x.'p111']);       $REGISTROALUMNO->setP112($_REQUEST[$x.'p112']);#add this
+       $REGISTROALUMNO->setP113($_REQUEST[$x.'p113']);#add this
 
        $REGISTROALUMNO->setP21($_REQUEST[$x.'p21']);       $REGISTROALUMNO->setP22($_REQUEST[$x.'p22']);
        $REGISTROALUMNO->setP23($_REQUEST[$x.'p23']);       $REGISTROALUMNO->setP24($_REQUEST[$x.'p24']);
@@ -165,7 +166,7 @@ echo
 <input type="Radio" name="group1"  value="horizontal" checked> Horizontal
 <input type="Radio" name="group1"  value="vertical" >Vertical
 <br>
-<input type="Button" name="" value="Cambiar forma de navegación" onclick="cambiaColor();window.location.reload()">
+<input type="Button" name="" value="Cambiar forma de navegaci&oacute;n" onclick="cambiaColor();window.location.reload()">
 <br>
 <a>SE LLENARAN LOS REGISTROS DE MANERA : <b><?php echo $miVariable; ?></b></a><BR>
 <a>DOCENTE USA LA TECLA TAB PARA LA NAVEGACI&Oacute;N PORFAVOR</a>
@@ -180,19 +181,16 @@ echo
     <td></td>
     <td></td>
     <td></td>
-    <td>N°</td>
+    <td>N&#176;</td>
     <td>Alumno</td>
 <?php
 $th=$COMPONENTE->LISTAR($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
-            echo "
-    <td class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>
-                ";
+echo "<td class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>";
         }
-echo "
-    <td style='color:peru;'>P".$roth[1]."</td>";
+echo "<td style='color:peru;'>P".$roth[1]."</td>";
     }
 ?>
     <td style="color:peru;">PB</td>
@@ -205,14 +203,11 @@ $listaalumnado=$reAl->ListaAlumnoSeccion($seccion);
 while ($alumno = mysql_fetch_array($listaalumnado)) {
 echo "
 <tr>
-<td><td><input type='hidden' name='txtregistro' id='txtregistro' value='".$registro."'/></td></td>
-<td><input type='hidden' name='".$alumno[0]."txtidalumno' id='".$alumno[0]."txtidalumno' value='".$alumno[4]."'/></td>
-<td><input type='hidden' name='".$alumno[0]."txtalumnoregistro' id='".$alumno[0]."txtalumnoregistro' value='".$alumno[4].$seccion.$asina."'/></td>
-<td style='width:3%;'>".$alumno[0]."</td>
-<td style='width:25%;'>".$alumno[1]."  ".$alumno[2]."   ,".$alumno[3]."</td>
-"
-
-    ;
+<td><td><input type='hidden' name='txtregistro' id='txtregistro' value='$registro'/></td></td>
+<td><input type='hidden' name='$alumno[0]txtidalumno' id='$alumno[0]txtidalumno' value='$alumno[4]'/></td>
+<td><input type='hidden' name='$alumno[0]txtalumnoregistro' id='$alumno[0]txtalumnoregistro' value='$alumno[4]$seccion$asina'/></td>
+<td style='width:3%;'>$alumno[0]</td>
+<td style='width:25%;'>$alumno[1] $alumno[2] ,$alumno[3]</td>";
 
 $td=$COMPONENTE->LISTAR($asina);
 while ($ro = mysql_fetch_array($td)) {
@@ -222,39 +217,31 @@ while ($row22 = mysql_fetch_array($lista)) {
 
 $listadice=RegistroAlumno::LISTAR2($alumno[4].$seccion.$asina);
 while ($row11 = mysql_fetch_array($listadice)) {
-
-    $cuenta;
     $valorcelda=$ro[1].$row22[3];
-    $valueespacio=$row11["2p$valorcelda"];
+    $valueespacio=$row11["2p$valorcelda"];#valor de la celda
+    $promedio=round($row11["2promedio$ro[1]"]);#promedio por componente
+    $pbb=$row11['9'];#promedio final
+    if ($valueespacio==0) $valueespacio="";#si no hay valor a espacio en blanco
+    $cuenta;#utaq
     $suma+=$valueespacio ;
     $cuenta=$cuenta+1;
-    if ($valueespacio==0){
-        $valueespacio="";
-    }
-    $pbb=$row11['9'];
 }
+#--------------navegador horizontal-vertical----------------#
 if($miVariable=="vertical"){
     $index=0;
 }else{
     $index=1;
 }
-            echo "
-<td class='center' width:3%;>
-    <input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);'/></td>
-                ";
+#--------------fin navegador horizontal-vertical----------------#
+echo "<td class='center' width:3%;><input tabindex='$row22[$index]' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]'value='$valueespacio' style='width:89%;' maxlength=2'  onkeypress=''/></td>";
 }
-$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
-        echo "<td>
-<input type='text' style='width:80%;'  value=".$compromedio." id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."' readonly/></td>";
-$suma=0;
-$cuenta=0;
-    }
-    $suma=0;
-    $cuenta=0;
-echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' value=".$pbb."  name='".$alumno[0]."pb' readonly/></td>";
-echo "
-</tr>
-";
+$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));#por borrar
+echo "<td><input type='text' style='width:80%;'  value=$compromedio id='$alumno[0]promedio$ro[1]' name='$alumno[0]promedio$ro[1]' readonly/></td>";
+$suma=0;$cuenta=0;
+}
+$suma=0;$cuenta=0;
+echo "<td><input type='text' id='$alumno[0]pb' name='$alumno[0]pb' value=$pbb style='width:80%;' readonly/></td>";
+echo "</tr>";
 }
 ?>
 </table>
@@ -269,14 +256,6 @@ echo "
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
-
 <script type="text/javascript">
 
 
@@ -317,25 +296,4 @@ function justNumbers(e)
 
     return /\d/.test(String.fromCharCode(keynum));
 }
-
-function tabular(e,obj) {
-  tecla=(document.all) ? e.keyCode : e.which;
-  if(tecla!=13) return;
-  frm=obj.form;
-  for(i=0;i<frm.elements.length;i++)
-    if(frm.elements[i]==obj) {
-      if (i==frm.elements.length-1) i=-1;
-      break }
-  frmregistro.elements[i+1].focus();
-  return false;
-}
-
-function validaNum(n,mini,maxi)
-{
-n = parseInt(n)
-if ( n<mini || n>maxi )
-alert("El valor debe ser entre 05 y 20");
-n.value()=0;
-}
-
 </script>
