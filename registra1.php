@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--REGISTRA LAS NOTAS DOCENTE</title>
+<title>REGISTRA LAS NOTAS DOCENTE</title>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
@@ -46,11 +46,10 @@ $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];
 $registro=$_GET['registro'];
 
-
 /*--------------------------------------MANTENIMIENTO-----------------------------------*/
 //Listar registros
 #BUCLE REPETITIVO
-if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
+if(isset($_REQUEST['GRABAR'])){// se envio el formulario?
 $queryalu=$REGISTROALUMNO->ListaAlumnoSeccion($seccion);
 
 while ($rowgeneral = mysql_fetch_array($queryalu)) {
@@ -105,7 +104,8 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->GRABAR2();
 }
 
-echo "<script languaje='javascript' type='text/javascript'>
+echo "
+<script languaje='javascript' type='text/javascript'>
             window.close();
 </script>";
 }
@@ -233,7 +233,7 @@ if($miVariable=="vertical"){
     $index=1;
 }
 #--------------fin navegador horizontal-vertical----------------#
-echo "<td class='center' width:3%;><input tabindex='$row22[$index]' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]'value='$valueespacio' style='width:89%;' maxlength=2'  onkeypress=''/></td>";
+echo "<td class='center' width:3%;><input tabindex='$row22[$index]' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]'value='$valueespacio' style='width:89%;' maxlength=2'/></td>";
 }
 $compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));#por borrar
 echo "<td><input type='text' style='width:80%;'  value=$compromedio id='$alumno[0]promedio$ro[1]' name='$alumno[0]promedio$ro[1]' readonly/></td>";

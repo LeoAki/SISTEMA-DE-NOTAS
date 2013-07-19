@@ -1,0 +1,69 @@
+	div.sub h4,
+	div.sub {
+		color: #fff;
+	}
+
+
+/* Breite beschränken */
+div.limiter {
+	text-align: left;
+	width: 80%;
+	max-width: 69.23em;
+	padding: 1.2em 1.5em;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.txtleoaki{
+	color: black;
+}
+ul {
+	margin-bottom: 1em;
+}
+
+
+/* Listen */
+ul#news {
+	border: 1px solid ##F5ECCE;
+	padding: 1em;
+	background:  white;
+}
+
+ul#portfolio li img{
+	border: 1px solid #ccc;
+	padding: 4px;
+}
+
+
+.fade{
+	margin-bottom: 2em;
+}
+
+.fade p{
+	margin-bottom: 2em;
+	text-align: center;
+	width: 100%;
+	background: #fff;
+}
+
+
+/**** noscript-Hinweis ****/
+
+div#att {
+	background-color: #fffeb8;
+	border-bottom: 1px solid;
+	height: 2.5em;
+	line-height: 2.5em;
+	position: absolute;
+	top:0;
+	width: 100%;
+}
+
+div#att p{
+	background: transparent url(../images/att.png) no-repeat 0 46%;
+	margin: 0;
+	display: inline;
+	padding: 6px 0 6px 26px;
+}
+	
