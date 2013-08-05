@@ -25,7 +25,7 @@ require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 $INDICAXD= new Indicador();
 ?>
-
+<a><strong>BIMESTRE EN CURSO </strong>2DO BIMESTRE</a>
 <center><h3 style="color: green">DEFINICION DE LOS CRITERIOS DE EVALUACI&Oacute;N</h3>
 <?PHP
 $asina = $_GET['asinatura'];
@@ -47,37 +47,33 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
 
 <center>
 <div style="width: 98%;">
-
+<form action="regcomponent" method="get">
 <table class="table table-hover">
 <?php
-$arraya = array();
 $COMPONENTE=new Component();
 $listar=$COMPONENTE->LISTAR($asina);
 while ($row = mysql_fetch_array($listar)) {
 
-    $arraya[]=$row[0];
-    $namecom=strtoupper($row[3]);
 echo "
-<tr class='success'>
-    <td style='width:10%'><h4> $row[1] </h4></td>
-    <td><h4> $namecom </h4></td>
-</tr>";
+        <tr class='success'>
+            <td style='width:10%'><h4> $row[1] </h4></td>
+            <td><h4> $row[3] </h4></td>
+        </tr>";
 echo "
 <tr>
     <td colspan=2>
-    <a href='regindicador.php?componente=".$row[0]."' TARGET = '_blank' title='Agrega un nuevo indicador'><i>AGREGAR UN NUEVO INDICADOR</i>
-        <i class='icon icon-plus'></i><a onclick='Indcompo($row[0],1);'>Ver Indicadores</a>
-    </a>
+    <a href='#?componente=".$row[0]."' TARGET = '_blank' title='Agrega un nuevo indicador'><i>AGREGAR UN NUEVO INDICADOR</i>
+    <i class='con-user'></i><i class='icon icon-plus'></i></a>
     </td>
 </tr>";
 
 $lista=$INDICAXD->LISTAR($row[0]);
 while ($row2 = mysql_fetch_array($lista)) {
     echo "
-<tr>
-    <td>
-    <a href='regindicador.php?componente= $row[0] &orden= $row2[3] &indicador=$row2[2] &codeindi= $row2[0]' TARGET = '_blank' title='Edita el indicador'>
-    $row[1] $row2[3]
+<tr class='gradeA'>
+    <td class='center'>
+    <a href='#?componente= $row[0] &orden= $row2[3] &indicador=$row2[2] &codeindi= $row2[0]' TARGET = '_blank' title='Edita el indicador'>
+    $row[1] . $row2[3]
     <i class='icon icon-edit'></i>
     </a>
     </td>
@@ -85,20 +81,16 @@ while ($row2 = mysql_fetch_array($lista)) {
 </tr>";
 }
 
+        echo "
+            ";
 }
-
-echo $arraya[3];
 ?>
 </table>
-    <div id="divindicador1"></div>
-    <div id="divindicador2"></div>
-    <div id="divindicador3"></div>
-    <div id="divindicador4"></div>
+</form>
 </div>
 </center>
     <br><br><br><br><br><br>
- <?php
- require_once 'Includes/modal-footer.php';?>
+ <?php require_once 'Includes/modal-footer.php';?>
 <?php
         }
 ?>
@@ -107,8 +99,9 @@ echo $arraya[3];
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
-<script type="text/javascript" src="Js/ajax.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
+<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
+<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>

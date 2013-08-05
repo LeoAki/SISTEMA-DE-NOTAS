@@ -17,34 +17,35 @@ echo "<script>window.location = 'index.php'</script>";
 <?php
 require_once 'Class/Docente.php';
 require_once 'Class/ALUMNO_SECCION.php';
-$QUIEN= new Usuario(); $uiui=$QUIEN->QUIENES($_SESSION['dni']);
-              if($rowcito=  mysql_fetch_array($uiui)){
-                  $paterno=$rowcito['paterno'];
-                  $materno=$rowcito['materno'];
-                  $nombrestodos=$rowcito['nombres'];
-              }
 $DOCENAU=new Docente();
 $ALUSEC=new ALUMNO_SECCION();
+
 $seccionauxi= $_GET['seccionauxi'];
 $bimestreconsultado=$_GET['bimestre'];
-$quientutor=$_GET['tutoraula'];
-$sectionisquien=$_GET['secc'];
+$tutoriasenior=$_GET['ut'];
 $cantidadalumnos=0;
 $alumn_retirados=0;
+
+$whois=$DOCENAU->NAMESECCIOMICARGO($tutoriasenior);
+if($filanamesection=  mysql_fetch_array($whois)){
+$gradoname=$filanamesection[0];
+$nameseccionnow=$filanamesection[1];
+$nomnivelsection=$filanamesection[2];
+}
 ?>
 <center>
 <div id="divrasis" style="width: 63%">
 <?php
-echo "<a style='font-size:12px;'><b>Asistencia del ".$bimestreconsultado." bimestre.<br>
-      AULA: [$sectionisquien] TUTOR: [$quientutor]</b></a>";
+echo "<h3>ASISTENCIA DEL ".$bimestreconsultado." BIMESTRE.</h3>
+      AULA: [$gradoname $nameseccionnow $nomnivelsection]</b><br>";
 ?>
     
-<form id="frmasis" method="post" action="">
+<div>
     
         <table>
             <tr>
                 <td style="display: none;"></td>
-                <th style="width: 8%;"><center><a style='font-size: 11px;'>N &oacute;rden</a></center></th>
+                <th style="width: 8%;"><center><a style='font-size: 11px;'>N° &Oacute;rden</a></center></th>
                 <th style="width: 40%;"><center><a style='font-size: 11px;'>Alumno</a></center></th>
                 <th style="width: 5%;"><center><a style='font-size: 11px;'>FJ</a></center></th>
                 <th style="width: 5%;"><center><a style='font-size: 11px;'>FI</a></center></th>
@@ -88,13 +89,13 @@ $cantidadalumnos=$cantidadalumnos+1;
 }
 ?>
         </table>
-</form>
+</div>
 <?php
 echo "<a style='font-size:12px;'>Alumnos matriculados: $cantidadalumnos  Alumnos retirados:$alumn_retirados</a>
 <br><br><br><br>
--------------------------------------
+--------------------------------------------------------
 <br>";
-echo "<a style='font-size:12px;'>$paterno $materno, $nombrestodos</a>";
+echo "<a style='font-size:12px;'>OFICINA DE SISTEMAS</a>";
 echo "<br><a style='font-size:12px;'>Impreso el ".date("d-F-Y")."</a>";
 ?>
 </div>

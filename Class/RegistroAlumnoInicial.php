@@ -663,8 +663,8 @@ class RegistroAlumnoInicial extends Conection{
        unset($cone);
        return $docente1;
    }
-
-    public function GRABAR2() {
+   
+   public function GRABAR2() {
         try {
             $this->CONECT();
             mysql_query("call Sp_alumnoregistroinicial2(

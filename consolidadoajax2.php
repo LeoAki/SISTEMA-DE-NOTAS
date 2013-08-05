@@ -25,7 +25,7 @@ if($nivela==="PRIMARIA"){
 echo "
 <table class='table table-hover' id='Exportar_a_Excel'>
     <tr class='gradeX'>
-        <th>N°</th>
+        <th>NÂ°</th>
         <th>ALUMNO</th>
         <th>01 MAT</th>
         <th>02 COM</th>
@@ -56,7 +56,7 @@ while ($prrow = mysql_fetch_array($alumnado_seccion)) {
         <td>$prrow[1]</td>
         <td>$prrow[2] $prrow[3], $prrow[4] </td>";
     
-$registroalumno=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($prrow[0]);
+$registroalumno=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($prrow[0]);
 
 while ($prregistro = mysql_fetch_array($registroalumno)) {
     #matematicas
@@ -229,12 +229,12 @@ if($nivela==="INICIAL"){
 echo "
 <table class='display' id='Exportar_a_Excel'>
     <tr class='gradeX'>
-        <th>N</th><th>ALUMNO</th><th>C1</th><th>C2</th><th>01</th>
-                                  <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>02</th>
-                                  <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>03</th>
-                                  <th>C1</th><th>C2</th><th>04</th>
-                                  <th>C1</th><th>05</th>
-                                  <th>C1</th><th>06</th>
+        <th>N</th><th>ALUMNO</th><th>C1</th><th>C2</th><th>01-MAT</th>
+                                  <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>02-COM</th>
+                                  <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>03-PS</th>
+                                  <th>C1</th><th>C2</th><th>04-CCAA</th>
+                                  <th>C1</th><th>05-INF</th>
+                                  <th>C1</th><th>06-COND</th>
     </tr>
 ";
 $alumnado_seccioni=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);#cambia
@@ -243,9 +243,9 @@ while ($irow = mysql_fetch_array($alumnado_seccioni)) {
     $count_alumni=$count_alumni+1;
     echo "
     <tr>
-        <td>$irow[1] $irow[0]</td>
+        <td>$irow[1]</td>
         <td>$irow[2] $irow[3], $irow[4] </td>";
-$registroalumnoi=$profesorcitore->NOTASCONSOLIDADOTUTORIAINiCIAL($irow[0]);
+$registroalumnoi=$profesorcitore->NOTASCONSOLIDADOTUTORIAINiCIALdos($irow[0]);
 
 while ($iregistro = mysql_fetch_array($registroalumnoi)) {
         if($iregistro[1]=='MATEMATICA'){
@@ -286,7 +286,7 @@ while ($iregistro = mysql_fetch_array($registroalumnoi)) {
 if($imate=="") $imate="FN";
 echo "<td>$imate1</td>";
 echo "<td>$imate2</td>";
-echo "<td>$imate</td>";
+echo "<td><b>$imate</b></td>";
 #comunicacion inicial
 if($icom=="") $icom="FN";
 echo "<td>$icom1</td>";
@@ -294,27 +294,27 @@ echo "<td>$icom2</td>";
 echo "<td>$icom3</td>";
 echo "<td>$icom4</td>";
 echo "<td>$icom5</td>";
-echo "<td>$icom</td>";
+echo "<td><b>$icom</b></td>";
 #personal social inicial
 if($ipersoc=="") $ipersoc="FN";
 echo "<td>$ipersoc1</td>";
 echo "<td>$ipersoc2</td>";
 echo "<td>$ipersoc3</td>";
 echo "<td>$ipersoc4</td>";
-echo "<td>$ipersoc</td>";
+echo "<td><b>$ipersoc</b></td>";
 #ciencia y ambiente inicial
 if($iccaa=="") $iccaa="FN";
 echo "<td>$iccaa1</td>";
 echo "<td>$iccaa2</td>";
-echo "<td>$iccaa</td>";
+echo "<td><b>$iccaa</b></td>";
 #informatica inicial
 if($iinf=="") $iinf="FN";
 echo "<td>$iinf1</td>";
-echo "<td>$iinf</td>";
+echo "<td><b>$iinf</b></td>";
 #conducta inicial
 if($icoducta=="") $icoducta="FN";
 echo "<td>$icoducta1</td>";
-echo "<td>$icoducta</td>";
+echo "<td><b>$icoducta</b></td>";
 echo "</tr>
     ";
 $prcursocargo=0;#reinicio la variable
@@ -370,7 +370,7 @@ echo "<tr>";
 echo "<td>$sec1row[1]</td>";
 echo "<td>$sec1row[2] $sec1row[3] ,$sec1row[4] </td>";
 
-$registroalumnosec1=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec1row[0]);
+$registroalumnosec1=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($sec1row[0]);
 
 while ($sec1registro = mysql_fetch_array($registroalumnosec1)) {
     #matematicas
@@ -557,7 +557,7 @@ echo "<tr>";
 echo "<td>$sec2row[1]</td>";
 echo "<td>$sec2row[2] $sec2row[3] ,$sec2row[4] </td>";
 
-$registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec2row[0]);
+$registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($sec2row[0]);
 
 while ($sec2registro = mysql_fetch_array($registroalumnosec2)) {
     #matematicas
@@ -744,7 +744,7 @@ echo "<tr>";
 echo "<td>$sec3row[1]</td>";
 echo "<td>$sec3row[2] $sec3row[3] ,$sec3row[4] </td>";
 
-$registroalumnosec3=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec3row[0]);
+$registroalumnosec3=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($sec3row[0]);
 
 while ($sec3registro = mysql_fetch_array($registroalumnosec3)) {
     #matematicas
@@ -946,7 +946,7 @@ echo "<tr>";
 echo "<td>$sec4row[1] $sec4row[0] </td>";
 echo "<td>$sec4row[2] $sec4row[3] ,$sec4row[4] </td>";
 
-$registroalumnosec4=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec4row[0]);
+$registroalumnosec4=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($sec4row[0]);
 
 while ($sec4registro = mysql_fetch_array($registroalumnosec4)) {
     #matematicas
@@ -1144,7 +1144,7 @@ echo "<tr>";
 echo "<td>$sec2row[1]</td>";
 echo "<td>$sec2row[2] $sec2row[3] ,$sec2row[4] </td>";
 
-$registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec2row[0]);
+$registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA111($sec2row[0]);
 
 while ($sec2registro = mysql_fetch_array($registroalumnosec2)) {
     #matematicas

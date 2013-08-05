@@ -79,7 +79,7 @@ echo "
 <table class="table table-hover">
     <tr class="gradeU">
         <td style="display: none;"></td>
-        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N째</b></td>
+        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N°</b></td>
         <td style="width: 30%;color: peru;text-transform: uppercase;"><b>Alumno</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>1</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>2</b></td>

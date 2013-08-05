@@ -20,8 +20,8 @@ echo "<script>window.location = 'index.php'</script>";
 <link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
 </head>
 <body style="background-color: oldlace">
-<?php 
-require_once 'Includes/navegador.php';
+<?php
+require_once 'Includes/navegador.php';    
 echo '<div id="arriba">';
 require_once 'Includes/infoalumno.php';
 echo '</div>';
@@ -43,7 +43,7 @@ $SINATURAGENERAL=new Asinatura();
 <div class="tab-pane fade" id="uno">
 
 <fieldset>
-<center><legend style="color: peru">MIRA EL AVANCE DE TUS NOTAS DEL I BIMESTRE</legend>
+<center><legend style="color: peru">MIRA TUS NOTAS DEL I BIMESTRE</legend>
 <form>
 <select onchange="MostrarComponen(this.value,<?php echo $codeidsec;?>,<?php echo $idperson; ?>)">
 <option value="">Elige un curso</option>
@@ -62,7 +62,7 @@ echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
 </div>
 
     <!------------------CONTENT II-->
-    <div class="tab-pane fade in active" id="dos">
+<div class="tab-pane fade in active" id="dos">
 <fieldset>
 <center><legend style="color: peru">MIRA EL AVANCE DE TUS NOTAS DEL II BIMESTRE</legend>
 <form>
@@ -76,7 +76,7 @@ echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
 ?>
 </select>
 </form>
-<div id="divcompo2"></div><br><br><br><br><br><br><br><br><br><br><br>
+<div id="divcompo2"></div><br><br><br><br><br><br>
 </center>
 </fieldset>
     </div>

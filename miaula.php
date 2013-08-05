@@ -56,7 +56,7 @@ if($niveledu=="INICIAL"){
 </small>
 </h5>
 </div>
-            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         
         

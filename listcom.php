@@ -27,23 +27,23 @@ $formalu=$alumnnew->UserAlumSeccion($idpersxy);
 while ($rowalupersona = mysql_fetch_array($formalu)) {
     $alumno_seccionm=$rowalupersona[1];#alumnoseccion
 }
-
+        
 echo "
     <h3 style='color:peru;'>Descripci&oacute;n del &Aacute;rea:</h3>";
 $worksina=$asinaturenew->describesinatu($idsectionz, $idsinata);
 
 while ($rowworksina = mysql_fetch_array($worksina)) {
-    echo
+    echo 
     "
     <a style='text-align:left;'>
     <i class='alert'><b>IdRegistro:</b>".$rowworksina[0]." <b>Profesor(a):</b>[".$rowworksina[1]. " ".$rowworksina[2]. " ,".$rowworksina[3] .
-    "]</i>
+    "]</i> 
     <br><br>
     <i class='alert alert-success'><b>Asignatura:</b>".$rowworksina[5]."-1erBimestre</i>
     </a>    ";
 }
 
-echo "
+echo "    
         <table class='table table-hover'>";
         echo "
             <tr class='gradeX'>
@@ -83,28 +83,28 @@ echo "
                                 $pbview2=$rowviewnotas2["1pb"];
                             }
                         }
-
+                        
 echo "                  </tr>
                         ";
                 }
                 echo "
                     <tr>
                     <td></td>";
-
+                
                     if($viewniveluser=="INICIAL"){
                         echo "<td><b><i>PROMEDIO DEL COMPONENTE:$rowcompte[1] $rowcompte[3]</i></b></td>
                         <td><h4>$valorpromedioview</h4></td>
                         </tr>
-                        ";
+                        ";             
                     }
                     if($viewniveluser!="INICIAL"){
                         echo "<td><b><i>PROMEDIO DEL COMPONENTE:$rowcompte[1] $rowcompte[3]</i></b></td>";
-                        $redovalorpro2=  round($valorpromedioview2);
+                        $redovalorpro2=  round($valorpromedioview2);    
                         echo "<td><h4>$redovalorpro2</h4></td>
                         </tr>
-                        ";
+                        ";             
                     }
-
+                    
         }
 echo "
                     <tr>
@@ -114,13 +114,13 @@ echo "
                     if($viewniveluser=="INICIAL"){
                         echo "<td><h3>$pbview</h3></td>
                         </tr>
-                        ";
+                        ";    
                     }
                     if($viewniveluser!="INICIAL"){
                         echo "<td><h3>$pbview2</h3></td>
                         </tr>
-                        ";
+                        ";    
                     }
-
+                    
 echo "    </table>";
 ?>

@@ -21,7 +21,7 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
     echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
-        <div style="margin-left: 8%;margin-right: 8%;">
+        <div style="margin-left: 4%;margin-right: 4%;">
             <center><h3 style="color: green">Registro De Notas</h3></center>
             <form >
                 <fieldset>
@@ -30,33 +30,38 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 15%;">Registro</th>
+                                <th style="width: 10%;">Registro</th>
                                 <th style="width: 22%;">Secci&oacute;n</th>
                                 <th style="width: 23%">Asignatura</th>
                                 <th style="width: 8%;">I</th>
-                                <th style="width: 8%;">II</th>
+                                <th style="width: 18%;">II</th>
                                 <th style="width: 8%;">III</th>
                                 <th style="width: 8%;">IV</th>
-                                <th style="width: 8%;">Anual</th>
+                                <th style="width: 3%;">Anual</th>
                             </tr>
                         </thead>
                         <tbody>
 <?php
 $lista=$Doce->RegistroDocente($dnidocente);
 while ($row = mysql_fetch_array($lista)) {
+    $estado="";
+    if($row[11]==0) $estado="DEBE NOTA";
+    if($row[11]==1) $estado="EN PROCESO";
+    if($row[11]==2) $estado="REVISADO";
+    if($row[11]==3) $estado="CONCLUIDO";
     echo "
-        <tr>
-            <td>REGISTRO N&#176; ".$row[0]."</td>
-            <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
-            <td>".$row[7]."</td>
-            <td>
+    <tr>
+        <td>Reg. N&#176; ".$row[0]."</td>
+        <td>".$row[2]." ".$row[3]." DE ".$row[1]."</td>
+        <td>".$row[7]."</td>
+        <td>
          <a id='unover' TARGET = '_blank' href='imprimir_reg.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
                      Ver <i class='icon-eye-open'></i>
          </a>
          <a id='dosver' TARGET = '_blank' href='imprimir_reginicial.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
                      I <i class='icon-hand-up'></i>
          </a>
-            </td>
+         </td>
 
 <td>
 <a id='unover' TARGET = '_blank' href='imprimir_reg1.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
@@ -65,6 +70,7 @@ while ($row = mysql_fetch_array($lista)) {
 <a id='dosver' TARGET = '_blank' href='imprimir_reginicial2.php?sinatura=".$row[8]."&seccion=".$row[9]."&registro=".$row[0]."'>
      I <i class='icon-hand-up'></i>
 </a>
+<a style='color:green;'> $estado </a>
 </td>
 
             <td><i class='icon-eye-close'></i></td>

@@ -32,7 +32,6 @@ echo "<script>window.location = 'index.php'</script>";
 </head>
     <body>
 <?php
-require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumno.php';
@@ -171,7 +170,7 @@ echo
 <a>SE LLENARAN LOS REGISTROS DE MANERA : <b><?php echo $miVariable; ?></b></a><BR>
 <a>DOCENTE USA LA TECLA TAB PARA LA NAVEGACI&Oacute;N PORFAVOR</a>
 </center>
-</div>
+</div>    
 <br>
 <center>
 <table class="">

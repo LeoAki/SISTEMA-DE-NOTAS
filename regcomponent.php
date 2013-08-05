@@ -25,6 +25,7 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
 <?php require_once 'Includes/navegador.php';
       require_once 'Class/Conection.php';
 ?>
+<a>2do Bimestre</a>
 <!--WELCOME TO THE INICIAL-------------------------------------------------INICIAL---------------------------------------------------------------->
         <?php
         if($dni=='09855255'){
@@ -123,7 +124,7 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
 
 <!--WELCOME TO THE PRIMARIA-------------------------------------------PRIMARIA---------------------------------------------------------------->
 <?php
-        if($dni=='25580805'){
+        if($dni=='25748449'){
 ?>
         <div id="divprimariaprimer"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
@@ -151,12 +152,12 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php
-        if($dni=='09769967'){
+        if($dni=='25579387'){
 ?>
         <div id="divprimariasegundo"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
                 <h4>Correspondiente al 2do Grado</h4>
-                <table class="table">
+                <table class="table table-hover">
                             <?php
                             $cone2= new Conection;
                             $cone2->CONECT();
@@ -165,7 +166,7 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                                 echo "
                                     <tr>
                                         <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row2[0]."'>" . $row2[0]. "</a></td>
-                                        <td>".$row2[1]."</td>
+                                        <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row2[0]."'>" . $row2[1]. "</a></td>
                                     </tr>
                                     ";
                             }
@@ -2274,7 +2275,7 @@ if($dni=='25866548'){
                             $conepc->CONECT();
                             $querypc=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='1' and asinatura like('%computa%');
+                                grado='1' and asinatura like('%Educacion para el%');
                                 ");
                             while ($rowpc = mysql_fetch_array($querypc)) {
                                 echo "
@@ -2294,7 +2295,7 @@ if($dni=='25866548'){
                             $conepc2->CONECT();
                             $querypc2=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='2' and asinatura like('%computa%');
+                                grado='2' and asinatura like('%Educacion para el%');
                                 ");
                             while ($rowpc2 = mysql_fetch_array($querypc2)) {
                                 echo "
@@ -2314,7 +2315,7 @@ if($dni=='25866548'){
                             $conepc3->CONECT();
                             $querypc3=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='3' and asinatura like('%computa%');
+                                grado='3' and asinatura like('%Educacion para el%');
                                 ");
                             while ($rowpc3 = mysql_fetch_array($querypc3)) {
                                 echo "
@@ -2334,7 +2335,7 @@ if($dni=='25866548'){
                             $conepc4->CONECT();
                             $querypc4=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='4' and asinatura like('%computa%');
+                                grado='4' and asinatura like('%Educacion para el%');
                                 ");
                             while ($rowpc4 = mysql_fetch_array($querypc4)) {
                                 echo "
@@ -2354,7 +2355,7 @@ if($dni=='25866548'){
                             $conepc5->CONECT();
                             $querypc5=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='5' and asinatura like('%computa%');
+                                grado='5' and asinatura like('%Educacion para el%');
                                 ");
                             while ($rowpc5 = mysql_fetch_array($querypc5)) {
                                 echo "

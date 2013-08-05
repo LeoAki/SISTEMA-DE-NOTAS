@@ -3135,7 +3135,7 @@ button.close {
 }
 
 .btn-primary {
-  color: black;
+  color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #006dcc;
   *background-color: #0044cc;
@@ -5539,7 +5539,7 @@ a.badge:hover {
 
 .carousel-inner {
   position: relative;
-  width: 90%;
+  width: 100%;
   overflow: hidden;
 }
 

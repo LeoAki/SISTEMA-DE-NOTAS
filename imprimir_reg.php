@@ -58,7 +58,7 @@ echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$v
 <table>
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR($asina);
+$listar=$COMPONENTE->LISTAR1($asina);
 while ($row = mysql_fetch_array($listar)) {
 echo "
 <tr>
@@ -83,7 +83,7 @@ while ($row2 = mysql_fetch_array($lista)) {
     <td><a style='font-size: 10px;'><b>N &#176;</b></a></td>
     <td style="width: 25%;"><a style="font-size: 10px;"><b>Alumno</b></a></td>
 <?php
-$th=$COMPONENTE->LISTAR($asina);
+$th=$COMPONENTE->LISTAR1($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
@@ -121,7 +121,7 @@ echo "
 <td style='font-size:9px'>$alumno[1] $alumno[2] ,$alumno[3]</td>
 ";
 
-$td=$COMPONENTE->LISTAR($asina);
+$td=$COMPONENTE->LISTAR1($asina);
     while ($ro = mysql_fetch_array($td)) {
         $lista=$INDICAXD->LISTAR($ro[0]);
         while ($row22 = mysql_fetch_array($lista)) {
@@ -212,7 +212,7 @@ if($pb=='B'){
 }
 if($pb=='C'){
     $cantidaddec=$cantidaddec+1;
-}
+}$pb=0;
 }
 ?>
 </table>

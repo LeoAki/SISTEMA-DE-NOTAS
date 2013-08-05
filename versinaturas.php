@@ -18,7 +18,7 @@ header('Location: index.php');
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 </head>
-<body style="background-color: linen;">
+<body>
 <?php
 require_once 'Includes/navegador.php';
 require_once 'Class/Conection.php';
@@ -34,11 +34,7 @@ $grado=$_GET['grado'];
 <?php
 $cone3an= new Conection;
 $cone3an->CONECT();
-$query3anos=  mysql_query("select codigo,
-                            asinatura from
-                            descripcionsinature
-                            where nomnivel=".$nivel." and  grado like ('%".$grado."%')
-                            ;");
+$query3anos=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel=".$nivel." and  grado like ('%".$grado."%');");
 while ($row = mysql_fetch_array($query3anos)) {
 echo "
     <tr>

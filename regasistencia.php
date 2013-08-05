@@ -26,14 +26,14 @@ session_destroy();
 echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
-        <div style="margin-left: 15%;margin-right: 15%;">
+        <div style="margin-left: 10%;margin-right: 10%;">
             <center><h3 style="color: green">SECCIONES A TU CARGO:</h3></center>
             <table class="table table-hover">
              <thead>
                  <tr class="">
                      <th style="width: 15%;">Secci&oacute;n</th>
                      <th style="width: 50%;">Tutor</th>
-                     <th style="width: 20%;"><center>I</center></th>
+                     <th style="width: 15%;"><center>I</center></th>
                      <th><center>II</center></th>
                      <th><center>III</center></th>
                      <th><center>IV</center></th>
@@ -52,16 +52,16 @@ while ($datosseccion = mysql_fetch_array($misseccionesauxi)) {
     <td>$datosseccion[4]</td>
     <td>
         <center>
-        <a href='rasis.php?seccionauxi=$datosseccion[0]'>Registrar</a>
         <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=1&tutoraula=$datosseccion[4]&secc=$sectionis'>
-        <i class='icon-eye-open'></i></center></a></td>
+        <i class='icon-print'></i></center></a></td>
         </center>
     <td>
+        <center><a href='rasis.php?seccionauxi=$datosseccion[0]'>Registrar</a> || 
         <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=2&tutoraula=$datosseccion[4]&secc=$sectionis'>
-        <center><i class='icon-eye-open'></i></center></a></td>
+         <i class='icon-print'></i></a></center></td>
     <td>
         <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=3&tutoraula=$datosseccion[4]&secc=$sectionis'>
-        <center><i class='icon-eye-open'></i></center></a></td>
+        <center><i class='icon-print'></i></center></a></td>
 <td>
         <center>
         <a TARGET = '_blank' href='verasistencia.php?seccionauxi=$datosseccion[0]&bimestre=4&tutoraula=$datosseccion[4]&secc=$sectionis'>
@@ -69,7 +69,7 @@ while ($datosseccion = mysql_fetch_array($misseccionesauxi)) {
         </center></td>
 <td>
         <a TARGET = '_blank' href='verasisanual.php?seccionauxi=$datosseccion[0]&tutoraula=$datosseccion[4]&secc=$sectionis'>
-        <center><i class='icon-eye-open'></i></center></a></td>
+        <center><i class='icon-print'></i></center></a></td>
 </tr>
         ";
 }

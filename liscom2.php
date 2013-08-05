@@ -78,7 +78,6 @@ while ($rowcompte = mysql_fetch_array($liscompte)) {
                     $pbview2=$rowviewnotas2["2pb"];
                 }
             }
-        #fin de notas
 echo "</tr>";
     }
 echo "<tr><td></td>";
@@ -104,5 +103,5 @@ if($viewniveluser!="INICIAL")echo "<td><h3>$pbview2</h3></td></tr>";
 echo "</table>";
 echo "<a href='#arriba'>IR HACIA ARRIBA<i class='icon-arrow-up'></i></a>";
 }#fin del if
-#http://www.cerdas.com/video/37990/un-chico-afortunado-con-jayden-jaymes
+
 ?>

@@ -231,7 +231,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATE($codigoalumnoseccion){
             try {
                 $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET msn1='".$this->MSN1."' where idalumnoseccion='".$codigoalumnoseccion."'") or
+                mysql_query("UPDATE Alumno_Seccion SET msn2='".$this->MSN2."' where idalumnoseccion='".$codigoalumnoseccion."'") or
                         die (mysql_error());
                 $this->CLOSE();
             } catch (Exception $exc) {
@@ -241,7 +241,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATEFIT($codigoalumnoseccion2){
             try {
                 $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET fj1='".$this->FJ1."', fi1='".$this->FI1."', t1='".$this->T1."'
+                mysql_query("UPDATE Alumno_Seccion SET fj2='".$this->FJ2."', fi2='".$this->FI2."', t2='".$this->T2."'
                     where idalumnoseccion='".$codigoalumnoseccion2."'") or
                         die (mysql_error());
                 $this->CLOSE();
@@ -263,7 +263,7 @@ class ALUMNO_SECCION extends Conection{
                                     where au.idpersona='".$persona."';");
        $cone->CLOSE();
        return $detailals;
-
+       
       }
 
 }

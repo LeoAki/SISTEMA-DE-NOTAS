@@ -44,8 +44,8 @@ while ($secciondate = mysql_fetch_array($datosaula)) {
 ?>
 <div>
     <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#uno" data-toggle="tab" onclick="Alert('hola')"><i class="white icon-thumbs-up"></i>I BIMESTRE</a></li>
-    <li><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
+    <li><a href="#uno" data-toggle="tab" onclick="Alert('hola')"><i class="white icon-thumbs-up"></i>I BIMESTRE</a></li>
+    <li class="active"><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
     <li><a href="#tres" data-toggle="tab"><i class=" icon-bullhorn"></i>III BIMESTRE</a></li>
     <li><a href="#cuatro" data-toggle="tab"><i class=" icon-bullhorn"></i>IV BIMESTRE</a></li>
 </ul>
@@ -53,16 +53,36 @@ while ($secciondate = mysql_fetch_array($datosaula)) {
 
 <div id="myTabContent" class="tab-content">
 <!------------------------------------------------CONTENT I bimestre----------------------------------------------->
-<div class="tab-pane fade in active" id="uno">
+<div class="tab-pane fade" id="uno">
+<h1>CONSOLIDADO I B</h1>
+
 <h5>SECCI&Oacute;N  :<?php echo "[".$gradodelaula.$nombresecciondelaula."] ||| NIVEL:[".$niveldelaula."] ||| "; ?>TUTOR  :<?php echo $profeesaula;?></h5>
+
+    <div id="divtext">Si no puede visualizar el consolidado, 
+clic <a href="consolidadoajax.php?niveldelaula=<?php echo $niveldelaula ?>&codigoseccion=<?php echo $codigoseccion?>&gradodelaula=<?php echo $gradodelaula?>">AQUI</a>
+    </div>
+
     <div id="divconsolidado">
 
     </div>
 </div>
 
 <!------------------------------------------------CONTENT II bimestre----------------------------------------------->
-    <div class="tab-pane fade" id="dos">
-        <fieldset></fieldset>
+
+<div class="tab-pane fade in active" id="dos">
+    
+<h1>CONSOLIDADO II B</h1>
+<h5>SECCI&Oacute;N  :<?php echo "[".$gradodelaula.$nombresecciondelaula."] ||| NIVEL:[".$niveldelaula."] ||| "; ?>TUTOR  :<?php echo $profeesaula;?></h5>
+
+    <div id="divtext"><h3>Si no puede visualizar el consolidado, 
+clic <a  target='_blanck' href="consolidadoajax2.php?niveldelaula=<?php echo $niveldelaula ?>&codigoseccion=<?php echo $codigoseccion?>&gradodelaula=<?php echo $gradodelaula?>">AQUI</a></h3>
+    </div>
+
+    <div id="diviibimestre">
+
+    </div>
+    
+    
     </div>
 
 <!------------------------------------------------CONTENT III bimestre---------------------------------------------->
@@ -88,7 +108,10 @@ while ($secciondate = mysql_fetch_array($datosaula)) {
 <script type="text/javascript" src="Js/ajax.js"></script>
 <script type="text/javascript">
     window.onload=function(){
-        Mostrarconsolidado(<?php  echo $codigoseccion; ?>);
+
+        Mostrarconsolidado(<?php echo $codigoseccion; ?>,'<?PHP echo $niveldelaula; ?>',<?php echo $gradodelaula; ?>);
+        Mostrarconsolidadoiibimestre(<?php echo $codigoseccion; ?>,'<?PHP echo $niveldelaula; ?>',<?php echo $gradodelaula; ?>);
+            
     }
 </script>
 </html>

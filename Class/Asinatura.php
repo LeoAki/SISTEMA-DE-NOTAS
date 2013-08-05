@@ -114,28 +114,6 @@ class Asinatura extends Conection{
         $this->CLOSE();
         return $queryds;
     }
-
-    public function grados_niveles($nivel) {
-        $this->CONECT();
-        $queryini=mysql_query("
-            Select distinct(grado) from descripcionseccion
-            where nomnivel='$nivel';
-        ");
-        $this->CLOSE();
-        return $queryini;
-    }
-
-    public function sectiondetails($nivel,$grado) {
-        $this->CONECT();
-        $querysections=mysql_query("
-            select  ds.codigo, ds.nomnivel, ds.grado, ds.nombreseccion, ds.TUTOR, ds.AUXILIAR,sum(a.paterno)
-            from descripcionseccion ds
-            inner join Alumno a on ds.codigo=a.cod_seccion
-            where nomnivel='$nivel' and grado='$grado';
-            ");
-        $this->CLOSE();
-        return $querysections;
-    }
     
 }
 

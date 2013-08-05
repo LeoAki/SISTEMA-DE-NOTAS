@@ -1,7 +1,7 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html>
-<head>
+<head>    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
 <title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
@@ -20,7 +20,7 @@ require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumnoInicial.php';
 require_once 'Class/Usuario.php';
-$QUIEN= new Usuario();
+$QUIEN= new Usuario(); 
 
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumnoInicial();
@@ -60,7 +60,7 @@ if($namesection=  mysql_fetch_array($datitossecciones)){
 <?php
 echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$variable1." ".$nombredelaseccion."]- Profesor:[".$paternodocente." ".$maternodocente." ,".$nombresdocente."]- Asignatura:[".$variable3."]</a>";
 ?>
-<br>
+<br>    
 <br>
 <table>
 <?php
@@ -89,7 +89,7 @@ while ($row = mysql_fetch_array($listar)) {
     <td></td>
     <td></td>
     <td></td>
-    <td><a style='color:black;font-size: 12px;'><b>N째</b></a></td>
+    <td><a style='color:black;font-size: 12px;'><b>N°</b></a></td>
     <td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
 <?php
 $th=$COMPONENTE->LISTAR1($asina);
@@ -117,7 +117,7 @@ $cantidaddea=0;
 $cantidaddeb=0;
 $cantidaddec=0;
 while ($alumno = mysql_fetch_array($listaalumnado)) {
-$count=$count+1;
+$count=$count+1;    
 echo "
 <tr>
 <td><td>
@@ -137,10 +137,10 @@ $td=$COMPONENTE->LISTAR1($asina);
 $listadice=  RegistroAlumnoInicial::LISTAR($alumno[4].$seccion.$asina);
 
 while ($row11 = mysql_fetch_array($listadice)) {
-
+    
     $exonerado=$row11['p11'];
-
-    $valorcelda=$ro[1].$row22[3];
+    
+    $valorcelda=$ro[1].$row22[3];   
     $valueespacio=$row11["p$valorcelda"];
     $valorpromedio=$row11["promedio".$ro[1]];
     $pb=$row11["pb"];
@@ -210,8 +210,8 @@ $aprobados=$cantidaddea+$cantidaddead;
 echo "
     <a style='color:black;font-size: 11px;'>Matriculados: $count Retirados:$retirado Exonerados:$cantexonerado Evaluados:$evaluados</a><br>
     <a style='color:black;font-size: 11px;'>Nota Minima Aprobatoria: [A] Aprobados:$aprobados ($porcentajeaprobado%) Desaprobados$desaprobadosinicial ($porcentajedesaprobado%)
-    Rendimiento: AD=$cantidaddead; A=$cantidaddea; B=$cantidaddeb; C=$cantidaddec</a>
-
+    Rendimiento: AD=$cantidaddead; A=$cantidaddea; B=$cantidaddeb; C=$cantidaddec</a>    
+        
     <br><br>
     <center>
     -------------------<br><a style='color:black;font-size: 11px;'>Prof: $paternodocente $maternodocente, $nombresdocente<br>
@@ -238,5 +238,5 @@ echo "
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
 <script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>    
 </html>

@@ -33,7 +33,6 @@ $DOCENTE= new Docente(); ?>
 <center>
     <div class="leoaki">
     <fieldset>
-        
         <table id='listadocentes' name='listadocentes' class="table table-hover">
             <thead>
                 <tr class="gradeU">
@@ -89,6 +88,8 @@ $DOCENTE= new Docente(); ?>
 </div>
 </center>
 <br><br><br><br><br><br>
+<?php #require_once 'Includes/modal-footer.php';
+?>
 </body>
 <?php }?>
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>

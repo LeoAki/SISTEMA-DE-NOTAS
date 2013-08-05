@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
-        <title>INICIAL</title>
+        <title>PRIMARIA</title>
         <?php 
         require_once 'Class/Conection.php';
         require_once 'Class/Niveles.php';
@@ -27,12 +27,15 @@
             <div class="row-fluid">
                 <div class="span1">
                     
-                    <h3>NIVEL INICIAL</h3>
+                    <h3>NIVEL PRIMARIA</h3>
 
                     <ul>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,1)">3 A&Ntilde;OS</a><br><br></li>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,2)">4 A&Ntilde;OS</a><br><br></li>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,3)">5 A&Ntilde;OS</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,4)">1er GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,5)">2do GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,6)">3er GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,7)">4to GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,8)">5to GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(2,9)">6to GRADO</a><br><br></li>
                     </ul>
                 </div>
                 <div class="span11" id="divaulas" style="background-color: pink;">

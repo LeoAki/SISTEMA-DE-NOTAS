@@ -290,37 +290,36 @@ class Alumno_Seccion_Pf extends Conection{
     }
 
     public function GRABAR() {
-try {
-$this->CONECT();
-mysql_query("Call SP_Alumno_Seccion_Pf(
-'".$this->CODIGO."','".$this->CODIGOAS."',
-'".$this->UPF1."','".$this->UPF2."','".$this->UPF3."','".$this->UPF4."',
-'".$this->UPF5."','".$this->UPF6."','".$this->UPF7."','".$this->UPF8."',
-'".$this->DPF1."','".$this->DPF2."','".$this->DPF3."','".$this->DPF4."',
-'".$this->DPF5."','".$this->DPF6."','".$this->DPF7."','".$this->DPF8."',
-'".$this->TPF1."','".$this->TPF2."','".$this->TPF3."','".$this->TPF4."',
-'".$this->TPF5."','".$this->TPF6."','".$this->TPF7."','".$this->TPF8."',
-'".$this->CPF1."','".$this->CPF2."','".$this->CPF3."','".$this->CPF4."',
-'".$this->CPF5."','".$this->CPF6."','".$this->CPF7."','".$this->CPF8."');")
-or die(mysql_error());
-$this->CLOSE();
-} catch (Exception $exc) {
-echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
-}
+        try {
+            $this->CONECT();
+               mysql_query("Call SP_Alumno_Seccion_Pf('".$this->CODIGO."','".$this->CODIGOAS."','".$this->UPF1."','".$this->UPF2."','".$this->UPF3."',
+                                                      '".$this->UPF4."','".$this->UPF5."','".$this->UPF6."','".$this->UPF7."','".$this->UPF8."',
+                                                      '".$this->DPF1."','".$this->DPF2."','".$this->DPF3."','".$this->DPF4."','".$this->DPF5."',
+                                                      '".$this->DPF6."','".$this->DPF7."','".$this->DPF8."','".$this->TPF1."','".$this->TPF2."',
+                                                      '".$this->TPF3."','".$this->TPF4."','".$this->TPF5."','".$this->TPF6."','".$this->TPF7."',
+                                                      '".$this->TPF8."','".$this->CPF1."','".$this->CPF2."','".$this->CPF3."','".$this->CPF4."',
+                                                      '".$this->CPF5."','".$this->CPF6."','".$this->CPF7."','".$this->CPF8."');") 
+                        or die(mysql_error());
+            $this->CLOSE();
+        } catch (Exception $exc) {
+              echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
+        }
     }
-
-public function LISTAR($letra) {
+    
+    public function LISTAR($letra) {
         $this->CONECT();
-        $cadena=  mysql_query("");
+        $cadena=  mysql_query("
+            
+            ");
         $this->CLOSE();
         return $cadena;
-}
-
+    }
+    
        public function ALUMNOSDEMITUTORIA($codigodocente){
        $cone=new Conection();
        $cone->CONECT();
        $misalumnos=mysql_query("
-       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres,
+       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, 
               asep.1pf1,asep.1pf2,asep.1pf3,asep.1pf4,asep.1pf5,asep.1pf6,asep.1pf7,asep.1pf8,
               asep.2pf1,asep.2pf2,asep.2pf3,asep.2pf4,asep.2pf5,asep.2pf6,asep.2pf7,asep.2pf8,
               asep.3pf1,asep.3pf2,asep.3pf3,asep.3pf4,asep.3pf5,asep.3pf6,asep.3pf7,asep.3pf8,
@@ -335,9 +334,7 @@ public function LISTAR($letra) {
        unset ($cone);
        return $misalumnos;
    }
-
-
+    
+    
 }
-#http://25.media.tumblr.com/d2e7cf19134b6f77ad018bb39a235c5e/tumblr_mmi85t80RQ1rplznjo1_500.gif
-#http://www.cerdas.org/video_porno/aspirante-a-actor-porno-pasa-la-prueba-de-fuego/#.UcB7QXaRLn4
 ?>

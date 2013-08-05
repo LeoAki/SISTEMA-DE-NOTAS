@@ -25,7 +25,7 @@ if($nivela==="PRIMARIA"){
 echo "
 <table class='table table-hover' id='Exportar_a_Excel'>
     <tr class='gradeX'>
-        <th>N°</th>
+        <th>NÂ°</th>
         <th>ALUMNO</th>
         <th>01 MAT</th>
         <th>02 COM</th>

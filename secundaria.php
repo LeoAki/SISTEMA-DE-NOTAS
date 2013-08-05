@@ -27,12 +27,14 @@
             <div class="row-fluid">
                 <div class="span1">
                     
-                    <h3>NIVEL INICIAL</h3>
+                    <h3>NIVEL SECUNDARIA</h3>
 
                     <ul>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,1)">3 A&Ntilde;OS</a><br><br></li>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,2)">4 A&Ntilde;OS</a><br><br></li>
-                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(1,3)">5 A&Ntilde;OS</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(3,4)">1er GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(3,5)">2do GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(3,6)">3er GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(3,7)">4to GRADO</a><br><br></li>
+                        <li><a style="color: #1a1a1a" onclick="Aulaspornivel(3,8)">5to GRADO</a><br><br></li>
                     </ul>
                 </div>
                 <div class="span11" id="divaulas" style="background-color: pink;">
