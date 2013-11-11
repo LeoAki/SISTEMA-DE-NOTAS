@@ -61,10 +61,10 @@ function MostrarComponen(sinatur,seccx,idpersonast){
         ajax.send(null);
 }
 
-function Mostrarconsolidado(datos){
+function Mostrarconsolidado(datos,nivel,grado){
         divResultado = document.getElementById('divconsolidado');
         ajax=objetoAjax();
-        ajax.open("GET","consolidadoajax.php?codigoseccion="+datos);
+        ajax.open("GET","consolidadoajax.php?codigoseccion="+datos+"&niveldelaula="+nivel+"&gradodelaula="+grado);
         ajax.onreadystatechange=function() {
                if (ajax.readyState==4) {
                        divResultado.innerHTML = ajax.responseText
@@ -74,21 +74,6 @@ function Mostrarconsolidado(datos){
         }
         ajax.send(null)
 }
-
-function Indcompo(componente,numero){
-    divResultado= document.getElementById('divindicador'+numero);
-    ajax=objetoAjax();
-    ajax.open("GET","regcriterioajax.php?compind="+componente+"&idnumero="+numero);
-    ajax.onreadystatechange=function() {
-               if (ajax.readyState==4) {
-                       divResultado.innerHTML = ajax.responseText
-               }else{
-                   document.getElementById('divindicador'+numero).innerHTML='Cargando...';
-               }
-        }
-        ajax.send(null)
-}
-
 
 function ajax_4(uno,dos,tres,cuatro,cinco){
         divResultadoo = document.getElementById('modelo');
@@ -105,13 +90,91 @@ function ajax_4(uno,dos,tres,cuatro,cinco){
 }
 function MostrarComponen2(sinatur,seccx,idpersonast){
         divResultadoo = document.getElementById('divcompo2');
-        ajax=objetoAjax();
+        ajax=objetoAjax2();
         ajax.open("GET", "liscom2.php?idsinau="+sinatur+"&idsecc="+seccx+"&idpersonast="+idpersonast);
         ajax.onreadystatechange=function(){
             if (ajax.readyState==4) {
                        divResultadoo.innerHTML = ajax.responseText
                }else{
                    document.getElementById('divcompo2').innerHTML='Cargando...';
+               }
+        }
+        ajax.send(null);
+}
+function ajaxdelet(code,divas){
+        divResultadoo = document.getElementById(divas);
+        ajax=objetoAjax();
+        ajax.open("GET", "procesa1.php?codigo="+code);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById(divas).innerHTML='Espere un momento porfavor';
+               }
+        }
+        ajax.send(null);
+}
+function Mostrarconsolidadoiibimestre(datos,nivel,grado){
+        divResultado = document.getElementById('diviibimestre');
+        ajax=objetoAjax();
+        ajax.open("GET","consolidadoajax2.php?codigoseccion="+datos+"&niveldelaula="+nivel+"&gradodelaula="+grado);
+        ajax.onreadystatechange=function() {
+               if (ajax.readyState==4) {
+                       divResultado.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('diviibimestre').innerHTML='Guarde paciencia, un momento porfavor';
+               }
+        }
+        ajax.send(null)
+}
+function Aulaspornivel(nivel,grado){
+    divResultado= document.getElementById('divaulas');
+    ajax=objetoAjax();
+    ajax.open("GET","apn.php?nv="+nivel+"&gr="+grado);
+    ajax.onreadystatechange=function() {
+               if (ajax.readyState==4) {
+                       divResultado.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('divaulas').innerHTML='CARGANDO';
+               }
+        }
+        ajax.send(null)
+}
+function ajaxdelet3(code,divas){
+        divResultadoo = document.getElementById(divas);
+        ajax=objetoAjax();
+        ajax.open("GET", "procesa13.php?codigo="+code);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById(divas).innerHTML='Espere un momento porfavor';
+               }
+        }
+        ajax.send(null);
+}
+function MostrarComponen3(sinatur,seccx,idpersonast){
+        divResultadoo = document.getElementById('divcompo3');
+        ajax=objetoAjax2();
+        ajax.open("GET", "liscom3.php?idsinau="+sinatur+"&idsecc="+seccx+"&idpersonast="+idpersonast);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('divcompo3').innerHTML='Cargando...';
+               }
+        }
+        ajax.send(null);
+}
+function MostrarComponen4(sinatur,seccx,idpersonast){
+        divResultadoo = document.getElementById('divcompo4');
+        ajax=objetoAjax();
+        ajax.open("GET", "liscom4.php?idsinau="+sinatur+"&idsecc="+seccx+"&idpersonast="+idpersonast);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById('divcompo4').innerHTML='Cargando...';
                }
         }
         ajax.send(null);

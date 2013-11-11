@@ -33,41 +33,34 @@ $seccionauxi= $_GET['seccionauxi'];
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
     $ALUSEC->setIDALUMNOSECCION($_REQUEST['txtalumnose'.$x]);
-    $ALUSEC->setFJ2($_REQUEST['txtfj'.$x]);
-    $ALUSEC->setFI2($_REQUEST['txtfi'.$x]);
-    $ALUSEC->setT2($_REQUEST['txtt'.$x]);
+    $ALUSEC->setFJ3($_REQUEST['txtfj'.$x]);
+    $ALUSEC->setFI3($_REQUEST['txtfi'.$x]);
+    $ALUSEC->setT3($_REQUEST['txtt'.$x]);
     $ALUSEC->UPDATEFIT($_REQUEST['txtalumnose'.$x]);
 }
     echo "<script>window.location = 'regasistencia.php'</script>";
 }
 /*--------------------------------------------------------------------------------------*/
 ?>
-<center>
-<div id="divrasis" style="width: 50%">
+<div style="margin-left: 18%;margin-right: 18%;">
     <br>
 <form id="frmasis" method="post" action="rasis.php?GRABAR=0">
     <fieldset>
-        <table class="table">
-            <tr class="gradeA">
+        <table class="table table-striped">
+            <tr>
                 <td style="display: none;"></td>
-                <th style="width: 8%;"><center><a style='font-size: 13px;color: green;'>N¡Æ &Oacute;rden</a></center></th>
-                <th style="width: 50%;"><center><a style='font-size: 13px;color: green;'>Alumno</a></center></th>
-                <th style="width: 5%;"><center><a style='font-size: 13px;color: green;'>FJ</a></center></th>
-                <th style="width: 5%;"><center><a style='font-size: 13px;color: green;'>FI</a></center></th>
-                <th style="width: 5%;"><center><a style='font-size: 13px;color: green;'>T</a></center></th>
+                <th style="width: 8%;"><center><a style='font-size: 16px;color: green;'>N&#176; &Oacute;RDEN</a></center></th>
+                <th style="width: 40%;"><center><a style='font-size: 16px;color: green;'>ALUMNO</a></center></th>
+                <th style="width: 5%;"><center><a style='font-size: 16px;color: green;'>FJ</a></center></th>
+                <th style="width: 5%;"><center><a style='font-size: 16px;color: green;'>FI</a></center></th>
+                <th style="width: 5%;"><center><a style='font-size: 16px;color: green;'>T</a></center></th>
             </tr>
 <?php
 $litalumsec=$DOCENAU->ALUMNOSDELAUXILIAR($seccionauxi);
 while ($filaes = mysql_fetch_array($litalumsec)) {
-    if($filaes[5]==0){
-        $filaes[5]="";
-    }
-    if($filaes[6]==0){
-        $filaes[6]="";
-    }
-    if($filaes[7]==0){
-        $filaes[7]="";
-    }
+    if($filaes[5]==0) $filaes[5]="";
+    if($filaes[6]==0) $filaes[6]="";
+    if($filaes[7]==0) $filaes[7]="";
     echo "
     <tr>
         <td style='display:none;'><input type='text' id='txtalumnose$filaes[1]' name='txtalumnose$filaes[1]' value='$filaes[0]' /></td>
@@ -91,7 +84,6 @@ while ($filaes = mysql_fetch_array($litalumsec)) {
 
 </form>
 </div>
-</center>
 
 <?php
 }

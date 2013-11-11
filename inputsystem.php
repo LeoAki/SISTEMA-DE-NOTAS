@@ -32,45 +32,19 @@ echo "<script>window.location = 'index.php'</script>";
 <?php require_once 'Includes/navegador.php';
 $DOCENTE= new Docente(); ?>
 <a class="f5" href="javascript:location.reload()">ACTUALIZAR LISTA</a>
-<center>
-        <table id='listadocentes' name='listadocentes' class="table table-hover">
-            <thead>
-                <tr class="gradeU">
-                    <th>C&oacute;digo</th>
-                    <th>Usuario</th>
-                    <th>Descripci&oacute;n</th>
-                    <th>Fecha Ingreso (a&ntilde;o/ mes/ d&iacute;a)</th>
-                    <th>Alumno/ Profesor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $lista=$userid->Ingresos();
-                while ($row1 = mysql_fetch_array($lista)) {
-                    echo "
-                        <tr class='gradeA'>
-                            <td> $row1[0] </td>
-                            <td> $row1[1] </td>
-                            <td> $row1[2] </td>
-                            <td> $row1[3] </td>
-                            <td> $row1[4] </td>
-                        </tr>
-                        ";
-                }
-                ?>
-            </tbody>
-            <tfoot>
-            <tr>
-                    <th>C&oacute;digo</th>
-                    <th>Usuario</th>
-                    <th>Descripci&oacute;n</th>
-                    <th>Fecha Ingreso (a&ntilde;o/ mes/ d&iacute;a)</th>
-                    <th>Alumno/ Profesor</th>
-            </tr>
-            </tfoot>
-        </table>
-</center>
-<br><br><br><br><br><br>
+<center><table id='listadocentes' name='listadocentes' class="table table-hover">
+<thead><tr class="gradeU">
+<th>C&oacute;digo</th><th>Usuario</th><th>Descripci&oacute;n</th><th>Fecha Ingreso (a&ntilde;o/ mes/ d&iacute;a)</th><th>Alumno/ Profesor</th>
+</tr></thead>
+<tbody>
+<?php
+$lista=$userid->Ingresos();
+while ($row1 = mysql_fetch_array($lista)) { echo '<tr class=\'gradeA\'><td>'.$row1[0].'</td><td>'.$row1[1].'</td><td>'.$row1[2].'</td><td>'.$row1[3].'</td><td>'.$row1[4].'</td></tr>';}
+?>
+</tbody>
+<tfoot><tr>
+<th>C&oacute;digo</th><th>Usuario</th><th>Descripci&oacute;n</th><th>Fecha Ingreso (a&ntilde;o/ mes/ d&iacute;a)</th><th>Alumno/ Profesor</th></tr>
+</tfoot></table></center><br><br><br><br><br><br>
 </body>
 <?php
 require_once 'Includes/modal-footer.php';

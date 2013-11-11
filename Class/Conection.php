@@ -12,10 +12,10 @@ class Conection {
     private $CONECCION;
 
     public function CONECT() {
-        $this->SERVER="localhost";
-        $this->BD="leoaki";
-        $this->PASS="la123";
-        $this->USER="usr123";
+        $this->SERVER='localhost';
+        $this->BD='notasdb';
+        $this->PASS='pssuser';
+        $this->USER='userdb';
         $this->CONECCION=mysql_connect($this->SERVER, $this->USER, $this->PASS) or
                 die (mysql_error());
         mysql_query("SET NAME 'utf8'");

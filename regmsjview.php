@@ -1,124 +1,67 @@
-<?php session_start();
-$dnidocenteusario=$_SESSION['dni'];
-?>
+<?php session_start(); $dnidocenteusario=$_SESSION['dni']; ?>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Dirigite al PP.FF</title>
-<!----------------------------------BOOTSTRAP--css-------------------------------------------------->
-<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
-<link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
-<link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
-<link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="Css/images/favicon.ico"><link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/><title>LNCC ONLINE--IMPRIME </title>
+<link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/><link href="Include/data-table/css/demo_page.css" rel="stylesheet"/><link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
 </head>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
 session_destroy();
-echo "<script>window.location = 'index.php'</script>";
+echo '<script>window.location = \'index.php\'</script>';
 }else {
 ?>
 <body>
-<?php
-require_once 'Includes/navegador.php';
+<?
 include_once 'Class/Conection.php';
-include_once 'Class/Docente.php';
-$DOCENTE= new Docente();
-include_once 'Class/ALUMNO_SECCION.php';
-$ALUMNOSECCION= new ALUMNO_SECCION();
-include_once 'Class/Alumno_Seccion_Pf.php';
-$AlSECIONPF= new Alumno_Seccion_Pf();
-
+include_once 'Class/Docente.php';$DOCENTE= new Docente();
+include_once 'Class/ALUMNO_SECCION.php';$ALUMNOSECCION= new ALUMNO_SECCION();
+include_once 'Class/Alumno_Seccion_Pf.php';$AlSECIONPF= new Alumno_Seccion_Pf();
 $whoisdocente=$DOCENTE->DOCENTE_USUARIO($dnidocenteusario);
-if($filasiencuentra=  mysql_fetch_array($whoisdocente)){
-    $codigodocentenow=$filasiencuentra[0];
-    $apellidosdocentenow=$filasiencuentra[1]." ".$filasiencuentra[2]." ,".$filasiencuentra[3];
-}
-/*--------------------------------------MANTENIMIENTO-----------------------------------*/
-//Listar registros
-#BUCLE REPETITIVO
-
-/*--------------------------------------------------------------------------------------*/
-
+if($filasiencuentra=  mysql_fetch_array($whoisdocente)){ $codigodocentenow=$filasiencuentra[0];$apellidosdocentenow=$filasiencuentra[1].' '.$filasiencuentra[2].' ,'.$filasiencuentra[3];}
 ?>
 <div style="margin-left: 5%;margin-right: 5%;" id="primer">
-<center><h4 style="color: green">Escriba las observaciones y recomendaciones a los PP.FF.</h4></center>
+<center><h5>Escriba las observaciones y recomendaciones a los PP.FF. : III B</h5></center>
 <article>
-<section>1. <i>Asiste puntualmente a las reuniones y entrevistas del aula.</i></section>
-<section>2. <i>Se esmera en la presentacion e higiene personal del ni&ntilde;o.</i></section>
-<section>3. <i>Apoya permanentemente con las tareas de su ni&ntilde;o.</i></section>
-<section>4. <i>Incentiva la participaci&oacute;n de su ni&ntilde;o en las diferentes actividades.</i></section>
-<section>5. <i>Se interesa en el avance y progreso de su ni&ntilde;o.</i></section>
-<section>6. <i>Colabora con las necesidades del aula.</i></section>
-<section>7. <i>Firma diaramente la Bit&aacute;cora.</i></section>
-<section>8. <i>Recoge el informe del progreso del ni&ntilde;o en la fecha indicada.</i></section>
-
+<section>1. <i style="font-size:12px;">Asiste puntualmente a las reuniones y entrevistas del aula.</i></section><section>2. <i style="font-size:12px;">Se esmera en la presentacion e higiene personal del ni&ntilde;o.</i></section><section>3. <i style="font-size:12px;">Apoya permanentemente con las tareas de su ni&ntilde;o.</i></section><section>4. <i style="font-size:12px;">Incentiva la participaci&oacute;n de su ni&ntilde;o en las diferentes actividades.</i></section>
+<section>5. <i style="font-size:12px;">Se interesa en el avance y progreso de su ni&ntilde;o.</i></section><section>6. <i style="font-size:12px;">Colabora con las necesidades del aula.</i></section><section>7. <i style="font-size:12px;">Firma diaramente la Bit&aacute;cora.</i></section><section>8. <i style="font-size:12px;">Recoge el informe del progreso del ni&ntilde;o en la fecha indicada.</i></section>
+<section>9. <i style="font-size:12px;">Recoge Asiste a las Escuela de Familia.</i></section>
 </article>
-            <?php
+<?
 $generalseccion=$DOCENTE->NAMESECCIOMICARGO($codigodocentenow);
-if($filanamesection=  mysql_fetch_array($generalseccion)){
-    $gradoname=$filanamesection[0];
-    $nameseccionnow=$filanamesection[1];
-    $nomnivelsection=$filanamesection[2];
-}
-echo "
-<h5 style='color: peru'>SECCION: ".$gradoname." ".$nameseccionnow." ".$nomnivelsection."</h5>
-<h5 style='color: peru'>TUTOR: ".$apellidosdocentenow."</h5>
-";
-?>
-<form id="frmmensaje" method="post" action="regmnsji.php?GRABAR=1">
-<fieldset>
-<table class="table table-hover">
+if($filanamesection=  mysql_fetch_array($generalseccion))$gradoname=$filanamesection[0];$nameseccionnow=$filanamesection[1];$nomnivelsection=$filanamesection[2];
+echo '<h6>SECCION: '.$gradoname.' '.$nameseccionnow.' '.$nomnivelsection.' ||| TUTOR: '.$apellidosdocentenow.'</h6>'; ?>
+<center>
+<table>
     <tr class="gradeU">
-        <td style="display: none;"></td>
-        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N째</b></td>
-        <td style="width: 30%;color: peru;text-transform: uppercase;"><b>Alumno</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>1</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>2</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>3</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>4</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>5</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>6</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>7</b></td>
-        <td style="width: 8%;color: peru;text-transform: uppercase;"><b>8</b></td>
+    <td style="display: none;"></td>
+    <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N</b></td>
+    <td style="width: 25%;color: peru;text-transform: uppercase;"><b>Alumno</b></td>
+    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>1</b></td>    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>2</b></td>
+    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>3</b></td>    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>4</b></td>
+    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>5</b></td>    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>6</b></td>
+    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>7</b></td>    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>8</b></td>
+    <td style="width: 5%;color: peru;text-transform: uppercase;"><b>9</b></td>
     </tr>
-<?php
+<?
 $whoisalumno=$AlSECIONPF->ALUMNOSDEMITUTORIA($codigodocentenow);
 while ($row = mysql_fetch_array($whoisalumno)) {
-echo "
-    <tr>
-    <td style='display:none;'>
-    <input type='text' value='$row[0]' id='txtcodigo$row[1]' name='txtcodigo$row[1]'/></td>
-    <td><b>$row[1]</b></td>
-    <td><b>$row[2] $row[3] ,</b>$row[4]</td>
-    <td>$row[5]</td>
-    <td>$row[6]</td>
-    <td>$row[7]</td>
-    <td>$row[8]</td>
-    <td>$row[9]</td>
-    <td>$row[10]</td>
-    <td>$row[11]</td>
-    <td>$row[12]</td>
-    </tr>
-";
-}
 ?>
-</table>
-</fieldset>
-</form>
+    <tr>
+    <td style='display:none;'><input type='text' value='<?=$row[0]?>' id='txtcodigo<?=$row[1]?>' name='txtcodigo<?=$row[1]?>'/></td>
+    <td style='font-size:11px;'><b><?=$row[1]?></b></td>
+    <td style='font-size:11px;'><b><?=$row[2].' '.$row[3].' ,</b>'.$row[4]?></td>
+    <td style='font-size:11px;'><?=$row[29]?></td>      <td style='font-size:11px;'><?=$row[30]?></td>
+    <td style='font-size:11px;'><?=$row[31]?></td>      <td style='font-size:11px;'><?=$row[32]?></td>
+    <td style='font-size:11px;'><?=$row[33]?></td>      <td style='font-size:11px;'><?=$row[34]?></td>
+    <td style='font-size:11px;'><?=$row[35]?></td>      <td style='font-size:11px;'><?=$row[36]?></td>
+    <td style='font-size:11px;'><?=$row[38]?></td>
+    </tr>
+<? } ?></table></center>
+<?='<center><br>-------------------------------------------<br>Impreso el '.date("d-F-Y").'</center>'; ?>
 </div>
+<a class="button" href="javascript:imprSelec('primer')">IMPRIMIR LA PAGINA</a>
 </body>
-<?php }?>
-<!-------------------------------------------------------------------------------------------------->
-<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
+<? }?>
 </html>

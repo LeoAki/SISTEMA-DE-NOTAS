@@ -6,14 +6,14 @@
  */
 require_once 'Conection.php';
 class Component extends Conection{
-    
+
     private $CODIGO;
     private $SINATURE;
     private $BIMESTRE;
     private $NROCOMPONENT;
     private $COMPONENTE;
     private $TOTAL_CRITERIO;
-    
+
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -63,52 +63,54 @@ class Component extends Conection{
     }
 
     public function LISTAR($asinatura) {
-    $cone=new Conection();
-    $cone->CONECT();
-    $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c 
-                             inner join Asinatura asi on c.sinature=asi.codigo 
-                             where c.sinature='".$asinatura."' and bimestre=2 order by c.nrocomponent ;");
-    $cone->CLOSE();
-    unset($cone);
-    return $resultado;
+    $cone=new Conection();$cone->CONECT();
+    $resultado=  mysql_query('select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
+                             where c.sinature=\''.$asinatura.'\' and bimestre=2 order by c.nrocomponent ;');
+    $cone->CLOSE();unset($cone);return $resultado;
    }
-   
+
     public function LISTAR1($asinatura) {
-    $cone=new Conection();
-    $cone->CONECT();
-    $resultado=  mysql_query("select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c 
-                             inner join Asinatura asi on c.sinature=asi.codigo 
-                             where c.sinature='".$asinatura."' and bimestre=1 order by c.nrocomponent ;");
-    $cone->CLOSE();
-    unset($cone);
-    return $resultado;
+    $cone=new Conection();$cone->CONECT();
+    $resultado=  mysql_query('select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
+                             where c.sinature=\''.$asinatura.'\' and bimestre=1 order by c.nrocomponent ;');
+    $cone->CLOSE();unset($cone);return $resultado;
    }
-   
+
+    public function LISTAR3($asinatura) {
+    $cone=new Conection();$cone->CONECT();
+    $resultado=  mysql_query('select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
+                             where c.sinature=\''.$asinatura.'\' and bimestre=3 order by c.nrocomponent ;');
+    $cone->CLOSE();unset($cone);return $resultado;
+   }
+
    public function ListarDatosAsignatura($jiji) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $resultado=  mysql_query("Select grado,nomnivel,asinatura from descripcionsinature where codigo='".$jiji."';");
-       $cone->CLOSE();
-       unset($cone);
-       return $resultado;
+       $cone=new Conection();$cone->CONECT();
+       $resultado=  mysql_query('Select grado,nomnivel,asinatura from descripcionsinature where codigo=\''.$jiji.'\';');
+       $cone->CLOSE();unset($cone);return $resultado;
    }
 
    public function LISTGENERAL($compo) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $result=  mysql_query("Select * from Indicador where idcomponente='".$compo."'");
-       $cone->CLOSE();
-       return $result;
-   }
-   
-   public function SECCIONAME($seccion){
-       $cone=new Conection();
-       $cone->CONECT();
-       $result=  mysql_query("select codigo,nombreseccion from descripcionseccion where codigo=".$seccion);
-       $cone->CLOSE();
-       return $result;
+       $cone=new Conection();$cone->CONECT();
+       $result=  mysql_query('Select * from Indicador where idcomponente=\''.$compo.'\'');
+       $cone->CLOSE();unset($cone);return $result;
    }
 
+   public function SECCIONAME($seccion){
+       $cone=new Conection();$cone->CONECT();
+       $result=  mysql_query('select codigo,nombreseccion from descripcionseccion where codigo='.$seccion);
+       $cone->CLOSE();return $result;
+   }
+
+    public function LISTAR4($asinatura) {
+    $cone=new Conection();$cone->CONECT();
+    $resultado=  mysql_query('select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
+                             inner join Asinatura asi on c.sinature=asi.codigo
+                             where c.sinature=\''.$asinatura.'\' and bimestre=4 order by c.nrocomponent ;');
+    $cone->CLOSE();unset($cone);return $resultado;
+   }
 }
 
 ?>

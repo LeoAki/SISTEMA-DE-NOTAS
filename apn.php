@@ -25,7 +25,7 @@ echo "
 <td><strong><center>AUXILIAR</center></strong></td>
 <td colspan='4'><center><strong>MENSAJES</strong></center></td>
 <td colspan='4'><center><strong>PP.FF</strong></center></td>
-<td><center><strong>T</strong></center></td>
+<td><center><strong>Asis.</strong><br>III B</center></td>
 <td colspan='5'><center><strong>CONSOLIDADOS</strong></center></td>
 <td><strong><center>ALUMNOS</center></strong></td>
 <tr>
@@ -40,19 +40,19 @@ echo "
     
 <td><a target='_blank' href='msjbim.php?sendcode=$row[5]'>I B</a></td>
 <td><a target='_blank' href='msjbim2.php?sendcode=$row[5]'>II B</a></td>
-<td>III B</td>
+<td><a target='_blank' href='msjbim3.php?sendcode=$row[5]'>III B</a></td>
 <td>IV B</td>
 
 <td><a target='_blank' href='mnsjppff.php?profcode=$row[5]'>I B</a></td>
 <td><a target='_blank' href='mnsjppff2.php?profcode=$row[5]'>II B</a></td>
-<td>III B</td>
+<td><a target='_blank' href='mnsjppff3.php?profcode=$row[5]'>III B</a></td>
 <td>IV B</td>
 
-<td><a target='_blank' href='stnc.php?seccionauxi=$row[0]&bimestre=2&ut=$row[5]'>ver</a></td>
+<td><a target='_blank' href='stnc.php?seccionauxi=$row[0]&bimestre=3&ut=$row[5]'>ver</a></td>
 
 <td><a target='_blank' href='cons1.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>I B</a></td>
 <td><a target='_blank' href='cons2.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>II B</a></td>
-<td>III B</td>
+<td><a target='_blank' href='cons3.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>III B</a></td>
 <td>IV B</td>
 <td>FINAL</td>
 

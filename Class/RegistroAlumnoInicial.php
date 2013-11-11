@@ -1,7 +1,6 @@
-<?php
+<?
 require_once 'Conection.php';
 class RegistroAlumnoInicial extends Conection{
-
     private $alumnoregistro;
     private $situacion;
 
@@ -185,7 +184,7 @@ class RegistroAlumnoInicial extends Conection{
 
     public function setP112($p112) {
         $this->p112 = $p112;
-    }    
+    }
 
     public function getP113() {
         return $this->p113;
@@ -588,31 +587,25 @@ class RegistroAlumnoInicial extends Conection{
     }
 
     public function ListaAlumnoSeccion($seccion) {
-    $cone=new Conection();
-    $cone->CONECT();
-    $listado=mysql_query("SELECT ase.nroorden, ae.paterno, ae.materno, ae.nombres,ase.idalumnoseccion
-				FROM Alumno_Seccion ase
-				INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
-				WHERE ase.idseccion =".$seccion."
-                            order by ase.nroorden");
-    $cone->CLOSE();
-    unset ($cone);
-    return $listado;
-    }
+    $cone=new Conection();$cone->CONECT();
+    $listado=mysql_query('SELECT ase.nroorden, ae.paterno, ae.materno, ae.nombres,ase.idalumnoseccion
+			  FROM Alumno_Seccion ase
+			  INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
+			  WHERE ase.idseccion ='.$seccion.'
+                          order by ase.nroorden');
+    $cone->CLOSE();unset ($cone);
+    return $listado; }
 
     public function contaralumno($seccion) {
-    $cone=new Conection();
-    $cone->CONECT();
-    $listado=mysql_query("Select count(*)
-                            from Alumno_Seccion ase
-                            inner join Alumno_Excel ae on ase.idalumno=ae.idalumno
-                            inner join Persona p on ae.idpersona=p.codigo
-                            where ase.idseccion=".$seccion."
-                            order by ase.nroorden");
-    $cone->CLOSE();
-    unset ($cone);
-    return $listado;
-    }
+    $cone=new Conection();$cone->CONECT();
+    $listado=mysql_query('Select count(*)
+                        from Alumno_Seccion ase
+                        inner join Alumno_Excel ae on ase.idalumno=ae.idalumno
+                        inner join Persona p on ae.idpersona=p.codigo
+                        where ase.idseccion='.$seccion.'
+                        order by ase.nroorden');
+    $cone->CLOSE();unset ($cone);
+    return $listado; }
 
     public function GRABAR() {
         try {
@@ -636,34 +629,25 @@ class RegistroAlumnoInicial extends Conection{
             echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
         }
    }
-   
+
    public function LISTAR($alreg){
-       $cone=new Conection();
-       $cone->CONECT();
-       $lista=  mysql_query("SELECT * FROM  Alumno_Registroinicial where idalumnoregistro=".$alreg.";");
-       $cone->CLOSE();
-       unset($cone);
-       return $lista;
-   }
-   
+       $cone=new Conection();$cone->CONECT();
+       $lista=  mysql_query('SELECT * FROM  Alumno_Registroinicial where idalumnoregistro='.$alreg.';');
+       $cone->CLOSE();unset($cone);
+       return $lista; }
+
    public function Nom_res_registr($registro) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $docente=  mysql_query("Select codigodocente from Registro where codigo=".$registro);
-       $cone->CLOSE();
-       unset($cone);
-       return $docente;
-   }
-   
+       $cone=new Conection();$cone->CONECT();
+       $docente=  mysql_query('Select codigodocente from Registro where codigo='.$registro);
+       $cone->CLOSE();unset($cone);
+       return $docente; }
+
    public function docentevalor($codigo){
-       $cone=new Conection();
-       $cone->CONECT();
-       $docente1=  mysql_query("Select paterno,materno,nombres from Docente where codigo=".$codigo);
-       $cone->CLOSE();
-       unset($cone);
-       return $docente1;
-   }
-   
+       $cone=new Conection();$cone->CONECT();
+       $docente1=  mysql_query('Select paterno,materno,nombres from Docente where codigo='.$codigo);
+       $cone->CLOSE();unset($cone);
+       return $docente1; }
+
    public function GRABAR2() {
         try {
             $this->CONECT();
@@ -688,14 +672,66 @@ class RegistroAlumnoInicial extends Conection{
    }
 
    public function LISTAR_2($alreg){
-       $cone=new Conection();
-       $cone->CONECT();
-       $lista=  mysql_query("SELECT * FROM  Alumno_Registroinicial2 where idalumnoregistro=".$alreg.";");
-       $cone->CLOSE();
-       unset($cone);
-       return $lista;
+       $cone=new Conection();$cone->CONECT();
+       $lista=  mysql_query('SELECT * FROM  Alumno_Registroinicial2 where idalumnoregistro='.$alreg.';');
+       $cone->CLOSE();unset($cone);
+       return $lista;}
+
+   public function GRABAR3() {
+        try {
+            $this->CONECT();
+            mysql_query("call Sp_alumnoregistroinicial3(
+                '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
+                '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
+                '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
+                '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
+                '".$this->p21."','".$this->p22."','".$this->p23."','".$this->p24."','".$this->p25."',
+                '".$this->p26."','".$this->p27."','".$this->p28."','".$this->p29."','".$this->p210."',
+                '".$this->p31."','".$this->p32."','".$this->p33."','".$this->p34."','".$this->p35."',
+                '".$this->p36."','".$this->p37."','".$this->p38."','".$this->p39."','".$this->p310."',
+                '".$this->p41."','".$this->p42."','".$this->p43."','".$this->p44."','".$this->p45."',
+                '".$this->p46."','".$this->p47."','".$this->p48."','".$this->p49."','".$this->p410."',
+                '".$this->p51."','".$this->p52."','".$this->p53."','".$this->p54."','".$this->p55."',
+                '".$this->p56."','".$this->p57."','".$this->p58."','".$this->p59."','".$this->p510."'
+                )");
+        } catch (Exception $exc) {
+            echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
+        }
    }
 
+   public function LISTAR_3($alreg){
+       $cone=new Conection();$cone->CONECT();
+       $lista=  mysql_query('SELECT * FROM  Alumno_Registroinicial3 where idalumnoregistro='.$alreg.';');
+       $cone->CLOSE();unset($cone);
+       return $lista; }
+
+   public function LISTAR_4($alreg){
+       $cone=new Conection();$cone->CONECT();
+       $lista=  mysql_query('SELECT * FROM  Alumno_Registroinicial4 where idalumnoregistro='.$alreg.';');
+       $cone->CLOSE();unset($cone);
+       return $lista; }
+
+   public function GRABAR4() {
+        try {
+            $this->CONECT();
+            mysql_query("call Sp_alumnoregistroinicial4(
+                '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
+                '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
+                '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
+                '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
+                '".$this->p21."','".$this->p22."','".$this->p23."','".$this->p24."','".$this->p25."',
+                '".$this->p26."','".$this->p27."','".$this->p28."','".$this->p29."','".$this->p210."',
+                '".$this->p31."','".$this->p32."','".$this->p33."','".$this->p34."','".$this->p35."',
+                '".$this->p36."','".$this->p37."','".$this->p38."','".$this->p39."','".$this->p310."',
+                '".$this->p41."','".$this->p42."','".$this->p43."','".$this->p44."','".$this->p45."',
+                '".$this->p46."','".$this->p47."','".$this->p48."','".$this->p49."','".$this->p410."',
+                '".$this->p51."','".$this->p52."','".$this->p53."','".$this->p54."','".$this->p55."',
+                '".$this->p56."','".$this->p57."','".$this->p58."','".$this->p59."','".$this->p510."'
+                )");
+        } catch (Exception $exc) {
+            echo 'Ups! Lo lamentamos ah ocurrido el siguiente error: '.$exc;
+        }
+   }
 
 }
 ?>

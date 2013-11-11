@@ -95,7 +95,7 @@ echo "<tr><td></td>";
 }
 echo "<tr><td></td><td><b><i><h3>PROMEDIO DEL AREA</h3></i></b></td>";
 
-if($pbview==0) $pbview="FN";
+if($pbview=="") $pbview="FN";
 if($pbview2==0) $pbview2="FN";
 
 if($viewniveluser=="INICIAL")echo "<td><h3>$pbview</h3></td></tr>";

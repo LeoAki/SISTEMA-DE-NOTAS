@@ -229,19 +229,18 @@ class ALUMNO_SECCION extends Conection{
     }
 
     public function UPDATE($codigoalumnoseccion){
-            try {
-                $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET msn2='".$this->MSN2."' where idalumnoseccion='".$codigoalumnoseccion."'") or
-                        die (mysql_error());
-                $this->CLOSE();
-            } catch (Exception $exc) {
-                echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
-            }
+        try {
+            $this->CONECT();
+            mysql_query('UPDATE Alumno_Seccion SET msn4=\''.$this->MSN4.'\' where idalumnoseccion=\''.$codigoalumnoseccion.'\'') or die (mysql_error());
+            $this->CLOSE();
+        } catch (Exception $exc) {
+            echo 'Ups! Lo lamentamos ah ocurrido el siguiente error: '.$exc;
+        }
    }
     public function UPDATEFIT($codigoalumnoseccion2){
             try {
                 $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET fj2='".$this->FJ2."', fi2='".$this->FI2."', t2='".$this->T2."'
+                mysql_query("UPDATE Alumno_Seccion SET fj3='".$this->FJ3."', fi3='".$this->FI3."', t3='".$this->T3."'
                     where idalumnoseccion='".$codigoalumnoseccion2."'") or
                         die (mysql_error());
                 $this->CLOSE();

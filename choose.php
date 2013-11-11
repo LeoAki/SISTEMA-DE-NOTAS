@@ -26,10 +26,10 @@ echo "<script>window.location = 'index.php'</script>";
     <div style="width: 30%;text-align: center;">
         <span><i class="info"><code>TUTOR: </code>Elige el nivel que te corresponde</i></span>
         <br><br>
-        <a class="btn btn-large btn-block btn-primary" type="button" href="regmnsji.php">INICIAL</a>
+        <a class="btn btn-large btn-block btn-primary" type="button" href="regmnsji.php">INICIAL</a><a href="regmsjview.php" target="_blank">Imprime Inicial</a><br><br>
         <a class="btn btn-large btn-block btn-primary" type="button" href="regmnsjps.php">PRIMARIA</a>
         <a class="btn btn-large btn-block btn-primary" type="button" href="regmnsjps.php">SECUNDARIA</a>
-        </br>
+        <br>
         <section>
             <img class="img-circle" src="Css/images/alumno.jpg"/>
         </section>

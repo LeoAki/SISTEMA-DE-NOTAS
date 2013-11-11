@@ -1,40 +1,28 @@
-<?php session_start();
-$dni=$_SESSION['dni'];?>
+<? session_start(); $dni=$_SESSION['dni'];?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="icon" href="Css/images/favicon.ico">
-        <title>LNCC ONLINE</title>
-        <?php
+        <link rel="icon" href="Css/images/favicon.ico"><title>LNCC ONLINE</title>
+        <?
         require_once 'Class/Usuario.php';
-if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario)
+        if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario)
         {
-        session_destroy();
-        echo "<script>window.location = 'index.php'</script>";
-}else {
-?>
-<!----------------------------------BOOTSTRAP--css-------------------------------------------------->
-<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
-<link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
-<link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
-<link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
+        session_destroy(); echo "<script>window.location = 'index.php'</script>";
+        }else { ?>
+
+<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/><link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
+<link href="Include/data-table/css/demo_page.css" rel="stylesheet"/><link href="Include/data-table/css/demo_table.css" rel="stylesheet"/>
     </head>
 
 <body>
-<?php require_once 'Includes/navegador.php';
-      require_once 'Class/Conection.php';
-?>
-<a>2do Bimestre</a>
+<? require_once 'Includes/navegador.php';require_once 'Class/Conection.php';?>
+<a style="padding-left: 80px;">IV Bimestre</a>
 <!--WELCOME TO THE INICIAL-------------------------------------------------INICIAL---------------------------------------------------------------->
-        <?php
-        if($dni=='09855255'){
-        ?>
+        <?        if($dni=='10618561'){        ?>
 <!---------------------------------------------------------------------------------------------->
           <div id="divinicial"style="margin-left: 15%;margin-right: 15%;">
-            <center><h3 style="color: green">REGISTRO DE CRITERIOS</h3>
-                <h4>Correspondiente al NIVEL INICIAL</h4>
-                <br>
+            <center><h3 style="color: green">REGISTRO DE CRITERIOS</h3><h4>Correspondiente al NIVEL INICIAL</h4><br>
             <!---------------------------------------------------------------------------------------->
             <!--BEGIN ENCABEZADO-->
             <div class="bs-docs-example">
@@ -52,19 +40,17 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                         <div class="row-fluid">
                         <h4><a>3 a&ntilde;os-AREAS CURRICULARES</a></h4>
                         <table class="table">
-                        <?php
-                        $cone3an= new Conection;
-                        $cone3an->CONECT();
-                        $query3anos=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%3%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                        while ($row = mysql_fetch_array($query3anos)) {
-                        echo "
-                        <tr>
-                        <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row[0]."'>" . $row[0]. "</a></td>
-                        <td>".$row[1]."</td>
-                        </tr>
-                        ";
-                        }
-                        ?>
+    <?
+    $cone3an= new Conection;$cone3an->CONECT();
+    $query3anos=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%3%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row = mysql_fetch_array($query3anos)) :
+    echo '<tr>
+    <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'>'.$row[0].'</a></td>
+    <td>'.$row[1].'</td></tr>';
+    endwhile;
+    unset ($cone3an); unset ($query3anos);
+    ?>
                         </table>
                         </div>
                     </div>
@@ -74,19 +60,17 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                         <div class="row-fluid">
                             <h4><a>4 a&ntilde;os-AREAS CURRICULARES</a></h4>
                             <table class="table">
-                            <?php
-                            $cone4an= new Conection;
-                            $cone4an->CONECT();
-                            $query4anos=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%4%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row = mysql_fetch_array($query4anos)) {
-                            echo "
-                            <tr>
-                            <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row[0]."'>" . $row[0]. "</a></td>
-                            <td>".$row[1]."</td>
-                            </tr>
-                            ";
-                            }
-                            ?>
+    <?
+    $cone4an= new Conection;$cone4an->CONECT();
+    $query4anos=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%4%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row = mysql_fetch_array($query4anos)):
+    echo '<tr>
+    <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'>'.$row[0].'</a></td>
+    <td>'.$row[1].'</td></tr>';
+    endwhile;
+    unset ($cone4an);    unset ($query4anos);
+    ?>
                             </table>
                         </div>
                     </div>
@@ -96,19 +80,17 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
                         <div class="row-fluid">
                         <h4><a>5 a&ntilde;os-AREAS CURRICULARES</a></h4>
                         <table class="table">
-                        <?php
-                        $cone5an= new Conection;
-                        $cone5an->CONECT();
-                        $query5anos=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%5%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                        while ($row = mysql_fetch_array($query5anos)) {
-                        echo "
-                        <tr>
-                        <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row[0]."'>" . $row[0]. "</a></td>
-                        <td>".$row[1]."</td>
-                        </tr>
-                        ";
-                        }
-                        ?>
+    <?
+    $cone5an= new Conection;    $cone5an->CONECT();
+    $query5anos=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%5%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row = mysql_fetch_array($query5anos)) :
+    echo '<tr>
+    <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'>'.$row[0].'</a></td>
+    <td>'.$row[1].'</td></tr>';
+    endwhile;
+    unset ($cone5an);    unset ($query5anos);
+    ?>
                         </table>
                         </div>
                     </div>
@@ -124,171 +106,148 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
 
 <!--WELCOME TO THE PRIMARIA-------------------------------------------PRIMARIA---------------------------------------------------------------->
 <?php
-        if($dni=='25748449'){
+        if($dni=='25748449'):
 ?>
         <div id="divprimariaprimer"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
                 <h4>Correspondiente al 1er Grado</h4>
                 <table class="table">
-                            <?php
-                            $cone= new Conection;
-                            $cone->CONECT();
-                            $query=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='1' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row = mysql_fetch_array($query)) {
-                                echo "
-                                    <tr>
-                                    <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row[0]."'>" . $row[0]. "</a></td>
-                                    <td>".$row[1]."</td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone= new Conection;
+    $cone->CONECT(); $query=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='1' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row = mysql_fetch_array($query)) :
+        echo '<tr>
+            <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'>'.$row[0].'</a></td>
+            <td>'.$row[1].'</td></tr>';
+    endwhile;
+    unset ($query);
+    ?>
                  </table>
             </center>
         </div>
 <?php
-        }
+        endif;
 ?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='25579387'){
+<?
+        if($dni=='25685607'):
 ?>
         <div id="divprimariasegundo"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
                 <h4>Correspondiente al 2do Grado</h4>
                 <table class="table table-hover">
-                            <?php
-                            $cone2= new Conection;
-                            $cone2->CONECT();
-                            $query2=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='2' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row2 = mysql_fetch_array($query2)) {
-                                echo "
-                                    <tr>
-                                        <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row2[0]."'>" . $row2[0]. "</a></td>
-                                        <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row2[0]."'>" . $row2[1]. "</a></td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone2= new Conection; $cone2->CONECT();
+    $query2=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='2' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row2 = mysql_fetch_array($query2)) :
+        echo '<tr>
+                <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row2[0].'\'>'.$row2[0].'</a></td>
+                <td class=\'center\'><a style=\'color:black;\' TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row2[0].'\'>'.$row2[1].'</a></td></tr>';
+    endwhile;
+    unset ($cone2);unset ($query2);
+    ?>
                  </table>
             </center>
         </div>
-<?php
-        }
-?>
+<?        endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='25687567'){
+<?
+        if($dni=='25687567'):
 ?>
         <div id="divprimariatercero"style="margin-left: 15%;margin-right: 15%;">
-            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
-                <h4>Correspondiente al 3er Grado</h4>
+            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3><h4>Correspondiente al 3er Grado</h4>
                 <table class="table">
-                            <?php
-                            $cone3= new Conection;
-                            $cone3->CONECT();
-                            $query3=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='3' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row3 = mysql_fetch_array($query3)) {
-                                echo "
-                                    <tr>
-                                    <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row3[0]."'>" . $row3[0]. "</a></td>
-                                    <td>".$row3[1]."</td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone3= new Conection; $cone3->CONECT();
+    $query3=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='3' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row3 = mysql_fetch_array($query3)):
+        echo '
+            <tr>
+            <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row3[0].'\'>'.$row3[0].'</a></td>
+            <td>'.$row3[1].'</td>
+            </tr>';
+    endwhile;
+    unset ($cone3);    unset ($query3);
+    ?>
                  </table>
             </center>
-        </div>
-<?php
-        }
-?>
+       </div>
+<?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='08016450'){
-?>
+<?      if($dni=='08016450'): ?>
         <div id="divprimariacuarto"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
                 <h4>Correspondiente al 4to Grado</h4>
                 <table class="table table-hover">
-                            <?php
-                            $cone4= new Conection;
-                            $cone4->CONECT();
-                            $query4=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='4' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row4 = mysql_fetch_array($query4)) {
-                                echo "
-                                    <tr>
-                                    <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row4[0]."'>" . $row4[0]. "</a></td>
-                                    <td class='center'><a style='color:#585858;' TARGET = '_blank' href='regcriterio.php?asinatura=".$row4[0]."'>" . $row4[1]. "</a></td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone4= new Conection;$cone4->CONECT();
+    $query4=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='4' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row4 = mysql_fetch_array($query4)):
+        echo '
+            <tr>
+            <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row4[0].'\'>'.$row4[0].'</a></td>
+            <td class=\'center\'><a style=\'color:#585858;\' TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row4[0].'\'>'.$row4[1].'</a></td>
+            </tr>';
+    endwhile;
+    unset ($cone4); unset($query4);
+    ?>
                  </table>
             </center>
-        </div>
-<?php
-        }
-?>
+       </div>
+<?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='25580449'){
-?>
+<?      if($dni=='25820534'):?>
         <div id="divprimariaquinto"style="margin-left: 15%;margin-right: 15%;">
-            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
-                <h4>Correspondiente al 5to Grado</h4>
+            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3><h4>Correspondiente al 5to Grado</h4>
                 <table class="table">
-                            <?php
-                            $cone5= new Conection;
-                            $cone5->CONECT();
-                            $query5=  mysql_query(" select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='5' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row5 = mysql_fetch_array($query5)) {
-                                echo "
-                                    <tr>
-                                    <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row5[0]."'>" . $row5[0]. "</a></td>
-                                    <td>".$row5[1]."</td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone5= new Conection; $cone5->CONECT();
+    $query5=  mysql_query(
+            "Select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='5' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row5 = mysql_fetch_array($query5)):
+        echo '
+            <tr>
+            <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row5[0].'\'>'.$row5[0].'</a></td>
+            <td>'.$row5[1].'</td>
+            </tr>';
+    endwhile;
+    unset($cone5); unset($query5);
+    ?>
                  </table>
             </center>
         </div>
-<?php
-        }
-?>
+<?      endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='10389799'){
-?>
+<?      if($dni=='10389799'):?>
         <div id="divprimariasexto"style="margin-left: 15%;margin-right: 15%;">
-            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
-                <h4>Correspondiente al 6to Grado</h4>
+            <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3> <h4>Correspondiente al 6to Grado</h4>
                 <table class="table table-hover">
-                            <?php
-                            $cone6= new Conection;
-                            $cone6->CONECT();
-                            $query6=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='6' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
-                            while ($row6 = mysql_fetch_array($query6)) {
-                                echo "
-                                    <tr>
-                                    <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row6[0]."'>" . $row6[0]. "</a></td>
-                                    <td class='center'><a style='color:#585858;' TARGET = '_blank' href='regcriterio.php?asinatura=".$row6[0]."'>" . $row6[1]. "</a></td>
-                                    </tr>
-                                    ";
-                            }
-                            ?>
+    <?
+    $cone6= new Conection; $cone6->CONECT();
+    $query6=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='primaria' and  grado='6' and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
+    while ($row6 = mysql_fetch_array($query6)):
+        echo '
+            <tr>
+            <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row6[0].'\'>'.$row6[0].'</a></td>
+            <td class=\'center\'><a style=\'color:#585858;\' TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row6[0].'\'>'.$row6[1].'</a></td>
+            </tr>';
+    endwhile;
+    unset($con6); unset($query6);
+    ?>
                  </table>
             </center>
         </div>
-<?php
-        }
-?>
+<?php   endif;?>
 <!-WELCOME TO THE SECUNDARIA------------------------------------------------------------------------------------------>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
@@ -316,28 +275,24 @@ if($dni=='07175880'){
 
             <div class="tab-pane fade in active" id="mat1">
                 <table class="display">
-                <?php
-                $cone7= new Conection;
-                $cone7->CONECT();
-                $query7=  mysql_query("select codigo,asinatura
-                from descripcionsinature where nomnivel='secundaria' and grado=1 and curso like ('%MATEM%');");
-                while ($row7 = mysql_fetch_array($query7)) {
-                echo "
-                <tr>
-                <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row7[0]."'>" . $row7[0]. "</a></td>
-                <td>".$row7[1]."</td>
-                </tr>
-                ";
-                }
-                ?>
+    <?
+    $cone7= new Conection; $cone7->CONECT();
+    $query7=  mysql_query(
+    "select codigo,asinatura from descripcionsinature where nomnivel='secundaria' and grado=1 and curso like ('%MATEM%');");
+    while ($row7 = mysql_fetch_array($query7)):
+    echo '
+    <tr><td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row7[0].'\'>'.$row7[0].'</a></td>
+    <td>'.$row7[1].'</td></tr>';
+    endwhile;
+    unset($cone7); unset($query7);
+    ?>
                 </table>
             </div>
 
             <div class="tab-pane fade" id="mat2">
             <table class="table">
             <?php
-            $cone8= new Conection;
-            $cone8->CONECT();
+            $cone8= new Conection; $cone8->CONECT();
             $query8=  mysql_query("select codigo,asinatura
             from descripcionsinature where nomnivel='secundaria' and grado=2 and curso like ('%MATEM%');");
             while ($row8 = mysql_fetch_array($query8)) {
@@ -345,8 +300,7 @@ if($dni=='07175880'){
             <tr>
             <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$row8[0]."'>" . $row8[0]. "</a></td>
             <td>".$row8[1]."</td>
-            </tr>
-            ";
+            </tr>";
             }
             ?>
             </table>
@@ -1952,12 +1906,12 @@ if($dni=='25866548'){
 <!---------------------------------------------------------------------------------------------->
 
 <?php
-        if($dni=='06862637'){
+        if($dni=='08743758'){
 ?>
 <div id="divsecundariacta"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA INFORMATICA</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
-                <br>
+                <br><br>
             <!---------------------------------------------------------------------------------------->
             <!--BEGIN ENCABEZADO-->
             <div class="bs-docs-example">
@@ -2086,7 +2040,7 @@ if($dni=='25866548'){
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php
-        if($dni=='06862637'){
+        if($dni=='08743758'){
 ?>
 <div id="divsecundariapc"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE COMPUTACI&Oacute;N</h3>
@@ -2389,8 +2343,6 @@ require_once 'Includes/modal-footer.php';?>
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>

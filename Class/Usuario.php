@@ -150,11 +150,9 @@ class Usuario extends Conection{
     }
     
     public function QUIENES($dni) {
-        $coneccion= new Conection();
-        $coneccion->CONECT();
+        $coneccion= new Conection();$coneccion->CONECT();
         $consulta=  mysql_query("Select * from Persona where dni='".$dni."';");
-        unset($coneccion);
-        return $consulta;
+        unset($coneccion);return $consulta;
     }
     
     public function SESIONBEGIN($usuario){
@@ -170,11 +168,9 @@ class Usuario extends Conection{
     }
     
     public function verultimasesion($usuario){
-        $teconecto= new Conection;
-        $teconecto->CONECT();
-        $veruser=  mysql_query("select ultimasesion from Usuario where usuario='".$usuario."'");
-        $teconecto->CLOSE();
-        return $veruser;
+        $teconecto= new Conection;$teconecto->CONECT();
+        $veruser=  mysql_query('select ultimasesion from Usuario where usuario=\''.$usuario.'\';');
+        $teconecto->CLOSE();return $veruser;
     }
     
     public function verdnisesion($idpersona) {
@@ -189,18 +185,16 @@ class Usuario extends Conection{
     
     public function changepassid($idpersona,$newpass) {
         $this->CONECT();
-        $retnewpass=  mysql_query(" Update Usuario set
-                                    contrasena='".$newpass."'
-                                    where idpersona='".$idpersona."';");
-        $this->CLOSE();
-        return $retnewpass;
+        $retnewpass=  mysql_query('Update Usuario set contrasena=\''.$newpass.'\' where idpersona=\''.$idpersona.'\';');
+        $this->CLOSE();return $retnewpass;
     }
+    
     public function Ingresos($usuario) {
         $con= new Conection();
         $con->CONECT();
-        $viewinput=mysql_query("
+        $viewinput=mysql_query('
             SELECT  uh.codigo,
-                    CONCAT(pe.paterno,' ',pe.materno,' ,',pe.nombres) as USER,
+                    CONCAT(pe.paterno,\' \',pe.materno,\' ,\',pe.nombres) as USER,
                     uh.accion,
                     uh.descripcion,
                     user.estado
@@ -208,8 +202,7 @@ class Usuario extends Conection{
             inner join Usuario user on uh.usuario=user.usuario
             inner join Persona pe on user.idpersona=pe.codigo 
             ORDER BY uh.codigo DESC
-            LIMIT 1000;
-            "
+            LIMIT 1000;'
         );
         $con->CLOSE();
         return $viewinput;

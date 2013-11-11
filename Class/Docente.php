@@ -148,15 +148,14 @@ class Docente extends Conection{
    }
    
    public function RegistroDocente($dni) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $regi= mysql_query("SELECT r.codigo, 
-                            sec.nomnivel, 
-                            sec.grado, 
-                            sec.nombreseccion, 
-                            CONCAT( doc.paterno,  ' ', doc.materno,  ' ,', doc.nombres ) AS Docente, 
-                            doc.dni, 
-                            dasi.asinatura, 
+       $cone=new Conection();$cone->CONECT();
+       $regi= mysql_query('SELECT r.codigo,
+                            sec.nomnivel,
+                            sec.grado,
+                            sec.nombreseccion,
+                            CONCAT( doc.paterno,  \' \', doc.materno,  \' ,\', doc.nombres ) AS Docente,
+                            doc.dni,
+                            dasi.asinatura,
                             dasi.abreviatura,
                             r.codigoasinatura,
                             r.codigoseccion,
@@ -165,10 +164,8 @@ class Docente extends Conection{
                             LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
                             LEFT JOIN Docente doc ON r.codigodocente = doc.codigo
                             LEFT JOIN descripcionsinature dasi ON r.codigoasinatura = dasi.codigo
-                            WHERE doc.dni =  '".$dni."' order by r.codigo");
-       $cone->CLOSE();
-       unset($cone);
-       return $regi;
+                            WHERE doc.dni =  \''.$dni.'\' order by r.codigo');
+       $cone->CLOSE();unset($cone);return $regi;
    }
 
 
@@ -184,13 +181,13 @@ class Docente extends Conection{
    public function ALUMNOSDEMITUTORIA($codigodocente){
        $cone=new Conection();
        $cone->CONECT();
-       $misalumnos=mysql_query("
-       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn2, s.nombreseccion
+       $misalumnos=mysql_query('
+       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn3, s.nombreseccion, ase.msn4
 	FROM Alumno_Seccion ase
 	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
 	INNER JOIN Persona p ON ae.idpersona = p.codigo
 	INNER JOIN Seccion s ON ase.idseccion = s.codigo
-	WHERE s.cod_tutor=".$codigodocente."  order by ase.nroorden;");
+	WHERE s.cod_tutor='.$codigodocente.' order by ase.nroorden;');
        $cone->CLOSE();
        unset ($cone);
        return $misalumnos;
@@ -240,7 +237,7 @@ class Docente extends Conection{
            ae.paterno,
            ae.materno,
            ae.nombres,
-           ase.fj2,ase.fi2,ase.t2,
+           ase.fj3,ase.fi3,ase.t3,
            s.nombreseccion
            from Alumno_Seccion ase
            inner join Alumno ae
@@ -498,14 +495,13 @@ class Docente extends Conection{
         return $result;
    }
 
-   public function RegistroDocentearea($area) {
-       $cone=new Conection();
-       $cone->CONECT();
-       $regi= mysql_query("SELECT r.codigo,
+   public function RegistroDocentearea() {
+       $cone=new Conection();$cone->CONECT();
+       $regi= mysql_query('SELECT r.codigo,
                             sec.nomnivel,
                             sec.grado,
                             sec.nombreseccion,
-                            CONCAT( doc.paterno,  ' ', doc.materno,  ' ,', doc.nombres ) AS Docente,
+                            CONCAT( doc.paterno,  \' \', doc.materno,  \' ,\', doc.nombres ) AS Docente,
                             doc.dni,
                             dasi.asinatura,
                             dasi.abreviatura,
@@ -515,11 +511,9 @@ class Docente extends Conection{
                             LEFT JOIN descripcionseccion sec ON r.codigoseccion = sec.codigo
                             LEFT JOIN Docente doc ON r.codigodocente = doc.codigo
                             LEFT JOIN descripcionsinature dasi ON r.codigoasinatura = dasi.codigo
-                            WHERE r.activo2 =1 OR r.activo2 =3
-                            order by r.codigo");
-       $cone->CLOSE();
-       unset($cone);
-       return $regi;
+                            WHERE r.activo3 =3 OR r.activo3 =0
+                            order by r.codigo');
+       $cone->CLOSE();unset($cone);return $regi;
    }
 
    public function cursocargonormalpr2($nota,$sumando) {
@@ -596,10 +590,47 @@ class Docente extends Conection{
        unset ($cone);
        return $notasalumnosregistro;
    }
-   
-   
+
+   public function NOTASCONSOLIDADOTUTORIA3($codigoalumnoseccion){
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasalumnosregistro=mysql_query('
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.3pb
+               from 3Alumno_Registro ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=\''.$codigoalumnoseccion.'\'
+               order by ar.idregistro;');
+       $cone->CLOSE();
+       unset ($cone);
+       return $notasalumnosregistro;
+   }
+
+   public function NOTASCONSOLIDADOTUTORIAINiCIALtres($codigoalumnoseccion){
+       $cone=new Conection();$cone->CONECT();
+       $notasalumnosregistro=mysql_query("
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.pb,
+               ar.promedio1,
+               ar.promedio2,
+               ar.promedio3,
+               ar.promedio4,
+               ar.promedio5
+               from Alumno_Registroinicial3 ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=$codigoalumnoseccion
+           order by ar.idregistro;");
+       $cone->CLOSE();       unset ($cone);       return $notasalumnosregistro;
+   }
 }
-
-
-
 ?>

@@ -2,21 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
-<?php
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="Css/images/favicon.ico"><title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<?
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
 session_destroy();
 echo "<script>window.location = 'index.php'</script>";
 }else {
 ?>
-<!----------------------------------BOOTSTRAP--css-------------------------------------------------->
-<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
-<link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
+<link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/><link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 </head>
-<?php
+<?
 require_once 'Class/Indicador.php';
 //variables locales
 $compo = $_GET['componente'];
@@ -47,52 +43,34 @@ $peso=1;
 ?>
 <body style="background-color: #000000;">
 <center>
-<div id="main" style="width: 70%;">
-    <br>
-<?php echo "<i class='succses' style='color:white;'> El indicador del componente es el n&uacute;mero $nrocriterio </i>";?>
+<div id="main" style="width: 70%;"><br>
+<i class='succses' style='color:white;'> El indicador del componente es el n&uacute;mero <?=$nrocriterio?> </i>
 <fieldset class="form-actions">
-<?php
-echo "<form name='frmindica' method='post' action='' onsubmit='agregarPais();'>";
-?>
+<?echo "<form name='frmindica' method='post' action='' onsubmit='agregarPais();'>";?>
 <table id="tableseccion" class="table table-bordered">
 <caption>MANTENIMIENTO DE INDICADORES</caption>
 <tbody>
 
 <tr>
-    <td style="display: none;">
-        <a>CODIGO: </a><input type='text' id='txtcodigo' name='txtcodigo' <?php echo "value='".$codigoi."'";?>>
-    </td>
-    <td style="display: none;">
-        <a>COMPONENTE: </a><input type='text' id='txtcomponente' name='txtcomponente' <?php echo "value='".$compo."'";?>>
-    </td>
+    <td style="display: none;"><a>CODIGO: </a><input type='text' id='txtcodigo' name='txtcodigo' value='<?=$codigoi?>'></td>
+    <td style="display: none;"><a>COMPONENTE: </a><input type='text' id='txtcomponente' name='txtcomponente' value='<?=$compo?>'></td>
 </tr>
 
 <tr>
-    <td style="display: none;">
-        <a>N INDICADOR:</a>
-        <input class="input-xlarge" id="txtfiu" name="txtfiu" type="text"  <?php echo "value='".$nrocriterio."';"?>/>
-    </td>
-
+    <td style="display: none;"><a>N INDICADOR:</a><input class="input-xlarge" id="txtfiu" name="txtfiu" type="text"  value='<?=$nrocriterio?>'/></td>
+</tr>
 <tr>
-    <td>
-        <a>CRITERIO :
-        <input type='text' id='txtcriterio' name='txtcriterio' style='width: 95%'<?php echo "value='".$criterio."'"; ?>/></a>
-        <I id="modelo" style="color: red;"></I>
+    <td><a>CRITERIO:<input type='text' id='txtcriterio' name='txtcriterio' style='width: 95%' value='<?=$criterio?>'/></a>
+        <i id="modelo" style="color: red;"></i>
     </td>
 </tr>
-
 <tr>
-    <td style="display:none;">
-        <a>Peso<input type='text' id='txtpeso' name='txtpeso'<?php echo "value='".$peso."'"; ?>/></a>
-    </td>
+    <td style="display:none;"><a>Peso<input type='text' id='txtpeso' name='txtpeso' value='<?=$peso?>'/></a></td>
 </tr>
 
 </tbody>
 </table>
-
-<?php
-echo "</form>"
-?>
+<?='</form>';?>
 <div class="form-actions">
     <button style="" class="btn btn-primary" id="btnsave" name="btnsave" onclick="agregarPais();">AGREGAR/EDITAR INDICADOR</button>
 </div>
