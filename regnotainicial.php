@@ -26,11 +26,15 @@ echo '<td>
 </center></td>';
 
 
+if($row[13]=='1'){
 echo '<td>
 <center><a style=\'color:blue;\' TARGET =\'_blank\' href=\'registrainicial4.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>HABILITADO<i class=\'icon icon-ok\'></i></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a  style=\'color:green;display:none;\' TARGET =\'_blank\' href=\'imprimir_reginicial4.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas<i class=\'icon icon-ok\'></i></a>
+&nbsp;&nbsp;&nbsp;&nbsp;</center></td>';
+}else{
+echo '<td>
+<center><a  style=\'color:green;display:;\' TARGET =\'_blank\' href=\'imprimir_reginicial4.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas<i class=\'icon icon-ok\'></i></a>
 </center></td>';
+}
 ?>
 
 <td><center><i class='icon-print'></i></center></td>

@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
-        <title>INICIAL</title>
+        <title>SECUNDARIA</title>
         <?php 
         require_once 'Class/Conection.php';
         require_once 'Class/Niveles.php';

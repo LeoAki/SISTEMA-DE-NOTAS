@@ -73,10 +73,10 @@ switch ($row[13]) {
         <br><a style='color:red;' onclick='DOIT3(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td><?break;
     case 2:
         ?>
-        <td><center><a style='color:green;'  TARGET = '_blank' href='#?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td><?break;
+        <td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg4.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td><?break;
     case 3:
         ?>
-        <td><center><a  TARGET = '_blank' href='#?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td><?break;
+        <td><center><a  TARGET = '_blank' href='imprimir_reg4.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td><?break;
 }
 #------------------------------------------------------  ANUAL  ---------------------------------------
 echo '<td><center><i class=\'icon-print\'></i></center></td></tr>';
@@ -108,6 +108,13 @@ if(eliminar){
 ajaxdelet(valueinn,num);
 cargar();
 }
+}
+
+function DOIT3(valueinn,num){
+eliminar=confirm("Terminaste de llenar tus notas?");
+if(eliminar){
+ajaxdelet4(valueinn,num);
+cargar();}
 }
 </script>
 </html>

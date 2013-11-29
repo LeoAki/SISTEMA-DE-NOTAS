@@ -632,5 +632,47 @@ class Docente extends Conection{
            order by ar.idregistro;");
        $cone->CLOSE();       unset ($cone);       return $notasalumnosregistro;
    }
+
+   public function NOTASCONSOLIDADOTUTORIA4($codigoalumnoseccion){
+       $cone=new Conection();
+       $cone->CONECT();
+       $notasalumnosregistro=mysql_query('
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.4pb
+               from 4Alumno_Registro ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=\''.$codigoalumnoseccion.'\'
+               order by ar.idregistro;');
+       $cone->CLOSE();
+       unset ($cone);
+       return $notasalumnosregistro;
+   }
+
+   public function NOTASCONSOLIDADOTUTORIAINiCIALcuatro($codigoalumnoseccion){
+       $cone=new Conection();$cone->CONECT();
+       $notasalumnosregistro=mysql_query("
+           select ar.idregistro,
+               asin.asinatura,
+               asin.abreviatura,
+               ar.pb,
+               ar.promedio1,
+               ar.promedio2,
+               ar.promedio3,
+               ar.promedio4,
+               ar.promedio5
+               from Alumno_Registroinicial4 ar
+               inner join Registro r
+               on ar.idregistro=r.codigo
+               inner join Asinatura asin
+               on asin.codigo= r.codigoasinatura
+               where idalumnoseccion=$codigoalumnoseccion
+           order by ar.idregistro;");
+       $cone->CLOSE();       unset ($cone);       return $notasalumnosregistro;
+   }
 }
 ?>

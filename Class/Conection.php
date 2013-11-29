@@ -13,9 +13,9 @@ class Conection {
 
     public function CONECT() {
         $this->SERVER='localhost';
-        $this->BD='notasdb';
-        $this->PASS='pssuser';
-        $this->USER='userdb';
+        $this->BD='edita_herald';
+        $this->PASS='edita_herald';
+        $this->USER='te_la_paso_herald';
         $this->CONECCION=mysql_connect($this->SERVER, $this->USER, $this->PASS) or
                 die (mysql_error());
         mysql_query("SET NAME 'utf8'");

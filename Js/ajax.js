@@ -179,3 +179,16 @@ function MostrarComponen4(sinatur,seccx,idpersonast){
         }
         ajax.send(null);
 }
+function ajaxdelet4(code,divas){
+        divResultadoo = document.getElementById(divas);
+        ajax=objetoAjax();
+        ajax.open("GET", "procesa14.php?codigo="+code);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById(divas).innerHTML='Espere un momento porfavor';
+               }
+        }
+        ajax.send(null);
+}

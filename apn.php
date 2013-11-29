@@ -53,7 +53,7 @@ echo "
 <td><a target='_blank' href='cons1.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>I B</a></td>
 <td><a target='_blank' href='cons2.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>II B</a></td>
 <td><a target='_blank' href='cons3.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>III B</a></td>
-<td>IV B</td>
+<td><a target='_blank' href='cons4.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>IV B</a></td>
 <td>FINAL</td>
 
 <td>ver alumnos</td>
