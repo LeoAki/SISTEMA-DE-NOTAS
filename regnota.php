@@ -11,7 +11,8 @@ if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof
 session_destroy();echo '<script>window.location = \'index.php\'</script>';
 }else {
 ?>
-<div style="margin-left: 2%;margin-right: 2%;"><ul id="news">
+<div style="margin-left: 2%;margin-right: 2%;">
+    <ul id="news" style="display: none;">
     <li><a class="txtleoaki" href="#n1"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 1. Verificar: Usuario, Contrase&ntilde;a(no dni), Registros de evaluaciones con sus indicadores ingresando a la web CLAVERO EN LINEA. luego informar la conformidad a la jefatura correspondiente. <strong>DEL 21/10/2013 HASTA 23/10/2013</strong></a></li>
     <li><a class="txtleoaki" href="#n2"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 2. Completar notas de alumnos que se han ausentado a las evaluaciones del II bimestre. Entregar los promedios, bimestrales a las subdirecciones correspondientes. <strong>HASTA 18/10/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n3"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 3. Registrar resultados de evaluaciones de proceso de todas las &aacute;reas. en el sistema de acuerdo con el avance program&aacute;tico. <strong>Del 24/08/2013 HASTA 06/11/2013.</strong> </a></li>
@@ -26,7 +27,8 @@ session_destroy();echo '<script>window.location = \'index.php\'</script>';
     <li><a class="txtleoaki" href="#n12"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 12. Elaboraci&oacute;n, e impresi&oacute;n de la Estad&iacute;stica del RENDIMIENTO ESCOLAR Y DETERMINACI&Oacute;N de los PRIMEROS PUESTOS y EXCELENCIA ACAD&Eacute;MICA;<strong>13/12/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n13"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 13. Elevar el cuadro de orden de m&eacute;ritos del RENDIMIENTO de los alumnos a la JEFATURA DE EDUCACI&Oacute;N. <strong>16/12/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n14"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 14. ENTREGA DE BOLETAS DE NOTAS A LOS PADRES DE FAAMILIA DE LOS TRES NIVELES. <strong>20/12/2013</strong> </a></li>
-    <li><a class="txtleoaki" href="#n15"><strong>CUMPLA CON LAS FECHAS DEL CRONOGRAMA. ESTE A&Ntilde;O DEBE SALIR TODO PERFECTO :D</strong></a></li></ul>
+    <li><a class="txtleoaki" href="#n15"><strong>CUMPLA CON LAS FECHAS DEL CRONOGRAMA. ESTE A&Ntilde;O DEBE SALIR TODO PERFECTO :D</strong></a></li>
+    </ul>
 
 <img src="Css/images/libro.jpeg" style="width:100px;" class="img-circle"/><i class='alert'>Si eres profesora de inicial, haz clic <a href='regnotainicial.php' class='btn btn-warning'>AQU&Iacute;</a> y obvie lo de abajo</i><br></div>
 <div id="lista" style="margin-left: 2%;margin-right: 2%;"></div><br><br><br><br><br><br><br>

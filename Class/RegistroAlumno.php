@@ -32,6 +32,9 @@ class RegistroAlumno extends Conection{
     private $p511;private $p512;
     private $promedio5;
 
+    private $p61;
+    private $promedio6;
+
     private $pb;
 
     public function getAlumnoseccion() {
@@ -490,6 +493,22 @@ class RegistroAlumno extends Conection{
         $this->promedio5 = $promedio5;
     }
 
+    public function getP61() {
+        return $this->p61;
+    }
+
+    public function setP61($p61) {
+        $this->p61 = $p61;
+    }
+
+    public function getPromedio6() {
+        return $this->promedio6;
+    }
+
+    public function setPromedio6($promedio6) {
+        $this->promedio6 = $promedio6;
+    }
+
     public function getPb() {
         return $this->pb;
     }
@@ -631,7 +650,7 @@ class RegistroAlumno extends Conection{
             $this->CONECT();
             mysql_query("Call Sp_1alumnoregistro(
                 '".$this->alumnoregistro."','".$this->registro."','".$this->alumnoseccion."','".$this->situacion."','".$this->promedio1."',
-                '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','$this->pb',
+                '".$this->promedio2."','".$this->promedio3."','".$this->promedio4."','".$this->promedio5."','".$this->promedio6."','$this->pb',
                 '".$this->p11."','".$this->p12."','".$this->p13."','".$this->p14."','".$this->p15."',
                 '".$this->p16."','".$this->p17."','".$this->p18."','".$this->p19."','".$this->p110."',
                 '".$this->p21."','".$this->p22."','".$this->p23."','".$this->p24."','".$this->p25."',
@@ -641,7 +660,8 @@ class RegistroAlumno extends Conection{
                 '".$this->p41."','".$this->p42."','".$this->p43."','".$this->p44."','".$this->p45."',
                 '".$this->p46."','".$this->p47."','".$this->p48."','".$this->p49."','".$this->p410."',
                 '".$this->p51."','".$this->p52."','".$this->p53."','".$this->p54."','".$this->p55."',
-                '".$this->p56."','".$this->p57."','".$this->p58."','".$this->p59."','".$this->p510."'
+                '".$this->p56."','".$this->p57."','".$this->p58."','".$this->p59."','".$this->p510."',
+                '".$this->p61."'
                 )");
         } catch (Exception $exc) {
             echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;

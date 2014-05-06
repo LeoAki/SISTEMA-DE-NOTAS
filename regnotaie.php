@@ -15,7 +15,7 @@ session_destroy();echo '<script>window.location = \'index.php\'</script>';
 ?>
 <center><h2>VALIDADO PARA INTERNET EXPLORER</h2></center>
 <div style="margin-left: 2%;margin-right: 2%;">
-<ul id="news">
+<ul id="news" style="display: none;">
     <li><a class="txtleoaki" href="#n1"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 1. Verificar: Usuario, Contrase&ntilde;a(no dni), Registros de evaluaciones con sus indicadores ingresando a la web CLAVERO EN LINEA. luego informar la conformidad a la jefatura correspondiente. <strong>DEL 21/10/2013 HASTA 23/10/2013</strong></a></li>
     <li><a class="txtleoaki" href="#n2"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 2. Completar notas de alumnos que se han ausentado a las evaluaciones del II bimestre. Entregar los promedios, bimestrales a las subdirecciones correspondientes. <strong>HASTA 18/10/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n3"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 3. Registrar resultados de evaluaciones de proceso de todas las &aacute;reas. en el sistema de acuerdo con el avance program&aacute;tico. <strong>Del 24/08/2013 HASTA 06/11/2013.</strong> </a></li>
@@ -30,27 +30,22 @@ session_destroy();echo '<script>window.location = \'index.php\'</script>';
     <li><a class="txtleoaki" href="#n12"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 12. Elaboraci&oacute;n, e impresi&oacute;n de la Estad&iacute;stica del RENDIMIENTO ESCOLAR Y DETERMINACI&Oacute;N de los PRIMEROS PUESTOS y EXCELENCIA ACAD&Eacute;MICA;<strong>13/12/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n13"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 13. Elevar el cuadro de orden de m&eacute;ritos del RENDIMIENTO de los alumnos a la JEFATURA DE EDUCACI&Oacute;N. <strong>16/12/2013</strong> </a></li>
     <li><a class="txtleoaki" href="#n14"><strong>CRONOGRAMA DE ACTIVIDADES</strong> 14. ENTREGA DE BOLETAS DE NOTAS A LOS PADRES DE FAAMILIA DE LOS TRES NIVELES. <strong>20/12/2013</strong> </a></li>
-    <li><a class="txtleoaki" href="#n15"><strong>CUMPLA CON LAS FECHAS DEL CRONOGRAMA. ESTE A&Ntilde;O DEBE SALIR TODO PERFECTO :D</strong></a></li></ul>
+    <li><a class="txtleoaki" href="#n15"><strong>CUMPLA CON LAS FECHAS DEL CRONOGRAMA. ESTE A&Ntilde;O DEBE SALIR TODO PERFECTO :D</strong></a></li>
+</ul>
 <br>
-<fieldset><legend>Bimestre Actual:IV</legend><i>Revisen la lista del alumnado, asi como los registros que aparecen, en caso encuentren equivocaciones comunicar a la Subdireccion correspondiente o acercarse a la Subdireccion General- Oficina De Sistemas.</i>
+<fieldset><legend>Bimestre Actual:I</legend><i>Revisen la lista del alumnado, asi como los registros que aparecen, en caso encuentren equivocaciones comunicar a la Subdireccion correspondiente o acercarse a la Subdireccion General- Oficina De Sistemas.</i>
 <table class="table table-hover">
 <thead><tr class="success"><th style="width: 12%;">Registro</th><th style="width: 12%;">Secci&oacute;n</th><th style="width: 14%">Asignatura</th><th style="width: 14%;"><center>I</center></th><th style="width: 14%;"><center>II</center></th><th style="width: 14%;"><center>III</center></th><th style="width: 13%;"><center>IV</center></th><th style="width: 5%;"><center>ANUAL</center></th></tr></thead>
 <?php
 $lista=$Doce->RegistroDocente($dni);
 while ($row = mysql_fetch_array($lista)) {
 echo '<tr><td><b>REGISTRO N&#176;</b> '.$row[0].'</td><td>'.$row[2].$row[3].' DE <b>'.$row[1].'</b></td><td>'.$row[7].'</td>';
-$url="";$ver="";#}1ER BIMESTRE
 
-if($row[10]==1){
-    $url="registra";$ver="Registrar";
-}else{
-    $url="imprimir_reg";$ver="VER";
-}
-echo '<td><center><a  TARGET = \'_blank\' title=\'Registra\' href=\''.$url.'.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>'.$ver.'</a><i class=\'icon-print\'></i></center></td>';
+echo '<td><center><a  TARGET = \'_blank\' title=\'Registra\' href=\'imprimir_reg.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon-zoom-in\'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;                 <a  TARGET = \'_blank\' title=\'Registra\' href=\'registra.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Registrar <i class=\'icon-zoom-in\'></i></a></center></td>';
 
 $url2="";#2DO BIMESTRE
 if($row[11]==0){
-    $url2="#";echo '<td><center><a href=\'#divnota\'>DEBES NOTA <i class=\'icon-warning-sign\'></i></a></center></td>';
+    $url2="#";echo '<td><center><a href=\'#divnota\'>No aperturado <i class=\'icon-warning-sign\'></i></a></center></td>';
 }
 if($row[11]==1){
     $url2='registra1.php';
@@ -76,7 +71,7 @@ if($row[11]==2){
 $url3="";#3ero BIMESTRE
 if($row[12]==0){
     $url3="#";
-echo "<td><center><a href='#divnota'>DEBES NOTA <i class='icon-warning-sign'></i></a></center></td>";
+echo "<td><center><a href='#divnota'>No aperturado <i class='icon-warning-sign'></i></a></center></td>";
 }
 if($row[12]==1){
     $url3="registra3.php";
@@ -100,7 +95,7 @@ echo "<td><center>
 
 $url4='';#4to BIMESTRE
 switch ($row[13]) {
-    case 0:$url4='#';?><td><center><a href='#divnota'>DEBES NOTA <i class='icon-warning-sign'></i></a></center></td><?break;
+    case 0:$url4='#';?><td><center><a href='#divnota'>No aperturado <i class='icon-warning-sign'></i></a></center></td><?break;
     case 1:
         $url4='registra4.php';?>
         <td><center>

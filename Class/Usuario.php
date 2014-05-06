@@ -122,7 +122,7 @@ class Usuario extends Conection{
         $value=0;
         try {
             $this->CONECT();
-            $resulset=mysql_query("select * from  urp881_nota13.Usuario
+            $resulset=mysql_query("select * from  Usuario
                 Where usuario='".$usuario."' and contrasena='".$password."';");
             if($resulset){
                 $value=mysql_num_rows($resulset);

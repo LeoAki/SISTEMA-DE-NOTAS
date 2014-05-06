@@ -67,6 +67,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setPromedio3($_REQUEST[$x.'promedio3']);
        $REGISTROALUMNO->setPromedio4($_REQUEST[$x.'promedio4']);
        $REGISTROALUMNO->setPromedio5($_REQUEST[$x.'promedio5']);
+       $REGISTROALUMNO->setPromedio6($_REQUEST[$x.'promedio6']);
        $REGISTROALUMNO->setPb($_REQUEST[$x.'pb']);
 
        $REGISTROALUMNO->setP11($_REQUEST[$x.'p11']);       $REGISTROALUMNO->setP12($_REQUEST[$x.'p12']);
@@ -99,12 +100,12 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
+       $REGISTROALUMNO->setP61($_REQUEST[$x.'p61']);
+
        $REGISTROALUMNO->GRABAR();
 }
 
-echo "<script languaje='javascript' type='text/javascript'>
-
-            window.close();</script>";
+echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 
 /*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
@@ -152,10 +153,7 @@ echo "
 <?php
 $miVariable =  $_COOKIE["valuecombix"];
 echo
-"
-    <center>
-<h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4>
-    </center>    ";
+"<center><h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4></center>";
 ?>
 
 <form name="frmregistro" method="post" action="registra.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
@@ -187,15 +185,12 @@ $th=$COMPONENTE->LISTAR1($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
-            echo "
-    <td class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>
-                ";
+            echo "<td class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>";
         }
-echo "
-    <td style='color:peru;'>P".$roth[1]."</td>";
+echo "<td style='color:peru;'>P".$roth[1]."</td>";
     }
 ?>
-    <td style="color:peru;">PB</td>
+<td style="color:peru;">PB</td>
 </tr>
 </thead>
 <?php
@@ -210,28 +205,23 @@ echo "
 <td><input type='hidden' name='".$alumno[0]."txtalumnoregistro' id='".$alumno[0]."txtalumnoregistro' value='".$alumno[4].$seccion.$asina."'/></td>
 <td style='width:3%;'>".$alumno[0]."</td>
 <td style='width:25%;'>".$alumno[1]."  ".$alumno[2]."   ,".$alumno[3]."</td>
-"
-
-    ;
+";
 
 $td=$COMPONENTE->LISTAR1($asina);
-    while ($ro = mysql_fetch_array($td)) {
-        $lista=$INDICAXD->LISTAR($ro[0]);
-        while ($row22 = mysql_fetch_array($lista)) {
-
-
-$listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
-
-while ($row11 = mysql_fetch_array($listadice)) {
-    $cuenta;
-                $valorcelda=$ro[1].$row22[3];
-                $valueespacio=$row11["1p$valorcelda"];
-                $suma+=$valueespacio ;
-                $cuenta=$cuenta+1;
-                if ($valueespacio==0){
-                    $valueespacio="";
-                }
-                $pbb=$row11['9'];
+while ($ro = mysql_fetch_array($td)) {
+$lista=$INDICAXD->LISTAR($ro[0]);
+    while ($row22 = mysql_fetch_array($lista)) {
+    $listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
+    while ($row11 = mysql_fetch_array($listadice)) {
+        $cuenta;
+        $valorcelda=$ro[1].$row22[3];$valueespacio=$row11["1p$valorcelda"];#valor de la celda
+        #$promedio=round($row11["1promedio$ro[1]"]);#promedio por componente
+        $suma+=$valueespacio ;
+        $cuenta=$cuenta+1;
+        if ($valueespacio==0){
+            $valueespacio="";
+        }
+        $pbb=$row11['10'];
 }
 if($miVariable=="vertical"){
     $index=0;
@@ -240,9 +230,7 @@ if($miVariable=="vertical"){
 }
 
 
-            echo "
-<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);'/></td>
-                ";
+echo "<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);'/></td>";
         }
 $compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
         echo "<td><input type='text' style='width:80%;'  value=".$compromedio." id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."' readonly/></td>";
@@ -270,8 +258,6 @@ echo "
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
-<!--<script type="text/javascript" src="Js/bootstrap.js"></script>-->
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
@@ -280,8 +266,6 @@ echo "
 <script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 
 <script type="text/javascript">
-
-
  $("input[type='text']").focusout(function () {
 referencia = this.id;
 fila = referencia.substring(0,referencia.indexOf('p'));
@@ -299,6 +283,9 @@ var promedio=0; var suma = 0; var notas = 0; var notas_validas=true;
 $('input[name^="'+tnota+'"]').each( function(){
 notas = notas +1;
 if($.trim($(this).val()) == ''){
+notas_validas = false;
+}
+if($.trim($(this).val()) == 0){
 notas_validas = false;
 }
 suma = suma + parseInt($.trim($(this).val()) == '' ? 0 : $(this).val());
@@ -351,79 +338,4 @@ var sumado=orden+""+compone;
 document.frmregistro.sumado.value=suma/2;
 }
 
-</script>
-<script type="text/javascript">
-function mover(campo, event)
-{
-//sacamos en la variable enterCodigo el código de tecla
-//40 abajo
-//39 derecha
-//37 izquierda
-//38 arriba
-//alert(enterCodigo);
-var enterCodigo = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
-
-var i;
-var anchura = 3;//número de elementos del formulario en horizontal
-var altura = 4;//número de elementos del formulario en vertical
-
-//sacamos el campo que tiene el foco y guardamos su orden en la variable "i"
-for (i = 0; i < campo.frmregistro.elements.length; i++)
-if (campo == campo.frmregistro.elements)
-break;
-
-//Un alert para saber en qué número de campo está, va de 0 al número de campos -1
-//alert(i);
-if (enterCodigo == 40)
-{
-//pulsa el cursor de abajo
-if (i >= (anchura * (altura - 1)))//está en la última fila y hay que subirlo a la primera
-{
-i = i - (anchura * (altura - 1));
-}//fin del i>=
-else
-{//está en la primera o segunda fila
-i = i + anchura;//avanzamos de fila
-}//fin del else
-}//fin del if enterCodigo == 40
-else if (enterCodigo == 38)
-{
-//pulsa el cursor de arriba
-if (i <= (anchura - 1))//está en la primera fila y hay que bajarlo a la última
-{
-i = i + (anchura * (altura - 1));
-}//fin del i>=
-else
-{//está en la segunda o tercera fila
-i = i - anchura;//retrocedemos de fila
-}//fin del else
-}//fin del if enterCodigo == 38
-else if (enterCodigo == 37)
-{
-//pulsa el cursor de izquierda
-if (i % anchura == 0)//está en la primera columna y hay que desplazarlo a la última
-{
-i = i + (anchura - 1);
-}//fin del i%
-else
-{//está en la segunda o tercera columna
-i = i - 1;//retrocedemos de fila
-}//fin del else
-}//fin del if enterCodigo == 37
-else if (enterCodigo == 39)
-{
-//pulsa el cursor de derecha
-if (i % anchura == (anchura - 1))//está en la última columna y hay que desplazarlo a la primera
-{
-i = i - (anchura - 1);
-}//fin del i%
-else
-{//está en la primera o segunda columna
-i = i + 1;//retrocedemos de fila
-}//fin del else
-}//fin del if enterCodigo == 39
-
-// Ponemos el foco al elemento de formulario
-campo.frmregistro.elements.focus();
-}
 </script>

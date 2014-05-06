@@ -132,7 +132,7 @@ while ($row11 = mysql_fetch_array($listadice)) {
     $exonerado=$row11['p11'];
     $valorcelda=$ro[1].$row22[3];
     $valueespacio=$row11["1p$valorcelda"];
-    $pbb=$row11['9'];
+    $pbb=$row11['10'];
     $promedio=round($row11["1promedio$ro[1]"]);
 }
 if($valueespacio==0){

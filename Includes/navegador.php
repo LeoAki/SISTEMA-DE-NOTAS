@@ -2,9 +2,7 @@
     
 <ul class="nav nav-pills">
 <!--INICIO-->
-<li class="dropdown">
-    <a id="tula" class="dropdown-toggle" href="inicio.php"><i class="icon-home"></i>INICIO</a>
-</li>
+<li class="dropdown"><a id="tula" class="dropdown-toggle" href="inicio.php"><i class="icon-home"></i>INICIO</a></li>
 
 
 <!--PERFIL DEL USUARIO-->
@@ -83,7 +81,7 @@ if($_SESSION['tipodeusuario']=="profesor" and
   ($_SESSION['niveldeuser']=='1' or 
    $_SESSION['niveldeuser']=='2' )){
 ?>
-<li class="dropdown">
+<li class="dropdown" style="display: none"><!-- Reactivar -->
   <a id="tutoria"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-bullhorn"></i>TUTORIA<b class="caret"></b></a>
   <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
   <li><a id="" tabindex="-1" href="miconsolidado2.php"><i class="icon-random"></i>Consolidados</a></li>
@@ -109,7 +107,7 @@ if($_SESSION['tipodeusuario']=="profesor" and
            $_SESSION['niveldeuser']==2 or
 	   $_SESSION['niveldeuser']==3 or
            $_SESSION['niveldeuser']==9){ ?>
-          <li><a id="Registra_Notas" tabindex="-1" href="regnota.php"><i class="icon-book"></i>Notas</a></li>
+      <li><a id="Registra_Notas" tabindex="-1" href="regnota.php"><i class="icon-book"></i>Notas</a></li>
   <?php }?>
 
   <?php if($_SESSION['niveldeuser']==1){ ?>
@@ -118,19 +116,19 @@ if($_SESSION['tipodeusuario']=="profesor" and
 
  <?php if($_SESSION['tipodeusuario']=="profesor" and
           ($_SESSION['niveldeuser']=='9' )){ ?>
-          <li><a id="tasistencia" tabindex="-1" href="regasistencia.php"><i class="icon-calendar"></i>Asistencias</a></li>
+    <li style="display: none;"><a id="tasistencia" tabindex="-1" href="regasistencia.php"><i class="icon-calendar"></i>Asistencias</a></li>
   <?php }?>
 
   <?php if($_SESSION['tipodeusuario']=="profesor" and 
           ($_SESSION['niveldeuser']=='2' or 
            $_SESSION['niveldeuser']=='1' )){ ?>
-          <li><a id="tmensaje" tabindex="-1" href="regmensaje.php"><i class="icon-envelope"></i>Mensajes</a></li>
+    <li style="display: none;"><a id="tmensaje" tabindex="-1" href="regmensaje.php"><i class="icon-envelope"></i>Mensajes</a></li>
   <?php }?>
   
   <?php if($_SESSION['tipodeusuario']=="profesor" and 
           ($_SESSION['niveldeuser']=='2' or 
            $_SESSION['niveldeuser']=='1' )){ ?>
-          <li><a id="tmensaje" tabindex="-1" href="choose.php"><i class="icon-envelope"></i>PP.FF</a></li>
+    <li style="display: none;"><a id="tmensaje" tabindex="-1" href="choose.php"><i class="icon-envelope"></i>PP.FF</a></li>
   <?php }?>  
   
   </ul>

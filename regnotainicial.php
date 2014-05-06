@@ -9,20 +9,20 @@ $Doce= new Docente();$dni=$_SESSION['dni']; ?>
 <div style="margin-left: 2%;margin-right: 2%;"><center><h3 style="color: green">Registro De Notas ::   NIVEL INICIAL :D    ::</h3></center>
 <img src="Css/images/libro.jpeg" style="width:100px;" class="img-circle"/>  <i class='alert alert-success'>Ahora si misses, guarden con letras, que no habra problema alguno</i>
 
-<fieldset><legend>Bimestre Actual:IV</legend>
+<fieldset><legend>Bimestre Actual:I</legend>
 <table class="table table-hover">
-<thead><tr><th style="width: 10%;">Registro</th><th style="width: 15%;">Secci&oacute;n</th><th style="width: 13%">Asignatura</th><th style="width: 13%;"><center>I</center></th><th style="width: 13%;"><center>II</center></th><th style="width: 13%;"><center>III</center></th><th style="width: 13%;"><center>IV</center></th><th style="width: 10%;"><center>ANUAL</center></th></tr></thead>
+<thead><tr><th style="width: 12%;">Registro</th><th style="width: 15%;">Secci&oacute;n</th><th style="width: 13%">Asignatura</th><th style="width: 13%;"><center>I</center></th><th style="width: 13%;"><center>II</center></th><th style="width: 13%;"><center>III</center></th><th style="width: 13%;"><center>IV</center></th><th style="width: 8%;"><center>ANUAL</center></th></tr></thead>
 <tbody>
 <?
 $lista=$Doce->RegistroDocente($dni);
 while ($row = mysql_fetch_array($lista)):
 echo '<tr><td><b>REGISTRO N&#176; </b>'.$row[0].'</td>
-      <td>'.$row[2].' '.$row[3].' DE <b>'.$row[1].'</b></td><td>'.$row[7].'</td><td><center><a style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas <i class=\'icon icon-ok\'></i></a></center></td>';
-echo'<td><center><a  style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial2.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas <i class=\'icon icon-ok\'></i></a></center></td>';
-echo '<td>
-<center><a style=\'color:blue;display:none;\' TARGET =\'_blank\' href=\'registrainicial3.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>HABILITADO<i class=\'icon icon-ok\'></i></a>
+      <td>'.$row[2].' '.$row[3].' DE <b>'.$row[1].'</b></td><td>'.$row[7].'</td>
+      <td><center><a style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon icon-zoom-in\'></i></a>&nbsp;&nbsp;&nbsp;                   <a style=\'color:blue;\' TARGET =\'_blank\' href=\'registrainicial.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Registra <i class=\'icon icon-edit\'></i></a></center></td>
+      <td><center><a  style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial2.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon icon-zoom-in\'></i></a></center></td>
+      <td><center><a style=\'color:blue;display:none;\' TARGET =\'_blank\' href=\'registrainicial3.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>HABILITADO<i class=\'icon icon-ok\'></i></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a  style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial3.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas<i class=\'icon icon-ok\'></i></a>
+                  <a style=\'color:green;\' TARGET =\'_blank\' href=\'imprimir_reginicial3.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon icon-zoom-in\'></i></a>
 </center></td>';
 
 
@@ -32,7 +32,7 @@ echo '<td>
 &nbsp;&nbsp;&nbsp;&nbsp;</center></td>';
 }else{
 echo '<td>
-<center><a  style=\'color:green;display:;\' TARGET =\'_blank\' href=\'imprimir_reginicial4.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Verificado por sistemas<i class=\'icon icon-ok\'></i></a>
+<center><a  style=\'color:green;display:;\' TARGET =\'_blank\' href=\'imprimir_reginicial4.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon icon-zoom-in\'></i></a>
 </center></td>';
 }
 ?>

@@ -85,12 +85,10 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
-      # $REGISTROALUMNO->GRABAR();
+       $REGISTROALUMNO->GRABAR();
 }
 
-echo "<script languaje='javascript' type='text/javascript'>
-            window.close();
-      </script>";
+echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 /*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
 ?>
@@ -197,7 +195,7 @@ echo "</tr>";
 <center>
 <br><br>
 <div class="form-actions">
-<button style="display:none;" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
+<button type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
 </div>
 </center>
 </form>

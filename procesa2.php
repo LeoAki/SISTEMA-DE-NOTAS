@@ -6,7 +6,7 @@ session_destroy();echo "<script>window.location = 'index.php'</script>";
 ?>
 <div style="margin-left: 2%;margin-right: 2%;">
 <form>
-<fieldset><legend>Bimestre Actual: IV</legend><i>Revisen la lista del alumnado, asi como los registros que aparecen, en caso encuentren equivocaciones comunicar a la Subdireccion correspondiente o acercarse a la Subdireccion General- Oficina De Sistemas.</i>
+<fieldset><legend>Bimestre Actual: I</legend><i>Revisen la lista del alumnado, asi como los registros que aparecen, en caso encuentren equivocaciones comunicar a la Subdireccion correspondiente o acercarse a la Subdireccion General- Oficina De Sistemas.</i>
 <table class="table table-hover">
 <thead><tr class="success"><th style="width: 12%;">Registro</th><th style="width: 12%;">Secci&oacute;n</th><th style="width: 14%">Asignatura</th><th style="width: 14%;"><center>I</center></th><th style="width: 14%;"><center>II</center></th><th style="width: 14%;"><center>III</center></th><th style="width: 13%;"><center>IV</center></th><th style="width: 5%;"><center>ANUAL</center></th></tr></thead>
 <?
@@ -16,8 +16,11 @@ echo '<tr><td><b>REGISTRO N&#176;</b>'.$row[0].'</td><td>'.$row[2].$row[3].' DE 
 
 $url="";$ver="";# 1ER BIMESTRE
 
-if($row[10]==1){
-    $url='registra';$ver='Registrar';
+if($row[10]==0){
+    $url='imprimir_reg';$ver='Ver <i class=\'icon icon-ok\'></i>';
+}
+else if($row[10]==1){
+    $url='registra';$ver='Registrar <i class=\'icon icon-edit\'></i>';
 }else{
     $url='imprimir_reg';$ver='Verificado por sistemas<i class=\'icon icon-ok\'></i>';
 }
@@ -26,7 +29,7 @@ if($row[10]==1){
 <?
 $url2="";#2DO BIMESTRE
 if($row[11]==0){
-    $url2="#";echo '<td><center><a href=\'#divnota\'>DEBES NOTA <i class=\'icon-warning-sign\'></i></a></center></td>';
+    $url2="#";echo '<td><center><a href=\'#divnota\'>No aperturado<i class=\'icon-warning-sign\'></i></a></center></td>';
 }
 if($row[11]==1){
     $url2='registra1.php';
@@ -49,7 +52,7 @@ if($row[11]==2){
 #-------------------------------------------------------------------------------------------------------
 
 $url3='';#3ero BIMESTRE
-if($row[12]==0){ $url3='#';?><td><center><a href='#divnota'>DEBES NOTA <i class='icon-warning-sign'></i></a></center></td><? }
+if($row[12]==0){ $url3='#';?><td><center><a href='#divnota'>No aperturado <i class='icon-warning-sign'></i></a></center></td><? }
 if($row[12]==1){ $url3='registra3.php';
 ?>
 <td><center>
@@ -65,7 +68,7 @@ if($row[12]==2){?>
 #-------------------------------------------------------------------------------------------------------
 $url4='';#4to BIMESTRE
 switch ($row[13]) {
-    case 0:$url4='#';?><td><center><a href='#divnota'>DEBES NOTA <i class='icon-warning-sign'></i></a></center></td><?break;
+    case 0:$url4='#';?><td><center><a href='#divnota'>No aperturado<i class='icon-warning-sign'></i></a></center></td><?break;
     case 1:
         $url4='registra4.php';?>
         <td><center>

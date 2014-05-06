@@ -36,51 +36,40 @@ $DOCENTE= new Docente(); ?>
         <table id='listadocentes' name='listadocentes' class="table table-hover">
             <thead>
                 <tr class="gradeU">
-                    <th>CODIGO</th>
-                    <th>APELLIDOS</th>
-                    <th>NOMBRES</th>
-                    <th>DNI</th>
-                    <th>TIPO</th>
-                    <th>CARGO</th>
-                    <th>DIRECCION</th>
-                    <th>FIJO/CEL</th>
-                    <th>EMAIL</th>
-                    <th>Ver Registros</th>
+<th>CODIGO</th>   <th>DOCENTE</th>
+<th>DNI</th>      <th>TIPO</th>
+<th>CARGO</th>    <th>DIRECCION</th>
+<th>FIJO/CEL</th> <th>EMAIL</th>
+<th>Ver Registros</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $lista=$DOCENTE->LISTAR();
                 while ($row1 = mysql_fetch_array($lista)) {
-                    echo "
-                        <tr class='gradeA'>
-                            <td class='center'><a>" . $row1[0]. "</a></td>
-                            <td> $row1[1] $row1[2] </td>
-                            <td> $row1[3] </td>
-                            <td> $row1[4]</td>
-                            <td> $row1[5] </td>
-                            <td> $row1[7] </td>
-                            <td> $row1[6] </td>
-                            <td> $row1[8] / $row1[9]</td>
-                            <td> <a href='mailto:$row1[10]'>$row1[10]</a></td>
-                            <td><a href='listreg.php?dnidocente=".$row1[4]."'>Ver Registros</a></td>
+                    echo '
+                        <tr class=\'gradeA\'>
+                            <td class=\'center\'><a>' . $row1[0]. '</a></td>
+                            <td>'.$row1[1].' '.$row1[2].' ,'.$row1[3].'</td>
+                            <td>'.$row1[4].'</td>
+                            <td>'.$row1[5].'</td>
+                            <td>'.$row1[7].'</td>
+                            <td>'.$row1[6].'</td>
+                            <td>'.$row1[8].' / '.$row1[9].'</td>
+                            <td><a href=\'mailto:'.$row1[10].'\'>'.$row1[10].'</a></td>
+                            <td><a target=\'_blank\'  href=\'listreg.php?dnidocente='.$row1[4].'\'>Ver Registros</a></td>
                         </tr>
-                        ";
+                        ';
                 }
                 ?>
             </tbody>
             <tfoot>
             <tr>
-                    <th>CODIGO</th>
-                    <th>APELLIDOS</th>
-                    <th>NOMBRES</th>
-                    <th>DNI</th>
-                    <th>TIPO</th>
-                    <th>CARGO</th>
-                    <th>DIRECCION</th>
-                    <th>FIJO/CEL</th>
-                    <th>EMAIL</th>
-                    <th>#</th>
+<th>CODIGO</th>     <th>DOCENTE</th>
+<th>DNI</th>        <th>TIPO</th>
+<th>CARGO</th>      <th>DIRECCION</th>
+<th>FIJO/CEL</th>   <th>EMAIL</th>
+<th>#</th>
             </tr>
             </tfoot>
         </table>
@@ -102,14 +91,7 @@ $DOCENTE= new Docente(); ?>
 <script type="text/javascript" src="Include/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="Include/DataTables-1.9.4/media2/js/ColReorder.js"></script>
 <script type="text/javascript" src="Include/DataTables-1.9.4/extras/ColVis/media/js/ColVis.js"></script>
-<!--<script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
-    $('#listadocentes').dataTable( {
-        "sPaginationType": "full_numbers"
-    } );
-} );
 
-</script>-->
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				var oTable;
