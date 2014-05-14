@@ -41,7 +41,17 @@ $lista=$Doce->RegistroDocente($dni);
 while ($row = mysql_fetch_array($lista)) {
 echo '<tr><td><b>REGISTRO N&#176;</b> '.$row[0].'</td><td>'.$row[2].$row[3].' DE <b>'.$row[1].'</b></td><td>'.$row[7].'</td>';
 
-echo '<td><center><a  TARGET = \'_blank\' title=\'Registra\' href=\'imprimir_reg.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Ver <i class=\'icon-zoom-in\'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;                 <a  TARGET = \'_blank\' title=\'Registra\' href=\'registra.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Registrar <i class=\'icon-zoom-in\'></i></a></center></td>';
+if($row[10]==0){
+echo '<td><center>
+<a TARGET = \'_blank\' title=\'Registra\' href=\'imprimir_reg.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Imprimir Registro <i class=\'icon-print\'></i></a></center></td>';
+}
+else if($row[10]==1){
+echo '<td><center>
+<a TARGET = \'_blank\' title=\'Registra\' href=\'registra.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Registrar <i class=\'icon-edit\'></i></a>
+';?>
+<br><a style='color:red;' onclick='DOIT1(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
+<?echo '</center></td>';
+}
 
 $url2="";#2DO BIMESTRE
 if($row[11]==0){
@@ -52,7 +62,7 @@ if($row[11]==1){
 ?>
 <td><center>
     <a  TARGET = '_blank' href='<?=$url2?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
-    <br><a style='color:red;' onclick='DOIT(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
+    <br><a style='color:red;' onclick='DOIT2(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
 </center></td>
 <?
 }
@@ -100,7 +110,7 @@ switch ($row[13]) {
         $url4='registra4.php';?>
         <td><center>
         <a  TARGET = '_blank' href='<?=$url4?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
-        <br><a style='color:red;' onclick='DOITi3(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td><?break;
+        <br><a style='color:red;' onclick='DOITi4(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td><?break;
     case 2:
         ?>
         <td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg4.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td><?break;
@@ -156,10 +166,10 @@ $(document).ready(
         });
 </script>
 <script type="text/javascript">
-function DOIT(valueinn,num){
+function DOIT1(valueinn,num){
 eliminar=confirm("Terminaste de llenar tus notas?");
 if(eliminar){
-ajaxdelet(valueinn,num);
+ajaxdelet1(valueinn,num);
 alert('Gracias por terminar de llenar tu registro '+valueinn);
 location.reload();
 }

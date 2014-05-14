@@ -1,5 +1,5 @@
 <div class="bs-docs-example" style="background-color: silver;">
-    
+
 <ul class="nav nav-pills">
 <!--INICIO-->
 <li class="dropdown"><a id="tula" class="dropdown-toggle" href="inicio.php"><i class="icon-home"></i>INICIO</a></li>
@@ -10,25 +10,25 @@
 <li class="dropdown">
   <a id="perfil"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-user"></i>MI PERFIL<b class="caret"></b></a>
   <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-    <li><a id="cpassword" tabindex="-1" href="changepass.php"><i class="icon-cog"></i>Cambiar Contrase&ntilde;a</a></li>                  
-  </ul>  
+    <li><a id="cpassword" tabindex="-1" href="changepass.php"><i class="icon-cog"></i>Cambiar Contrase&ntilde;a</a></li>
+  </ul>
 </li>
 <?php }?>
 
 <!--ADMINISTRACION-->
-<?php if($_SESSION['tipodeusuario']=="profesor" and 
-        ($_SESSION['niveldeuser']==4 or 
-         $_SESSION['niveldeuser']==5 or 
-         $_SESSION['niveldeuser']==6 or 
-         $_SESSION['niveldeuser']==7 or 
+<?php if($_SESSION['tipodeusuario']=="profesor" and
+        ($_SESSION['niveldeuser']==4 or
+         $_SESSION['niveldeuser']==5 or
+         $_SESSION['niveldeuser']==6 or
+         $_SESSION['niveldeuser']==7 or
          $_SESSION['niveldeuser']==8)){?>
 <li class="dropdown">
   <a id="consult"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-search"></i>CONSULTAR<b class="caret"></b></a>
   <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
-<?php if($_SESSION['niveldeuser']==4 or 
-         $_SESSION['niveldeuser']==5 or 
-         $_SESSION['niveldeuser']==6 or 
-         $_SESSION['niveldeuser']==7 or 
+<?php if($_SESSION['niveldeuser']==4 or
+         $_SESSION['niveldeuser']==5 or
+         $_SESSION['niveldeuser']==6 or
+         $_SESSION['niveldeuser']==7 or
          $_SESSION['niveldeuser']==8){?>
 <li><a tabindex="-1" href="busdocente.php"><i class="icon-user"></i>Profesores</a></li>
   <?php
@@ -51,7 +51,7 @@
     <a id="tula" class="dropdown-toggle" href="inputsystem.php"><i class="icon-road"></i>INGRESOS AL SISTEMA</a>
 </li>
 
-<?php 
+<?php
 }
 ?>
 
@@ -64,7 +64,7 @@
   <a id="masis"class="dropdown-toggle" role="button" href="minotadetallada.php"><i class="icon-book"></i>ASIGNATURAS</a>
 </li>
 <li class="dropdown">
-  <a id="masis"class="dropdown-toggle" role="button" href="miasistencia.php"><i class="icon-calendar"></i>ASISTENCIA</a>  
+  <a id="masis"class="dropdown-toggle" role="button" href="miasistencia.php"><i class="icon-calendar"></i>ASISTENCIA</a>
 </li>
 <li class="dropdown">
   <a id="masis"class="dropdown-toggle" role="button" href="miboleta.php"><i class="icon-book"></i>BOLETA DE NOTAS</a>
@@ -77,15 +77,15 @@
 
 <!--TUTORIA-->
 <?php
-if($_SESSION['tipodeusuario']=="profesor" and 
-  ($_SESSION['niveldeuser']=='1' or 
+if($_SESSION['tipodeusuario']=="profesor" and
+  ($_SESSION['niveldeuser']=='1' or
    $_SESSION['niveldeuser']=='2' )){
 ?>
 <li class="dropdown" style="display: none"><!-- Reactivar -->
   <a id="tutoria"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-bullhorn"></i>TUTORIA<b class="caret"></b></a>
   <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
   <li><a id="" tabindex="-1" href="miconsolidado2.php"><i class="icon-random"></i>Consolidados</a></li>
-<?php if($_SESSION['tipodeusuario']=="profesor" and 
+<?php if($_SESSION['tipodeusuario']=="profesor" and
         ($_SESSION['niveldeuser']=='12')){ ?>
     <li><a id="" tabindex="-1" href="miacta.php"><i class="icon-tasks"></i>Actas</a></li>
     <li><a id="" tabindex="-1" href="estadisticagrado.php"><i class="icon-retweet"></i>Estad&iacute;sticas</a></li>
@@ -99,11 +99,11 @@ if($_SESSION['tipodeusuario']=="profesor" and
 ?>
 
 <!--REGISTRA-->
-<?php if($_SESSION['definemenu']==300){ ?>              
+<?php if($_SESSION['definemenu']==300){ ?>
 <li class="dropdown">
   <a id="regis"class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#"><i class="icon-th-list"></i>REGISTRA<b class="caret"></b></a>
   <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop1">
-  <?php if($_SESSION['niveldeuser']==1 or 
+  <?php if($_SESSION['niveldeuser']==1 or
            $_SESSION['niveldeuser']==2 or
 	   $_SESSION['niveldeuser']==3 or
            $_SESSION['niveldeuser']==9){ ?>
@@ -116,21 +116,21 @@ if($_SESSION['tipodeusuario']=="profesor" and
 
  <?php if($_SESSION['tipodeusuario']=="profesor" and
           ($_SESSION['niveldeuser']=='9' )){ ?>
-    <li style="display: none;"><a id="tasistencia" tabindex="-1" href="regasistencia.php"><i class="icon-calendar"></i>Asistencias</a></li>
+    <li style=""><a id="tasistencia" tabindex="-1" href="regasistencia.php"><i class="icon-calendar"></i>Asistencias</a></li>
   <?php }?>
 
-  <?php if($_SESSION['tipodeusuario']=="profesor" and 
-          ($_SESSION['niveldeuser']=='2' or 
+  <?php if($_SESSION['tipodeusuario']=="profesor" and
+          ($_SESSION['niveldeuser']=='2' or
            $_SESSION['niveldeuser']=='1' )){ ?>
-    <li style="display: none;"><a id="tmensaje" tabindex="-1" href="regmensaje.php"><i class="icon-envelope"></i>Mensajes</a></li>
+    <li style=""><a id="tmensaje" tabindex="-1" href="regmensaje.php"><i class="icon-envelope"></i>Mensajes</a></li>
   <?php }?>
-  
-  <?php if($_SESSION['tipodeusuario']=="profesor" and 
-          ($_SESSION['niveldeuser']=='2' or 
+
+  <?php if($_SESSION['tipodeusuario']=="profesor" and
+          ($_SESSION['niveldeuser']=='2' or
            $_SESSION['niveldeuser']=='1' )){ ?>
-    <li style="display: none;"><a id="tmensaje" tabindex="-1" href="choose.php"><i class="icon-envelope"></i>PP.FF</a></li>
-  <?php }?>  
-  
+    <li style=""><a id="tmensaje" tabindex="-1" href="choose.php"><i class="icon-envelope"></i>PP.FF</a></li>
+  <?php }?>
+
   </ul>
 </li>
 <?php }?>
@@ -146,7 +146,7 @@ if($_SESSION['tipodeusuario']=="profesor" and
       <li><a id="" tabindex="-1" href="#"><i class="icon-user"></i>4to Bimestre</a></li>
       <li><a id="" tabindex="-1" href="#"><i class="icon-user"></i>Anual</a></li>
   </ul>
-</li>              
+</li>
 <?php }?>
 
 <!--SOPORTE-->
@@ -164,7 +164,7 @@ if($_SESSION['tipodeusuario']=="profesor" and
 
         <li class="dropdown"><i class="icon-user"></i>Bienvenido(a) <?php
             require_once 'Class/Usuario.php';
-            $QUIEN= new Usuario(); 
+            $QUIEN= new Usuario();
             $uiui=$QUIEN->QUIENES($_SESSION['dni']);
             if($rowcito=  mysql_fetch_array($uiui)){
                 $paterno=$rowcito['paterno'];

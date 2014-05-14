@@ -168,7 +168,7 @@ echo
 <a>SE LLENARAN LOS REGISTROS DE MANERA : <b><?php echo $miVariable; ?></b></a><BR>
 <a>DOCENTE USA LA TECLA TAB PARA LA NAVEGACI&Oacute;N PORFAVOR</a>
 </center>
-</div>    
+</div>
 <br>
 <center>
 <table class="">
@@ -213,58 +213,25 @@ $lista=$INDICAXD->LISTAR($ro[0]);
     while ($row22 = mysql_fetch_array($lista)) {
     $listadice=RegistroAlumno::LISTAR($alumno[4].$seccion.$asina);
     while ($row11 = mysql_fetch_array($listadice)) {
-        $cuenta;
         $valorcelda=$ro[1].$row22[3];$valueespacio=$row11["1p$valorcelda"];#valor de la celda
-        #$promedio=round($row11["1promedio$ro[1]"]);#promedio por componente
-        $suma+=$valueespacio ;
-        $cuenta=$cuenta+1;
-        if ($valueespacio==0){
-            $valueespacio="";
-        }
-        $pbb=$row11['10'];
-}
-if($miVariable=="vertical"){
-    $index=0;
-}else{
-    $index=1;
-}
-
-
-echo "<td class='center' width:3%;><input tabindex='".$row22[$index]."' placeholder='FN' type='text' id='".$alumno[0]."p".$ro[1].$row22[3]."' name='".$alumno[0]."p".$ro[1].$row22[3]."' value='".$valueespacio."' style='width:89%;' maxlength=2 onkeypress='mover(this, event);tabular(event,this); return justNumbers(event);'/></td>";
-        }
-$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));
-        echo "<td><input type='text' style='width:80%;'  value=".$compromedio." id='".$alumno[0]."promedio".$ro[1]."' name='".$alumno[0]."promedio".$ro[1]."' readonly/></td>";
-$suma=0;
-$cuenta=0;
+        $promedio=round($row11["1promedio$ro[1]"]);#promedio por componente
+        $pbb=$row11['10'];#promedio final
+        if ($valueespacio==0) $valueespacio="";#si no hay valor a espacio en blanco
     }
-    $suma=0;
-    $cuenta=0;
-echo "<td><input type='text' style='width:80%;' id='".$alumno[0]."pb' value=".$pbb."  name='".$alumno[0]."pb' readonly/></td>";
-echo "
-</tr>
-";
-}
-?>
-</table>
-<div class="form-actions">
-<button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button>
-</div>
-</center>
-</form>
-<?php         } ?>
-    </body>
-</html>
-<!-------------------------------------------------------------------------------------------------->
-<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
-
+    #--navegador horizontal-vertical--#
+    if($miVariable=="vertical"){
+        $index=0;
+    }else{
+        $index=1;
+    }
+#--fin navegador horizontal-vertical--#
+echo '<td class=\'center\' width:3%;><input tabindex=\''.$row22[$index].'\' placeholder=\'FN\' type=\'text\' id=\''.$alumno[0].'p'.$ro[1].$row22[3].'\' name=\''.$alumno[0].'p'.$ro[1].$row22[3].'\' value=\''.$valueespacio.'\' style=\'width:89%;\' maxlength=\'2\'></td>';}
+echo '<td><input type=\'text\' style=\'width:80%;\'  value='.$promedio.' id=\''.$alumno[0].'promedio'.$ro[1].'\' name=\''.$alumno[0].'promedio'.$ro[1].'\' readonly/></td>';}
+echo '<td><input type=\'text\' id=\''.$alumno[0].'pb\' name=\''.$alumno[0].'pb\' value=\''.$pbb.'\' style=\'width:80%;\' readonly/></td></tr>';}
+?></table>
+<div class="form-actions"><button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button></div></center>
+</form> <?php         } ?></body></html>
+<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script><script type="text/javascript" src="Js/js.js"></script>
 <script type="text/javascript">
  $("input[type='text']").focusout(function () {
 referencia = this.id;
@@ -298,8 +265,6 @@ promedio = '';
 return promedio;
 }
 
-
-
 function justNumbers(e)
 {
     var keynum = window.event ? window.event.keyCode : e.which;
@@ -308,34 +273,4 @@ function justNumbers(e)
 
     return /\d/.test(String.fromCharCode(keynum));
 }
-
-function tabular(e,obj) {
-  tecla=(document.all) ? e.keyCode : e.which;
-  if(tecla!=13) return;
-  frm=obj.form;
-  for(i=0;i<frm.elements.length;i++)
-    if(frm.elements[i]==obj) {
-      if (i==frm.elements.length-1) i=-1;
-      break }
-  frmregistro.elements[i+1].focus();
-  return false;
-}
-
-function validaNum(n,mini,maxi)
-{
-n = parseInt(n)
-if ( n<mini || n>maxi )
-alert("El valor debe ser entre 05 y 20");
-n.value()=0;
-}
-
-function sumar(n,orden,compo) {
-n=parseInt(n);
-var suma=n+n;
-var orden=orden;
-var compone=compo;
-var sumado=orden+""+compone;
-document.frmregistro.sumado.value=suma/2;
-}
-
 </script>

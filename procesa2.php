@@ -16,16 +16,17 @@ echo '<tr><td><b>REGISTRO N&#176;</b>'.$row[0].'</td><td>'.$row[2].$row[3].' DE 
 
 $url="";$ver="";# 1ER BIMESTRE
 
-if($row[10]==0){
-    $url='imprimir_reg';$ver='Ver <i class=\'icon icon-ok\'></i>';
-}
-else if($row[10]==1){
-    $url='registra';$ver='Registrar <i class=\'icon icon-edit\'></i>';
-}else{
-    $url='imprimir_reg';$ver='Verificado por sistemas<i class=\'icon icon-ok\'></i>';
-}
+if($row[10]==0){        $url='imprimir_reg';$ver='Imprimir registro <i class=\'icon icon-print\'></i>'; }
+else if($row[10]==1){   $url='registra';$ver='Registrar <i class=\'icon icon-edit\'></i>';}
+else{                   $url='imprimir_reg';$ver='Verificado por sistemas<i class=\'icon icon-ok\'></i>';}
 ?>
-<td><center><a style='color:green;' TARGET = '_blank' title='Registra' href='<?=$url?>.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'><?=$ver?></a></center></td>
+<td>
+<center>
+<a style='color:green;' TARGET = '_blank' title='Registra' href='<?=$url?>.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'><?=$ver?></a><br>
+<?if($row[10]==1){?>
+<a style='color:red;' onclick='DOIT1(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
+<? }?>
+</center></td>
 <?
 $url2="";#2DO BIMESTRE
 if($row[11]==0){
@@ -36,7 +37,7 @@ if($row[11]==1){
 ?>
 <td><center>
     <a  TARGET = '_blank' href='<?=$url2?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
-    <br><a style='color:red;' onclick='DOIT1(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
+    <br><a style='color:red;' onclick='DOIT2(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a>
 </center></td>
 <?
 }
@@ -57,7 +58,7 @@ if($row[12]==1){ $url3='registra3.php';
 ?>
 <td><center>
 <a  TARGET = '_blank' href='<?=$url3?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
-<br><a style='color:red;' onclick='DOIT(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td>
+<br><a style='color:red;' onclick='DOIT3(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td>
 <?}
 if($row[12]==3){?>
 <td><center><a  TARGET = '_blank' href='imprimir_reg3.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td><?
@@ -73,7 +74,7 @@ switch ($row[13]) {
         $url4='registra4.php';?>
         <td><center>
         <a  TARGET = '_blank' href='<?=$url4?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
-        <br><a style='color:red;' onclick='DOIT3(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td><?break;
+        <br><a style='color:red;' onclick='DOIT4(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td><?break;
     case 2:
         ?>
         <td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg4.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td><?break;
@@ -108,7 +109,7 @@ cargar();
 function DOIT1(valueinn,num){
 eliminar=confirm("Terminaste de llenar tus notas?");
 if(eliminar){
-ajaxdelet(valueinn,num);
+ajaxdelet1(valueinn,num);
 cargar();
 }
 }

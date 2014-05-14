@@ -6,7 +6,7 @@
  */
 require_once 'Conection.php';
 class Docente extends Conection{
-    
+
     private $CODIGO;
     private $PATERNO;
     private $MATERNO;
@@ -14,7 +14,7 @@ class Docente extends Conection{
     private $DNI;
     private $CODIGOPERSONA;
     private $TIPOPROFE;
-    
+
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -91,27 +91,27 @@ class Docente extends Conection{
                 $DOCENTE->SetDATA($row[0], $row[1],$row[2],$row[3],$row[4],$row[5],$row[6]);
             }
         }  else {
-            echo 'NO SE ENCONTRO NINGUN REGISTRO';            
+            echo 'NO SE ENCONTRO NINGUN REGISTRO';
         }
         $conectar->CLOSE();
         unset($conectar);
         return $DOCENTE;
     }
-    
+
     public function GRABAR() {
         try {
             $this->CONECT();
             mysql_query("Call Sp_Docente('".$this->CODIGO."','".$this->PATERNO."',
                                         '".$this->MATERNO."','".$this->NOMBRES."',
                                         '".$this->DNI."','".$this->CODIGOPERSONA."',
-                                        '".$this->TIPOPROFE."')") 
+                                        '".$this->TIPOPROFE."')")
             or die(mysql_error());
             $this->CLOSE();
         } catch (Exception $exc) {
             echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
         }
    }
-   
+
    public function LISTAR() {
        $cone=new Conection();
        $cone->CONECT();
@@ -124,20 +124,20 @@ class Docente extends Conection{
        $cone->CLOSE();
        unset($cone);
        return $resultado;
-   }   
-   
-   
-   
+   }
+
+
+
    public function LISTAR_ex() {
        $cone=new Conection();
        $cone->CONECT();
-       $resultado=  mysql_query("Select d.codigo,d.paterno,d.materno,d.nombres,d.dni,tp.tipo from Docente d 
+       $resultado=  mysql_query("Select d.codigo,d.paterno,d.materno,d.nombres,d.dni,tp.tipo from Docente d
                                 inner join TipoProfe tp on d.tipoprofe=tp.codigo; ");
        $cone->CLOSE();
        unset($cone);
        return $resultado;
-   }   
-  
+   }
+
    public function TipoProfe() {
        $cone=new Conection();
        $cone->CONECT();
@@ -146,7 +146,7 @@ class Docente extends Conection{
        unset($cone);
        return $profe;
    }
-   
+
    public function RegistroDocente($dni) {
        $cone=new Conection();$cone->CONECT();
        $regi= mysql_query('SELECT r.codigo,
@@ -182,7 +182,7 @@ class Docente extends Conection{
        $cone=new Conection();
        $cone->CONECT();
        $misalumnos=mysql_query('
-       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn3, s.nombreseccion, ase.msn4
+       SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn1, s.nombreseccion, ase.msn2, ase.msn3, ase.msn4
 	FROM Alumno_Seccion ase
 	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
 	INNER JOIN Persona p ON ae.idpersona = p.codigo
@@ -364,7 +364,7 @@ class Docente extends Conection{
        unset ($cone);
        return $notasalumnosregistro;
    }
-   
+
    public function NOTASSECUNDARIAANUAL($codealum) {
        $cone=new Conection();
        $cone->CONECT();
@@ -376,10 +376,10 @@ class Docente extends Conection{
         inner join Registro r
         on ar.idregistro=r.codigo
         inner join Asinatura asin
-        on asin.codigo= r.codigoasinatura      
-        inner join RegistroAnual rega 
-        on ar.idalumnoregistro=rega.idalumnoregistro          
-        where ar.idalumnoseccion=$codealum 
+        on asin.codigo= r.codigoasinatura
+        inner join RegistroAnual rega
+        on ar.idalumnoregistro=rega.idalumnoregistro
+        where ar.idalumnoseccion=$codealum
         order by ar.idregistro;");
        $cone->CLOSE();
        unset($cone);
@@ -398,7 +398,7 @@ class Docente extends Conection{
         on ar.idregistro=r.codigo
         inner join Asinatura asin
         on asin.codigo= r.codigoasinatura
-        where ar.idalumnoseccion=$codealum 
+        where ar.idalumnoseccion=$codealum
         order by ar.idregistro;");
        $cone->CLOSE();
        unset($cone);
@@ -450,7 +450,7 @@ class Docente extends Conection{
        }
        return $sumando;
    }
-   
+
    public function cursocargonormalsec($nota,$sumando) {
        if($nota>0 and $nota<11){
            $new=1;
@@ -460,13 +460,13 @@ class Docente extends Conection{
        }
        return $sumando;
    }
-   
+
    public function puntajealumnopr($mat,$com,$art,$persoc,$educfis,$educrel,$ing,$comp,$ccaa) {
         $sumatotal=$mat+$com+$art+$persoc+$educfis+$educrel+$ing+$comp+$ccaa;
         if($sumatotal<-5) $sumatotal=0;
         return $sumatotal;
    }
-   
+
    public function puntajealumnosec($uno,$dos,$tres,$cuatro,$cinco,$seis,$siete,$ocho,$nueve,$diez,$once,$doce) {
         $sumatotal=$uno+$dos+$tres+$cuatro+$cinco+$seis+$siete+$ocho+$nueve+$diez+$once+$doce;
         if($sumatotal<-4) $sumatotal=0;
@@ -477,12 +477,12 @@ class Docente extends Conection{
         $prom= round($suma/$dividendo,2);
         return $prom;
    }
-   
+
    public function pesomat($doble,$num1,$num2) {
        $suma= round( ( ($doble*4) + ($num1*2) + ($num2*2) )/ 8,0);
        return $suma;
    }
-   
+
    public function pesocta($mayor,$menor) {
        $suma= round( ( ($mayor*4) + ($menor*2) )/ 6,0);
        return $suma;
@@ -525,7 +525,7 @@ class Docente extends Conection{
        }
        return $sumando;
    }
-   
+
    public function fnpr($nota,$sumando) {
        if($nota==0){
            $new=1;
@@ -535,7 +535,7 @@ class Docente extends Conection{
        }
        return $sumando;
    }
-   
+
    public function fnsec($nota,$sumando) {
        if($nota==0){
            $new=1;
@@ -545,7 +545,7 @@ class Docente extends Conection{
        }
        return $sumando;
    }
-   
+
    public function NOTASCONSOLIDADOTUTORIA111($codigoalumnoseccion){
        $cone=new Conection();
        $cone->CONECT();
@@ -565,7 +565,7 @@ class Docente extends Conection{
        unset ($cone);
        return $notasalumnosregistro;
    }
-   
+
    public function NOTASCONSOLIDADOTUTORIAINiCIALdos($codigoalumnoseccion){
        $cone=new Conection();
        $cone->CONECT();

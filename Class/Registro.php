@@ -71,6 +71,18 @@ class Registro extends Conection{
         unset($cone);
         return $query;
     }
+
+    function Updateregistro1($param) {
+        $conc=new Conection();
+        $conc->CONECT();
+        $query=mysql_query("
+            update Registro set activo1=0
+            where codigo=$param;
+            ");
+        $conc->CLOSE();
+        return $query;
+    }
+
     function Updateregistro($param) {
         $conc=new Conection();
         $conc->CONECT();

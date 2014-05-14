@@ -101,6 +101,21 @@ function MostrarComponen2(sinatur,seccx,idpersonast){
         }
         ajax.send(null);
 }
+
+function ajaxdelet1(code,divas){
+        divResultadoo = document.getElementById(divas);
+        ajax=objetoAjax();
+        ajax.open("GET", "procesa1.php?codigo="+code);
+        ajax.onreadystatechange=function(){
+            if (ajax.readyState==4) {
+                       divResultadoo.innerHTML = ajax.responseText
+               }else{
+                   document.getElementById(divas).innerHTML='Espere un momento porfavor';
+               }
+        }
+        ajax.send(null);
+}
+
 function ajaxdelet(code,divas){
         divResultadoo = document.getElementById(divas);
         ajax=objetoAjax();
