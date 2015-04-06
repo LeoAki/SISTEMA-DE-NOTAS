@@ -76,7 +76,7 @@ class Registro extends Conection{
         $conc=new Conection();
         $conc->CONECT();
         $query=mysql_query("
-            update Registro set activo1=0
+            update Registro set activo1=3
             where codigo=$param;
             ");
         $conc->CLOSE();

@@ -32,7 +32,8 @@ class Niveles extends Conection{
               asep.1pf1,asep.1pf2,asep.1pf3,asep.1pf4,asep.1pf5,asep.1pf6,asep.1pf7,asep.1pf8,
               asep.2pf1,asep.2pf2,asep.2pf3,asep.2pf4,asep.2pf5,asep.2pf6,asep.2pf7,asep.2pf8,
               asep.3pf1,asep.3pf2,asep.3pf3,asep.3pf4,asep.3pf5,asep.3pf6,asep.3pf7,asep.3pf8,
-              asep.4pf1,asep.4pf2,asep.4pf3,asep.4pf4,asep.4pf5,asep.4pf6,asep.4pf7,asep.4pf8,asep.3pf9,asep.4pf9
+              asep.4pf1,asep.4pf2,asep.4pf3,asep.4pf4,asep.4pf5,asep.4pf6,asep.4pf7,asep.4pf8,asep.3pf9,asep.4pf9,
+              asep.1pf9
 	FROM Alumno_Seccion ase
         INNER JOIN Alumno_Seccion_Pf asep ON ase.idalumnoseccion=asep.codigo
 	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo

@@ -210,7 +210,7 @@ class ALUMNO_SECCION extends Conection{
         $this->MSN2=$msn2;
         $this->MSN3=$msn3;
         $this->MSN4=$msn4;
-        
+
         $this->FJ1=$fj1;
         $this->FI1=$fi1;
         $this->T1=$t1;
@@ -218,7 +218,7 @@ class ALUMNO_SECCION extends Conection{
         $this->FJ2=$fj2;
         $this->FI2=$fi2;
         $this->T2=$t2;
-        
+
         $this->FJ3=$fj3;
         $this->FI3=$fj3;
         $this->T3=$t3;
@@ -231,7 +231,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATE($codigoalumnoseccion){
         try {
             $this->CONECT();
-            mysql_query('UPDATE Alumno_Seccion SET msn1=\''.$this->MSN1.'\' where idalumnoseccion=\''.$codigoalumnoseccion.'\'') or die (mysql_error());
+            mysql_query('UPDATE Alumno_Seccion SET msn4=\''.$this->MSN4.'\' where idalumnoseccion=\''.$codigoalumnoseccion.'\'') or die (mysql_error());
             $this->CLOSE();
         } catch (Exception $exc) {
             echo 'Ups! Lo lamentamos ah ocurrido el siguiente error: '.$exc;
@@ -240,7 +240,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATEFIT($codigoalumnoseccion2){
             try {
                 $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET fj1='".$this->FJ1."', fi1='".$this->FI1."', t1='".$this->T1."'
+                mysql_query("UPDATE Alumno_Seccion SET fj4='".$this->FJ4."', fi4='".$this->FI4."', t4='".$this->T4."'
                     where idalumnoseccion='".$codigoalumnoseccion2."'") or
                         die (mysql_error());
                 $this->CLOSE();
@@ -262,7 +262,7 @@ class ALUMNO_SECCION extends Conection{
                                     where au.idpersona='".$persona."';");
        $cone->CLOSE();
        return $detailals;
-       
+
       }
 
 }

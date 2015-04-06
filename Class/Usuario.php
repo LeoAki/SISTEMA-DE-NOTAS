@@ -189,7 +189,7 @@ class Usuario extends Conection{
         $this->CLOSE();return $retnewpass;
     }
     
-    public function Ingresos($usuario) {
+    public function Ingresos() {
         $con= new Conection();
         $con->CONECT();
         $viewinput=mysql_query('

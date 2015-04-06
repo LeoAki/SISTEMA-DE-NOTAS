@@ -62,7 +62,7 @@ class Component extends Conection{
         $this->TOTAL_CRITERIO = $TOTAL_CRITERIO;
     }
 
-    public function LISTAR($asinatura) {
+    public function LISTAR2($asinatura) {
     $cone=new Conection();$cone->CONECT();
     $resultado=  mysql_query('select c.codigo,c.nrocomponent,asi.asinatura,c.componente from Component c
                              inner join Asinatura asi on c.sinature=asi.codigo

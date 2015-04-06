@@ -11,6 +11,17 @@ class InicialMessage extends Conection{
     private $MESSAGENEURO;
     private $MESSAGEEF;
 
+#########################################################
+    private $MESSAGEINGLES;                             #
+    public function getMESSAGEINGLES() {                #
+        return $this->MESSAGEINGLES;                    #
+    }                                                   #
+                                                        #
+    public function setMESSAGEINGLES($MESSAGEINGLES) {  #
+        $this->MESSAGEINGLES = $MESSAGEINGLES;          #
+    }                                                   #
+#########################################################
+
     public function getCODE() {
         return $this->CODE;
     }
@@ -57,6 +68,7 @@ class InicialMessage extends Conection{
        case 1:$view='asep.message_pc';break;
        case 2:$view='asep.message_neuro';break;
        case 3:$view='asep.message_edufi';break;
+       case 4:$view='asep.message_ngls' ;break;
        default :$view='';
        endswitch;
        $cone=new Conection();
@@ -120,6 +132,18 @@ public function GRABAR_EDUFI() {
     $this->CONECT();
     mysql_query('Call Sp_inicialmessage_edufi(\''.$this->CODE.'\',\''.$this->CODEALSEC.'\',
         \''.$this->MESSAGEEF.'\');')
+    or die(mysql_error());
+    $this->CLOSE();
+ } catch (Exception $exc) {
+      echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
+ }
+}
+
+public function GRABAR_INGLES() {
+ try {
+    $this->CONECT();
+    mysql_query('Call Sp_inicialmessage_ngls(\''.$this->CODE.'\',\''.$this->CODEALSEC.'\',
+        \''.$this->MESSAGEINGLES.'\');')
     or die(mysql_error());
     $this->CLOSE();
  } catch (Exception $exc) {

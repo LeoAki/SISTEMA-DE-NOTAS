@@ -17,7 +17,15 @@ class Alumno_Seccion_Pf extends Conection{
     private $CPF1;    private $CPF2;    private $CPF3;    private $CPF4;
     private $CPF5;    private $CPF6;    private $CPF7;    private $CPF8;
 
-    private $TPF9;    private $CPF9;
+    private $TPF9;    private $CPF9;    private $UPF9;
+    
+    public function getUPF9() {
+        return $this->UPF9;
+    }
+
+    public function setUPF9($UPF9) {
+        $this->UPF9 = $UPF9;
+    }
 
     //new atributes ***********************************
     public function getTPF9() {
@@ -319,7 +327,7 @@ class Alumno_Seccion_Pf extends Conection{
                                                       \''.$this->TPF3.'\',\''.$this->TPF4.'\',\''.$this->TPF5.'\',\''.$this->TPF6.'\',\''.$this->TPF7.'\',
                                                       \''.$this->TPF8.'\',\''.$this->CPF1.'\',\''.$this->CPF2.'\',\''.$this->CPF3.'\',\''.$this->CPF4.'\',
                                                       \''.$this->CPF5.'\',\''.$this->CPF6.'\',\''.$this->CPF7.'\',\''.$this->CPF8.'\',
-                                                      \''.$this->TPF9.'\',\''.$this->CPF9.'\');')or die(mysql_error());
+                                                      \''.$this->TPF9.'\',\''.$this->CPF9.'\',\''.$this->UPF9.'\');')or die(mysql_error());
         $this->CLOSE();
         } catch (Exception $exc) {
               echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
@@ -344,7 +352,7 @@ class Alumno_Seccion_Pf extends Conection{
               asep.2pf1,asep.2pf2,asep.2pf3,asep.2pf4,asep.2pf5,asep.2pf6,asep.2pf7,asep.2pf8,
               asep.3pf1,asep.3pf2,asep.3pf3,asep.3pf4,asep.3pf5,asep.3pf6,asep.3pf7,asep.3pf8,
               asep.4pf1,asep.4pf2,asep.4pf3,asep.4pf4,asep.4pf5,asep.4pf6,asep.4pf7,asep.4pf8,
-              asep.3pf9,asep.4pf9
+              asep.3pf9,asep.4pf9,asep.1pf9
 	FROM Alumno_Seccion ase
         INNER JOIN Alumno_Seccion_Pf asep ON ase.idalumnoseccion=asep.codigo
 	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
