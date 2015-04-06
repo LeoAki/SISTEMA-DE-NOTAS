@@ -5,7 +5,7 @@ $dnidocenteusario=$_SESSION['dni']; ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="Css/images/favicon.ico"><title>Mensajes::Informatica</title>
+<link rel="icon" href="Css/images/favicon.ico"><title>Mensajes::Religion</title>
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
@@ -44,7 +44,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
 //-------------------------------------------------------------------------------------
 ?>
 <div style="margin-left: 3%;margin-right: 3%;" id="primer">
-<center><h4 style="color: green">SOLO PROFESORES DE NEUROMOTRIZ IVB</h4></center>
+<center><h4 style="color: green">SOLO PROFESORES DE RELIGION IVB</h4></center>
 <?php
 $generalseccion=$DOCENTE->NAMESECCIOMICARGO($codigodocentenow);
 if($filanamesection=  mysql_fetch_array($generalseccion))   $gradoname=$filanamesection[0];$nameseccionnow=$filanamesection[1];$nomnivelsection=$filanamesection[2];
@@ -79,8 +79,7 @@ while ($row = mysql_fetch_array($whoisalumno)): ?>
 </div>
 </body>
 <?php }?>
-<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script><script type="text/javascript" src="Js/js.js"></script>
+<script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script><script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script><script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script><script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

@@ -83,7 +83,7 @@ echo "
                 $exonerado=$row11['4p11'];
                 $valorcelda=$ro[1].$row22[3];
                 $valueespacio=$row11["4p$valorcelda"];
-                $pbb=$row11['9'];
+                $pbb=$row11['11'];
                 $promedio=round($row11["4promedio$ro[1]"]);
             }
             if($valueespacio==0){

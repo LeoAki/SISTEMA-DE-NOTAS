@@ -61,7 +61,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setAlumnoregistro($_REQUEST[$x.'txtalumnoregistro']);
        $REGISTROALUMNO->setRegistro($_REQUEST['txtregistro']);
        $REGISTROALUMNO->setAlumnoseccion($_REQUEST[$x.'txtidalumno']);
-       $REGISTROALUMNO->setSituacion();
+       #$REGISTROALUMNO->setSituacion();
        $REGISTROALUMNO->setPromedio1($_REQUEST[$x.'promedio1']);
        $REGISTROALUMNO->setPromedio2($_REQUEST[$x.'promedio2']);
        $REGISTROALUMNO->setPromedio3($_REQUEST[$x.'promedio3']);

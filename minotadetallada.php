@@ -107,7 +107,7 @@ echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
     ?>
     </select>
     </form>
-    <div id="divcompo4"></div><br><br><br><br><br><br>
+    <div id="divcompo4leo"></div><br><br><br><br><br><br>
     </center>
     </fieldset>
 </div>
@@ -115,7 +115,7 @@ echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
 <!----------------------END CONTENT------------------------------------------------------------>
 </div>
 </center>
-        <?php require_once 'Includes/modal-footer.php'; ?>
+<?php require_once 'Includes/modal-footer.php'; ?>
     </body>
 <?php }?>
 <!-------------------------------------------------------------------------------------------------->
@@ -123,5 +123,5 @@ echo "<option value='".$rowsinaturegene[0]."'>".$rowsinaturegene[4]."</option>";
 
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script><script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script><script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script><script type="text/javascript" src="Js/ajax.js"></script>
+<!--<script type="text/javascript" src="Js/jquery.innerfade.js"></script>--><script type="text/javascript" src="Js/ajax.js"></script>
 </html>

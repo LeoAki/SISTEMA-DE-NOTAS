@@ -12,7 +12,7 @@ session_destroy();echo "<script>window.location = 'index.php'</script>";
 <body style="background-color: linen;">
 <? require_once 'Includes/navegador.php';require_once 'Class/Component.php';require_once 'Class/Indicador.php';$INDICAXD= new Indicador();?>
 
-<a><strong>BIMESTRE EN CURSO </strong>I BIMESTRE</a><center><h3 style="color: green">DEFINICION DE LOS CRITERIOS DE EVALUACI&Oacute;N</h3>
+<a><strong>BIMESTRE EN CURSO </strong>IV BIMESTRE</a><center><h3 style="color: green">DEFINICION DE LOS CRITERIOS DE EVALUACI&Oacute;N</h3>
 <? $asina = $_GET['asinatura'];?>
 
 <table>
@@ -26,7 +26,7 @@ if($rowgeneral=  mysql_fetch_array($mysql)) $variable1=$rowgeneral['grado'];$var
 
 <table class="table table-hover">
 <?
-$COMPONENTE=new Component();    $listar=$COMPONENTE->LISTAR1($asina);
+$COMPONENTE=new Component();    $listar=$COMPONENTE->LISTAR4($asina);
 while ($row = mysql_fetch_array($listar)):
 ?>
 <tr class='success'><td style='width:10%'><h4><i><?=$row[1]?></i></h4></td><td><h4><i><?=$row[3]?></i></h4></td></tr>

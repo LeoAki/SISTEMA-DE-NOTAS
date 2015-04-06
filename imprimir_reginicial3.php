@@ -1,8 +1,8 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+
 <link rel="icon" href="Css/images/favicon.ico">
 <title>LNCC ONLINE:: Imprime tu registro inicial III bimestre</title>
 <?php
@@ -55,28 +55,20 @@ echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$v
 <?php
 $COMPONENTE=new Component();
 $listar=$COMPONENTE->LISTAR3($asina);
-while ($row = mysql_fetch_array($listar)) {
-echo "
-<tr class='gradeX'>
-</tr>";
-    $lista=$INDICAXD->LISTAR($row[0]);
-    while ($row2 = mysql_fetch_array($lista)) {
-        echo "<tr class='gradeA'>
-                <td><a style='color:black;font-size: 11px;'>[<strong>$row[1]</strong>.$row2[3]]</a></td>
-                <td><a style='color:black;font-size: 11px;'>$row2[2]</a></td></tr>";}
+while ($row = mysql_fetch_array($listar)) { ?>
+<tr class='gradeX'></tr>
+<?php $lista=$INDICAXD->LISTAR($row[0]);
+    while ($row2 = mysql_fetch_array($lista)) {?>
+        <tr class='gradeA'>
+                <td><a style='color:black;font-size: 11px;'>[<strong><?=$row[1]?></strong>.<?=$row2[3]?>]</a></td>
+                <td><a style='color:black;font-size: 11px;'><?=$row2[2]?></a></td></tr> <?php }
 }
 ?>
 </table>
-
 <center>
 <table>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><a style='color:black;font-size: 12px;'><b>NÂ°</b></a></td>
-    <td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
+<td></td><td></td><td></td><td></td><td><a style='color:black;font-size: 12px;'><b>N¡Æ</b></a></td><td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
 <?php
 $th=$COMPONENTE->LISTAR3($asina);
     while ($roth = mysql_fetch_array($th)) {
@@ -193,23 +185,13 @@ echo "
     -------------------<br><a style='color:black;font-size: 11px;'>Prof: $paternodocente $maternodocente, $nombresdocente<br>
     Impreso el ".date("d-F-Y")."  .  Id.Registro:$registro
     </a>
-    </center>
-";
+    </center>";
 ?>
 </div>
-        <a class="button" href="javascript:imprSelec('todo')">IMPRIMIR LA PAGINA</a>
-<?php
-        }
-?>
+<a class="button" href="javascript:imprSelec('todo')">IMPRIMIR LA PAGINA</a>
+<?php } ?>
     </body>
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

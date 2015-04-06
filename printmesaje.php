@@ -34,7 +34,7 @@ $gradoname=$filanamesection[0];$nameseccionnow=$filanamesection[1];$nomnivelsect
     <tr>
     <td style='display:none;'><input type='text' value='<?=$row[0]?>' id='txtcodigo<?=$row[1]?>' name='txtcodigo<?=$row[1]?>'/></td>
     <td><a style='font-size:12px;'><?=$row[1]?></a></td><td><a style='font-size:12px;'><?=$row[2].' '.$row[3].' ,'.$row[4]?></a></td>
-    <td><a style='font-size:12px;'><?=$row[7]?></a></td>
+    <td><a style='font-size:12px;'><?=$row[9]?></a></td>
     </tr>
 <?  endwhile;?>
 </table>

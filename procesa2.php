@@ -42,12 +42,12 @@ if($row[11]==1){
 <?
 }
 if($row[11]==3){
-?><td><center><a  TARGET = '_blank' href='imprimir_reg1.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td>
+?><td><center><a  TARGET = '_blank' href='imprimir_reg2.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td>
 <?
 }
 if($row[11]==2){
 ?>
-<td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg1.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td>
+<td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg2.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td>
 <?
 }
 #-------------------------------------------------------------------------------------------------------
@@ -57,14 +57,22 @@ if($row[12]==0){ $url3='#';?><td><center><a href='#divnota'>No aperturado <i cla
 if($row[12]==1){ $url3='registra3.php';
 ?>
 <td><center>
-<a  TARGET = '_blank' href='<?=$url3?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
+<a TARGET = '_blank' href='<?=$url3?>?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>REGISTRAR</a>
 <br><a style='color:red;' onclick='DOIT3(<?=$row[0]?>,<?=$row[0]?>)'>Completaste tu registro?</a><br><a id='<?=$row[0]?>'></a></center></td>
 <?}
 if($row[12]==3){?>
-<td><center><a  TARGET = '_blank' href='imprimir_reg3.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO, puedes imprimir! <i class='icon icon-ok'></i></a></center></td><?
+<td>
+<center>
+    <a  TARGET = '_blank' href='imprimir_reg3.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>CONCLUIDO<i class='icon icon-ok'></i></a><br>
+    <?php if($row[1]==='PRIMARIA'){ ?> <a  TARGET = '_blank' href='letras3_reg.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>EN LETRAS<i class='icon icon-ok'></i></a><?php } ?>    
+</center></td><?
 }
 if($row[12]==2){?>
-<td><center><a style='color:green;'  TARGET = '_blank' href='imprimir_reg3.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a></center></td><?
+<td>
+<center>
+    <a style='color:green;'  TARGET = '_blank' href='imprimir_reg3.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>Verificado por sistemas <i class='icon icon-ok'></i></a>
+    <?php if($row[1]==='PRIMARIA'){ ?> <a  TARGET = '_blank' href='letras3_reg.php?sinatura=<?=$row[8]?>&seccion=<?=$row[9]?>&registro=<?=$row[0]?>'>EN LETRAS<i class='icon icon-ok'></i></a><?php } ?>
+</center></td><?
 }
 #-------------------------------------------------------------------------------------------------------
 $url4='';#4to BIMESTRE
@@ -98,10 +106,10 @@ En caso ocurra un error y usted no deba notas; comuniquese a <a TARGET = '_blank
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script><script type="text/javascript" src="Js/ajax.js"></script>
 
 <script type="text/javascript">
-function DOIT(valueinn,num){
+function DOIT2(valueinn,num){
 eliminar=confirm("Terminaste de llenar tus notas?");
 if(eliminar){
-ajaxdelet3(valueinn,num);
+ajaxdelet(valueinn,num);
 cargar();
 }
 }
@@ -115,6 +123,13 @@ cargar();
 }
 
 function DOIT3(valueinn,num){
+eliminar=confirm("Terminaste de llenar tus notas?");
+if(eliminar){
+ajaxdelet3(valueinn,num);
+cargar();}
+}
+
+function DOIT4(valueinn,num){
 eliminar=confirm("Terminaste de llenar tus notas?");
 if(eliminar){
 ajaxdelet4(valueinn,num);

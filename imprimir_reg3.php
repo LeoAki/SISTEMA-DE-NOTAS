@@ -11,7 +11,7 @@ session_destroy();echo "<script>window.location = 'index.php'</script>";
 <body><div id="todo" name="todo">
 <?php
 require_once 'Class/Component.php';require_once 'Class/Indicador.php';require_once 'Class/RegistroAlumno.php';
-$INDICAXD= new Indicador();$REGISTROALUMNO= new RegistroAlumno();?> <center><a style='color:black;font-size: 11px;'><b>REGISTRO DE NOTAS DEL III BIMESTRE-2013</b></a></center>
+$INDICAXD= new Indicador();$REGISTROALUMNO= new RegistroAlumno();?> <center><a style='color:black;font-size: 11px;'><b>REGISTRO DE NOTAS DEL III BIMESTRE-2014</b></a></center>
 <?PHP
 $asina = $_GET['sinatura'];$seccion = $_GET['seccion'];$registro=$_GET['registro'];$responsable=$REGISTROALUMNO->Nom_res_registr($registro);
 
@@ -83,7 +83,7 @@ echo "
                 $exonerado=$row11['3p11'];
                 $valorcelda=$ro[1].$row22[3];
                 $valueespacio=$row11["3p$valorcelda"];
-                $pbb=$row11['9'];
+                $pbb=$row11['11'];
                 $promedio=round($row11["3promedio$ro[1]"]);
             }
             if($valueespacio==0){

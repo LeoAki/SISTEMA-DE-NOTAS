@@ -41,7 +41,7 @@ $lista=$Doce->RegistroDocente($dni);
 while ($row = mysql_fetch_array($lista)) {
 echo '<tr><td><b>REGISTRO N&#176;</b> '.$row[0].'</td><td>'.$row[2].$row[3].' DE <b>'.$row[1].'</b></td><td>'.$row[7].'</td>';
 
-if($row[10]==0){
+if($row[10]==0 || $row[10]==2 || $row[10]==3){
 echo '<td><center>
 <a TARGET = \'_blank\' title=\'Registra\' href=\'imprimir_reg.php?sinatura='.$row[8].'&seccion='.$row[9].'&registro='.$row[0].'\'>Imprimir Registro <i class=\'icon-print\'></i></a></center></td>';
 }
@@ -191,6 +191,13 @@ ajaxdelet4(valueinn,num);
 alert('Gracias por terminar de llenar tu registro '+valueinn+', Ahora puedes imprimirlo');
 location.reload();
 }
+}
+
+function DOIT4(valueinn,num){
+eliminar=confirm("Terminaste de llenar tus notas?");
+if(eliminar){
+ajaxdelet4(valueinn,num);
+cargar();}
 }
 </script>
 </html>

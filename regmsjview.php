@@ -21,11 +21,11 @@ $whoisdocente=$DOCENTE->DOCENTE_USUARIO($dnidocenteusario);
 if($filasiencuentra=  mysql_fetch_array($whoisdocente)){ $codigodocentenow=$filasiencuentra[0];$apellidosdocentenow=$filasiencuentra[1].' '.$filasiencuentra[2].' ,'.$filasiencuentra[3];}
 ?>
 <div style="margin-left: 5%;margin-right: 5%;" id="primer">
-<center><h5>Escriba las observaciones y recomendaciones a los PP.FF. : III B</h5></center>
+<center><h5>Escriba las observaciones y recomendaciones a los PP.FF. : IV B</h5></center>
 <article>
-<section>1. <i style="font-size:12px;">Asiste puntualmente a las reuniones y entrevistas del aula.</i></section><section>2. <i style="font-size:12px;">Se esmera en la presentacion e higiene personal del ni&ntilde;o.</i></section><section>3. <i style="font-size:12px;">Apoya permanentemente con las tareas de su ni&ntilde;o.</i></section><section>4. <i style="font-size:12px;">Incentiva la participaci&oacute;n de su ni&ntilde;o en las diferentes actividades.</i></section>
+    <section>1. <i style="font-size:12px;">Asiste puntualmente a las reuniones y entrevistas del aula.</i></section><section>2. <i style="font-size:12px;">Se esmera en la presentacion e higiene personal del ni&ntilde;o.</i></section><section>3. <i style="font-size:12px;">Participaci&oacute;n de los cuenta cuentos.</i></section><section>4. <i style="font-size:12px;">Incentiva la participaci&oacute;n de su ni&ntilde;o en las diferentes actividades.</i></section>
 <section>5. <i style="font-size:12px;">Se interesa en el avance y progreso de su ni&ntilde;o.</i></section><section>6. <i style="font-size:12px;">Colabora con las necesidades del aula.</i></section><section>7. <i style="font-size:12px;">Firma diaramente la Bit&aacute;cora.</i></section><section>8. <i style="font-size:12px;">Recoge el informe del progreso del ni&ntilde;o en la fecha indicada.</i></section>
-<section>9. <i style="font-size:12px;">Recoge Asiste a las Escuela de Familia.</i></section>
+<section>9. <i style="font-size:12px;">Participaci贸n de los PP.FF, en el Congreso de Familias.</i></section>
 </article>
 <?
 $generalseccion=$DOCENTE->NAMESECCIOMICARGO($codigodocentenow);

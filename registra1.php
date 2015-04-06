@@ -62,12 +62,13 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setAlumnoregistro($_REQUEST[$x.'txtalumnoregistro']);
        $REGISTROALUMNO->setRegistro($_REQUEST['txtregistro']);
        $REGISTROALUMNO->setAlumnoseccion($_REQUEST[$x.'txtidalumno']);
-       $REGISTROALUMNO->setSituacion();
+       #$REGISTROALUMNO->setSituacion();
        $REGISTROALUMNO->setPromedio1($_REQUEST[$x.'promedio1']);
        $REGISTROALUMNO->setPromedio2($_REQUEST[$x.'promedio2']);
        $REGISTROALUMNO->setPromedio3($_REQUEST[$x.'promedio3']);
        $REGISTROALUMNO->setPromedio4($_REQUEST[$x.'promedio4']);
        $REGISTROALUMNO->setPromedio5($_REQUEST[$x.'promedio5']);
+       $REGISTROALUMNO->setPromedio6($_REQUEST[$x.'promedio6']);
        $REGISTROALUMNO->setPb($_REQUEST[$x.'pb']);
 
        $REGISTROALUMNO->setP11($_REQUEST[$x.'p11']);       $REGISTROALUMNO->setP12($_REQUEST[$x.'p12']);
@@ -76,7 +77,7 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP17($_REQUEST[$x.'p17']);       $REGISTROALUMNO->setP18($_REQUEST[$x.'p18']);
        $REGISTROALUMNO->setP19($_REQUEST[$x.'p19']);       $REGISTROALUMNO->setP110($_REQUEST[$x.'p110']);
        $REGISTROALUMNO->setP111($_REQUEST[$x.'p111']);       $REGISTROALUMNO->setP112($_REQUEST[$x.'p112']);#add this
-       $REGISTROALUMNO->setP113($_REQUEST[$x.'p113']);#add this       
+       $REGISTROALUMNO->setP113($_REQUEST[$x.'p113']);#add this
 
        $REGISTROALUMNO->setP21($_REQUEST[$x.'p21']);       $REGISTROALUMNO->setP22($_REQUEST[$x.'p22']);
        $REGISTROALUMNO->setP23($_REQUEST[$x.'p23']);       $REGISTROALUMNO->setP24($_REQUEST[$x.'p24']);
@@ -102,12 +103,12 @@ for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
 
+       $REGISTROALUMNO->setP61($_REQUEST[$x.'p61']);
+       
        $REGISTROALUMNO->GRABAR2();
 }
 
-echo "<script languaje='javascript' type='text/javascript'>
-            window.close();
-</script>";
+echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 }
 
 /*--------------------------------------FIN DEL MANTENIMIENTO-----------------------------------*/
@@ -134,31 +135,26 @@ if($namesection=  mysql_fetch_array($datitossecciones)){
 <table class="display">
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR($asina);
-while ($row = mysql_fetch_array($listar)) {
-echo "
+$listar=$COMPONENTE->LISTAR2($asina);
+while ($row = mysql_fetch_array($listar)):?>
 <tr class='gradeX'>
-</tr>";
-    $lista=$INDICAXD->LISTAR($row[0]);
-    while ($row2 = mysql_fetch_array($lista)) {
-        echo "
+</tr>
+    <?$lista=$INDICAXD->LISTAR($row[0]);
+    while ($row2 = mysql_fetch_array($lista)):?>
             <tr class='gradeA'>
-                <td class='center'><a>" .$row[1].".". $row2[3]. "</a></td>
-                <td>".$row2[2]."</td>
+                <td class='center'><a><?=$row[1].'.'. $row2[3]?></a></td>
+                <td><?=$row2[2]?></td>
              </tr>
-            ";
-    }
-}
+    <?endwhile;
+endwhile;
 ?>
 </table>
 <?php
-$miVariable =  $_COOKIE["valuecombix"];
-echo
-"    <center>
-    <h4>AULA[".$variable1.$nombredelaseccion."] NIVEL[" .$variable2."]    "." [Asignatura: ".$variable3."] </h4>
-    </center>    ";
-;
-?>
+$miVariable =  $_COOKIE["valuecombix"];?>
+<center>
+<h4>AULA[<?=$variable1.$nombredelaseccion?>] NIVEL[<?=$variable2?>]   [Asignatura: <?=$variable3?>] </h4>
+</center>
+
 <form name="frmregistro" method="post" action="registra1.php?GRABAR=0"><!--?sinatura=68&seccion=212&registro=412-->
 <div style="background-color: greenyellow;">
 <center>
@@ -184,14 +180,14 @@ echo
     <td>N&#176;</td>
     <td>Alumno</td>
 <?php
-$th=$COMPONENTE->LISTAR($asina);
-    while ($roth = mysql_fetch_array($th)) {
-        $listath=$INDICAXD->LISTAR($roth[0]);
-        while ($rowth = mysql_fetch_array($listath)) {
-echo "<td class='center' width:2%;>" .$roth[1].".". $rowth[3]. "</td>";
-        }
-echo "<td style='color:peru;'>P".$roth[1]."</td>";
-    }
+$th=$COMPONENTE->LISTAR2($asina);
+while ($roth = mysql_fetch_array($th)):
+$listath=$INDICAXD->LISTAR($roth[0]);
+    while ($rowth = mysql_fetch_array($listath)):?>
+    <td class='center' width:2%;><?=$roth[1].'.'.$rowth[3]?></td>
+  <?endwhile;
+  ?><td style='color:peru;'>P<?=$roth[1]?></td><?
+endwhile;
 ?>
     <td style="color:peru;">PB</td>
 </tr>
@@ -200,16 +196,16 @@ echo "<td style='color:peru;'>P".$roth[1]."</td>";
 $reAl = new RegistroAlumno();
 $listaalumnado=$reAl->ListaAlumnoSeccion($seccion);
 
-while ($alumno = mysql_fetch_array($listaalumnado)) {
-echo "
+while ($alumno = mysql_fetch_array($listaalumnado)) {?>
 <tr>
-<td><td><input type='hidden' name='txtregistro' id='txtregistro' value='$registro'/></td></td>
-<td><input type='hidden' name='$alumno[0]txtidalumno' id='$alumno[0]txtidalumno' value='$alumno[4]'/></td>
-<td><input type='hidden' name='$alumno[0]txtalumnoregistro' id='$alumno[0]txtalumnoregistro' value='$alumno[4]$seccion$asina'/></td>
-<td style='width:3%;'>$alumno[0]</td>
-<td style='width:25%;'>$alumno[1] $alumno[2] ,$alumno[3]</td>";
+<td><td><input type='hidden' name='txtregistro' id='txtregistro' value='<?=$registro?>'/></td></td>
+<td><input type='hidden' name='<?=$alumno[0]?>txtidalumno' id='<?=$alumno[0]?>txtidalumno' value='<?=$alumno[4]?>'/></td>
+<td><input type='hidden' name='<?=$alumno[0]?>txtalumnoregistro' id='<?=$alumno[0]?>txtalumnoregistro' value='<?=$alumno[4].$seccion.$asina?>'/></td>
+<td style='width:3%;'><?=$alumno[0]?></td>
+<td style='width:25%;'><?=$alumno[1].' '.$alumno[2].' ,'.$alumno[3]?></td>
 
-$td=$COMPONENTE->LISTAR($asina);
+<?
+$td=$COMPONENTE->LISTAR2($asina);
 while ($ro = mysql_fetch_array($td)) {
 
 $lista=$INDICAXD->LISTAR($ro[0]);
@@ -220,11 +216,12 @@ while ($row11 = mysql_fetch_array($listadice)) {
     $valorcelda=$ro[1].$row22[3];
     $valueespacio=$row11["2p$valorcelda"];#valor de la celda
     $promedio=round($row11["2promedio$ro[1]"]);#promedio por componente
-    $pbb=$row11['9'];#promedio final
+    $pbb=$row11['10'];#promedio final
+    #if ($valueespacio==0) $valueespacio="";#si no hay valor a espacio en blanco
+    #$cuenta;#utaq
+    #$suma+=$valueespacio ;
+    #$cuenta=$cuenta+1;
     if ($valueespacio==0) $valueespacio="";#si no hay valor a espacio en blanco
-    $cuenta;#utaq
-    $suma+=$valueespacio ;
-    $cuenta=$cuenta+1;
 }
 #--------------navegador horizontal-vertical----------------#
 if($miVariable=="vertical"){
@@ -233,18 +230,24 @@ if($miVariable=="vertical"){
     $index=1;
 }
 #--------------fin navegador horizontal-vertical----------------#
-echo "<td class='center' width:3%;><input tabindex='$row22[$index]' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]'value='$valueespacio' style='width:89%;' maxlength=2'  onkeypress=''/></td>";
-}
-$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));#por borrar
-echo "<td><input type='text' style='width:80%;'  value=$promedio id='$alumno[0]promedio$ro[1]' name='$alumno[0]promedio$ro[1]' readonly/></td>";
-$suma=0;$cuenta=0;
-}
-$suma=0;$cuenta=0;
-echo "<td><input type='text' id='$alumno[0]pb' name='$alumno[0]pb' value=$pbb style='width:80%;' readonly/></td>";
-echo "</tr>";
-}
+#echo "<td class='center' width:3%;><input tabindex='$row22[$index]' placeholder='FN' type='text' id='$alumno[0]p$ro[1]$row22[3]' name='$alumno[0]p$ro[1]$row22[3]'value='$valueespacio' style='width:89%;' maxlength=2'  onkeypress=''/></td>";
+#}
+#$compromedio=$row["promedio$valorcelda"]=round(($suma/$cuenta));#por borrar
+#echo "<td><input type='text' style='width:80%;'  value=$promedio id='$alumno[0]promedio$ro[1]' name='$alumno[0]promedio$ro[1]' readonly/></td>";
+#$suma=0;$cuenta=0;
+#}
+#$suma=0;$cuenta=0;
+#echo "<td><input type='text' id='$alumno[0]pb' name='$alumno[0]pb' value=$pbb style='width:80%;' readonly/></td>";
+#echo "</tr>";
+#}
 ?>
-</table>
+<!--</table>-->
+<?
+echo '<td class=\'center\' width:3%;><input tabindex=\''.$row22[$index].'\' placeholder=\'FN\' type=\'text\' id=\''.$alumno[0].'p'.$ro[1].$row22[3].'\' name=\''.$alumno[0].'p'.$ro[1].$row22[3].'\' value=\''.$valueespacio.'\' style=\'width:89%;\' maxlength=\'2\'></td>';}
+echo '<td><input type=\'text\' style=\'width:80%;\'  value='.$promedio.' id=\''.$alumno[0].'promedio'.$ro[1].'\' name=\''.$alumno[0].'promedio'.$ro[1].'\' readonly/></td>';}
+echo '<td><input type=\'text\' id=\''.$alumno[0].'pb\' name=\''.$alumno[0].'pb\' value=\''.$pbb.'\' style=\'width:80%;\' readonly/></td></tr>';}
+?></table>
+
 <div class="form-actions">
 <button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR/ACTUALIZAR</button>
 </div>
@@ -257,7 +260,6 @@ echo "</tr>";
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/js.js"></script>
 <script type="text/javascript">
-
 
  $("input[type='text']").focusout(function () {
 referencia = this.id;
@@ -288,12 +290,4 @@ promedio = '';
 return promedio;
 }
 
-function justNumbers(e)
-{
-    var keynum = window.event ? window.event.keyCode : e.which;
-    if ((keynum == 8) || (keynum == 46))
-    return true;
-
-    return /\d/.test(String.fromCharCode(keynum));
-}
 </script>

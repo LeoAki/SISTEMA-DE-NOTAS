@@ -1,6 +1,6 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
-<?php session_start();?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="Css/images/favicon.ico">
 <title>LNCC ONLINE--Mi Boleta De Notas</title>
@@ -27,7 +27,7 @@ while ($rowalupersona = mysql_fetch_array($formalu)) {
     $alumno_seccionm=$rowalupersona[1];#alumnoseccion
 }
 ?>
-       
+
 <div id="miboleta">
 <center><h3 style="color: green">BOLETA DE NOTAS</h3></center>
 <a class="text-error">SECCI&Oacute;N:</a><a class='text-info'><i><?=$gradoedu?>&#176<?=$namesec?></i><b> NIVEL:</b><i><?=$niveledu?></i><br></a>
@@ -38,7 +38,7 @@ while ($rowalupersona = mysql_fetch_array($formalu)) {
 <thead>
 <tr><th>ASIGNATURAS</th><th>I B</th><th>II B</th><th>III B</th><th>IV B</th></tr>
 </thead>
-<tbody>                 
+<tbody>
 <?php $sinagene=$SINATURAGENERAL->ListaDescriptiva($gradoedu, $niveledu);
 while ($rowsinaturegene = mysql_fetch_array($sinagene)) {
 ?><tr><td><?=$rowsinaturegene[4];#ASIGNATURA?></td>
@@ -117,7 +117,8 @@ if($niveledu=="INICIAL"):
     $viewregin3=$regininew->LISTAR_3($alumno_seccionm.$codeidsec.$rowsinaturegene[0]);
     while ($rowviewnotas3 = mysql_fetch_array($viewregin3)) {
     $pbview3=$rowviewnotas3["pb"];
-    echo '<td>'.$pbview3.'</td>';}
+    echo '<td>'.$pbview3.'</td>';
+    }
 endif;
 
 if($niveledu=="SECUNDARIA"):
@@ -125,7 +126,8 @@ if($niveledu=="SECUNDARIA"):
     while ($rowviewnotas3 = mysql_fetch_array($viewregi3)) {
     $pbview3=$rowviewnotas3["3pb"];
     if($pbview3=='' || $pbview3==0) $pbview3='FN';
-    echo '<td>'.$pbview3.'</td>';}
+    echo '<td>'.$pbview3.'</td>';
+    }
 endif;
 
 if($niveledu=="PRIMARIA"):
@@ -162,8 +164,8 @@ echo"</tr>";
 </table>
 <a href="javascript:imprSelec('miboleta')"><i class="icon-print"></i>Imprimir</a>
 <br><br><br><br><br><br>
-</center>            
-</div>   
+</center>
+</div>
 <?php require_once 'Includes/modal-footer.php'; ?>
 </body>
 
@@ -171,5 +173,5 @@ echo"</tr>";
 
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script><script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script><script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>    
+<!--<script type="text/javascript" src="Js/jquery.innerfade.js"></script>-->
 </html>

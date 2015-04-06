@@ -26,7 +26,7 @@ if($filasiencuentra=  mysql_fetch_array($whoisdocente)) $codigodocentenow=$filas
 
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-    $ALUMNOSECCION->setMSN1(htmlentities($_REQUEST['txtmensaje'.$x],ENT_QUOTES,"UTF-8"));
+    $ALUMNOSECCION->setMSN4(htmlentities($_REQUEST['txtmensaje'.$x],ENT_QUOTES,"UTF-8"));
     $ALUMNOSECCION->UPDATE($_REQUEST['txtcodigo'.$x]);
 }
     echo "<script>window.location = 'regmensaje.php'</script>";
@@ -54,7 +54,7 @@ while ($row = mysql_fetch_array($whoisalumno)) {
     <td style='display:none;'><input type='text' value='<?=$row[0]?>' id='txtcodigo<?=$row[1]?>' name='txtcodigo<?=$row[1]?>'/></td>
     <td><b><?=$row[1]?></b></td>
     <td><b><?=$row[2].' '.$row[3].' </b>'.$row[4]?></td>
-    <td><input type='text' style='width:100%' value='<?=$row[5]?>' id='txtmensaje<?=$row[1]?>' name='txtmensaje<?=$row[1]?>'/></td>
+    <td><input type='text' style='width:100%' value='<?=$row[9]?>' id='txtmensaje<?=$row[1]?>' name='txtmensaje<?=$row[1]?>'/></td>
     </tr>
 <?
 }
@@ -74,6 +74,5 @@ echo $row[6];
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
 <script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

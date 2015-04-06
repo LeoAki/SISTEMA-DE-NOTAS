@@ -5,7 +5,7 @@ $dnidocenteusario=$_SESSION['dni']; ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="Css/images/favicon.ico"><title>Mensajes::Educacion Fisica</title>
+<link rel="icon" href="Css/images/favicon.ico"><title>Mensajes::Informatica</title>
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 <link href="Include/data-table/css/demo_page.css" rel="stylesheet"/>
@@ -20,7 +20,6 @@ echo "<script>window.location = 'index.php'</script>";
 ?>
 <body>
 <?php
-require_once 'Includes/navegador.php';
 include_once 'Class/Docente.php';
 $DOCENTE= new Docente();
 include_once 'Class/InicialMessage.php'; $AlSECIONPF= new InicialMessage();
@@ -30,27 +29,16 @@ if($filasiencuentra=  mysql_fetch_array($whoisdocente)):
     $apellidosdocentenow=$filasiencuentra[1].' '.$filasiencuentra[2].' ,'.$filasiencuentra[3];
 endif;
 
-//--------------------------------------------MANTENIMIENTO--------------------------
-#BUCLE REPETITIVO
-if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
-for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
-    $AlSECIONPF->setCODE($_REQUEST['txtcodigo'.$x]);
-    $AlSECIONPF->setCODEALSEC($_REQUEST['txtcodigo'.$x]);
-    $AlSECIONPF->setMESSAGEEF(htmlentities($_REQUEST['txtnota1'.$x],ENT_QUOTES,"UTF-8"));
-    $AlSECIONPF->GRABAR_EDUFI();
-}
-    echo '<script>window.location = \'messageedufi.php\'</script>';
-}
 //-------------------------------------------------------------------------------------
 ?>
 <div style="margin-left: 3%;margin-right: 3%;" id="primer">
-<center><h4 style="color: green">SOLO PROFESORES DE EDUCACION FISICA IVB</h4></center>
+<center><h4 style="color: green">SOLO PROFESORES DE EDUCACION FISICA IB</h4></center>
 <?php
 $generalseccion=$DOCENTE->NAMESECCIOMICARGO($codigodocentenow);
 if($filanamesection=  mysql_fetch_array($generalseccion))   $gradoname=$filanamesection[0];$nameseccionnow=$filanamesection[1];$nomnivelsection=$filanamesection[2];
 echo '<h5 style=\'color: peru\'>SECCION: '.$gradoname.' '.$nameseccionnow.' '.$nomnivelsection.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TUTOR: '.$apellidosdocentenow.'</h5>';
 ?>
-<form id="frmmensaje" method="post" action="messageedufi.php?GRABAR=1">
+
 <fieldset>
 <table class="table table-hover">
     <tr class="gradeU">
@@ -70,17 +58,16 @@ while ($row = mysql_fetch_array($whoisalumno)): ?>
     </td>
     <?='<td><b>'.$row[1].'</b></td>
     <td><b>'.$row[2].' '.$row[3].' ,</b>'.$row[4].'</td>';?>
-    <td><input type='text' value='<?=$row[5]?>' id='txtnota1<?=$row[1]?>' name='txtnota1<?=$row[1]?>' placeholder='FN' style='width:100%;'/></td>
+    <td><?=$row[5]?></td>
 </tr>
 <?endwhile;?>
 </table></fieldset>
 <center><div class="form-actions"><button type="submit"class="btn btn-primary"><i>GRABAR/ACTUALIZAR LOS MENSAJES</i></button></div></center>
-</form>
+
 </div>
 </body>
 <?php }?>
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="Js/bootstrap-dropdown.js"></script><script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script><script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

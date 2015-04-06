@@ -111,7 +111,7 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
 <table class="display">
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR($asina);
+$listar=$COMPONENTE->LISTAR2($asina);
 while ($row = mysql_fetch_array($listar)) {
 echo "
 <tr class='gradeX'>
@@ -145,7 +145,7 @@ echo
     <td>N</td>
     <td>Alumno</td>
 <?php
-$th=$COMPONENTE->LISTAR($asina);
+$th=$COMPONENTE->LISTAR2($asina);
     while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
@@ -170,7 +170,7 @@ echo "
 <td style='width:3%;'>$alumno[0]</td>
 <td style='width:25%;'>$alumno[1] $alumno[2] ,$alumno[3]</td>";
 
-$td=$COMPONENTE->LISTAR($asina);
+$td=$COMPONENTE->LISTAR2($asina);
     while ($ro = mysql_fetch_array($td)) {
         $lista=$INDICAXD->LISTAR($ro[0]);
         while ($row22 = mysql_fetch_array($lista)) {
@@ -217,5 +217,4 @@ echo "</tr>";
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
 <script type="text/javascript" src="Js/bootstrap-collapse.js"></script>

@@ -36,8 +36,8 @@ while ($secciondate = mysql_fetch_array($datosaula)) {
 <div>
     <ul id="myTab" class="nav nav-tabs">
     <li><a href="#uno" data-toggle="tab"><i class="white icon-thumbs-up"></i>I BIMESTRE</a></li>
-    <li><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
-    <li class="active"><a href="#tres" data-toggle="tab"><i class=" icon-bullhorn"></i>III BIMESTRE</a></li>
+    <li class="active"><a href="#dos" data-toggle="tab"><i class=" icon-bullhorn"></i>II BIMESTRE</a></li>
+    <li><a href="#tres" data-toggle="tab"><i class=" icon-bullhorn"></i>III BIMESTRE</a></li>
     <li><a href="#cuatro" data-toggle="tab"><i class=" icon-bullhorn"></i>IV BIMESTRE</a></li>
 </ul>
 </div>
@@ -60,7 +60,7 @@ clic <a href="consolidadoajax.php?niveldelaula=<?php echo $niveldelaula ?>&codig
 
 <!------------------------------------------------CONTENT II bimestre----------------------------------------------->
 
-<div class="tab-pane fade" id="dos">
+<div class="tab-pane fade in active" id="dos">
     
 <h1>CONSOLIDADO II B</h1>
 <h5>SECCI&Oacute;N  :<?php echo "[".$gradodelaula.$nombresecciondelaula."] ||| NIVEL:[".$niveldelaula."] ||| "; ?>TUTOR  :<?php echo $profeesaula;?></h5>
@@ -77,13 +77,15 @@ clic <a  target='_blanck' href="consolidadoajax2.php?niveldelaula=<?php echo $ni
 </div>
 
 <!------------------------------------------------CONTENT III bimestre---------------------------------------------->
-<div class="tab-pane fade in active" id="tres">
-    
+<div class="tab-pane fade" id="tres">
+
+    <div style="">
 <h1>CONSOLIDADO III B</h1>
 <h5>SECCI&Oacute;N  :<?php echo "[".$gradodelaula.$nombresecciondelaula."] ||| NIVEL:[".$niveldelaula."] ||| "; ?>TUTOR  :<?php echo $profeesaula;?></h5>
 
     <div id="divtext"><h3>Si no puede visualizar el consolidado, 
 clic <a  target='_blanck' href="consolidadoajax3.php?niveldelaula=<?php echo $niveldelaula ?>&codigoseccion=<?php echo $codigoseccion?>&gradodelaula=<?php echo $gradodelaula?>">AQUI</a></h3>
+    </div>
     </div>
 </div>
 

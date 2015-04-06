@@ -3,8 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="Css/images/favicon.ico">
-<title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
+<link rel="icon" href="Css/images/favicon.ico"><title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
 <?php
 require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
@@ -21,7 +20,6 @@ echo "<script>window.location = 'index.php'</script>";
 
 <body>
 <?php
-require_once 'Includes/navegador.php';
 require_once 'Class/Component.php';
 require_once 'Class/Indicador.php';
 require_once 'Class/RegistroAlumnoInicial.php';
@@ -30,19 +28,12 @@ $REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
 <center><h3 style="color: green">Registro De Notas por asignatura- III BIMESTRE :: INICIAL ::</h3></center>
 <?PHP
-$asina = $_GET['sinatura'];
-$seccion = $_GET['seccion'];
-$registro=$_GET['registro'];
+$asina = $_GET['sinatura'];$seccion = $_GET['seccion'];$registro=$_GET['registro'];
 
 /*--------------------------------------MANTENIMIENTO-----------------------------------*/
 //Listar registros
 #BUCLE REPETITIVO
 if(isset($_REQUEST['GRABAR'])){ // se envio el formulario?
-$queryalu=$REGISTROALUMNO->ListaAlumnoSeccion($seccion);
-
-while ($rowgeneral = mysql_fetch_array($queryalu)) {
-    $count=$count+1;
-}
 
 for($x =1 ; $x <= 35; $x++){//recorremos todos los alumnos,se recuperan cada uno de los datos del form siempre y cuando se hayan enviado, de lo contrario los omite
 
@@ -110,38 +101,23 @@ if($rowgeneral=  mysql_fetch_array($mysql)){
 <?php
 $COMPONENTE=new Component();
 $listar=$COMPONENTE->LISTAR3($asina);
-while ($row = mysql_fetch_array($listar)) {
-echo "
-<tr class='gradeX'>
-</tr>";
-    $lista=$INDICAXD->LISTAR($row[0]);
+while ($row = mysql_fetch_array($listar)) {?>
+<tr class='gradeX'></tr>
+<?php $lista=$INDICAXD->LISTAR($row[0]);
     while ($row2 = mysql_fetch_array($lista)) {
-        echo "
-            <tr class='gradeA'>
-                <td class='center'><a>$row[1].$row2[3]</a></td>
-                <td>".$row2[2]."</td>
-             </tr>
-            ";
+        echo "<tr class='gradeA'><td class='center'><a>$row[1].$row2[3]</a></td><td>".$row2[2]."</td></tr>";
     }
 }
 ?>
 </table>
 
-<?php
-echo
-"<center><h4> $variable1 $variable2 ASIGNATURA: $variable3 </h4></center>";
-?>
+<?php echo "<center><h4> $variable1 $variable2 ASIGNATURA: $variable3 </h4></center>"; ?>
 <form name="frmregistro" method="post" action="registrainicial3.php?GRABAR=0">
 <center>
 <table class="">
 <thead>
 <tr class="">
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>N</td>
-    <td>Alumno</td>
+    <td></td><td></td><td></td><td></td><td>N</td><td>Alumno</td>
 <?php
 $th=$COMPONENTE->LISTAR3($asina);
     while ($roth = mysql_fetch_array($th)) {
@@ -200,7 +176,7 @@ echo "</tr>";
 <center>
 <br><br>
 <div class="form-actions">
-<button style="" type="submit"class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
+<button style="" type="submit" class="btn btn-primary" id="btnsavea" name="btnsavea">GRABAR O ACTUALIZAR NOTAS</button>
 </div>
 </center>
 </form>
@@ -209,11 +185,3 @@ echo "</tr>";
 </html>
 <!-------------------------------------------------------------------------------------------------->
 <script type="text/javascript" src="Js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="Js/js.js"></script>
-<!----------------------------------BOOTSTRAP--js--------------------------------------------------->
-<script type="text/javascript" src="Js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="Js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
-<script type="text/javascript" src="Js/bootstrap-collapse.js"></script>

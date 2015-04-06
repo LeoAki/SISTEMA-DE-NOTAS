@@ -39,6 +39,8 @@ for($x =1 ; $x <= 35; $x++){
        $REGISTROALUMNO->setPromedio3($_REQUEST[$x.'promedio3']);
        $REGISTROALUMNO->setPromedio4($_REQUEST[$x.'promedio4']);
        $REGISTROALUMNO->setPromedio5($_REQUEST[$x.'promedio5']);
+       $REGISTROALUMNO->setPromedio6($_REQUEST[$x.'promedio6']);
+       $REGISTROALUMNO->setPromedio7($_REQUEST[$x.'promedio7']);
        $REGISTROALUMNO->setPb($_REQUEST[$x.'pb']);
 
        $REGISTROALUMNO->setP11($_REQUEST[$x.'p11']);       $REGISTROALUMNO->setP12($_REQUEST[$x.'p12']);
@@ -75,6 +77,8 @@ for($x =1 ; $x <= 35; $x++){
        $REGISTROALUMNO->setP57($_REQUEST[$x.'p57']);       $REGISTROALUMNO->setP58($_REQUEST[$x.'p58']);
        $REGISTROALUMNO->setP59($_REQUEST[$x.'p59']);       $REGISTROALUMNO->setP510($_REQUEST[$x.'p510']);
        $REGISTROALUMNO->SETP511($_REQUEST[$x.'p511']);     $REGISTROALUMNO->SETP512($_REQUEST[$x.'p212']);
+       
+       $REGISTROALUMNO->setP61($_REQUEST[$x.'p61']);       $REGISTROALUMNO->setP71($_REQUEST[$x.'p71']);
 
        $REGISTROALUMNO->GRABAR4();
 }
@@ -129,7 +133,7 @@ $lista=$INDICAXD->LISTAR($ro[0]);
     while ($row11 = mysql_fetch_array($listadice)) {
         $valorcelda=$ro[1].$row22[3];$valueespacio=$row11["4p$valorcelda"];#valor de la celda
         $promedio=round($row11["4promedio$ro[1]"]);#promedio por componente
-        $pbb=$row11['9'];#promedio final
+        $pbb=$row11['11'];#promedio final
         if ($valueespacio==0) $valueespacio="";#si no hay valor a espacio en blanco
     }
     #--navegador horizontal-vertical--#
@@ -177,14 +181,5 @@ promedio = (suma == 0) ? 0 : Math.round(suma / notas);
 promedio = '';
 }
 return promedio;
-}
-
-function justNumbers(e)
-{
-    var keynum = window.event ? window.event.keyCode : e.which;
-    if ((keynum == 8) || (keynum == 46))
-    return true;
-
-    return /\d/.test(String.fromCharCode(keynum));
 }
 </script>

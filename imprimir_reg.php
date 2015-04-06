@@ -22,7 +22,7 @@ require_once 'Class/RegistroAlumno.php';
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumno();
 ?>
-<center><a style='color:black;font-size: 11px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2013</b></a></center>
+<center><a style='color:black;font-size: 11px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2014</b></a></center>
 <?PHP
 $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];

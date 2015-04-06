@@ -16,9 +16,9 @@ session_destroy(); echo "<script>window.location = 'index.php'</script>";
 
 <body>
 <? require_once 'Includes/navegador.php';require_once 'Class/Conection.php';?>
-<a style="padding-left: 80px;">I Bimestre</a>
+<a style="padding-left: 80px;">IV Bimestre</a>
 <!--WELCOME TO THE INICIAL-------------------------------------------------INICIAL---------------------------------------------------------------->
-        <?        if($dni=='06777861'){        ?>
+        <?        if($dni=='08690825'){        ?>
 <!---------------------------------------------------------------------------------------------->
           <div id="divinicial"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS</h3><h4>Correspondiente al NIVEL INICIAL</h4><br>
@@ -103,7 +103,7 @@ session_destroy(); echo "<script>window.location = 'index.php'</script>";
 ?>
 
 <!---------------------------------------------INGLES INICIAL---------------------------------------------------------------->
-<?php if($dni=='44200595'):?>
+<?php if($dni=='44200595' || $dni=='42848980'):?>
 <div id="divinicialingles"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">INGRESE CRITERIOS DE EVALUACIÓN DE INGLES - NIVEL INICIAL</h3>
 <h4>3 años- 4 años y 5 años</h4>
@@ -127,6 +127,7 @@ unset ($queryd);
 
 
 <!--WELCOME TO THE PRIMARIA-------------------------------------------PRIMARIA---------------------------------------------------------------->
+<!--Milagros Hurtado-->    
 <?php if($dni=='10772427'): ?>
 <div id="divprimariaprimer"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
@@ -149,7 +150,8 @@ unset ($query);
 <?php endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<? if($dni=='08155677'): ?>
+<!--Maritza Córdova-->
+<? if($dni=='25685607'): ?>
 <div id="divprimariasegundo"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 2er Grado</h4><h5>Se han agregado 2 asignaturas nuevas: R. MATEMATICO - R. VERBAL</h5>
@@ -171,7 +173,8 @@ unset ($cone2);unset ($query2);
 <? endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<? if($dni=='06167901'): ?>
+<!--Yanina Meza-->
+<? if($dni=='25687567'): ?>
 <div id="divprimariatercero"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 3er Grado</h4><h5>Se han agregado 2 asignaturas nuevas: R. MATEMATICO - R. VERBAL</h5>
@@ -194,7 +197,8 @@ unset ($cone3);    unset ($query3);
 <?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?      if($dni=='10389799'): ?>
+<!--Elvia Enriquez-->
+<? if($dni=='10389799'): ?>
 <div id="divprimariacuarto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 4er Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -217,7 +221,8 @@ unset ($cone4); unset($query4);
 <?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?      if($dni=='40844326'):?>
+<!--Jhonny Espinoza-->
+<? if($dni=='40844326'):?>
 <div id="divprimariaquinto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 5to Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -240,7 +245,7 @@ unset($cone5); unset($query5);
 <?      endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?      if($dni=='10772182'):?>
+<? if($dni=='08016450'):?>
 <div id="divprimariasexto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 6to Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -1258,7 +1263,7 @@ if($dni=='08163931'){
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php
-if($dni=='25582234'){
+if($dni=='07128440'){
 ?>
 <div id="divsecundariaedf"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE EDUCACI&Oacute;N F&Iacute;SICA</h3>
@@ -2248,7 +2253,7 @@ if($dni=='25582234'){
 ?>
 <hr>
 <div style="text-align:center;">
-    <code style="font-size:20px;">NOTA:</code><a style="font-size:17px;color:#585858"> Si existiese algun error de asignaturas que no les corresponda enviar un mensaje a: sistemas@lncc.edu.pe, y me olvidaba: <strong>FELIZ SEMANA SANTA</strong></a>
+    <code style="font-size:20px;">NOTA:</code><a style="font-size:17px;color:#585858"> Si existiese algun error de asignaturas que no les corresponda enviar un mensaje a: sistemas@lncc.edu.pe, y me olvidaba: <strong>Clavero Bodas de Oro</strong></a>
 </div>
 <br><br><br><br><br><br>
 <?php
@@ -2263,6 +2268,5 @@ require_once 'Includes/modal-footer.php';?>
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>
 <script type="text/javascript" src="Js/bootstrap-collapse.js"></script>
 </html>

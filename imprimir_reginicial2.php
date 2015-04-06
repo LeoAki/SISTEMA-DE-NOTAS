@@ -1,8 +1,8 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+
 <link rel="icon" href="Css/images/favicon.ico">
 <title>Registro II Bimestre</title>
 <?php
@@ -25,7 +25,7 @@ $QUIEN= new Usuario();
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
-<center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL II BIMESTRE-2013</b></a></center>
+<center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL II BIMESTRE-2014</b></a></center>
 <?PHP
 $asina = $_GET['sinatura'];$seccion = $_GET['seccion'];$registro=$_GET['registro'];
 $responsable=$REGISTROALUMNO->Nom_res_registr($registro);
@@ -56,7 +56,7 @@ echo "<a style='color:black;font-size: 10px;'>Nivel:[".$variable2."]-Aula: [".$v
 <table>
 <?php
 $COMPONENTE=new Component();
-$listar=$COMPONENTE->LISTAR($asina);
+$listar=$COMPONENTE->LISTAR2($asina);
 while ($row = mysql_fetch_array($listar)) {
     $lista=$INDICAXD->LISTAR($row[0]);
     while ($row2 = mysql_fetch_array($lista)) {
@@ -79,7 +79,7 @@ while ($row = mysql_fetch_array($listar)) {
 <td><a style='color:black;font-size: 12px;'><b>N°</b></a></td>
 <td><a style='color:black;font-size: 12px;'><b>Alumno</b></a></td>
 <?php
-$th=$COMPONENTE->LISTAR($asina);
+$th=$COMPONENTE->LISTAR2($asina);
 while ($roth = mysql_fetch_array($th)) {
         $listath=$INDICAXD->LISTAR($roth[0]);
         while ($rowth = mysql_fetch_array($listath)) {
@@ -112,7 +112,7 @@ echo "
 <td style='width:50%;'><a style='color:black;font-size: 11px;'>$alumno[1] $alumno[2] ,$alumno[3]</a></td>
 ";
 
-$td=$COMPONENTE->LISTAR($asina);
+$td=$COMPONENTE->LISTAR2($asina);
     while ($ro = mysql_fetch_array($td)) {
         $lista=$INDICAXD->LISTAR($ro[0]);
         while ($row22 = mysql_fetch_array($lista)) {

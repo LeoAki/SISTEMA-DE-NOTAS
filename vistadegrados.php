@@ -5,14 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" href="Css/images/favicon.ico">
 <title>LICEO NAVAL CAPIT&Aacute;N DE CORBETA "MANUEL CLAVERO MUGA" ONLINE--VISTA GENERAL DE GRADOS</title>
-<?php
-require_once 'Class/Usuario.php';
+<?php require_once 'Class/Usuario.php';
 if(!isset ($_SESSION['USERLNCCNOTAS']) && !$_SESSION['USERLNCCNOTAS'] instanceof Usuario){
 session_destroy();
-header('Location: index.php');
+echo "<script>window.location = 'index.php'</script>";
 }else {
-?>
-<!----------------------------------BOOTSTRAP--css-------------------------------------------------->
+?><!----------------------------------BOOTSTRAP--css-------------------------------------------------->
 <link href="Css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
 <link href="Css/bootstrap/bootstrap.css" rel="stylesheet"/>
 </head>

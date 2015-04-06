@@ -17,7 +17,7 @@ if($grade==8) $grade2=5;
 if($grade==9) $grade2=6;
 
 $listaulas=$nivl->Aulasnivel($level, $grade);
-echo "
+?>
 <table class='table table-bordered'>
 <tr>
 <td colspan='2'><strong><center>AULA</center></strong></td>
@@ -25,42 +25,43 @@ echo "
 <td><strong><center>AUXILIAR</center></strong></td>
 <td colspan='4'><center><strong>MENSAJES</strong></center></td>
 <td colspan='4'><center><strong>PP.FF</strong></center></td>
-<td><center><strong>Asis.</strong><br>III B</center></td>
+<td><center><strong>Asis.</strong><br>IV B</center></td>
 <td colspan='5'><center><strong>CONSOLIDADOS</strong></center></td>
 <td><strong><center>ALUMNOS</center></strong></td>
 <tr>
-    ";
-while ($row = mysql_fetch_row($listaulas)) {
+<?while ($row = mysql_fetch_row($listaulas)) {
 echo "
 <tr>
 <td>$row[0]</td>
 <td>$row[1] $row[2]</td>
 <td>$row[3]</td>
 <td>$row[4]</td>
-    
+
 <td><a target='_blank' href='msjbim.php?sendcode=$row[5]'>I B</a></td>
 <td><a target='_blank' href='msjbim2.php?sendcode=$row[5]'>II B</a></td>
 <td><a target='_blank' href='msjbim3.php?sendcode=$row[5]'>III B</a></td>
-<td>IV B</td>
+<td><a target='_blank' href='msjbim4.php?sendcode=$row[5]'>IV B</a></td>
 
 <td><a target='_blank' href='mnsjppff.php?profcode=$row[5]'>I B</a></td>
 <td><a target='_blank' href='mnsjppff2.php?profcode=$row[5]'>II B</a></td>
 <td><a target='_blank' href='mnsjppff3.php?profcode=$row[5]'>III B</a></td>
-<td>IV B</td>
+<td><a target='_blank' href='mnsjppff2.php?profcode=$row[5]'>IV B</a></td>
 
-<td><a target='_blank' href='stnc.php?seccionauxi=$row[0]&bimestre=3&ut=$row[5]'>ver</a></td>
+<td><a target='_blank' href='stnc.php?seccionauxi=$row[0]&bimestre=4&ut=$row[5]'>ver</a></td>
 
 <td><a target='_blank' href='cons1.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>I B</a></td>
 <td><a target='_blank' href='cons2.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>II B</a></td>
 <td><a target='_blank' href='cons3.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>III B</a></td>
-<td><a target='_blank' href='cons4.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>IV B</a></td>
-<td>FINAL</td>
+<td>
+    <a target='_blank' href='cons4.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>IV B</a><br><br>";
+        echo $level2=='PRIMARIA' ? "<i><a target='_blank' href='cons4Letras.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'><b>IV LETRAS B</b></a></i>":'';
+echo "</td>
+<td><a target='_blank' href='anual.php?codigoseccion=$row[0]&niveldelaula=$level2&gradodelaula=$grade2'>FINAL</a></td>
 
 <td>ver alumnos</td>
 </tr>
     ";
-}
-echo "
-</table>";
-echo "<br><br><br><br><br>"
-?>
+}?>
+
+</table>
+<br><br><br><br><br>

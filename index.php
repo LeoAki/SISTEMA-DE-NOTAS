@@ -103,33 +103,27 @@
     }
     ?>
     <body>
-<div class="row">
+        <span class="pk">
+            Bienvenidos al Sistema De Notas Del<br>Liceo Naval Capitan De Corbeta<br>
+            Manuel clavero muga
 
-        <div class="span10">
-        <article class="pk"><p>Bienvenidos al Sistema de Notas del Liceo Naval Capitán de Corbeta Manuel Clavero Muga</p></article>
-        </div>
-        <div class="span2">
+        </span>
             <div id="main1">
-            <h3 class="leo">INICIAR SESION</h3>
-            <form action='index.php?validando=1' method='post' name='formulario'>
-                <div class="control-group">
-                    <div class="controls">
-                        <input class="inp1 input-large" id='usuario' name='usuario' placeholder="USUARIO" type='text'/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <input class="inp1 input-large" id='contrasena' name='contrasena' type='password' placeholder="PASSWORD"/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button type="submit"class="btn btn-info" id="btnlogin" name="btnsave">INGRESAR</button>
-                    </div>
-                </div>
-            </form>
+                                <h2 class="leo">INICIAR SESION</h2>
+                            <form action='index.php?validando=1' method='post' name='formulario'>
+                                    <table>
+                                        <tr>
+                                            
+                                            <td><input class="inp1" id='usuario' name='usuario' placeholder="USUARIO" type='text'/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="inp1" id='contrasena' name='contrasena' type='password' placeholder="PASSWORD"/>
+                                                <button type="submit"class="btn btn-info" id="btnlogin" name="btnsave">INGRESAR</button>
+                                            </td>
+                                        </tr>                      
+                                    </table>                           
+                            </form>
             </div>
-        </div>
-    </div>
     </body>
 </html>

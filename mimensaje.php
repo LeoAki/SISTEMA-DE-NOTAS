@@ -1,6 +1,6 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
-    <?php session_start();?>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="Css/images/favicon.ico">
@@ -19,29 +19,26 @@
 <script type="text/javascript" src="Js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="Js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="Js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="Js/jquery.innerfade.js"></script>    
     </head>
     <body>
-        <?php require_once 'Includes/navegador.php';    ?>
-        <div id="mensajito">
-        <table class="display">
-            <tr>
-                <td><a style="font-style: oblique"><h4>De:</h4></a></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><a style="font-style: oblique"><h4>Para:</h4></a></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><a style="font-style: oblique"><h4>Mensaje:</h4></a></td>
-                <td></td>
-            </tr>
-        </table>
-        </div>
-    <center>
-        <a href="javascript:imprSelec('mensajito')"><i class="icon-print"></i>Imprimir</a>
-    </center>
-        <?php require_once 'Includes/modal-footer.php'; ?>
-    </body>
+<?php require_once 'Includes/navegador.php';    ?>
+<div id="mensajito">
+<table class="display">
+<tr>
+<td><a style="font-style: oblique"><h4>De:</h4></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a style="font-style: oblique"><h4>Para:</h4></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a style="font-style: oblique"><h4>Mensaje:</h4></a></td>
+<td></td>
+</tr>
+</table>
+</div>
+<center><a href="javascript:imprSelec('mensajito')"><i class="icon-print"></i>Imprimir</a></center>
+<?php require_once 'Includes/modal-footer.php'; ?>
+</body>
 </html>

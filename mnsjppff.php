@@ -60,7 +60,7 @@ echo "<h5 style='color: peru'>SECCION: ".$gradoname." ".$nameseccionnow." ".$nom
 <table class="table table-hover">
     <tr class="gradeU">
         <td style="display: none;"></td>
-        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>N째</b></td>
+        <td style="width: 3%;color: peru;text-transform: uppercase;"><b>Nьз╕</b></td>
         <td style="width: 30%;color: peru;text-transform: uppercase;"><b>Alumno</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>1</b></td>
         <td style="width: 8%;color: peru;text-transform: uppercase;"><b>2</b></td>
@@ -80,14 +80,14 @@ echo "
     <input type='text' value='$row[0]' id='txtcodigo$row[1]' name='txtcodigo$row[1]'/></td>
     <td><b>$row[1]</b></td>
     <td><b>$row[2] $row[3] ,</b>$row[4]</td>
-    <td>$row[5]</td>
-    <td>$row[6]</td>
-    <td>$row[7]</td>
-    <td>$row[8]</td>
-    <td>$row[9]</td>
-    <td>$row[10]</td>
-    <td>$row[11]</td>
-    <td>$row[12]</td>
+    <td>$row[29]</td>
+    <td>$row[30]</td>
+    <td>$row[31]</td>
+    <td>$row[32]</td>
+    <td>$row[33]</td>
+    <td>$row[34]</td>
+    <td>$row[35]</td>
+    <td>$row[36]</td>
     </tr>";
 }
 ?>

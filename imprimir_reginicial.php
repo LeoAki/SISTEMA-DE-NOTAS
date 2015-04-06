@@ -1,8 +1,8 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html>
-<head>    
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-kr">    
+
 <link rel="icon" href="Css/images/favicon.ico">
 <title>LNCC ONLINE--Registra Los Criterios Del Curso</title>
 <?php
@@ -25,7 +25,7 @@ $QUIEN= new Usuario();
 $INDICAXD= new Indicador();
 $REGISTROALUMNO= new RegistroAlumnoInicial();
 ?>
-    <center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2013</b></a></center>
+    <center><a style='color:black;font-size: 12px;'><b>REGISTRO DE NOTAS DEL I BIMESTRE-2014</b></a></center>
 <?PHP
 $asina = $_GET['sinatura'];
 $seccion = $_GET['seccion'];
