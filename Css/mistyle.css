@@ -1,27 +1,34 @@
 body{
-background:transparent url(fondo.jpg) no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+/*    background:transparent url(fondo.jpg) no-repeat center center fixed; */
+    background:transparent url(lncc.jpg) no-repeat center center fixed; 
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
 }
 .pk{
-	color: #E1F5A9;
+	color: #173B0B;
 	text-transform: uppercase;
-	font-size: 24px;
+	font-size: 25px;
+	top: 215px;
+	left: 100px;
 	font-weight: bold;
-        padding: 75px;
+	text-shadow: 5px 5px 10px;
+	-webkit-text-shadow: 5px 5px 10px;
+	-ms-text-shadow: 5px 5px 10px;
+	-moz-text-shadow: 5px 5px 10px;
 }
-
+span{
+	padding: 5px 5px 5px 5px;
+	position: relative;
+}
 #contrasena ,#usuario{
-	border:1px solid #BDBDBD;
+	border:3px solid #BDBDBD;
 	background-color: #F7FE2E;
-	border-radius: 10px 0;
-	-webkit-border-radius: 10px 0;
-	-moz-border-radius: 10px 0;
-	-o-border-radius: 10px 0;
-        padding-left: 5px;
-        padding-right: 5px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 1px;
 }
 #btnlogin{
 	background: #2E9AFE;
@@ -32,8 +39,9 @@ background-size: cover;
 	-o-border-radius: 11px 0;
 	text-align: center;
 }
-#contrasena{/*	width: 160px;*/}
-
+#contrasena{
+	width: 160px;
+}
 #main1{
 	background-color: #F7F8E0;
 	border: 1px solid #6E6E6E;
@@ -41,21 +49,24 @@ background-size: cover;
 	-webkit-border-radius: 25px 0;
 	-moz-border-radius: 25px 0;
 	-o-border-radius: 25px 0;
-	margin:0 auto 0 auto;
-        width: 240px;
-/*	position: absolute;*/
-        padding: 10px;
-/*	right: 100px;*/
-/*	top: 180px;*/
+	margin:0 auto;
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	width: 300px;
+	right: 100px;
+	top: 180px;
 }
+#usuario{
+	width: 270px;
+}
+#video{
 
-#usuario{/*	width: 270px;*/}
-#video{}
-
+}
 .leo{
-color: #2E9AFE;text-align: center;
-text-shadow: 5px 5px 10px;
--webkit-text-shadow: 5px 5px 10px;
--ms-text-shadow: 5px 5px 10px;
--moz-text-shadow: 5px 5px 10px;
+	color: #2E9AFE;
+	text-align: center;
+	text-shadow: 5px 5px 10px;
+	-webkit-text-shadow: 5px 5px 10px;
+	-ms-text-shadow: 5px 5px 10px;
+	-moz-text-shadow: 5px 5px 10px;
 }
