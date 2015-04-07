@@ -16,9 +16,9 @@ session_destroy(); echo "<script>window.location = 'index.php'</script>";
 
 <body>
 <? require_once 'Includes/navegador.php';require_once 'Class/Conection.php';?>
-<a style="padding-left: 80px;">IV Bimestre</a>
+<a style="padding-left: 80px;">I Bimestre</a>
 <!--WELCOME TO THE INICIAL-------------------------------------------------INICIAL---------------------------------------------------------------->
-        <?        if($dni=='08690825'){        ?>
+        <?        if($dni=='25705250'){        ?>
 <!---------------------------------------------------------------------------------------------->
           <div id="divinicial"style="margin-left: 15%;margin-right: 15%;">
             <center><h3 style="color: green">REGISTRO DE CRITERIOS</h3><h4>Correspondiente al NIVEL INICIAL</h4><br>
@@ -45,7 +45,7 @@ session_destroy(); echo "<script>window.location = 'index.php'</script>";
     "select codigo,asinatura from descripcionsinature where nomnivel='inicial' and  grado like ('%3%') and (asinatura like ('%Matem%') or asinatura like ('%Comunicaci%') or asinatura like ('%Personal Social%') or asinatura like ('%Ciencia%'));");
     while ($row = mysql_fetch_array($query3anos)) :
     echo '<tr>
-    <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'>'.$row[0].'</a></td>
+    <td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$row[0].'\'><b>'.$row[0].'</b></a></td>
     <td>'.$row[1].'</td></tr>';
     endwhile;
     unset ($cone3an); unset ($query3anos);
@@ -103,32 +103,32 @@ session_destroy(); echo "<script>window.location = 'index.php'</script>";
 ?>
 
 <!---------------------------------------------INGLES INICIAL---------------------------------------------------------------->
-<?php if($dni=='44200595' || $dni=='42848980'):?>
-<div id="divinicialingles"style="margin-left: 15%;margin-right: 15%;">
-<center><h3 style="color: green">INGRESE CRITERIOS DE EVALUACIÓN DE INGLES - NIVEL INICIAL</h3>
-<h4>3 años- 4 años y 5 años</h4>
-<table class="table">
+<?php // if($dni=='44200595' || $dni=='42848980'):?>
+<!--<div id="divinicialingles"style="margin-left: 15%;margin-right: 15%;">-->
+<!--<center><h3 style="color: green">INGRESE CRITERIOS DE EVALUACIÓN DE INGLES - NIVEL INICIAL</h3>-->
+<!--<h4>3 años- 4 años y 5 años</h4>-->
+<!--<table class="table">-->
 <?
-$coned= new Conection;
-$coned->CONECT(); $queryd=  mysql_query(
-"select codigo,grado,asinatura from descripcionsinature where nomnivel='inicial' and  asinatura ='INGLES'");
-while ($rowd = mysql_fetch_array($queryd)) :
-echo '<tr>
-<td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$rowd[0].'\'>'.$rowd[1].'</a></td>
-<td>'.$rowd[2].'</td></tr>';
-endwhile;
-unset ($queryd);
+//$coned= new Conection;
+//$coned->CONECT(); $queryd=  mysql_query(
+//"select codigo,grado,asinatura from descripcionsinature where nomnivel='inicial' and  asinatura ='INGLES'");
+//while ($rowd = mysql_fetch_array($queryd)) :
+//echo '<tr>
+//<td class=\'center\'><a TARGET = \'_blank\' href=\'regcriterio.php?asinatura='.$rowd[0].'\'>'.$rowd[1].'</a></td>
+//<td>'.$rowd[2].'</td></tr>';
+//endwhile;
+//unset ($queryd);
 ?>
-</table>
+<!--</table>
 </center>
-</div>
-<?php  endif; ?>
+</div>-->
+<?php //  endif; ?>
 <!---------------------------------------------------------------------------------------------->
 
 
 <!--WELCOME TO THE PRIMARIA-------------------------------------------PRIMARIA---------------------------------------------------------------->
-<!--Milagros Hurtado-->    
-<?php if($dni=='10772427'): ?>
+<!--YANINA MEZA GAMARRA-->    
+<?php if($dni=='25687567'): ?>
 <div id="divprimariaprimer"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 1er Grado</h4><h5>Se han agregado 2 asignaturas nuevas: R. MATEMATICO - R. VERBAL</h5>
@@ -150,8 +150,8 @@ unset ($query);
 <?php endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<!--Maritza Córdova-->
-<? if($dni=='25685607'): ?>
+<!--JENNY GARCIA MARIÑAS -->
+<? if($dni=='27077385'): ?>
 <div id="divprimariasegundo"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 2er Grado</h4><h5>Se han agregado 2 asignaturas nuevas: R. MATEMATICO - R. VERBAL</h5>
@@ -173,8 +173,8 @@ unset ($cone2);unset ($query2);
 <? endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<!--Yanina Meza-->
-<? if($dni=='25687567'): ?>
+<!--MARITZA CORDOVA RISCO -->
+<? if($dni=='25685607'): ?>
 <div id="divprimariatercero"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 3er Grado</h4><h5>Se han agregado 2 asignaturas nuevas: R. MATEMATICO - R. VERBAL</h5>
@@ -197,8 +197,8 @@ unset ($cone3);    unset ($query3);
 <?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<!--Elvia Enriquez-->
-<? if($dni=='10389799'): ?>
+<!--JHONNY ESPINOZA DELGADILLO -->
+<? if($dni=='40844326'): ?>
 <div id="divprimariacuarto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 4er Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -221,8 +221,8 @@ unset ($cone4); unset($query4);
 <?     endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<!--Jhonny Espinoza-->
-<? if($dni=='40844326'):?>
+<!--ELVIA ENRIQUEZ QUEZADA -->
+<? if($dni=='10389799'):?>
 <div id="divprimariaquinto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 5to Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -245,7 +245,8 @@ unset($cone5); unset($query5);
 <?      endif;?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<? if($dni=='08016450'):?>
+<!--KARINA VALDERA SANTAMARIA--> 
+<? if($dni=='40378199'):?>
 <div id="divprimariasexto"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL NIVEL PRIMARIA</h3>
 <h4>Correspondiente al 6to Grado</h4><h5>Hay nuevas asignaturas: R. MATEMATICO - R. VERBAL - ARITMETICA - ALGEBRA Y GEOMETRIA</h5>
@@ -266,12 +267,11 @@ unset($con6); unset($query6);
 </center>
 </div>
 <?php   endif;?>
-<!-WELCOME TO THE SECUNDARIA------------------------------------------------------------------------------------------>
+
+<!--WELCOME TO THE SECUNDARIA------------------------------------------------------------------------------------------>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-if($dni=='07175880'){
-?>
+<?php if($dni=='08465248'){ ?>
 <div id="divsecundaria"style="margin-left: 15%;margin-right: 15%;">
     <center>
     <h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE MATEM&Aacute;TICA</h3>
@@ -369,14 +369,9 @@ echo '
     </div>
     </center>
 </div>
-<?php
-        }
-?>
+<?php } ?>
 <!---------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='10199819'){
-?>
+<?php if($dni=='25685585'){ ?>
 <div id="divsecundariacomunicacion"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE COMUNICACI&Oacute;N</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
@@ -492,9 +487,7 @@ echo '
 ?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='25419742'){
-?>
+<?php if($dni=='25700104'){ ?>
 <div id="divsecundariaccss"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE CIENCIAS SOCIALES</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
@@ -591,9 +584,7 @@ echo "<tr><td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatur
 ?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='25688412'){
-?>
+<?php if($dni=='25688412'){ ?>
 <div id="divsecundariacta"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA CTA</h3>
                 <h4>Correspondiente al NIVEL SECUNDARIA</h4>
@@ -687,9 +678,7 @@ echo "<tr><td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatur
 ?>
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
-<?php
-        if($dni=='07168034'){
-?>
+<?php if($dni=='09427299'){ ?>
 <div id="divsecundariaingles"style="margin-left: 15%;margin-right: 15%;">
 <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE INGL&Eacute;S</h3></center>
 <div class="row-fluid">
@@ -800,10 +789,7 @@ echo "
 <?php
 $coneingpri5= new Conection;
 $coneingpri5->CONECT();
-$queryingpri5=  mysql_query("select codigo,asinatura
-from descripcionsinature where nomnivel='primaria' and
-grado='5' and asinatura like('%ingl%');
-");
+$queryingpri5=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and grado='5' and asinatura like('%ingl%');");
 while ($rowingpri5 = mysql_fetch_array($queryingpri5)) {
 echo "
 <tr>
@@ -975,7 +961,7 @@ echo "
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php
-if($dni=='08163931'){
+if($dni=='25449677'){
 ?>
 <div id="divsecundariarlg"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE RELIGI&Oacute;N</h3></center>
@@ -1011,15 +997,13 @@ if($dni=='08163931'){
                                 from descripcionsinature where nomnivel='primaria' and
                                 grado='1' and asinatura like('%Religiosa%');
                                 ");
-                                while ($rowrlgpri = mysql_fetch_array($queryrlgpri)) {
-                                echo "
+                                while ($rowrlgpri = mysql_fetch_array($queryrlgpri)) { ?>
                                     <tr>
+                                    <?php echo "
                                     <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri[0]."'>" . $rowrlgpri[0]. "</a></td>
-                                    <td>".$rowrlgpri[1]."</td>
+                                    <td>".$rowrlgpri[1]."</td>"; ?>
                                     </tr>
-                                    ";
-                                }
-                                ?>
+                                <?php } ?>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="rlgpri2">
@@ -1027,19 +1011,14 @@ if($dni=='08163931'){
                                 <?php
                                 $conerlgpri2= new Conection;
                                 $conerlgpri2->CONECT();
-                                $queryrlgpri2=  mysql_query("select codigo,asinatura
-                                from descripcionsinature where nomnivel='primaria' and
-                                grado='2' and asinatura like('%Religiosa%');
-                                ");
-                                while ($rowrlgpri2 = mysql_fetch_array($queryrlgpri2)) {
-                                echo "
+                                $queryrlgpri2=  mysql_query("select codigo,asinatura from descripcionsinature where nomnivel='primaria' and grado='2' and asinatura like('%Religiosa%');");
+                                while ($rowrlgpri2 = mysql_fetch_array($queryrlgpri2)) { ?>
                                 <tr>
+                                <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri2[0]."'>" . $rowrlgpri2[0]. "</a></td>
-                                <td>".$rowrlgpri2[1]."</td>
+                                <td>".$rowrlgpri2[1]."</td>";?>
                                 </tr>
-                                ";
-                                }
-                                ?>
+                                <?php } ?>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="rlgpri3">
@@ -1048,18 +1027,14 @@ if($dni=='08163931'){
                                 $conerlgpri3= new Conection;
                                 $conerlgpri3->CONECT();
                                 $queryrlgpri3=  mysql_query("select codigo,asinatura
-                                from descripcionsinature where nomnivel='primaria' and
-                                grado='3' and asinatura like('%Religiosa%');
-                                ");
-                                while ($rowrlgpri3 = mysql_fetch_array($queryrlgpri3)) {
-                                echo "
+                                from descripcionsinature where nomnivel='primaria' and grado='3' and asinatura like('%Religiosa%');");
+                                while ($rowrlgpri3 = mysql_fetch_array($queryrlgpri3)) { ?>
                                 <tr>
+                                <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri3[0]."'>" . $rowrlgpri3[0]. "</a></td>
-                                <td>".$rowrlgpri3[1]."</td>
+                                <td>".$rowrlgpri3[1]."</td>"; ?>
                                 </tr>
-                                ";
-                                }
-                                ?>
+                                <?php } ?>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="rlgpri4">
@@ -1068,18 +1043,14 @@ if($dni=='08163931'){
                                 $conerlgpri4= new Conection;
                                 $conerlgpri4->CONECT();
                                 $queryrlgpri4=  mysql_query("select codigo,asinatura
-                                from descripcionsinature where nomnivel='primaria' and
-                                grado='4' and asinatura like('%Religiosa%');
-                                ");
-                                while ($rowrlgpri4 = mysql_fetch_array($queryrlgpri4)) {
-                                echo "
+                                from descripcionsinature where nomnivel='primaria' and grado='4' and asinatura like('%Religiosa%');");
+                                while ($rowrlgpri4 = mysql_fetch_array($queryrlgpri4)) { ?>
                                 <tr>
+                                <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri4[0]."'>" . $rowrlgpri4[0]. "</a></td>
-                                <td>".$rowrlgpri4[1]."</td>
+                                <td>".$rowrlgpri4[1]."</td>";?>
                                 </tr>
-                                ";
-                                }
-                                ?>
+                                <?php } ?>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="rlgpri5">
@@ -1088,18 +1059,14 @@ if($dni=='08163931'){
                                 $conerlgpri5= new Conection;
                                 $conerlgpri5->CONECT();
                                 $queryrlgpri5=  mysql_query("select codigo,asinatura
-                                from descripcionsinature where nomnivel='primaria' and
-                                grado='5' and asinatura like('%Religiosa%');
-                                ");
-                                while ($rowrlgpri5 = mysql_fetch_array($queryrlgpri5)) {
-                                echo "
+                                from descripcionsinature where nomnivel='primaria' and grado='5' and asinatura like('%Religiosa%');");
+                                while ($rowrlgpri5 = mysql_fetch_array($queryrlgpri5)) { ?>
                                 <tr>
+                                <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri5[0]."'>" . $rowrlgpri5[0]. "</a></td>
-                                <td>".$rowrlgpri5[1]."</td>
+                                <td>".$rowrlgpri5[1]."</td>"?>
                                 </tr>
-                                ";
-                                }
-                                ?>
+                                <?php } ?>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="rlgpri6">
@@ -1263,7 +1230,7 @@ if($dni=='08163931'){
 <!---------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------->
 <?php
-if($dni=='07128440'){
+if($dni=='07943716'){
 ?>
 <div id="divsecundariaedf"style="margin-left: 15%;margin-right: 15%;">
     <center><h3 style="color: green">REGISTRO DE CRITERIOS DEL AREA DE EDUCACI&Oacute;N F&Iacute;SICA</h3>
@@ -2253,7 +2220,7 @@ if($dni=='07128440'){
 ?>
 <hr>
 <div style="text-align:center;">
-    <code style="font-size:20px;">NOTA:</code><a style="font-size:17px;color:#585858"> Si existiese algun error de asignaturas que no les corresponda enviar un mensaje a: sistemas@lncc.edu.pe, y me olvidaba: <strong>Clavero Bodas de Oro</strong></a>
+    <code style="font-size:20px;">NOTA:</code><a style="font-size:17px;color:#585858"> Si existiese algun error de asignaturas que no les corresponda enviar un mensaje a: sistemas@lncc.edu.pe<br><strong>Clavero Rumbo a la acreditación</strong></a>
 </div>
 <br><br><br><br><br><br>
 <?php

@@ -1,18 +1,20 @@
 <?php
+
 /**
  * Description of AreaCurricular
  *
  * @author aquino
  */
 require_once 'Conection.php';
-class AreaCurricular extends Conection{
-    
+
+class AreaCurricular extends Conection {
+
     private $CODIGO;
     private $NOMAREA;
-    private $AREA_ESCOLAR="2012";
+    private $AREA_ESCOLAR = "2012";
     private $CODIGONIVEL;
     private $POSICIONACTA;
-    
+
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -54,53 +56,54 @@ class AreaCurricular extends Conection{
     }
 
     public function LISTAR_AREAS_CURRICULARES() {
-        $cone= new Conection;
+        $cone = new Conection;
         $cone->CONECT();
-        $resulset=  mysql_query("select a.codigo, 
+        $resulset = mysql_query("select a.codigo, 
             c.curso, n.nomnivel, a.posicion_acta 
             from Area_Curricular a 
             inner join Curso c on a.nomarea=c.codigo 
-            inner join Nivel n on a.codigonivel=n.nivel where a.ano_escolar='2012' order by codigo;");
+            inner join Nivel n on a.codigonivel=n.nivel where a.ano_escolar='2015' order by codigo;");
         $cone->CLOSE();
         unset($cone);
         return $resulset;
     }
-    
+
     public function LISTAR_AREAS_INICIAL() {
-        $cone=new Conection();
+        $cone = new Conection();
         $cone->CONECT();
-        $ressulset=  mysql_query("select c.curso, n.nomnivel from Area_Curricular a 
+        $ressulset = mysql_query('select c.curso, n.nomnivel from Area_Curricular a 
             inner join Curso c on a.nomarea=c.codigo 
             inner join Nivel n on a.codigonivel=n.nivel
-            where n.nomnivel='INICIAL';");
+            where n.nomnivel="INICIAL";');
         $cone->CLOSE();
         unset($cone);
         return $ressulset;
     }
-    
+
     public function LISTAR_AREAS_PRIMARIA() {
-        $cone=new Conection();
+        $cone = new Conection();
         $cone->CONECT();
-        $resulset=  mysql_query("select c.curso, n.nomnivel from Area_Curricular a 
+        $resulset = mysql_query('select c.curso, n.nomnivel from Area_Curricular a 
             inner join Curso c on a.nomarea=c.codigo 
             inner join Nivel n on a.codigonivel=n.nivel
-            where n.nomnivel='PRIMARIA';");
+            where n.nomnivel="PRIMARIA";');
         $cone->CLOSE();
         unset($cone);
         return $resulset;
     }
-    
+
     public function LISTAR_AREAS_SECUNDARIA() {
-        $cone=new Conection();
+        $cone = new Conection();
         $cone->CONECT();
-        $resulset=  mysql_query("select c.curso, n.nomnivel from Area_Curricular a 
+        $resulset = mysql_query('select c.curso, n.nomnivel from Area_Curricular a 
             inner join Curso c on a.nomarea=c.codigo 
             inner join Nivel n on a.codigonivel=n.nivel
-            where n.nomnivel='SECUNDARIA';");
+            where n.nomnivel="SECUNDARIA";');
         $cone->CLOSE();
         unset($cone);
         return $resulset;
     }
+
 }
 
 ?>
