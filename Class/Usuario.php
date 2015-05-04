@@ -1,12 +1,14 @@
 <?php
+
 /**
  * Description of Usuario
  *
  * @author aquino
  */
 require_once 'Conection.php';
-class Usuario extends Conection{
-    
+
+class Usuario extends Conection {
+
     private $CODIGO;
     private $USUARIO;
     private $CONTRASENA;
@@ -16,7 +18,7 @@ class Usuario extends Conection{
     private $NIVEL;
     private $INSCRIPCION;
     private $ULTIMASESION;
-    
+
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -89,110 +91,116 @@ class Usuario extends Conection{
         $this->ULTIMASESION = $ULTIMASESION;
     }
 
-    public function setDATA($codigo,$usuario,$contrasena,$idperfil,$estado,$idpersona,$nivel,$inscripcion,$ultimasesion) {
-        $this->CODIGO=$codigo;
-        $this->USUARIO=$usuario;
-        $this->CONTRASENA=$contrasena;
-        $this->IDPERFIL=$idperfil;
-        $this->ESTADO=$estado;
-        $this->IDPERSONA=$idpersona;
-        $this->NIVEL=$nivel;
-        $this->INSCRIPCION=$inscripcion;
-        $this->ULTIMASESION=$ultimasesion;
+    public function setDATA($codigo, $usuario, $contrasena, $idperfil, $estado, $idpersona, $nivel, $inscripcion, $ultimasesion) {
+        $this->CODIGO = $codigo;
+        $this->USUARIO = $usuario;
+        $this->CONTRASENA = $contrasena;
+        $this->IDPERFIL = $idperfil;
+        $this->ESTADO = $estado;
+        $this->IDPERSONA = $idpersona;
+        $this->NIVEL = $nivel;
+        $this->INSCRIPCION = $inscripcion;
+        $this->ULTIMASESION = $ultimasesion;
     }
-    
-        /*Function to Save a new User*/
-    public function SAVE(){
-        try{
-            $this->CONECT();
-            mysql_query("Call Sp_Usuario('".$this->CODIGO."','".$this->USUARIO."','".$this->CONTRASENA."',
-                                         '".$this->IDPERFIL."','".$this->ESTADO."','".$this->IDPERSONA."',
-                                         '".$this->NIVEL."','".$this->INSCRIPCION."','".$this->ULTIMASESION."')"
-                       )
-                    or die(mysql_error());
-            $this->CLOSE();
-        }catch(Exception $exception){
-            echo 'Ups!, lo sentimos ocurrio el siguiente error: '.$exception;
-        }
-    }
-    
-    
-    ##funcion que valida al usuario y contrasena
-        public function Validar($usuario,$password) {
-        $value=0;
+
+    /* Function to Save a new User */
+
+    public function SAVE() {
         try {
             $this->CONECT();
-            $resulset=mysql_query("select * from  Usuario
-                Where usuario='".$usuario."' and contrasena='".$password."';");
-            if($resulset){
-                $value=mysql_num_rows($resulset);
-                if($value > 0){
+            mysql_query("Call Sp_Usuario('" . $this->CODIGO . "','" . $this->USUARIO . "','" . $this->CONTRASENA . "',
+                                         '" . $this->IDPERFIL . "','" . $this->ESTADO . "','" . $this->IDPERSONA . "',
+                                         '" . $this->NIVEL . "','" . $this->INSCRIPCION . "','" . $this->ULTIMASESION . "')"
+                    )
+                    or die(mysql_error());
+            $this->CLOSE();
+        } catch (Exception $exception) {
+            echo 'Ups!, lo sentimos ocurrio el siguiente error: ' . $exception;
+        }
+    }
+
+    ##funcion que valida al usuario y contrasena
+
+    public function Validar($usuario, $password) {
+        $value = 0;
+        try {
+            $this->CONECT();
+            $resulset = mysql_query("select * from  Usuario
+                Where usuario='" . $usuario . "' and contrasena='" . $password . "';");
+            if ($resulset) {
+                $value = mysql_num_rows($resulset);
+                if ($value > 0) {
                     while ($row = mysql_fetch_array($resulset)) {
-                        $this->CODIGO=$row[0];
-                        $this->USUARIO=$row[1];
-                        $this->CONTRASENA=$row[2];
-                        $this->IDPERFIL=$row[3];
-                        $this->ESTADO=$row[4];
-                        $this->IDPERSONA=$row[5];
-                        $this->NIVEL=$row[6];
-                        $this->INSCRIPCION=$row[7];
-                        $this->ULTIMASESION=$row[8];
+                        $this->CODIGO = $row[0];
+                        $this->USUARIO = $row[1];
+                        $this->CONTRASENA = $row[2];
+                        $this->IDPERFIL = $row[3];
+                        $this->ESTADO = $row[4];
+                        $this->IDPERSONA = $row[5];
+                        $this->NIVEL = $row[6];
+                        $this->INSCRIPCION = $row[7];
+                        $this->ULTIMASESION = $row[8];
                     }
-                    unset ($resulset);
+                    unset($resulset);
                 }
             }
-            unset ($resulset);
+            unset($resulset);
         } catch (Exception $exc) {
             echo "Ups!, lo sentimos ocurrio el siguiente error: " . $exc;
         }
         $this->CLOSE();
         return $value;
     }
-    
+
     public function QUIENES($dni) {
-        $coneccion= new Conection();$coneccion->CONECT();
-        $consulta=  mysql_query("Select * from Persona where dni='".$dni."';");
-        unset($coneccion);return $consulta;
+        $coneccion = new Conection();
+        $coneccion->CONECT();
+        $consulta = mysql_query("Select * from Persona where dni='" . $dni . "';");
+        unset($coneccion);
+        return $consulta;
     }
-    
-    public function SESIONBEGIN($usuario){
+
+    public function SESIONBEGIN($usuario) {
         try {
             $this->CONECT();
-            $fecha= date("Y-m-d H:i:s");
-            mysql_query("Update Usuario set ultimasesion='".$fecha."' where usuario='".$usuario."'") or die(mysql_error());
+            $fecha = date("Y-m-d H:i:s");
+            mysql_query("Update Usuario set ultimasesion='" . $fecha . "' where usuario='" . $usuario . "'") or die(mysql_error());
             unset($teconecto);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
         $this->CLOSE();
     }
-    
-    public function verultimasesion($usuario){
-        $teconecto= new Conection;$teconecto->CONECT();
-        $veruser=  mysql_query('select ultimasesion from Usuario where usuario=\''.$usuario.'\';');
-        $teconecto->CLOSE();return $veruser;
+
+    public function verultimasesion($usuario) {
+        $teconecto = new Conection;
+        $teconecto->CONECT();
+        $veruser = mysql_query('select ultimasesion from Usuario where usuario=\'' . $usuario . '\';');
+        $teconecto->CLOSE();
+        return $veruser;
     }
-    
+
     public function verdnisesion($idpersona) {
         $this->CONECT();
-        $rese=  mysql_query("   SELECT p.dni
+        $rese = mysql_query("   SELECT p.dni
                                 FROM Usuario u
                                 INNER JOIN Persona p ON u.idpersona = p.codigo
-                                WHERE u.idpersona ='".$idpersona."';");
+                                WHERE u.idpersona ='" . $idpersona . "';");
         $this->CLOSE();
         return $rese;
     }
-    
-    public function changepassid($idpersona,$newpass) {
+
+    public function changepassid($idpersona, $newpass) {
         $this->CONECT();
-        $retnewpass=  mysql_query('Update Usuario set contrasena=\''.$newpass.'\' where idpersona=\''.$idpersona.'\';');
-        $this->CLOSE();return $retnewpass;
+        $retnewpass = mysql_query('Update Usuario set contrasena=\'' . $newpass . '\' where idpersona=\'' . $idpersona . '\';');
+        $this->CLOSE();
+        return $retnewpass;
     }
-    
+
     public function Ingresos() {
-        $con= new Conection();
+        $con = new Conection();
         $con->CONECT();
-        $viewinput=mysql_query('
+        $viewinput = mysql_query('
             SELECT  uh.codigo,
                     CONCAT(pe.paterno,\' \',pe.materno,\' ,\',pe.nombres) as USER,
                     uh.accion,
@@ -207,7 +215,22 @@ class Usuario extends Conection{
         $con->CLOSE();
         return $viewinput;
     }
-    
-}
 
-?>
+    public function listarDetalle($usuario) {
+        $con = new Conection();
+        $con->CONECT();
+        $sql = mysql_query('
+                Select
+                userr.usuario as usuario, userr.contrasena as passwd, userr.nivel as nivel,
+                Per.paterno as paterno, Per.materno as materno, Per.nombres as nombre
+                from
+                Usuario userr
+                INNER JOIN
+                Persona Per
+                on userr.idpersona= Per.codigo
+                WHERE userr.usuario like \'%' . $usuario . '\'');
+        $con->CLOSE();
+        return $sql;
+    }
+
+}

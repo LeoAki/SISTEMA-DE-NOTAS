@@ -1001,7 +1001,7 @@ if($dni=='25449677'){
                                     <tr>
                                     <?php echo "
                                     <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri[0]."'>" . $rowrlgpri[0]. "</a></td>
-                                    <td>".$rowrlgpri[1]."</td>"; ?>
+                                    <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri[0]."'>".$rowrlgpri[1]."</a></td>"; ?>
                                     </tr>
                                 <?php } ?>
                                 </table>
@@ -1016,7 +1016,7 @@ if($dni=='25449677'){
                                 <tr>
                                 <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri2[0]."'>" . $rowrlgpri2[0]. "</a></td>
-                                <td>".$rowrlgpri2[1]."</td>";?>
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri2[0]."'>".$rowrlgpri2[1]."</a></td>";?>
                                 </tr>
                                 <?php } ?>
                                 </table>
@@ -1032,7 +1032,7 @@ if($dni=='25449677'){
                                 <tr>
                                 <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri3[0]."'>" . $rowrlgpri3[0]. "</a></td>
-                                <td>".$rowrlgpri3[1]."</td>"; ?>
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri3[0]."'>".$rowrlgpri3[1]."</a></td>"; ?>
                                 </tr>
                                 <?php } ?>
                                 </table>
@@ -1048,7 +1048,7 @@ if($dni=='25449677'){
                                 <tr>
                                 <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri4[0]."'>" . $rowrlgpri4[0]. "</a></td>
-                                <td>".$rowrlgpri4[1]."</td>";?>
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri4[0]."'>".$rowrlgpri4[1]."</a></td>";?>
                                 </tr>
                                 <?php } ?>
                                 </table>
@@ -1064,7 +1064,7 @@ if($dni=='25449677'){
                                 <tr>
                                 <?php echo "
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri5[0]."'>" . $rowrlgpri5[0]. "</a></td>
-                                <td>".$rowrlgpri5[1]."</td>"?>
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri5[0]."'>".$rowrlgpri5[1]."</a></td>"?>
                                 </tr>
                                 <?php } ?>
                                 </table>
@@ -1082,9 +1082,8 @@ if($dni=='25449677'){
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri6[0]."'>" . $rowrlgpri6[0]. "</a></td>
-                                <td>".$rowrlgpri6[1]."</td>
-                                </tr>
-                                ";
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlgpri6[0]."'>".$rowrlgpri6[1]."</a></td>
+                                </tr>";
                                 }
                                 ?>
                                 </table>
@@ -1129,10 +1128,8 @@ if($dni=='25449677'){
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg[0]."'>" . $rowrlg[0]. "</a></td>
-                                <td>".$rowrlg[1]."</td>
-                                </tr>
-                                ";
-                                }
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg[0]."'>".$rowrlg[1]."</a></td>
+                                </tr>";}
                                 ?>
                                 </table>
                             </div>
@@ -1143,16 +1140,12 @@ if($dni=='25449677'){
                                 $conerlg2->CONECT();
                                 $queryrlg2=  mysql_query("select codigo,asinatura
                                 from descripcionsinature where nomnivel='secundaria' and
-                                grado='2' and asinatura like('%Religiosa%');
-                                ");
+                                grado='2' and asinatura like('%Religiosa%');");
                                 while ($rowrlg2 = mysql_fetch_array($queryrlg2)) {
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg2[0]."'>" . $rowrlg2[0]. "</a></td>
-                                <td>".$rowrlg2[1]."</td>
-                                </tr>
-                                ";
-                                }
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg2[0]."'>".$rowrlg2[1]."</a></td></tr>";}
                                 ?>
                                 </table>
                             </div>
@@ -1169,10 +1162,7 @@ if($dni=='25449677'){
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg3[0]."'>" . $rowrlg3[0]. "</a></td>
-                                <td>".$rowrlg3[1]."</td>
-                                </tr>
-                                ";
-                                }
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg3[0]."'>".$rowrlg3[1]."</a></td></tr>";}
                                 ?>
                                 </table>
                             </div>
@@ -1189,10 +1179,8 @@ if($dni=='25449677'){
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg4[0]."'>" . $rowrlg4[0]. "</a></td>
-                                <td>".$rowrlg4[1]."</td>
-                                </tr>
-                                ";
-                                }
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg4[0]."'>".$rowrlg4[1]."</a></td>
+                                </tr>";}
                                 ?>
                                 </table>
                             </div>
@@ -1209,10 +1197,9 @@ if($dni=='25449677'){
                                 echo "
                                 <tr>
                                 <td class='center'><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg5[0]."'>" . $rowrlg5[0]. "</a></td>
-                                <td>".$rowrlg5[1]."</td>
+                                <td><a TARGET = '_blank' href='regcriterio.php?asinatura=".$rowrlg5[0]."'>".$rowrlg5[1]."</a></td>
                                 </tr>
-                                ";
-                                }
+                                ";}
                                 ?>
                                 </table>
                             </div>

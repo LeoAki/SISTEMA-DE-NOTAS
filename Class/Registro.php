@@ -1,17 +1,19 @@
 <?php
+
 /**
  * Description of Registro
  *
  * @author aquino
  */
 require_once 'Conection.php';
-class Registro extends Conection{
-    
+
+class Registro extends Conection {
+
     private $CODIGO;
     private $CODIGOSECCION;
     private $CODIGODOCENTE;
     private $CODIGOASINATURA;
-    
+
     public function getCODIGO() {
         return $this->CODIGO;
     }
@@ -44,76 +46,92 @@ class Registro extends Conection{
         $this->CODIGOASINATURA = $CODIGOASINATURA;
     }
 
-    function setDATA($codigo,$codigoseccion,$codigodocente,$codigoasinatura) {
-        $this->CODIGO=$codigo;
-        $this->CODIGOSECCION=$codigoseccion;
-        $this->CODIGODOCENTE=$codigodocente;
-        $this->CODIGOASINATURA=$codigoasinatura;
+    function setDATA($codigo, $codigoseccion, $codigodocente, $codigoasinatura) {
+        $this->CODIGO = $codigo;
+        $this->CODIGOSECCION = $codigoseccion;
+        $this->CODIGODOCENTE = $codigodocente;
+        $this->CODIGOASINATURA = $codigoasinatura;
     }
-    
+
     function GRABAR() {
         try {
             $this->CONECT();
-            mysql_query("Call Sp_Registro ('".$this->CODIGO."','".$this->CODIGOSECCION."',
-                                           '".$this->CODIGODOCENTE."','".$this->CODIGOASINATURA."')") 
-                                            or die(mysql_error());
+            mysql_query("Call Sp_Registro ('" . $this->CODIGO . "','" . $this->CODIGOSECCION . "',
+                                           '" . $this->CODIGODOCENTE . "','" . $this->CODIGOASINATURA . "')")
+                    or die(mysql_error());
             $this->CLOSE();
-            } catch (Exception $exc) {
-                    echo "Ups! Lo lamentamos ah ocurrido el siguiente error: ".$exc;
-                }
+        } catch (Exception $exc) {
+            echo "Ups! Lo lamentamos ah ocurrido el siguiente error: " . $exc;
+        }
     }
-    
+
     function Listar() {
-        $cone=new Conection();
+        $cone = new Conection();
         $cone->CONECT();
-        $query=  mysql_query("Select * from Registro");
+        $query = mysql_query('Select * from Registro');
         $cone->CLOSE();
         unset($cone);
         return $query;
     }
 
-    function Updateregistro1($param) {
-        $conc=new Conection();
-        $conc->CONECT();
-        $query=mysql_query("
-            update Registro set activo1=3
-            where codigo=$param;
-            ");
-        $conc->CLOSE();
+    function listar_por_Seccion($seccion) {
+        $cone = new Conection();
+        $cone->CONECT();
+        $query = mysql_query('Select
+                              codigo, grado, nombreseccion, nomnivel, paterno, materno, nombres, CODEASINA, asinatura, A1, A2, A3, A4
+                              from describeregistro
+                              where codeseccion =' . $seccion);
+        $cone->CLOSE();
+        unset($cone);
         return $query;
     }
 
     function Updateregistro($param) {
-        $conc=new Conection();
+        $conc = new Conection();
         $conc->CONECT();
-        $query=mysql_query("
-            update Registro set activo2=3
-            where codigo=$param;
-            ");
+        $query = mysql_query('update Registro set activo1=3 where codigo=' . $param);
         $conc->CLOSE();
         return $query;
     }
-    function Updateregistro3($param) {
-        $conc=new Conection();
-        $conc->CONECT();
-        $query=mysql_query("
-            update Registro set activo3=3
-            where codigo=$param;
-            ");
-        $conc->CLOSE();
-        return $query;
-    }    
-    function Updateregistro4($param) {
-        $conc=new Conection();
-        $conc->CONECT();
-        $query=mysql_query("
-            update Registro set activo4=3
-            where codigo=$param;
-            ");
-        $conc->CLOSE();
-        return $query;
-    }
-    
-}
 
-?>
+    function Updateregistro1($param) {
+        $conc = new Conection();
+        $conc->CONECT();
+        $query = mysql_query('update Registro set activo2=3 where codigo=' . $param);
+        $conc->CLOSE();
+        return $query;
+    }
+
+    function Updateregistro3($param) {
+        $conc = new Conection();
+        $conc->CONECT();
+        $query = mysql_query('update Registro set activo3=3 where codigo=' . $param);
+        $conc->CLOSE();
+        return $query;
+    }
+
+    function Updateregistro4($param) {
+        $conc = new Conection();
+        $conc->CONECT();
+        $query = mysql_query('update Registro set activo4=3 where codigo=' . $param);
+        $conc->CLOSE();
+        return $query;
+    }
+
+    function AperturarRegistro($registro, $bimestre) {
+        $conc = new Conection();
+        $conc->CONECT();
+        $query = mysql_query('update Registro set activo' . $bimestre . ' = 1 where codigo=' . $registro);
+        $conc->CLOSE();
+        return $query;
+    }
+
+    function CerraRegistro($registro, $bimestre) {
+        $conc = new Conection();
+        $conc->CONECT();
+        $query = mysql_query('update Registro set activo' . $bimestre . ' = 0 where codigo=' . $registro);
+        $conc->CLOSE();
+        return $query;
+    }
+
+}

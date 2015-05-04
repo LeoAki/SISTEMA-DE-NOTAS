@@ -116,12 +116,12 @@ class Docente extends Conection {
     public function LISTAR() {
         $cone = new Conection();
         $cone->CONECT();
-        $resultado = mysql_query("Select d.codigo,d.paterno,d.materno,d.nombres,d.dni,tp.tipo,pd.direccion,pd.cargo,pd.telefono,pd.celular,per.email
-                                from Docente d
-                                inner join TipoProfe tp on d.tipoprofe=tp.codigo
-                                inner join personal_detallado pd on d.dni=pd.dni
-                                inner join Persona per on d.codigopersona=per.codigo
-                                ; ");
+        $resultado = mysql_query('Select
+            d.codigo,d.paterno,d.materno,d.nombres,d.dni,tp.tipo,pd.cargo
+            from Docente d
+            inner join TipoProfe tp on d.tipoprofe=tp.codigo
+            inner join personal_detallado pd on d.dni=pd.dni
+            inner join Persona per on d.codigopersona=per.codigo;');
         $cone->CLOSE();
         unset($cone);
         return $resultado;
