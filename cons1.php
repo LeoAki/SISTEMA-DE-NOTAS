@@ -8,26 +8,15 @@ $seccion=$_GET['codigoseccion'];#codigo de seccion
 
 #Solo nivel primaria------------------------------------------------------------##########################################
 if($nivela==="PRIMARIA" and ($grado==1 || $grado==2 || $grado==3) ){?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=Mat.</li>      <li style='float: left;'><code>02</code>=Raz. Mat.</li>
-    <li style='float: left;'><code>03</code>=Com.</li>      <li style='float: left;'><code>04</code>=Raz. Verbal</li>
-    <li style='float: left;'><code>05</code>=Arte</li>      <li style='float: left;'><code>06</code>=Personal Social</li>
-    <li style='float: left;'><code>07</code>=Educaci&oacute;n F&iacute;sica</li>
-    <li style='float: left;'><code>08</code>=Ciencia y Ambiente</li>
-    <li style='float: left;'><code>09</code>=Educaci&oacute;n Religiosa</li>
-    <li style='float: left;'><code>10</code>=Ingl&eacute;s</li>
-    <li style='float: left;'><code>11</code>=Computaci&oacute;n</li>
-    <li style='float: left;'><code>12</code>=Conducta</li>
-</ul><br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-    <th>N°</th><th>ALUMNO</th>
-    <th>MATEM.</th>     <th>COMUN.</th>
-    <th>05 ART</th>     <th>06 PERS</th>        <th>07 EDFIS</th>    <th>08 CCAA</th>
-    <th>09 REL</th>     <th>10 INL</th>         <th>11 COMPU</th>
-    <th>Promedio</th>   <th>Puntaje</th>        <th>MAT</th>     <th>RAZ.MAT</th>     <th>COM</th>     <th>RAZ.VERB</th>
-    <th>12 COND</th>    <th>Cur Desaprob.</th>  <th>FN</th>
+    <th>N&#176;</th><th>ALUMNO</th>
+    <th>MAT.</th>     <th>COM.</th>
+    <th>ART</th>     <th>PER_SOC</th>        <th>EDU_FIS</th>    <th>CCAA</th>
+    <th>REL</th>     <th>ING</th>         <th>COMP</th>
+    <th>Promedio</th>   <th>Puntaje</th>        <th>mat</th>     <th>raz_mat</th>     <th>com</th>     <th>raz_verb</th>
+    <th>COND</th>    <th>Cur Desaprob.</th>  <th>FN</th>
 </tr>
 <?
 $alumnado_seccion=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);#cambia
@@ -59,25 +48,21 @@ while ($prregistro = mysql_fetch_array($registroalumno)):
 #matematicas
 if($prregistro[1]=='MATEMATICA'):
 $prmate=$prregistro[3];
-$prprovmate=$profesorcitore->aprobadoareanormal($prmate, $prprovmate);
 endif;
 
 #raz mat
 if($prregistro[1]=='R. MATEMATICO'):
 $prrm=$prregistro[3];
-$prprovrm=$profesorcitore->aprobadoareanormal($prrm, $prprovrm);
 endif;
 
 #comunicacion
 if($prregistro[1]=="COMUNICACION"):
 $prcomuni=$prregistro[3];
-$prprovcomunica=$profesorcitore->aprobadoareanormal($prcomuni, $prprovcomunica);
 endif;
 
 #raz verbal
 if($prregistro[1]=='R. VERBAL'):
 $prrv=$prregistro[3];
-$prprovrv=$profesorcitore->aprobadoareanormal($prrv, $prprovrv);
 endif;
 
 #arte
@@ -130,11 +115,10 @@ endif;
 #echo "<td>$prregistro[3]</td>";
 endwhile;#fuera del while
 
+$prmatematicabasica=$profesorcitore->pesomatbasico($prmate, $prrm);
+$prcomunicabasica=$profesorcitore->pesomatbasico($prcomuni, $prrv);
+
 #curso a cargo#######################################################################
-$prcursocargo=$profesorcitore->cursocargonormalpr($prmate, $prcursocargo);          #
-$prcursocargo=$profesorcitore->cursocargonormalpr($prrm, $prcursocargo);            #
-$prcursocargo=$profesorcitore->cursocargonormalpr($prcomuni, $prcursocargo);        #
-$prcursocargo=$profesorcitore->cursocargonormalpr($prrv, $prcursocargo);            #
 $prcursocargo=$profesorcitore->cursocargonormalpr($prarte, $prcursocargo);          #
 $prcursocargo=$profesorcitore->cursocargonormalpr($prpersoc, $prcursocargo);        #
 $prcursocargo=$profesorcitore->cursocargonormalpr2($predufis, $prcursocargo);       #
@@ -142,11 +126,9 @@ $prcursocargo=$profesorcitore->cursocargonormalpr2($predurel, $prcursocargo);   
 $prcursocargo=$profesorcitore->cursocargonormalpr2($pring, $prcursocargo);          #
 $prcursocargo=$profesorcitore->cursocargonormalpr2($prcomp, $prcursocargo);         #
 $prcursocargo=$profesorcitore->cursocargonormalpr($prccaa, $prcursocargo);          #
+$prcursocargo=$profesorcitore->cursocargonormalpr($prmatematicabasica, $prcursocargo);
+$prcursocargo=$profesorcitore->cursocargonormalpr($prcomunicabasica, $prcursocargo);
 #FaltaNotas##########################################################################
-$prfaltanotas=$profesorcitore->fnpr($prmate, $prfaltanotas);                        #
-$prfaltanotas=$profesorcitore->fnpr($prrm, $prfaltanotas);                          #
-$prfaltanotas=$profesorcitore->fnpr($prcomuni, $prfaltanotas);                      #
-$prfaltanotas=$profesorcitore->fnpr($prrv, $prfaltanotas);                          #
 $prfaltanotas=$profesorcitore->fnpr($prarte, $prfaltanotas);                        #
 $prfaltanotas=$profesorcitore->fnpr($prpersoc, $prfaltanotas);                      #
 $prfaltanotas=$profesorcitore->fnpr($predufis, $prfaltanotas);                      #
@@ -156,14 +138,14 @@ $prfaltanotas=$profesorcitore->fnpr($prcomp, $prfaltanotas);                    
 $prfaltanotas=$profesorcitore->fnpr($prccaa, $prfaltanotas);                        #
 $prfaltanotas=$profesorcitore->fnpr($prcond, $prfaltanotas);                        #
 #####################################################################################
+$prfaltanotas=$profesorcitore->fnpr($prmatematicabasica, $prfaltanotas);
+$prfaltanotas=$profesorcitore->fnpr($prcomunicabasica, $prfaltanotas);
 
-$prmatematicabasica=$profesorcitore->pesomatbasico($prmate, $prrm);
-$prcomunicabasica=$profesorcitore->pesomatbasico($prcomuni, $prrv);
+$prprovmate=$profesorcitore->aprobadoareanormal($prmatematicabasica, $prprovmate);
+$prprovcomunica=$profesorcitore->aprobadoareanormal($prcomunicabasica, $prprovcomunica);
 
-if($prmate==' ' || $prrm==' ' || $prmate==0 || $prrm==0) $prmatematicabasica='';
-if($prcomuni==' ' || $prrv==' ' || $prcomuni==0 || $prrv==0) $prcomunicabasica='';
+$prpuntajealumno=$profesorcitore->puntajealumnopr($prmatematicabasica,$prcomunicabasica,$prarte,$prpersoc,$predufis,$predurel,$pring,$prcomp,$prccaa);
 
-$prpuntajealumno=$profesorcitore->puntajealumnopr($prmatematicabasica,$prcomunicabasica,$prarte,$prpersoc,$predufis,$predurel,$pring,$prcomp,$prccaa);#sumo puntaje
 if($predufis==-2 || $predurel==-2) {
     $promediante=8;
 }else{ 
@@ -171,94 +153,97 @@ if($predufis==-2 || $predurel==-2) {
 };#si hay exonerados que se divida entre 8
 
 #matematica
-if($prmatematicabasica=="" || $prmatematicabasica==0) $prmatematicabasica="FN";if($prmatematicabasica=="-1") $prmatematicabasica="R";?>     <td><?=$prmatematicabasica?></td>
+if($prmatematicabasica == 0){
+    $prmatematicabasica = 'FN';
+}
+if($prmatematicabasica=='-1'){
+    $prmatematicabasica='R';
+}?>
+<td style="<?php echo $prmatematicabasica=='FN'?'color:red':''; ?>"><?=$prmatematicabasica?></td>
 
 <?#comunicacion
-if($prcomunicabasica=="" || $prcomunicabasica==0) $prcomunicabasica="FN";if($prcomunicabasica=="-1") $prcomunicabasica="R";?>   <td><?=$prcomunicabasica?></td>
+if($prcomunicabasica==0){
+    $prcomunicabasica='FN';
+}
+if($prcomunicabasica=='-1'){
+    $prcomunicabasica='R';
+}?>
+<td style="<?php echo $prcomunicabasica=='FN'?'color:red':''; ?>"><?=$prcomunicabasica?></td>
 
 <?#arte3
-if($prarte=="" || $prarte==0) $prarte="FN";if($prarte=="-1") $prarte="R";?>     <td><?=$prarte?></td>
+if($prarte=="" || $prarte==0) $prarte="FN";if($prarte=="-1") $prarte="R";?>
+<td style="<?php echo $prarte=='FN'?'color:red':''; ?>"><?=$prarte?></td>
 
 <?#personal social
-if($prpersoc=="" || $prpersoc==0) $prpersoc="FN";if($prpersoc=="-1") $prpersoc="R";?>   <td><?=$prpersoc?></td>
+if($prpersoc=="" || $prpersoc==0) $prpersoc="FN";if($prpersoc=="-1") $prpersoc="R";?>
+<td style="<?php echo $prpersoc=='FN'?'color:red':''; ?>"><?=$prpersoc?></td>
 
 <?#educacion fisica
 if($predufis=="" || $predufis==0) $predufis="FN";if($predufis=="-1") $predufis="R";if($prmate=="-2") $prmate="EX";?>
-<td><?=$predufis?></td>
+<td style="<?php echo $predufis=='FN'?'color:red':''; ?>"><?=$predufis?></td>
 
 <?#ciencia y ambiente
-if($prccaa=="" || $prccaa==0) $prccaa="FN";if($prccaa=="-1") $prccaa="R";?>     <td><?=$prccaa?></td>
+if($prccaa=="" || $prccaa==0) $prccaa="FN";if($prccaa=="-1") $prccaa="R";?>
+<td style="<?php echo $prccaa=='FN'?'color:red':''; ?>"><?=$prccaa?></td>
 
 <?#educacion religiosa
 if($predurel=="" || $predurel==0) $predurel="FN";if($predurel=="-1") $predurel="R";if($predurel=="-2") $predurel="EX";?>
-<td><?=$predurel?></td>
+<td style="<?php echo $predurel=='FN'?'color:red':''; ?>"><?=$predurel?></td>
 
 <?#ingles
-if($pring=="" || $pring==0) $pring="FN";if($pring=="-1") $pring="R";?>          <td><?=$pring?></td>
+if($pring=="" || $pring==0) $pring="FN";if($pring=="-1") $pring="R";?>
+<td style="<?php echo $pring=='FN'?'color:red':''; ?>"><?=$pring?></td>
 
 <?#computacion
-if($prcomp=="" || $prcomp==0) $prcomp="FN";if($prcomp=="-1") $prcomp="R";?>     <td><?=$prcomp?></td>
+if($prcomp=="" || $prcomp==0) $prcomp="FN";if($prcomp=="-1") $prcomp="R";?>
+<td style="<?php echo $prcomp=='FN'?'color:red':''; ?>"><?=$prcomp?></td>
 
 <?#conducta
 if($prcond=="" || $prcond==0) $prcond="FN";if($prcond=="-1") $prcond="R";
 
-
 $prprmd=$profesorcitore->promedioal($prpuntajealumno,$promediante);?>
 
-<td><?=$prprmd?></td>
-<td><?=$prpuntajealumno?></td>
+<td><b><?=$prprmd?></b></td>
+<td><b><?=$prpuntajealumno?></b></td>
 
 <?#matematica1
-if($prmate=="" || $prmate==0) $prmate="FN";if($prmate=="-1") $prmate="R";?>     <td><?=$prmate?></td>
+if($prmate=='' || $prmate==0) $prmate='FN';if($prmate=='-1') $prmate='R';?>     <td style="<?php echo $prmate=='FN'?'color:red':''; ?>"><?=$prmate?></td>
 
 <?#Raz Mat1
-if($prrm=="" || $prrm==0) $prrm="FN";if($prrm=="-1") $prrm="R";?>               <td><?=$prrm?></td>
+if($prrm=='' || $prrm==0) $prrm='FN';if($prrm=='-1') $prrm='R';?>               <td style="<?php echo $prrm=='FN'?'color:red':''; ?>"><?=$prrm?></td>
 
 <?#comunicacion2
-if($prcomuni=="" || $prcomuni==0) $prcomuni="FN";if($prcomuni=="-1") $prcomuni="R";?>   <td><?=$prcomuni?></td>
+if($prcomuni=='' || $prcomuni==0) $prcomuni='FN';if($prcomuni=='-1') $prcomuni='R';?>   <td style="<?php echo $prcomuni=='FN'?'color:red':''; ?>"><?=$prcomuni?></td>
 
 <?#Raz Ver2
-if($prrv=="" || $prrv==0) $prrv="FN";if($prrv=="-1") $prrv="R";?>               <td><?=$prrv?></td>
+if($prrv=='' || $prrv==0) $prrv='FN';if($prrv=='-1') $prrv='R';?>               <td style="<?php echo $prrv=='FN'?'color:red':''; ?>"><?=$prrv?></td>
 
-<td><?=$prcond?></td>
+<td style="<?php echo $prcond=='FN'?'color:red':''; ?>"><?=$prcond?></td>
 <td><?=$prcursocargo?></td>
 <td><?=$prfaltanotas?></td>
 </tr>
 <?
 $prcursocargo=0;#reinicio la variable
 $prfaltanotas=0;
-}
-echo "</table>";
-}
+} ?>
+</table>
+<?}
 
 ##############################################################FIN##########################################################
 ###########################################################################################################################
 if($nivela==="PRIMARIA" and ($grado==4 || $grado==5 || $grado==6) ){?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=Arit.</li>     <li style='float: left;'><code>02</code>=Alg. & Geo.</li>
-    <li style='float: left;'><code>04</code>=Raz. Mat.</li>
-    <li style='float: left;'><code>05</code>=Com.</li>      <li style='float: left;'><code>06</code>=Raz. Verbal</li>
-    <li style='float: left;'><code>07</code>=Arte</li>      <li style='float: left;'><code>08</code>=Personal Social</li>
-    <li style='float: left;'><code>09</code>=Educaci&oacute;n F&iacute;sica</li>
-    <li style='float: left;'><code>10</code>=Ciencia y Ambiente</li>
-    <li style='float: left;'><code>11</code>=Educaci&oacute;n Religiosa</li>
-    <li style='float: left;'><code>12</code>=Ingl&eacute;s</li>
-    <li style='float: left;'><code>13</code>=Computaci&oacute;n</li>
-    <li style='float: left;'><code>14</code>=Conducta</li>
-</ul><br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-    <th style='font-size: 14px;'>N°</th>        <th style='font-size: 14px;'>ALUMNO</th>
-    <th style='font-size: 14px;'>MATEM.</th>    <th style='font-size: 14px;'>COMUN.</th>
-    <th style='font-size: 14px;'>07 ART</th>    <th style='font-size: 14px;'>08 PERS</th>   <th style='font-size: 14px;'>09 EDFIS</th>   <th style='font-size: 14px;'>10 CCAA</th>
-    <th style='font-size: 14px;'>11 REL</th>    <th style='font-size: 14px;'>12 INL</th>  <th>13 COMPU</th>
+    <th style='font-size: 14px;'>N°</th>     <th style='font-size: 14px;'>ALUMNO</th>
+    <th style='font-size: 14px;'>MAT.</th>   <th style='font-size: 14px;'>COM.</th>
+    <th style='font-size: 14px;'>ART</th>    <th style='font-size: 14px;'>PER_SOC</th>   <th style='font-size: 14px;'>EDU_FIS</th>   <th style='font-size: 14px;'>CCAA</th>
+    <th style='font-size: 14px;'>REL</th>    <th style='font-size: 14px;'>ING</th>  <th>COMPU</th>
     <th style='font-size: 14px;'>Promedio</th>
-    <th style='font-size: 14px;'>Puntaje</th>   
-    <th style='font-size: 14px;'>ARIT</th>      <th style='font-size: 14px;'>ALG-GEO</th>  <th style='font-size: 14px;'>PR:Ari-alg-geo</th>
-    <th style='font-size: 14px;'>RAZ.MAT</th>
-    <th style='font-size: 14px;'>COM</th>       <th style='font-size: 14px;'>RAZ.VERB</th>
-    <th style='font-size: 14px;'>14 COND</th>
+    <th style='font-size: 14px;'>Puntaje</th>
+    <th style='font-size: 14px;'>mat.</th>    <th style='font-size: 14px;'>raz_mat</th>
+    <th style='font-size: 14px;'>com.</th>    <th style='font-size: 14px;'>raz_verb</th>
+    <th style='font-size: 14px;'>COND</th>
     <th style='font-size: 14px;'>Cur Desaprob.</th>
     <th style='font-size: 14px;'>FN</th>
 </tr>
@@ -291,18 +276,13 @@ $count_alumn2=$count_alumn2+1;?>
 while ($prregistro2 = mysql_fetch_array($registroalumno2)):
 
 #Aritmetica
-if($prregistro2[1]=='ARITMETICA'):
-$praritmetica2=$prregistro2[3]; $prprovarit2=$profesorcitore->aprobadoareanormal($praritmetica2, $prprovarit2);
-endif;
-
-#Algebra&Geometria
-if($prregistro2[1]=='ALGEBRA Y GEOMETRIA'):
-$pralgebra2=$prregistro2[3];    $prprovalg2=$profesorcitore->aprobadoareanormal($pralgebra2, $prprovalg2);
+if($prregistro2[1]=='MATEMATICA'):
+$praritmetica2 = $prregistro2[3]; $prprovarit2=$profesorcitore->aprobadoareanormal($praritmetica2, $prprovarit2);
 endif;
 
 #razonamiento matematico
 if($prregistro2[1]=='R. MATEMATICO'):
-$prrazmate2=$prregistro2[3];    $prprovrm2=$profesorcitore->aprobadoareanormal($prrazmate2, $prprovrm2);
+$prrazmate2 = $prregistro2[3];    $prprovrm2=$profesorcitore->aprobadoareanormal($prrazmate2, $prprovrm2);
 endif;
 
 #comunicacion
@@ -358,11 +338,6 @@ endif;
 endwhile;#fuera del while
 
 #curso a cargo#######################################################################
-#$prcursocargo=$profesorcitore->cursocargonormalpr($prmate, $prcursocargo);          #
-#$prcursocargo=$profesorcitore->cursocargonormalpr($pralgebra, $prcursocargo);       #
-#$prcursocargo=$profesorcitore->cursocargonormalpr($prrm, $prcursocargo);            #
-#$prcursocargo=$profesorcitore->cursocargonormalpr($prcomuni, $prcursocargo);        #
-#$prcursocargo=$profesorcitore->cursocargonormalpr($prrv, $prcursocargo);            #
 $prcursocargo2=$profesorcitore->cursocargonormalpr2($prarte2, $prcursocargo2);           #
 $prcursocargo2=$profesorcitore->cursocargonormalpr($prpersoc2, $prcursocargo2);         #
 $prcursocargo2=$profesorcitore->cursocargonormalpr2($preducfisica2, $prcursocargo2);    #
@@ -371,11 +346,6 @@ $prcursocargo2=$profesorcitore->cursocargonormalpr2($pringles2, $prcursocargo2);
 $prcursocargo2=$profesorcitore->cursocargonormalpr2($prcomputacion2, $prcursocargo2);   #
 $prcursocargo2=$profesorcitore->cursocargonormalpr($prccaa2, $prcursocargo2);           #
 #FaltaNotas##############################################################################
-//$prfaltanotas2=$profesorcitore->fnpr($praritmetica2, $prfaltanotas2);       #
-//$prfaltanotas2=$profesorcitore->fnpr($pralgebra2, $prfaltanotas2);          #
-//$prfaltanotas2=$profesorcitore->fnpr($prrazmate2, $prfaltanotas2);          #
-//$prfaltanotas2=$profesorcitore->fnpr($prcomunicacion2, $prfaltanotas2);     #
-//$prfaltanotas2=$profesorcitore->fnpr($prrazverbal2, $prfaltanotas2);        #
 $prfaltanotas2=$profesorcitore->fnpr($prarte2, $prfaltanotas2);             #
 $prfaltanotas2=$profesorcitore->fnpr($prpersoc2, $prfaltanotas2);           #
 $prfaltanotas2=$profesorcitore->fnpr($preducfisica2, $prfaltanotas2);       #
@@ -386,66 +356,60 @@ $prfaltanotas2=$profesorcitore->fnpr($prccaa2, $prfaltanotas2);             #
 $prfaltanotas2=$profesorcitore->fnpr($prconducta2, $prfaltanotas2);         #
 #####################################################################################
 
-$prmatematicaaritalg2=$profesorcitore->pesocta($praritmetica2, $pralgebra2);#Promedio de Aritmetica & Algebra
-if($praritmetica2==' ' || $praritmetica2==0 || $pralgebra2==' ' || $pralgebra2==0) $prmatematicaaritalg2=0;
-
-$prmatematicas2=$profesorcitore->pesomatbasico($prmatematicaaritalg2, $prrazmate2);#Promedio de Matematicas
-if($prmatematicaaritalg2==' ' || $prmatematicaaritalg2==0 || $prrazmate2==' ' || $prrazmate2==0) $prmatematicas2=0;
+$prmatematicas2=$profesorcitore->pesomatbasico($praritmetica2, $prrazmate2);#Promedio de Mat & Raz. Mat
 $prcursocargo2=$profesorcitore->cursocargonormalpr($prmatematicas2, $prcursocargo2);
 $prfaltanotas2=$profesorcitore->fnpr($prmatematicas2, $prfaltanotas2);
 
 $prcomunicacionpromedio=$profesorcitore->pesomatbasico($prcomunicacion2, $prrazverbal2);#Promedio Comunicacion
-if($prcomunicacion2==' ' || $prcomunicacion2==0 || $prrazverbal2==' ' || $prrazverbal2==0) $prcomunicacionpromedio=0;
 $prcursocargo2=$profesorcitore->cursocargonormalpr($prcomunicacionpromedio, $prcursocargo2);
 $prfaltanotas2=$profesorcitore->fnpr($prcomunicacionpromedio, $prfaltanotas2);
 
-$prpuntajealumno2=$profesorcitore->puntajealumnopr($prmatematicas2,$prcomunicacionpromedio,$prarte2,$prpersoc2,$preducfisica2,$preducreligiosa2,$pringles2,$prcomputacion2,$prccaa2);#sumo puntaje
+$prpuntajealumno2=$profesorcitore->puntajealumnopr($prmatematicas2,$prcomunicacionpromedio,$prarte2,$prpersoc2,$preducfisica2,$preducreligiosa2,$pringles2,$prcomputacion2,$prccaa2);
 
 if($preducfisica2==-2 || $preducreligiosa2==-2) {
     $promediante2=8;
 }else{
     $promediante2=9;
-};#si hay exonerados que se divida entre 10
+};
 
 #MATEMATICAS
-if($prmatematicas2=='' || $prmatematicas2==0) $prmatematicas2='FN';if($prmatematicas2=='-1') $prmatematicas2='R';?>
-<td style='font-size: 14px;'><?=$prmatematicas2?></td>
+if($prmatematicas2==0) $prmatematicas2='FN';if($prmatematicas2=='-1') $prmatematicas2='R';?>
+<td style="<?php echo $prmatematicas2=='FN'?'color:red':''; ?>"><?=$prmatematicas2?></td>
 
 <?#COMUNICACION
-if($prcomunicacionpromedio=='' || $prcomunicacionpromedio==0) $prcomunicacionpromedio='FN';if($prcomunicacionpromedio=='-1') $prcomunicacionpromedio='R';?>
-<td style='font-size: 14px;'><?=$prcomunicacionpromedio?></td>
+if($prcomunicacionpromedio==0) $prcomunicacionpromedio='FN';if($prcomunicacionpromedio=='-1') $prcomunicacionpromedio='R';?>
+<td style="<?php echo $prcomunicacionpromedio=='FN'?'color:red':''; ?>"><?=$prcomunicacionpromedio?></td>
 
 <?#ARTE
 if($prarte2=='' || $prarte2==0) $prarte2='FN';if($prarte2=='-1') $prarte2='R';?>
-<td style='font-size: 14px;'><?=$prarte2?></td>
+<td style="<?php echo $prarte2=='FN'?'color:red':''; ?>"><?=$prarte2?></td>
 
 <?#Personal Social
 if($prpersoc2=='' || $prpersoc2==0) $prpersoc2='FN';if($prpersoc2=='-1') $prpersoc2='R';?>
-<td style='font-size: 14px;'><?=$prpersoc2?></td>
+<td style="<?php echo $prpersoc2=='FN'?'color:red':''; ?>"><?=$prpersoc2?></td>
 
 <?#Educacion Física
 if($preducfisica2=='' || $preducfisica2==0) $preducfisica2='FN';if($preducfisica2=='-1') $preducfisica2='R';if($preducfisica2=='-2') $preducfisica2='EX';?>
-<td style='font-size: 14px;'><?=$preducfisica2?></td>
+<td style="<?php echo $preducfisica2=='FN'?'color:red':''; ?>"><?=$preducfisica2?></td>
 
 <?#Ciencia y ambiente
 if($prccaa2=='' || $prccaa2==0) $prccaa2='FN';if($prccaa2=='-1') $prccaa2='R';?>
-<td style='font-size: 14px;'><?=$prccaa2?></td>
+<td style="<?php echo $prccaa2=='FN'?'color:red':''; ?>"><?=$prccaa2?></td>
 
 <?#Educacion religiosa
 if($preducreligiosa2=='' || $preducreligiosa2==0) $preducreligiosa2='FN';if($preducreligiosa2=='-1') $preducreligiosa2='R';if($preducreligiosa2=='-2') $preducreligiosa2='EX';?>
-<td style='font-size: 14px;'><?=$preducreligiosa2?></td>
+<td style="<?php echo $preducreligiosa2=='FN'?'color:red':''; ?>"><?=$preducreligiosa2?></td>
 
 <?#Ingles
 if($pringles2=='' || $pringles2==0) $pringles2='FN';if($pringles2=='-1') $pringles2='R';?>
-<td style='font-size: 14px;'><?=$pringles2?></td>
+<td style="<?php echo $pringles2=='FN'?'color:red':''; ?>"><?=$pringles2?></td>
 
 <?#Computacion
 if($prcomputacion2=='' || $prcomputacion2==0) $prcomputacion2='FN';if($prcomputacion2=='-1') $prcomputacion2='R';?>
-<td style='font-size: 14px;'><?=$prcomputacion2?></td>
+<td style="<?php echo $prcomputacion2=='FN'?'color:red':''; ?>"><?=$prcomputacion2?></td>
 
 <?#Conducta
 if($prconducta2=='' || $prconducta2==0) $prconducta2='FN';if($prconducta2=='-1') $prconducta2='R';
-
 
 $prprmd2=$profesorcitore->promedioal($prpuntajealumno2,$promediante2);?>
 
@@ -454,38 +418,30 @@ $prprmd2=$profesorcitore->promedioal($prpuntajealumno2,$promediante2);?>
 
 <?#aritmetica
 if($praritmetica2=='' || $praritmetica2==0) $praritmetica2='FN';if($praritmetica2=='-1') $praritmetica2='R';?>
-<td style='font-size: 14px;'><?=$praritmetica2?></td>
-
-<?#algebra & geometria
-if($pralgebra2=='' || $pralgebra2==0) $pralgebra2='FN';if($pralgebra2=='-1') $pralgebra2='R';?>
-<td style='font-size: 14px;'><?=$pralgebra2?></td>
-
-<?#Promedio algebra & geometria
-if($prmatematicaaritalg2=='' || $prmatematicaaritalg2==0) $prmatematicaaritalg2='FN';if($prmatematicaaritalg2=='-1') $prmatematicaaritalg2='R';?>
-<td style='font-size: 14px;'><?=$prmatematicaaritalg2?></td>
+<td style="<?php echo $praritmetica2=='FN'?'color:red':''; ?>"><?=$praritmetica2?></td>
 
 <?#Raz Matematico
 if($prrazmate2=='' || $prrazmate2==0) $prrazmate2='FN';if($prrazmate2=='-1') $prrazmate2='R';?>
-<td style='font-size: 14px;'><?=$prrazmate2?></td>
+<td style="<?php echo $prrazmate2=='FN'?'color:red':''; ?>"><?=$prrazmate2?></td>
 
 <?#comunicacion
 if($prcomunicacion2=='' || $prcomunicacion2==0) $prcomunicacion2='FN';if($prcomunicacion2=='-1') $prcomunicacion2='R';?>
-<td style='font-size: 14px;'><?=$prcomunicacion2?></td>
+<td style="<?php echo $prcomunicacion2=='FN'?'color:red':''; ?>"><?=$prcomunicacion2?></td>
 
 <?#Raz Verbal
 if($prrazverbal2=='' || $prrazverbal2==0) $prrazverbal2='FN';if($prrazverbal2=='-1') $prrazverbal2='R';?>
-<td style='font-size: 14px;'><?=$prrazverbal2?></td>
+<td style="<?php echo $prrazverbal2=='FN'?'color:red':''; ?>"><?=$prrazverbal2?></td>
 
-<td style='font-size: 14px;'><?=$prconducta2?></td>
+<td style="<?php echo $prconducta2=='FN'?'color:red':''; ?>"><?=$prconducta2?></td>
 <td style='font-size: 14px;'><?=$prcursocargo2?></td>
 <td style='font-size: 14px;'><?=$prfaltanotas2?></td>
 </tr>
 <?
-$prcursocargo2=0;#reinicio la variable
+$prcursocargo2=0;
 $prfaltanotas2=0;
-}
-echo "</table>";
-}
+}?>
+</table>
+<?}
 
 #------------------------------------------------------------------------inicial
 if($nivela==="INICIAL"){
@@ -493,24 +449,20 @@ if($nivela==="INICIAL"){
 <ul class='unstyled'>
     <li style='float: left;'><code>01</code>=Matem&aacute;tica</li>
     <li style='float: left;'><code>02</code>=Comunicaci&oacute;n</li>
-    <li style='float: left;'><code>03</code>=Ingl&eacute;n</li>
-    <li style='float: left;'><code>04</code>=Personal Social</li>
-    <li style='float: left;'><code>05</code>=Ciencia y Ambiente</li>
-    <li style='float: left;'><code>06</code>=Informatica</li>
-    <li style='float: left;'><code>07</code>=Conducta</li>
+    <li style='float: left;'><code>03</code>=Personal Social</li>
+    <li style='float: left;'><code>04</code>=Ciencia y Ambiente</li>
+    <li style='float: left;'><code>05</code>=Conducta</li>
 </ul>
 <br><br><br><center>
 
 <table class='table' id='Exportar_a_Excel'>
 <tr class='gradeX'>
 <th>N</th><th>ALUMNO</th>
-      <th>C1</th><th>C2</th><th>01</th>
-      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>02</th>
-      <th>C1</th><th>C2</th><th>C3</th><th>03</th>
-      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>04</th>
-      <th>C1</th><th>C2</th><th>05</th>
-      <th>C1</th><th>C2</th><th>06</th>
-      <th>C1</th><th>07</th>
+      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>01</th>
+      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>C6</th><th>C7</th><th>02</th>
+      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>03</th>
+      <th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>04</th>
+      <th>C1</th><th><b>05</b></th>
 </tr>
 <?
 $alumnado_seccioni=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);#cambia
@@ -524,32 +476,22 @@ $registroalumnoi=$profesorcitore->NOTASCONSOLIDADOTUTORIAINiCIAL($irow[0]);
 while ($iregistro = mysql_fetch_array($registroalumnoi)) :
         if($iregistro[1]=='MATEMATICA'):
         $imate=$iregistro[3];
-        $imate1=$iregistro[4];$imate2=$iregistro[5];
+        $imate1=$iregistro[4];$imate2=$iregistro[5];$imate3=$iregistro[6];$imate4=$iregistro[7];
         endif;
         
         if($iregistro[1]=='COMUNICACION'):
         $icom=$iregistro[3];
-        $icom1=$iregistro[4];$icom2=$iregistro[5];$icom3=$iregistro[6];$icom4=$iregistro[7];
-        endif;
-
-        if($iregistro[1]=='INGLES'):
-        $iingl=$iregistro[3];
-        $iingl1=$iregistro[4];$iingl2=$iregistro[5];$iingl3=$iregistro[6];
+        $icom1=$iregistro[4];$icom2=$iregistro[5];$icom3=$iregistro[6];$icom4=$iregistro[7];$icom5=$iregistro[8];$icom6=$iregistro[9];$icom7=$iregistro[10];
         endif;
 
         if($iregistro[1]=='PERSONAL SOCIAL'):
         $ipersoc=$iregistro[3];
-        $ipersoc1=$iregistro[4];$ipersoc2=$iregistro[5];$ipersoc3=$iregistro[6];$ipersoc4=$iregistro[7];
+        $ipersoc1=$iregistro[4];$ipersoc2=$iregistro[5];$ipersoc3=$iregistro[6];$ipersoc4=$iregistro[7];$ipersoc5=$iregistro[8];
         endif;
 
         if($iregistro[1]=='CIENCIA Y AMBIENTE'):
         $iccaa=$iregistro[3];
-        $iccaa1=$iregistro[4];$iccaa2=$iregistro[5];
-        endif;
-        
-        if($iregistro[1]=='INFORMATICA'):
-        $iinf=$iregistro[3];
-        $iinf1=$iregistro[4];$iinf2=$iregistro[5];
+        $iccaa1=$iregistro[4];$iccaa2=$iregistro[5];$iccaa3=$iregistro[6];$iccaa4=$iregistro[7];$iccaa5=$iregistro[8];
         endif;
         
         if($iregistro[1]=='CONDUCTA'):
@@ -560,33 +502,23 @@ endwhile;
 
 #mate inicial $iingl
 if($imate=="") $imate="FN";?>
-<td><?=$imate1?></td><td><?=$imate2?></td>
+<td><?=$imate1==''?'FN':$imate1?></td><td><?=$imate2==''?'FN':$imate2?></td><td><?=$imate3==''?'FN':$imate3?></td><td><?=$imate4==''?'-':$imate4?></td>
 <td><strong><?=$imate?></strong></td>
 
 <?#comunicacion inicial
 if($icom=="") $icom="FN";?>
-<td><?=$icom1?></td><td><?=$icom2?></td><td><?=$icom3?></td><td><?=$icom4?></td>
+<td><?=$icom1==''?'FN':$icom1?></td><td><?=$icom2==''?'FN':$icom2?></td><td><?=$icom3==''?'FN':$icom3?></td><td><?=$icom4==''?'FN':$icom4?></td><td><?=$icom5==''?'FN':$icom5?></td><td><?=$icom6==''?'FN':$icom6?></td><td><?=$icom7==''?'FN':$icom7?></td>
 <td><strong><?=$icom?></strong></td>
-
-<?#ingles inicial
-if($iingl=="") $iingl="FN";?>
-<td><?=$iingl1?></td><td><?=$iingl2?></td><td><?=$iingl3?></td>
-<td><strong><?=$iingl?></strong></td>
 
 <?#personal social inicial
 if($ipersoc=="") $ipersoc="FN";?>
-<td><?=$ipersoc1?></td><td><?=$ipersoc2?></td><td><?=$ipersoc3?></td><td><?=$ipersoc4?></td>
+<td><?=$ipersoc1==''?'FN':$ipersoc1?></td><td><?=$ipersoc2==''?'FN':$ipersoc2?></td><td><?=$ipersoc3==''?'FN':$ipersoc3?></td><td><?=$ipersoc4==''?'FN':$ipersoc4?></td><td><?=$ipersoc5==''?'FN':$ipersoc5?></td>
 <td><strong><?=$ipersoc?></strong></td>
 
 <?#ciencia y ambiente inicial
 if($iccaa=="") $iccaa="FN";?>
-<td><?=$iccaa1?></td><td><?=$iccaa2?></td>
+<td><?=$iccaa1==''?'FN':$iccaa1?></td><td><?=$iccaa2==''?'FN':$iccaa2?></td><td><?=$iccaa3==''?'FN':$iccaa3?></td><td><?=$iccaa4==''?'FN':$iccaa4?></td><td><?=$iccaa5==''?'FN':$iccaa5?></td>
 <td><strong><?=$iccaa?></strong></td>
-
-<?#informatica inicial
-if($iinf=="") $iinf="FN";?>
-<td><?=$iinf1?></td><td><?=$iinf2?></td>
-<td><strong><?=$iinf?></strong></td>
 
 <?#conducta inicial
 if($icoducta=="") $icoducta="FN";?>
@@ -602,33 +534,17 @@ if($icoducta=="") $icoducta="FN";?>
 
 
 <?#-------------------------------------------------------------------secundaria
+#*******************1er grado*******************
 if($nivela==="SECUNDARIA" AND $grado==1){?>
-
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=MATEM&Aacute;TICA</li>
-    <li style='float: left;'><code>02</code>=COMUNICACI&Oacute;N</li>
-    <li style='float: left;'><code>03</code>=INGL&Eacute;S</li>
-    <li style='float: left;'><code>04</code>=CTA</li>
-    <li style='float: left;'><code>05</code>=HH.GG.EE</li>
-    <li style='float: left;'><code>06</code>=CIVICA</li>
-    <li style='float: left;'><code>07</code>=PERSONA FF.RR.HH</li>
-    <li style='float: left;'><code>08</code>=EPT</li>
-    <li style='float: left;'><code>09</code>=EDUCACI&Oacute;N F&Iacute;SICA</li>
-    <li style='float: left;'><code>10</code>=EDUCACI&Oacute;N ARTISTICA</li>
-    <li style='float: left;'><code>11</code>=EDUCACI&Oacute;N RELIGIOSA</li>  
-    <li style='float: left;'><code>12</code>=INFORMATICA</li>
-    <li style='float: left;'><code>13</code>=CONDUCTA</li>
-</ul>
-<br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-  <th>N</th><th>ALUMNO</th><th>01 MAT</th><th>02 COM</th><th>03 ING</th><th>04 CTA</th>
-  <th>05 HGE</th><th>06 CIV</th><th>07 P.F.R.H</th><th>08 EPT</th>
-  <th>09 ED.FIS</th><th>10 ED. ART</th><th>11 REL</th><th>12 INF</th><th>13 CON</th>
-  <th>ARIT</th><th>GEO</th> <th>Prom: Arit-Geo</th>
-  <th>RAZ.MAT.</th>    <th>COM</th><th>RAZ.VERB</th>
-  <th>PROMEDIO</th><th>PUNTAJE</th><th>CURSOS DES</th><th> FN </th>
+  <th>N</th><th>ALUMNO</th><th>MAT</th><th>COM</th><th>ING</th><th>CTA</th>
+  <th>HGE</th><th>CIV</th><th>PF-RR.HH.</th><th>EPT</th>
+  <th>EDU_FIS</th><th>EDU_ART</th><th>REL</th><th>INF</th><th>COND</th>
+  <th>mat.</th><th>raz_mat</th>
+  <th>com.</th><th>raz_verb</th>
+  <th>PROMEDIO</th><th>PUNTAJE</th><th>CURSOS DES</th><th>FN</th>
 </tr>
 <?
 $alumnado_seccionSEC1=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);
@@ -639,53 +555,37 @@ $sec1provept=0;$sec1provfisica=0;$sec1provarte=0;$sec1provreligion=0;$sec1provpc
 #variable la llevas
 $prcursocargosec1=0;
 $fnsec1=0;
-while ($sec1row = mysql_fetch_array($alumnado_seccionSEC1)) {
-echo "<tr>";
-echo "<td>$sec1row[1]</td>";
-echo "<td>$sec1row[2] $sec1row[3] ,$sec1row[4] </td>";
-
-$registroalumnosec1=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec1row[0]);
-
-while ($sec1registro = mysql_fetch_array($registroalumnosec1)) {
+while ($sec1row = mysql_fetch_array($alumnado_seccionSEC1)) { ?>
+<tr>
+<td><?php echo $sec1row[1];?></td>
+<td><?php echo $sec1row[2].' '.$sec1row[3].' ,'.$sec1row[4];?></td>
+<?php $registroalumnosec1=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec1row[0]);?>
+<?php while ($sec1registro = mysql_fetch_array($registroalumnosec1)) {
     #matematicas
-    if($sec1registro[1]=='ARITMETICA')  $sec1arit=$sec1registro[3];
-    if($sec1registro[1]=='GEOMETRIA')   $sec1alg=$sec1registro[3];
-    if($sec1registro[1]=='R. MATEMATICO')   $sec1geo=$sec1registro[3];
+    if($sec1registro[1]=='MATEMATICA')  $sec1arit=$sec1registro[3];
+    if($sec1registro[1]=='Matematica - R. Matematico')   $sec1geo=$sec1registro[3];
     if($sec1registro[2]=='Comunicacion')    $sec1com=$sec1registro[3];
-    if($sec1registro[1]=='R. VERBAL')   $sec1rv=$sec1registro[3];$prueba1=$sec1rv;
-    if($sec1registro[2]=='Ingles')      $sec1ing=$sec1registro[3];
+    if($sec1registro[1]=='R. VERBAL')   $sec1rv=$sec1registro[3];
+    if($sec1registro[2]=='INGLES')      $sec1ing=$sec1registro[3];
     if($sec1registro[2]=='CC.NN.')      $sec1ccaa=$sec1registro[3];
     if($sec1registro[2]=='HGE')         $sec1hge=$sec1registro[3];
-    if($sec1registro[2]=='Civica')      $sec1civ=$sec1registro[3];
+    if($sec1registro[2]=='CIVICA')      $sec1civ=$sec1registro[3];
     if($sec1registro[2]=='PP.FF.')  $sec1ppff=$sec1registro[3];
     if($sec1registro[2]=='EPT')     $sec1ept=$sec1registro[3];
     if($sec1registro[2]=='Edu. Fisica') $sec1edufis=$sec1registro[3];
-    if($sec1registro[2]=='Arte')        $sec1arte=$sec1registro[3];
-    if($sec1registro[2]=='Religion')    $sec1rel=$sec1registro[3];
+    if($sec1registro[2]=='ARTE')        $sec1arte=$sec1registro[3];
+    if($sec1registro[2]=='RELIGION')    $sec1rel=$sec1registro[3];
     if($sec1registro[2]=='INFORMATICA') $sec1inform=$sec1registro[3];
-    if($sec1registro[2]=='conducta')    $sec1condu=$sec1registro[3];
-}
-#------------------------------------------------------------------curso a cargo
-if($sec1arit=='' || $sec1arit==0) $sec1arit='FN';   if($sec1arit=='-1') $sec1arit='R';#aritmetica
-if($sec1alg=='' || $sec1alg==0) $sec1alg='FN';      if($sec1alg=='-1') $sec1alg='R';#geometria
-if($sec1geo=='' || $sec1geo==0) $sec1geo='FN';      if($sec1geo=='-1') $sec1geo='R';#raz. matematico
-
-$promaritgeo=$profesorcitore->pesocta($sec1arit, $sec1alg);#Prom Arit-Geo
-if($promaritgeo=='' || $promaritgeo==0) $promaritgeo='FN'; if($promaritgeo=='-1') $promaritgeo='R';
-
-if($sec1geo=='FN' || $promaritgeo=='FN'){#mate
-    $sec1mat='FN';    $fnsec1=$profesorcitore->fnsec($sec1mat, $fnsec1);
-}else{
-    $sec1mat=$profesorcitore->pesomatbasico($promaritgeo, $sec1geo);
+    if($sec1registro[2]=='CONDUCTA')    $sec1condu=$sec1registro[3];
 }
 
-#if($sec1com==0) $sec1com='FN';    if($sec1com=='-1') $sec1com='R';#comunicacion
-#if($sec1rv==0 || $sec1rv=='');  $sec1rv='FN';    if($sec1rv=='-1') $sec1rv='R'; #Raz. Verbal
-if($sec1com=='' || $sec1rv=='' || $sec1com==0 || $sec1rv==0){
-    $sec1comunica='FN'; $fnsec1=$profesorcitore->fnsec($sec1comunica, $fnsec1);
-}else{
-    $sec1comunica=$profesorcitore->pesomatbasico($sec1com, $sec1rv);
-}
+$sec1mat=$profesorcitore->pesomatbasico($sec1arit, $sec1geo);
+$fnsec1=$profesorcitore->fnsec($sec1mat, $fnsec1);
+$prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1mat, $prcursocargosec1);
+
+$sec1comunica=$profesorcitore->pesomatbasico($sec1com, $sec1rv);
+$fnsec1=$profesorcitore->fnsec($sec1comunica, $fnsec1);
+$prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1comunica, $prcursocargosec1);
 
 $prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1ing, $prcursocargosec1);
 $fnsec1=$profesorcitore->fnsec($sec1ing, $fnsec1);
@@ -717,80 +617,72 @@ $fnsec1=$profesorcitore->fnsec($sec1rel, $fnsec1);
 $prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1inform, $prcursocargosec1);
 $fnsec1=$profesorcitore->fnsec($sec1inform, $fnsec1);
 
-$prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1mat, $prcursocargosec1);
-$fnsec1=$profesorcitore->fnsec($sec1mat, $fnsec1);
-
-$prcursocargosec1=$profesorcitore->cursocargonormalsec($sec1comunica, $prcursocargosec1);
-$fnsec1=$profesorcitore->fnsec($sec1comunica, $fnsec1);
-
 $fnsec1=$profesorcitore->fnsec($sec1condu, $fnsec1);
 
 $secpuntajealumno1=$profesorcitore->puntajealumnosec(round($sec1mat,0), round($sec1comunica,0), $sec1ing, $sec1ccaa, $sec1hge, $sec1civ, $sec1ppff, $sec1ept, $sec1edufis, $sec1arte, $sec1rel,$sec1inform);
 
 if($sec1edufis==-2 || $sec1rel==-2) {    
-$promediante1=11;
+    $promediante1=11;
 }else{ 
-$promediante1=12;
-};#si hay exonerados que se divida entre 8
-#$promedio1=round($secpuntajealumno1/$promediante1,2);
+    $promediante1=12;
+};
+
 $promedio1=$profesorcitore->promedioal($secpuntajealumno1,$promediante1);
 
 #ingles
-if($sec1ing=="" || $sec1ing==0) $sec1ing="FN";if($sec1ing=="-1") $sec1ing="R";
+if($sec1ing=='' || $sec1ing==0) $sec1ing='FN';if($sec1ing=="-1") $sec1ing='R';
 #ccaa
-if($sec1ccaa=="" || $sec1ccaa==0) $sec1ccaa="FN";if($sec1ccaa=="-1") $sec1ccaa="R";
+if($sec1ccaa=='' || $sec1ccaa==0) $sec1ccaa='FN';if($sec1ccaa=="-1") $sec1ccaa='R';
 #hge
-if($sec1hge=="" || $sec1hge==0) $sec1hge="FN";if($sec1hge=="-1") $sec1hge="R";
+if($sec1hge=='' || $sec1hge==0) $sec1hge='FN';if($sec1hge=="-1") $sec1hge='R';
 #civ
-if($sec1civ=="" || $sec1civ==0) $sec1civ="FN";if($sec1civ=="-1") $sec1civ="R";
+if($sec1civ=='' || $sec1civ==0) $sec1civ='FN';if($sec1civ=="-1") $sec1civ='R';
 #ppff
-if($sec1ppff=="" || $sec1ppff==0) $sec1ppff="FN";if($sec1ppff=="-1") $sec1ppff="R";
+if($sec1ppff=='' || $sec1ppff==0) $sec1ppff='FN';if($sec1ppff=="-1") $sec1ppff='R';
 #ept
-if($sec1ept=="" || $sec1ept==0) $sec1ept="FN";if($sec1ept=="-1") $sec1ept="R";
+if($sec1ept=='' || $sec1ept==0) $sec1ept='FN';if($sec1ept=="-1") $sec1ept='R';
 #educfisica
-if($sec1edufis=="" || $sec1edufis==0) $sec1edufis="FN";if($sec1edufis=="-1") $sec1edufis="R";if($sec1edufis=="-2") $sec1edufis="ex";
+if($sec1edufis=='' || $sec1edufis==0) $sec1edufis='FN';if($sec1edufis=="-1") $sec1edufis='R';if($sec1edufis=="-2") $sec1edufis='EX';
 #educart
-if($sec1arte=="" || $sec1arte==0) $sec1arte="FN";if($sec1arte=="-1") $sec1arte="R";
+if($sec1arte=='' || $sec1arte==0) $sec1arte='FN';if($sec1arte=="-1") $sec1arte='R';
 #edurel
-if($sec1rel=="" || $sec1rel==0) $sec1rel="FN";if($sec1rel=="-1") $sec1rel="R";if($sec1rel=="-2") $sec1rel="EX";
+if($sec1rel=='' || $sec1rel==0) $sec1rel='FN';if($sec1rel=="-1") $sec1rel='R';if($sec1rel=="-2") $sec1rel='EX';
 #informatica
-if($sec1inform=="" || $sec1inform==0) $sec1inform="FN";if($sec1inform=="-1") $sec1inform="R";
+if($sec1inform=='' || $sec1inform==0) $sec1inform='FN';if($sec1inform=="-1") $sec1inform='R';
 #conducta
-if($sec1condu=="" || $sec1condu==0) $sec1condu="FN";if($sec1condu=="-1") $sec1condu="R";
+if($sec1condu=='' || $sec1condu==0) $sec1condu='FN';if($sec1condu=="-1") $sec1condu='R';
 
 $mat1=round($sec1mat,0);
 if($mat1=="0") $mat1="FN";
 
 #$sec1comunica;
 $com1=round($sec1comunica,0);
-if($com1=="0") $com1="FN";
+if($com1=="0") $com1='FN';
 ?>
-<td><?=$mat1?></td>
-<td><?=$com1?></td>
-<td><?=$sec1ing?></td>
-<td><?=$sec1ccaa?></td>
-<td><?=$sec1hge?></td>
-<td><?=$sec1civ?></td>
-<td><?=$sec1ppff?></td>
-<td><?=$sec1ept?></td>
-<td><?=$sec1edufis?></td>
-<td><?=$sec1arte?></td>
-<td><?=$sec1rel?></td>
-<td><?=$sec1inform?></td>
-<td><?=$sec1condu?></td>
+<td style="<?php echo $mat1=='FN'?'color:red':''; ?>"><?=$mat1?></td>
+<td style="<?php echo $com1=='FN'?'color:red':''; ?>"><?=$com1?></td>
+<td style="<?php echo $sec1ing=='FN'?'color:red':''; ?>"><?=$sec1ing?></td>
+<td style="<?php echo $sec1ccaa=='FN'?'color:red':''; ?>"><?=$sec1ccaa?></td>
+<td style="<?php echo $sec1hge=='FN'?'color:red':''; ?>"><?=$sec1hge?></td>
+<td style="<?php echo $sec1civ=='FN'?'color:red':''; ?>"><?=$sec1civ?></td>
+<td style="<?php echo $sec1ppff=='FN'?'color:red':''; ?>"><?=$sec1ppff?></td>
+<td style="<?php echo $sec1ept=='FN'?'color:red':''; ?>"><?=$sec1ept?></td>
+<td style="<?php echo $sec1edufis=='FN'?'color:red':''; ?>"><?=$sec1edufis?></td>
+<td style="<?php echo $sec1arte=='FN'?'color:red':''; ?>"><?=$sec1arte?></td>
+<td style="<?php echo $sec1rel=='FN'?'color:red':''; ?>"><?=$sec1rel?></td>
+<td style="<?php echo $sec1inform=='FN'?'color:red':''; ?>"><?=$sec1inform?></td>
+<td style="<?php echo $sec1condu=='FN'?'color:red':''; ?>"><?=$sec1condu?></td>
 
-<td><?=$sec1arit?></td>
-<td><?=$sec1alg?></td>
-<td><?=$promaritgeo?></td>
+<td style="<?php echo $sec1arit=='FN'?'color:red':''; ?>"><?=$sec1arit?></td>
+<td style="<?php echo $sec1geo=='FN'?'color:red':''; ?>"><?=$sec1geo?></td>
 
-<td><?=$sec1geo?></td>
-<?if($sec1com==0 || $sec1com=='') $sec1com='FN';  if($sec1com=='-1') $sec1com='R';?>
-<?if($sec1rv==0 || $sec1rv=='') $sec1rv='FN';   if($sec1rv=='-1') $sec1rv='R';?>
-<td><?=$sec1com?></td>
-<td><?=$sec1rv?></td>
+<?if($sec1com==0) $sec1com='FN';  if($sec1com=='-1') $sec1com='R';?>
+<?if($sec1rv==0) $sec1rv='FN';   if($sec1rv=='-1') $sec1rv='R';?>
+<td style="<?php echo $sec1com=='FN'?'color:red':''; ?>"><?=$sec1com?></td>
+<td style="<?php echo $sec1rv=='FN'?'color:red':''; ?>"><?=$sec1rv?></td>
 
-<td><?=$promedio1?></td>
-<td><?=$secpuntajealumno1?></td>
+<td><strong><?=$promedio1?></strong></td>
+<td><strong><?=$secpuntajealumno1?></strong></td>
 <td><?=$prcursocargosec1?></td>
 <td><?=$fnsec1?></td>
 
@@ -798,40 +690,23 @@ if($com1=="0") $com1="FN";
 $prcursocargosec1=0;$secpuntajealumno1=0;$promedio1=0;$sec1arit=0;$sec1alg=0;
 $sec1geo=0;$mat1=0;$com1=0;$sec1com=0;$sec1rv=0;$sec1ing=0;$sec1ccaa=0;$sec1hge=0;$sec1civ=0;
 $sec1ppff=0;$sec1ept=0;$sec1edufis=0;$sec1arte=0;$sec1rel=0;$sec1inform=0;$sec1condu=0;
-$fnsec1=0;
-echo "</tr>";
-}
-echo "</table>";
-}
+$fnsec1=0; ?>
+</tr>
+<? } ?>
+</table>
+<? }
 
-#---------------------2do grado
+#*******************2do grado*******************
 if($nivela==="SECUNDARIA" AND $grado==2){?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=MATEM&Aacute;TICA</li>
-    <li style='float: left;'><code>02</code>=COMUNICACI&Oacute;N</li>
-    <li style='float: left;'><code>03</code>=INGL&Eacute;S</li>
-    <li style='float: left;'><code>04</code>=CTA</li>
-    <li style='float: left;'><code>05</code>=HH.GG.EE</li>
-    <li style='float: left;'><code>06</code>=CIVICA</li>
-    <li style='float: left;'><code>07</code>=PERSONA FF.RR.HH</li>
-    <li style='float: left;'><code>08</code>=EPT</li>
-    <li style='float: left;'><code>09</code>=EDUCACI&Oacute;N F&Iacute;SICA</li>
-    <li style='float: left;'><code>10</code>=EDUCACI&Oacute;N ARTISTICA</li>
-    <li style='float: left;'><code>11</code>=EDUCACI&Oacute;N RELIGIOSA</li>  
-    <li style='float: left;'><code>12</code>=INFORMATICA</li>
-    <li style='float: left;'><code>13</code>=CONDUCTA</li>
-</ul>
-<br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
     <tr class='gradeX'>
-        <th>N</th><th>ALUMNO</th><th>01 MAT</th><th>02 COM</th><th>03 ING</th><th>04 CTA</th>
-                                  <th>05 HGE</th><th>06 CIV</th><th>07 P.F.R.H</th><th>08 EPT</th>
-                                  <th>09 EDU.FIS</th><th>10 ART</th><th>11 REL</th><th>12 INF</th><th>13 COND</th>
-                                  <th>ALG</th><th>GEO</th><th>Prom:Alg-Geo</th>
-                                  <th>Raz. Mat.</th>
-                                  <th>Comun.</th><th>Raz.Verb</th>
-                                  <th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th> FN </th>
+        <th>N</th><th>ALUMNO</th><th>MAT</th><th>COM</th><th>ING</th><th>CTA</th>
+                                  <th>HGE</th><th>CIV</th><th>PF RR.HH</th><th>EPT</th>
+                                  <th>EDU.FIS</th><th>ART</th><th>REL</th><th>INF</th><th>COND</th>
+                                  <th>mat</th><th>raz. mat</th>
+                                  <th>com</th><th>raz verb</th>
+                                  <th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th>FN</th>
     </tr>
 <?
 $alumnado_seccionSEC2=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);
@@ -842,50 +717,40 @@ $sec2provept=0;$sec2provfisica=0;$sec2provarte=0;$sec2provreligion=0;$sec2provpc
 #variable la llevas
 $prcursocargosec2=0;
 $fnsec2=0;
-while ($sec2row = mysql_fetch_array($alumnado_seccionSEC2)) {
-echo "<tr>";
-echo "<td>$sec2row[1]</td>";
-echo "<td>$sec2row[2] $sec2row[3] ,$sec2row[4] </td>";
+while ($sec2row = mysql_fetch_array($alumnado_seccionSEC2)) { ?>
+<tr>
+<td><?php echo $sec2row[1];?></td>
+<td><?php echo $sec2row[2].' '.$sec2row[3].' ,'.$sec2row[4];?></td>
 
-$registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec2row[0]);
+<? $registroalumnosec2=$profesorcitore->NOTASCONSOLIDADOTUTORIA1($sec2row[0]);
 
 while ($sec2registro = mysql_fetch_array($registroalumnosec2)) {
     #matematicas
-    if($sec2registro[1]=='Algebra') $sec2alg=$sec2registro[3];
-    if($sec2registro[1]=='Geometria') $sec2geo=$sec2registro[3];
-
-    if($sec2registro[1]=='R. Matematico') $sec2arit=$sec2registro[3];
+    if($sec2registro[1]=='MATEMATICA') $sec2alg=$sec2registro[3];
+    if($sec2registro[1]=='Matematica - R. Matematico') $sec2arit=$sec2registro[3];
     
     if($sec2registro[1]=='Comunicacion') $sec2com=$sec2registro[3];
-    if($sec2registro[1]=='R. Verbal')   $sec2razv=$sec2registro[3];
+    if($sec2registro[1]=='R. VERBAL')   $sec2razv=$sec2registro[3];
     
-    if($sec2registro[2]=='Ingles') $sec2ing=$sec2registro[3];
+    if($sec2registro[2]=='INGLES') $sec2ing=$sec2registro[3];
     if($sec2registro[2]=='CTA') $sec2ccaa=$sec2registro[3];
     if($sec2registro[2]=='HGE') $sec2hge=$sec2registro[3];
-    if($sec2registro[2]=='Civica') $sec2civ=$sec2registro[3];
+    if($sec2registro[2]=='CIVICA') $sec2civ=$sec2registro[3];
     if($sec2registro[2]=='PP.FF.') $sec2ppff=$sec2registro[3];
     if($sec2registro[2]=='EPT') $sec2ept=$sec2registro[3];
     if($sec2registro[2]=='Edu. Fisica') $sec2edufis=$sec2registro[3];
-    if($sec2registro[2]=='Arte') $sec2arte=$sec2registro[3];
-    if($sec2registro[2]=='Religion') $sec2rel=$sec2registro[3];
+    if($sec2registro[2]=='ARTE') $sec2arte=$sec2registro[3];
+    if($sec2registro[2]=='RELIGION') $sec2rel=$sec2registro[3];
     if($sec2registro[2]=='INFORMATICA') $sec2inform=$sec2registro[3];
-    if($sec2registro[2]=='conducta') $sec2condu=$sec2registro[3];  
+    if($sec2registro[2]=='CONDUCTA') $sec2condu=$sec2registro[3];  
 }
 
-$promalggeo=$profesorcitore->pesocta($sec2alg, $sec2geo);#Prom Alg -geom
-if($sec2alg=='' || $sec2alg==0 || $sec2geo==' ' || $sec2geo==0) $promalggeo=0; #Si hay vacios el Prom alg-geo se pone en cero
-#if($promalggeo=='' || $promalggeo==0) $promalggeo='FN'; if($promalggeo=='-1') $promalggeo='R';
-
-if($sec2arit==' ' || $promalggeo==' ' || $sec2arit==0 || $promalggeo==0){#mate
-    $sec2mat="FN";    $fnsec2=$profesorcitore->fnsec($sec2mat, $fnsec2);
-}else{
-    $sec2mat=$profesorcitore->pesomatbasico($promalggeo, $sec2arit);
-}
+$sec2mat=$profesorcitore->pesomatbasico($sec2alg, $sec2arit);
+$fnsec2=$profesorcitore->fnsec($sec2mat, $fnsec2);
+$prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2mat, $prcursocargosec2);
 
 $sec2comunicacion=$profesorcitore->pesomatbasico($sec2com, $sec2razv);
 $fnsec2=$profesorcitore->fnsec($sec2comunicacion, $fnsec2);
-
-
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2comunicacion, $prcursocargosec2);
 
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2ing, $prcursocargosec2);
@@ -918,125 +783,89 @@ $fnsec2=$profesorcitore->fnsec($sec2rel, $fnsec2);
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2inform, $prcursocargosec2);
 $fnsec2=$profesorcitore->fnsec($sec2inform, $fnsec2);
 
-$prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2mat, $prcursocargosec2);
-
 $fnsec2=$profesorcitore->fnsec($sec2condu, $fnsec2);
 
-if($sec2rel=='-2'){
-$sumarreligion=0;
-}else{
-$sumarreligion=$sec2rel;
-}
-$secpuntajealumno2=$profesorcitore->puntajealumnosec(round($sec2mat,0), $sec2comunicacion, $sec2ing, $sec2ccaa, $sec2hge, $sec2civ, $sec2ppff, $sec2ept, $sec2edufis, $sec2arte, $sumarreligion,$sec2inform);
+$secpuntajealumno2=$profesorcitore->puntajealumnosec(round($sec2mat,0), $sec2comunicacion, $sec2ing, $sec2ccaa, $sec2hge, $sec2civ, $sec2ppff, $sec2ept, $sec2edufis, $sec2arte, $sec2rel,$sec2inform);
 
 if($sec2edufis==-2 || $sec2rel==-2) {
-$promediante2=11;
+    $promediante2 = 11;
 }else{ 
-$promediante2=12;
-};#si hay exonerados que se divida entre 8
-#$promedio1=round($secpuntajealumno1/$promediante1,2);
+    $promediante2 = 12;
+};
+
 $promedio2=$profesorcitore->promedioal($secpuntajealumno2,$promediante2);
 
 #ingles
-if($sec2ing=="" || $sec2ing==0) $sec2ing="FN";if($sec2ing=="-1") $sec2ing="R";
+if($sec2ing=='' || $sec2ing==0) $sec2ing = 'FN';if($sec2ing=="-1") $sec2ing='R';
 #ccaa
-if($sec2ccaa=="" || $sec2ccaa==0) $sec2ccaa="FN";if($sec2ccaa=="-1") $sec2ccaa="R";
+if($sec2ccaa=='' || $sec2ccaa==0) $sec2ccaa = 'FN';if($sec2ccaa=="-1") $sec2ccaa='R';
 #hge
-if($sec2hge=="" || $sec2hge==0) $sec2hge="FN";if($sec2hge=="-1") $sec2hge="R";
+if($sec2hge=='' || $sec2hge==0) $sec2hge = 'FN';if($sec2hge=="-1") $sec2hge='R';
 #civ
-if($sec2civ=="" || $sec2civ==0) $sec2civ="FN";if($sec2civ=="-1") $sec2civ="R";
+if($sec2civ=='' || $sec2civ==0) $sec2civ='FN';if($sec2civ=="-1") $sec2civ='R';
 #ppff
-if($sec2ppff=="" || $sec2ppff==0) $sec2ppff="FN";if($sec2ppff=="-1") $sec2ppff="R";
+if($sec2ppff=='' || $sec2ppff==0) $sec2ppff='FN';if($sec2ppff=="-1") $sec2ppff='R';
 #ept
-if($sec2ept=="" || $sec2ept==0) $sec2ept="FN";if($sec2ept=="-1") $sec2ept="R";
+if($sec2ept=='' || $sec2ept==0) $sec2ept='FN';if($sec2ept=="-1") $sec2ept='R';
 #educfisica
-if($sec2edufis=="" || $sec2edufis==0) $sec2edufis="FN";if($sec2edufis=="-1") $sec2edufis="R";if($sec2edufis=="-2") $sec2edufis="ex";
+if($sec2edufis=='' || $sec2edufis==0) $sec2edufis='FN';if($sec2edufis=="-1") $sec2edufis='R';if($sec2edufis=="-2") $sec2edufis='EX';
 #educart
-if($sec2arte=="" || $sec2arte==0) $sec2arte="FN";if($sec2arte=="-1") $sec2arte="R";
+if($sec2arte=='' || $sec2arte==0) $sec2arte='FN';if($sec2arte=="-1") $sec2arte='R';
 #edurel
-if($sec2rel=="" || $sec2rel==0) $sec2rel="FN";if($sec2rel=="-1") $sec2rel="R";if($sec2rel=="-2") $sec2rel="EX";
+if($sec2rel=='' || $sec2rel==0) $sec2rel='FN';if($sec2rel=="-1") $sec2rel='R';if($sec2rel=="-2") $sec2rel='EX';
 #informatica
-if($sec2inform=="" || $sec2inform==0) $sec2inform="FN";if($sec2inform=="-1") $sec2inform="R";
+if($sec2inform=='' || $sec2inform==0) $sec2inform='FN';if($sec2inform=="-1") $sec2inform='R';
 #conducta
-if($sec2condu=="" || $sec2condu==0) $sec2condu="FN";if($sec2condu=="-1") $sec2condu="R";
+if($sec2condu=='' || $sec2condu==0) $sec2condu='FN';if($sec2condu=="-1") $sec2condu='R';
 $mat2=round($sec2mat,0);
-if($mat2=="0") $mat2="FN";
-echo "
-<td>$mat2</td>
-<td>$sec2comunicacion</td>
-<td>$sec2ing</td>    
-<td>$sec2ccaa</td>
-<td>$sec2hge</td>
-<td>$sec2civ</td>
-<td>$sec2ppff</td>
-<td>$sec2ept</td>
-<td>$sec2edufis</td>
-<td>$sec2arte</td>
-<td>$sec2rel</td>
-<td>$sec2inform</td>
-    
-<td>$sec2condu</td>
-    
-<td>$sec2alg</td>
-<td>$sec2geo</td>
-<td>$promalggeo</td>
+if($mat2==0) $mat2='FN'; ?>
 
-<td>$sec2arit</td>
+<td style="<?php echo $mat2=='FN'?'color:red':''; ?>"><?=$mat2?></td>
+<td style="<?php echo $sec2comunicacion=='FN'?'color:red':''; ?>"><?=$sec2comunicacion?></td>
+<td style="<?php echo $sec2ing=='FN'?'color:red':''; ?>"><?=$sec2ing?></td>
+<td style="<?php echo $sec2ccaa=='FN'?'color:red':''; ?>"><?=$sec2ccaa?></td>
+<td style="<?php echo $sec2hge=='FN'?'color:red':''; ?>"><?=$sec2hge?></td>
+<td style="<?php echo $sec2civ=='FN'?'color:red':''; ?>"><?=$sec2civ?></td>
+<td style="<?php echo $sec2ppff=='FN'?'color:red':''; ?>"><?=$sec2ppff?></td>
+<td style="<?php echo $sec2ept=='FN'?'color:red':''; ?>"><?=$sec2ept?></td>
+<td style="<?php echo $sec2edufis=='FN'?'color:red':''; ?>"><?=$sec2edufis?></td>
+<td style="<?php echo $sec2arte=='FN'?'color:red':''; ?>"><?=$sec2arte?></td>
+<td style="<?php echo $sec2rel=='FN'?'color:red':''; ?>"><?=$sec2rel?></td>
+<td style="<?php echo $sec2inform=='FN'?'color:red':''; ?>"><?=$sec2inform?></td>
+<td style="<?php echo $sec2condu=='FN'?'color:red':''; ?>"><?=$sec2condu?></td>
 
-<td>$sec2com</td>
-<td>$sec2razv</td>
+<td style="<?php echo $sec2alg=='FN'?'color:red':''; ?>"><?=$sec2alg?></td>
+<td style="<?php echo $sec2arit=='FN'?'color:red':''; ?>"><?=$sec2arit?></td>
 
-<td>$promedio2</td>
-<td>$secpuntajealumno2</td>
-<td>$prcursocargosec2</td>
-<td>$fnsec2</td>
-";
+<td style="<?php echo $sec2com=='FN'?'color:red':''; ?>"><?=$sec2com?></td>
+<td style="<?php echo $sec2razv=='FN'?'color:red':''; ?>"><?=$sec2razv?></td>
+
+<td><strong><?=$promedio2?></strong></td>
+<td><strong><?=$secpuntajealumno2?></strong></td>
+<td><?=$prcursocargosec2?></td>
+<td><?=$fnsec2?></td>
+<?php
 #reinicilializa
 $fnsec2=0;$prcursocargosec2=0;$secpuntajealumno2=0;$promedio2=0;$sec2arit=0;$sec2alg=0;
 $sec2geo=0;$mat2=0;$sec2com=0;$sec2ing=0;$sec2ccaa=0;$sec2hge=0;$sec2civ=0;
-$sec2ppff=0;$sec2ept=0;$sec2edufis=0;$sec2arte=0;$sec2rel=0;$sec2inform=0;$sec2condu=0;
+$sec2ppff=0;$sec2ept=0;$sec2edufis=0;$sec2arte=0;$sec2rel=0;$sec2inform=0;$sec2condu=0;?>
+</tr>
+<? } ?>
+</table>
+<? }
 
-echo "</tr>";
-}
-echo "</table>";
-}
-
-
-#---------------------------------------------
-#---------------------3er grado
-if($nivela==="SECUNDARIA" AND $grado==3){
-?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=MATEM&Aacute;TICA</li>
-    <li style='float: left;'><code>02</code>=COMUNICACI&Oacute;N</li>
-    <li style='float: left;'><code>03</code>=INGL&Eacute;S</li>
-    <li style='float: left;'><code>04</code>=CTA</li>
-    <li style='float: left;'><code>05</code>=HH.GG.EE</li>
-    <li style='float: left;'><code>06</code>=CIVICA</li>
-    <li style='float: left;'><code>07</code>=PERSONA FF.RR.HH</li>
-    <li style='float: left;'><code>08</code>=EPT</li>
-    <li style='float: left;'><code>09</code>=EDUCACI&Oacute;N F&Iacute;SICA</li>
-    <li style='float: left;'><code>10</code>=EDUCACI&Oacute;N ARTISTICA</li>
-    <li style='float: left;'><code>11</code>=EDUCACI&Oacute;N RELIGIOSA</li>  
-    <li style='float: left;'><code>12</code>=INFORMATICA</li>
-    <li style='float: left;'><code>13</code>=CONDUCTA</li>
-</ul>
-<br>
+#*******************3er grado*******************
+if($nivela==="SECUNDARIA" AND $grado==3){  ?>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-<th>N</th><th>ALUMNO</th> <th>01 MAT</th><th>02 COM</th><th>03 ING</th><th>04 CTA</th>
-<th>05 HGE</th><th>06 CIV</th><th>07 PFR</th><th>08 EPT</th>
-<th>09 EDFIS</th><th>10 ART</th><th>11 REL</th><th>12 INF</th><th>13 COND</th>
-<th>Alg.</th><th>Trig.</th><th>Prom: Alg-Trig</th>
-
-<th>Raz. Matem.</th>
-
-<th>Comu.</th><th>Raz. Verb</th>
-
-<th>Fis.</th><th>Quim.</th><th>Biol.</th>
-
-<th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th> FN </th>
+<th>N</th><th>ALUMNO</th><th>MAT</th><th>COM</th><th>ING</th><th>CTA</th>
+<th>HGE</th><th>CIV</th><th>PFRRHH</th><th>EPT</th>
+<th>EDU_FIS</th><th>ART</th><th>REL</th><th>INF</th><th>COND</th>
+<th>mat</th><th>raz. mat</th>
+<th>com</th><th>raz. verb</th>
+<th>quim.</th><th>fisic.</th><th>Biol.</th>
+<th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th>FN</th>
 </tr>
 
 <?$alumnado_seccionSEC3=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);
@@ -1055,15 +884,14 @@ while ($sec3row = mysql_fetch_array($alumnado_seccionSEC3)) {?>
 
 while ($sec3registro = mysql_fetch_array($registroalumnosec3)) {
     #matematicas
-    if($sec3registro[2]=='Matematica - Algebra') $sec3alg=$sec3registro[3];
-    if($sec3registro[2]=='Matematica - Trigonometria') $sec3tri=$sec3registro[3];
+    if($sec3registro[2]=='Matematica') $sec3alg=$sec3registro[3];
     if($sec3registro[2]=='Matematica - R. Matematico') $sec3geo=$sec3registro[3];#raz. matematico
     if($sec3registro[2]=='Comunicacion') $sec3com=$sec3registro[3];
     if($sec3registro[2]=='Comunicacion - R. Verbal') $sec3rv=$sec3registro[3];    
     if($sec3registro[2]=='INGLES') $sec3ing=$sec3registro[3];
 
-    if($sec3registro[2]=='FISICA') $sec3fisica=$sec3registro[3];
     if($sec3registro[2]=='QUIMICA') $sec3quimica=$sec3registro[3];
+    if($sec3registro[2]=='FISICA') $sec3fisica=$sec3registro[3];
     if($sec3registro[2]=='BIOLOGIA') $sec3biologia=$sec3registro[3];
     
     if($sec3registro[2]=='HGE') $sec3hge=$sec3registro[3];
@@ -1077,10 +905,7 @@ while ($sec3registro = mysql_fetch_array($registroalumnosec3)) {
     if($sec3registro[2]=='CONDUCTA') $sec3condu=$sec3registro[3];
 }
 #------------------------------------------------------------------curso a cargo
-$promalgtri=$profesorcitore->pesocta($sec3alg, $sec3tri);#Promedio Alg y trig
-if($sec3alg=='' || $sec3alg==0 || $sec3tri=='' || $sec3tri==0) $promalgtri=0;
-
-$sec3mat=$profesorcitore->pesomatbasico($promalgtri, $sec3geo);#Promedio Matematica
+$sec3mat=$profesorcitore->pesomatbasico($sec3alg, $sec3geo);#Promedio Matematica
 $prcursocargosec3=$profesorcitore->cursocargonormalsec($sec3mat, $prcursocargosec3);
 $fnsec3=$profesorcitore->fnsec($sec3mat, $fnsec3);
 
@@ -1089,11 +914,8 @@ $prcursocargosec3=$profesorcitore->cursocargonormalsec($sec3comunicacion, $prcur
 $fnsec3=$profesorcitore->fnsec($sec3comunicacion, $fnsec3);
 
 $sec3cta=$profesorcitore->pesocta2014($sec3fisica, $sec3quimica, $sec3biologia);#Promedio Cta
-if($sec3fisica==0 || $sec3quimica==0 || $sec3biologia==0 || $sec3fisica=='' || $sec3quimica=='' || $sec3biologia=='') $sec3cta=0;
-
 $prcursocargosec3=$profesorcitore->cursocargonormalsec($sec3cta, $prcursocargosec3);
 $fnsec3=$profesorcitore->fnsec($sec3cta, $fnsec3);
-
 
 $prcursocargosec3=$profesorcitore->cursocargonormalsec($sec3ing, $prcursocargosec3);
 $fnsec3=$profesorcitore->fnsec($sec3ing, $fnsec3);
@@ -1132,71 +954,79 @@ if($sec3rel=='-2'){
 $secpuntajealumno3=$profesorcitore->puntajealumnosec(round($sec3mat,0), round($sec3comunicacion,0), $sec3ing, round($sec3cta,0), $sec3hge,$sec3civ,$sec3ppff,$sec3ept,$sec3edufis,$sec3arte,$puntajereligion,$sec3inform);
 
 if($sec3edufis==-2 || $sec3rel==-2) {
-$promediante3=11;
+    $promediante3=11;
 }else{ 
-$promediante3=12;
-};#si hay exonerados que se divida entre 8
-#$promedio1=round($secpuntajealumno1/$promediante1,2);
+    $promediante3=12;
+};
+
 $promedio3=$profesorcitore->promedioal($secpuntajealumno3,$promediante3);
 
 #comunicacion
-if($sec3com=="" || $sec3com==0) $sec3com="FN";if($sec3com=="-1") $sec3com="R";
+if($sec3com==0) $sec3com='FN';if($sec3com=="-1") $sec3com='R';
 #ingles
-if($sec3ing=="" || $sec3ing==0) $sec3ing="FN";if($sec3ing=="-1") $sec3ing="R";
-//#ccaa
-//if($sec2ccaa=="" || $sec2ccaa==0) $sec2ccaa="FN";if($sec2ccaa=="-1") $sec2ccaa="R";
+if($sec3ing=='' || $sec3ing==0) $sec3ing='FN';if($sec3ing=="-1") $sec3ing='R';
 #hge
-if($sec3hge=="" || $sec3hge==0) $sec3hge="FN";if($sec3hge=="-1") $sec3hge="R";
+if($sec3hge=='' || $sec3hge==0) $sec3hge='FN';if($sec3hge=="-1") $sec3hge='R';
 #civ
-if($sec3civ=="" || $sec3civ==0) $sec3civ="FN";if($sec3civ=="-1") $sec3civ="R";
+if($sec3civ=='' || $sec3civ==0) $sec3civ='FN';if($sec3civ=="-1") $sec3civ='R';
 #ppff
-if($sec3ppff=="" || $sec3ppff==0) $sec3ppff="FN";if($sec3ppff=="-1") $sec3ppff="R";
+if($sec3ppff=='' || $sec3ppff==0) $sec3ppff='FN';if($sec3ppff=="-1") $sec3ppff='R';
 #ept
-if($sec3ept=="" || $sec3ept==0) $sec3ept="FN";if($sec3ept=="-1") $sec3ept="R";
+if($sec3ept=='' || $sec3ept==0) $sec3ept='FN';if($sec3ept=="-1") $sec3ept='R';
 #educfisica
-if($sec3edufis=="" || $sec3edufis==0) $sec3edufis="FN";if($sec3edufis=="-1") $sec3edufis="R";if($sec3edufis=="-2") $sec3edufis="ex";
+if($sec3edufis=='' || $sec3edufis==0) $sec3edufis='FN';if($sec3edufis=="-1") $sec3edufis='R';if($sec3edufis=="-2") $sec3edufis='EX';
 #educart
-if($sec3arte=="" || $sec3arte==0) $sec3arte="FN";if($sec3arte=="-1") $sec3arte="R";
+if($sec3arte=='' || $sec3arte==0) $sec3arte='FN';if($sec3arte=="-1") $sec3arte='R';
 #edurel
-if($sec3rel=="" || $sec3rel==0) $sec3rel="FN";if($sec3rel=="-1") $sec3rel="R";if($sec3rel=="-2") $sec3rel="EX";
+if($sec3rel=='' || $sec3rel==0) $sec3rel='FN';if($sec3rel=="-1") $sec3rel='R';if($sec3rel=="-2") $sec3rel='EX';
 #informatica
-if($sec3inform=="" || $sec3inform==0) $sec3inform="FN";if($sec3inform=="-1") $sec3inform="R";
+if($sec3inform=='' || $sec3inform==0) $sec3inform='FN';if($sec3inform=="-1") $sec3inform='R';
 #conducta
-if($sec3condu=="" || $sec3condu==0) $sec3condu="FN";if($sec3condu=="-1") $sec3condu="R";
+if($sec3condu=='' || $sec3condu==0) $sec3condu='FN';if($sec3condu=="-1") $sec3condu='R';
+
+#mat
+if($sec3alg=='' || $sec3alg==0) $sec3alg='FN';if($sec3alg=="-1") $sec3alg='R';
+#raz. mat
+if($sec3geo=='' || $sec3geo==0) $sec3geo='FN';if($sec3geo=="-1") $sec3geo='R';
+#quimica
+if($sec3quimica=='' || $sec3quimica==0) $sec3quimica='FN';if($sec3quimica=="-1") $sec3quimica='R';
+#fisica
+if($sec3fisica=='' || $sec3fisica==0) $sec3fisica='FN';if($sec3fisica=="-1") $sec3fisica='R';
+#biologia
+if($sec3biologia=='' || $sec3biologia==0) $sec3biologia='FN';if($sec3biologia=="-1") $sec3biologia='R';
+
 $mat3=round($sec3mat,0);
 $cta3=round($sec3cta,0);
-if($mat3==0) $mat3="FN";
-if($cta3==0) $cta3="FN";
+if($mat3==0) $mat3 = 'FN';
+if($cta3==0) $cta3 = 'FN';
 ?>
-<td><?=$mat3?></td>
-<td><?=$sec3comunicacion?></td>
-<td><?=$sec3ing?></td>
-<td><?=$cta3?></td>
-<td><?=$sec3hge?></td>
-<td><?=$sec3civ?></td>
-<td><?=$sec3ppff?></td>
-<td><?=$sec3ept?></td>
-<td><?=$sec3edufis?></td>
-<td><?=$sec3arte?></td>
-<td><?=$sec3rel?></td>
-<td><?=$sec3inform?></td>
+<td style="<?php echo $mat3=='FN'?'color:red':''; ?>"><?=$mat3?></td>
+<td style="<?php echo $sec3comunicacion=='FN'?'color:red':''; ?>"><?=$sec3comunicacion?></td>
+<td style="<?php echo $sec3ing=='FN'?'color:red':''; ?>"><?=$sec3ing?></td>
+<td style="<?php echo $cta3=='FN'?'color:red':''; ?>"><?=$cta3?></td>
+<td style="<?php echo $sec3hge=='FN'?'color:red':''; ?>"><?=$sec3hge?></td>
+<td style="<?php echo $sec3civ=='FN'?'color:red':''; ?>"><?=$sec3civ?></td>
+<td style="<?php echo $sec3ppff=='FN'?'color:red':''; ?>"><?=$sec3ppff?></td>
+<td style="<?php echo $sec3ept=='FN'?'color:red':''; ?>"><?=$sec3ept?></td>
+<td style="<?php echo $sec3edufis=='FN'?'color:red':''; ?>"><?=$sec3edufis?></td>
+<td style="<?php echo $sec3arte=='FN'?'color:red':''; ?>"><?=$sec3arte?></td>
+<td style="<?php echo $sec3rel=='FN'?'color:red':''; ?>"><?=$sec3rel?></td>
+<td style="<?php echo $sec3inform=='FN'?'color:red':''; ?>"><?=$sec3inform?></td>
     
-<td><?=$sec3condu?></td>
+<td style="<?php echo $sec3condu=='FN'?'color:red':''; ?>"><?=$sec3condu?></td>
     
-<td><?=$sec3alg?></td>
-<td><?=$sec3tri?></td>
-<td><?=$promalgtri?></td>
-<td><?=$sec3geo?></td>
+<td style="<?php echo $sec3alg=='FN'?'color:red':''; ?>"><?=$sec3alg?></td>
+<td style="<?php echo $sec3geo=='FN'?'color:red':''; ?>"><?=$sec3geo?></td>
 
-<td><?=$sec3com?></td>
-<td><?=$sec3rv?></td>
+<td style="<?php echo $sec3com=='FN'?'color:red':''; ?>"><?=$sec3com?></td>
+<td style="<?php echo $sec3rv=='FN'?'color:red':''; ?>"><?=$sec3rv?></td>
 
-<td><?=$sec3fisica?></td>
-<td><?=$sec3quimica?></td>
-<td><?=$sec3biologia?></td>
+<td style="<?php echo $sec3quimica=='FN'?'color:red':''; ?>"><?=$sec3quimica?></td>
+<td style="<?php echo $sec3fisica=='FN'?'color:red':''; ?>"><?=$sec3fisica?></td>
+<td style="<?php echo $sec3biologia=='FN'?'color:red':''; ?>"><?=$sec3biologia?></td>
 
-<td><?=$promedio3?></td>
-<td><?=$secpuntajealumno3?></td>
+<td><strong><?=$promedio3?></strong></td>
+<td><strong><?=$secpuntajealumno3?></strong></td>
 <td><?=$prcursocargosec3?></td>
 <td><?=$fnsec3?></td>
 <?#reinicilializa
@@ -1208,36 +1038,19 @@ $sec3ppff=0;$sec3ept=0;$sec3edufis=0;$sec3arte=0;$sec3rel=0;$sec3inform=0;$sec3c
 ?></tr><? }
 ?></table><? }
 
-#---------------------------------------------
-
-#---------------------4to grado
+#*******************4to grado*******************
 if($nivela==="SECUNDARIA" AND $grado==4){?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=MATEM&Aacute;TICA</li>
-    <li style='float: left;'><code>02</code>=COMUNICACI&Oacute;N</li>
-    <li style='float: left;'><code>03</code>=INGL&Eacute;S</li>
-    <li style='float: left;'><code>04</code>=CTA</li>
-    <li style='float: left;'><code>05</code>=HH.GG.EE</li>
-    <li style='float: left;'><code>06</code>=CIVICA</li>
-    <li style='float: left;'><code>07</code>=PERSONA FF.RR.HH</li>
-    <li style='float: left;'><code>08</code>=EPT</li>
-    <li style='float: left;'><code>09</code>=EDUCACI&Oacute;N F&Iacute;SICA</li>
-    <li style='float: left;'><code>10</code>=EDUCACI&Oacute;N ARTISTICA</li>
-    <li style='float: left;'><code>11</code>=EDUCACI&Oacute;N RELIGIOSA</li>  
-    <li style='float: left;'><code>12</code>=INFORMATICA</li>
-    <li style='float: left;'><code>13</code>=CONDUCTA</li>
-</ul>
-<br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-<th>N</th><th>ALUMNO</th> <th>01 MAT</th><th>02 COM</th><th>03 ING</th><th>04 CTA</th>
-<th>05 HGE</th><th>06 CIV</th><th>07 PFR</th><th>08 EPT</th>
-<th>09 EDFIS</th><th>10 ART</th><th>11 REL</th><th>12 INF</th><th>13 COND</th>
-<th>Geo</th><th>Tri</th><th>Prom: Geo-Tri</th><th>Ra. Mat.</th>
-<th>Com.</th><th>Raz. Ver</th>
-<th>FIS</th><th>QUI</th><th>BIO</th>
-<th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th> FN </th>
+<th>N</th><th>ALUMNO</th><th>MAT</th><th>COM</th><th>ING</th><th>CTA</th>
+<th>HGE</th><th>CIV</th><th>PFR</th><th>EPT</th>
+<th>EDU_FIS</th><th>ART</th><th>REL</th><th>INF</th><th>COND</th>
+
+<th>mat</th><th>raz. mat.</th>
+<th>com.</th><th>raz. verb</th>
+<th>qui</th><th>fisi</th><th>biol</th>
+<th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th>FN</th>
 </tr>
 
 <?$alumnado_seccionSEC3A=$profesorcitore->ALUMNOSDEMITUTORIA2($seccion);$count_alumn=0;
@@ -1255,16 +1068,15 @@ while ($sec4row = mysql_fetch_array($alumnado_seccionSEC3A)) {?>
 
 while ($sec4registro = mysql_fetch_array($registroalumnosec4)) {
     #matematicas
-if($sec4registro[2]=='Matematica - Geometria') $sec4geo=$sec4registro[3];#geometria
-if($sec4registro[2]=='Matematica - Trigonometria')$sec4tri=$sec4registro[3];#trigonometria
-if($sec4registro[2]=='Matematica - R. Matematico') $sec4ari=$sec4registro[3];#Raz matematico
-if($sec4registro[2]=='Comunicacion') $sec4com=$sec4registro[3];
-if($sec4registro[2]=='Comunicacion - R. Verbal') $sec4rv=$sec4registro[3];
+if($sec4registro[1]=='MATEMATICA') $sec4geo=$sec4registro[3];#geometria
+if($sec4registro[1]=='Matematica - R. Matematico') $sec4ari=$sec4registro[3];#Raz matematico
+if($sec4registro[1]=='Comunicacion') $sec4com=$sec4registro[3];
+if($sec4registro[1]=='R. VERBAL') $sec4rv=$sec4registro[3];
 if($sec4registro[2]=='INGLES') $sec4ing=$sec4registro[3];
 
-if($sec4registro[2]=='BIOLOGIA') $sec4biologia=$sec4registro[3];
-if($sec4registro[2]=='FISICA') $sec4fisica=$sec4registro[3];
 if($sec4registro[2]=='QUIMICA') $sec4quimica=$sec4registro[3];
+if($sec4registro[2]=='FISICA') $sec4fisica=$sec4registro[3];
+if($sec4registro[2]=='BIOLOGIA') $sec4biologia=$sec4registro[3];
 
 if($sec4registro[2]=='HGE') $sec4hge=$sec4registro[3];
 if($sec4registro[2]=='CIVICA') $sec4civ=$sec4registro[3];
@@ -1278,24 +1090,17 @@ if($sec4registro[2]=='CONDUCTA') $sec4condu=$sec4registro[3];
     
 }
 #------------------------------------------------------------------curso a cargo
-$promgeotri=$profesorcitore->pesocta($sec4geo, $sec4tri);#Promedio Geo & Tri
-if($sec4geo=='' || $sec4tri=='' || $sec4geo==0 || $sec4tri==0) $promgeotri=0;
-
-$sec4mat=$profesorcitore->pesomatbasico($promgeotri, $sec4ari);#Promedio de Matemática
-if($promgeotri=='' || $sec4ari=='' || $promgeotri==0 || $sec4ari==0) $sec4mat=0;
+$sec4mat=$profesorcitore->pesomatbasico($sec4geo, $sec4ari);#Promedio de Matemática
 $fnsec4=$profesorcitore->fnsec($sec4mat, $fnsec4);
 $prcursocargosec4=$profesorcitore->cursocargonormalsec($sec4mat, $prcursocargosec4);
 
 $sec4comunicacion=$profesorcitore->pesocombasico($sec4com, $sec4rv);#Promedio Comunicacion
-if($sec4com=='' || $sec4rv=='' || $sec4com==0 || $sec4rv==0) $sec4comunicacion=0;
 $prcursocargosec4=$profesorcitore->cursocargonormalsec($sec4comunicacion, $prcursocargosec4);
 $fnsec4=$profesorcitore->fnsec($sec4comunicacion, $fnsec4);
 
 $sec4cta=$profesorcitore->pesocta2014($sec4fisica, $sec4quimica, $sec4biologia);#Promedio Cta
-if($sec4fisica=='' || $sec4quimica=='' || $sec4biologia=='' || $sec4fisica==0 || $sec4quimica==0 || $sec4biologia==0) $sec4cta=0;
 $fnsec4=$profesorcitore->fnsec($sec4cta, $fnsec4);
 $prcursocargosec4=$profesorcitore->cursocargonormalsec($sec4cta, $prcursocargosec4);
-
 
 $prcursocargosec4=$profesorcitore->cursocargonormalsec($sec4ing, $prcursocargosec4);
 $fnsec4=$profesorcitore->fnsec($sec4ing, $fnsec4);
@@ -1326,24 +1131,18 @@ $fnsec4=$profesorcitore->fnsec($sec4inform, $fnsec4);
 
 $fnsec4=$profesorcitore->fnsec($sec4condu, $fnsec4);
 
-if($sec4rel=='-2'){
-    $reglareligion4=0;
-}else{
-    $reglareligion4=$sec4rel;
-}
-
-$secpuntajealumno4=$profesorcitore->puntajealumnosec(round($sec4mat,0), round($sec4comunicacion,0), $sec4ing, round($sec4cta,0), $sec4hge,$sec4civ,$sec4ppff,$sec4ept,$sec4edufis,$sec4arte,$reglareligion4,$sec4inform);
+$secpuntajealumno4=$profesorcitore->puntajealumnosec(round($sec4mat,0), round($sec4comunicacion,0), $sec4ing, round($sec4cta,0), $sec4hge,$sec4civ,$sec4ppff,$sec4ept,$sec4edufis,$sec4arte,$sec4rel,$sec4inform);
 
 if($sec4edufis==-2 || $sec4rel==-2) {
-$promediante4=11;
+    $promediante4=11;
 }else{ 
-$promediante4=12;
-};#si hay exonerados que se divida entre 8
-#$promedio1=round($secpuntajealumno1/$promediante1,2);
+    $promediante4=12;
+};
+
 $promedio4=$profesorcitore->promedioal($secpuntajealumno4,$promediante4);
 
 #comunicacion
-if($sec4comunicacion=="" || $sec4comunicacion==0) $sec4comunicacion="FN";if($sec4comunicacion=="-1") $sec4comunicacion="R";
+if($sec4comunicacion==0) $sec4comunicacion="FN";if($sec4comunicacion=="-1") $sec4comunicacion="R";
 #ingles
 if($sec4ing=="" || $sec4ing==0) $sec4ing="FN";if($sec4ing=="-1") $sec4ing="R";
 #hge
@@ -1367,41 +1166,40 @@ if($sec4condu=="" || $sec4condu==0) $sec4condu="FN";if($sec4condu=="-1") $sec4co
 
 $mat4=round($sec4mat,0);
 $cta4=round($sec4cta,0);
-if($mat4==0) $mat4="FN";
-if($cta4==0) $cta4="FN";
-echo "
-<td>$mat4</td>
-<td>$sec4comunicacion</td>
-<td>$sec4ing</td>    
-<td>$cta4</td>
-<td>$sec4hge</td>
-<td>$sec4civ</td>
-<td>$sec4ppff</td>
-<td>$sec4ept</td>
-<td>$sec4edufis</td>
-<td>$sec4arte</td>
-<td>$sec4rel</td>
-<td>$sec4inform</td>
-<td>$sec4condu</td>
+if($mat4==0) $mat4='FN';
+if($cta4==0) $cta4='FN';
+?>
+
+<td style="<?php echo $mat4=='FN'?'color:red':''; ?>"><?=$mat4?></td>
+<td style="<?php echo $sec4comunicacion=='FN'?'color:red':''; ?>"><?=$sec4comunicacion?></td>
+<td style="<?php echo $sec4ing=='FN'?'color:red':''; ?>"><?=$sec4ing?></td>
+<td style="<?php echo $cta4=='FN'?'color:red':''; ?>"><?=$cta4?></td>
+<td style="<?php echo $sec4hge=='FN'?'color:red':''; ?>"><?=$sec4hge?></td>
+<td style="<?php echo $sec4civ=='FN'?'color:red':''; ?>"><?=$sec4civ?></td>
+<td style="<?php echo $sec4ppff=='FN'?'color:red':''; ?>"><?=$sec4ppff?></td>
+<td style="<?php echo $sec4ept=='FN'?'color:red':''; ?>"><?=$sec4ept?></td>
+<td style="<?php echo $sec4edufis=='FN'?'color:red':''; ?>"><?=$sec4edufis?></td>
+<td style="<?php echo $sec4arte=='FN'?'color:red':''; ?>"><?=$sec4arte?></td>
+<td style="<?php echo $sec4rel=='FN'?'color:red':''; ?>"><?=$sec4rel?></td>
+<td style="<?php echo $sec4inform=='FN'?'color:red':''; ?>"><?=$sec4inform?></td>
+<td style="<?php echo $sec4condu=='FN'?'color:red':''; ?>"><?=$sec4condu?></td>
     
-<td>$sec4geo</td>
-<td>$sec4tri</td>
-<td>$promgeotri</td>
+<td style="<?php echo $sec4geo=='FN'?'color:red':''; ?>"><?=$sec4geo?></td>
+<td style="<?php echo $sec4ari=='FN'?'color:red':''; ?>"><?=$sec4ari?></td>
 
-<td>$sec4ari</td>
-
-<td>$sec4com</td>
-<td>$sec4rv</td>
+<td style="<?php echo $sec4com=='FN'?'color:red':''; ?>"><?=$sec4com?></td>
+<td style="<?php echo $sec4rv=='FN'?'color:red':''; ?>"><?=$sec4rv?></td>
     
-<td>$sec4fisica</td>
-<td>$sec4quimica</td>
-<td>$sec4biologia</td>
+<td style="<?php echo $sec4quimica=='FN'?'color:red':''; ?>"><?=$sec4quimica?></td>
+<td style="<?php echo $sec4fisica=='FN'?'color:red':''; ?>"><?=$sec4fisica?></td>
+<td style="<?php echo $sec4biologia=='FN'?'color:red':''; ?>"><?=$sec4biologia?></td>
 
-<td>$promedio4</td>
-<td>$secpuntajealumno4</td>
-<td>$prcursocargosec4</td>
-<td>$fnsec4</td>";
-#reinicilializa
+<td><strong><?=$promedio4?></strong></td>
+<td><strong><?=$secpuntajealumno4?></strong></td>
+<td><?=$prcursocargosec4?></td>
+<td><?=$fnsec4?></td>
+
+<?php
 $fnsec4=0;$prcursocargosec4=0;$secpuntajealumno4=0;$promedio4=0;$sec4ari=0;$sec4tri=0;
 $sec4geo=0;$mat4=0;$sec4com=0;$sec4ing=0;$sec4cta=0;$sec4quimica=0;$sec4fisica=0;$sec4biologia=0;
 $sec4hge=0;$sec4civ=0;
@@ -1410,36 +1208,18 @@ $sec4ppff=0;$sec4ept=0;$sec4edufis=0;$sec4arte=0;$sec4rel=0;$sec4inform=0;$sec4c
 </tr>   <?}?>
 </table>    <?}
 
-
-#---------------------------------------------
-#---------------------5to grado
+#*******************5to grado*******************
 if($nivela==="SECUNDARIA" AND $grado==5){?>
-<ul class='unstyled'>
-    <li style='float: left;'><code>01</code>=MATEM&Aacute;TICA</li>
-    <li style='float: left;'><code>02</code>=COMUNICACI&Oacute;N</li>
-    <li style='float: left;'><code>03</code>=INGL&Eacute;S</li>
-    <li style='float: left;'><code>04</code>=CTA</li>
-    <li style='float: left;'><code>05</code>=HH.GG.EE</li>
-    <li style='float: left;'><code>06</code>=CIVICA</li>
-    <li style='float: left;'><code>07</code>=PERSONA FF.RR.HH</li>
-    <li style='float: left;'><code>08</code>=EPT</li>
-    <li style='float: left;'><code>09</code>=EDUCACI&Oacute;N F&Iacute;SICA</li>
-    <li style='float: left;'><code>10</code>=EDUCACI&Oacute;N ARTISTICA</li>
-    <li style='float: left;'><code>11</code>=EDUCACI&Oacute;N RELIGIOSA</li>  
-    <li style='float: left;'><code>12</code>=INFORMATICA</li>
-    <li style='float: left;'><code>13</code>=CONDUCTA</li>
-</ul>
-<br>
 <h1><center>I BIMESTRE</center></h1>
 <table class='table table-hover' id='Exportar_a_Excel'>
 <tr class='gradeX'>
-<th>N</th><th>ALUMNO</th><th>01 MAT</th><th>02 COM</th><th>03 ING</th><th>04 CTA</th>
-<th>05 HGE</th><th>06 CIV</th><th>07 P.F.R.H</th><th>08 EPT</th>
-<th>09 EDU.FIS</th><th>10 ART</th><th>11 REL</th><th>12 INF</th><th>13 COND</th>
+<th>N</th><th>ALUMNO</th><th>MAT</th><th>COM</th><th>ING</th><th>CTA</th>
+<th>HGE</th><th>CIV</th><th>P.F.R.H</th><th>EPT</th>
+<th>EDU.FIS</th><th>ART</th><th>REL</th><th>INF</th><th>COND</th>
 
-<th>Tri</th><th>Alg</th><th>Prom Tri-Alg</th><th>Raz. Mat</th>
-<th>Com</th><th>Raz. Ver.</th>
-<th>Fis</th><th>Bio</th>
+<th>mat</th><th>raz mat</th>
+<th>com</th><th>raz verb.</th>
+<th>fisi</th><th>biol</th>
 
 <th>PROM.</th><th>PUNT.</th><th>CUR. DES.</th><th> FN </th>
 </tr>
@@ -1459,52 +1239,36 @@ while ($sec2row = mysql_fetch_array($alumnado_seccionSEC2)) {?>
 
 while ($sec2registro = mysql_fetch_array($registroalumnosec2)) {
     #matematicas
-    if($sec2registro[2]=='Matematica - Trigonometria')   $sec2tri=$sec2registro[3]; #Trigonometria
-    if($sec2registro[2]=='Matematica - Algebra') $sec2alg=$sec2registro[3];#Algebra
-    if($sec2registro[2]=='Matematica - R. Matematico')   $sec2geo=$sec2registro[3];#Raz. Matematico
+    if($sec2registro[1]=='MATEMATICA')   $sec2tri=$sec2registro[3]; #Trigonometria
+    if($sec2registro[1]=='Matematica - R. Matematico')   $sec2geo=$sec2registro[3];#Raz. Matematico
 
     if($sec2registro[2]=='Comunicacion')    $sec2com=$sec2registro[3];
-    if($sec2registro[2]=='Comunicacion - R. Verbal')    $sec2rv=$sec2registro[3];
+    if($sec2registro[1]=='R. VERBAL')    $sec2rv=$sec2registro[3];
 
     if($sec2registro[2]=='INGLES')  $sec2ing=$sec2registro[3];
-
     if($sec2registro[2]=='FISICA')  $sec2ccaa=$sec2registro[3];
     if($sec2registro[2]=='BIOLOGIA')  $sec2ccaa2=$sec2registro[3];
-
     if($sec2registro[2]=='HGE') $sec2hge=$sec2registro[3];
-
     if($sec2registro[2]=='CIVICA')  $sec2civ=$sec2registro[3];
-
     if($sec2registro[2]=='PP.FF.')  $sec2ppff=$sec2registro[3];
-
     if($sec2registro[2]=='EPT') $sec2ept=$sec2registro[3];
-    
     if($sec2registro[2]=='Edu. Fisica') $sec2edufis=$sec2registro[3];
-
     if($sec2registro[2]=='ARTE')    $sec2arte=$sec2registro[3];
-
     if($sec2registro[2]=='RELIGION')    $sec2rel=$sec2registro[3];
-
     if($sec2registro[2]=='INFORMATICA') $sec2inform=$sec2registro[3];
-
     if($sec2registro[2]=='CONDUCTA')    $sec2condu=$sec2registro[3];
 
 }
 ###################################curso a cargo############################################
-$promtrial=$profesorcitore->pesocta($sec2tri, $sec2alg);#Prom trigono & alg
-if($sec2tri=='' || $sec2alg=='' || $sec2tri==0 || $sec2alg==0) $promtrial=0;
-
-$sec2mat=$profesorcitore->pesomatbasico($promtrial, $sec2geo);#Matematicas
-if($promtrial==0 || $sec2geo==0 || $promtrial=='' || $sec2geo=='') $sec2mat=0;
+$sec2mat=$profesorcitore->pesomatbasico($sec2tri, $sec2geo);#Matematicas
+$prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2mat,$prcursocargosec2);
 $fnsec5=$profesorcitore->fnsec($sec2mat, $fnsec5);
 
 $sec2comunicacion=$profesorcitore->pesocombasico($sec2com, $sec2rv);#Comunicacion
-if($sec2com=='' || $sec2rv=='' || $sec2com==0 || $sec2rv==0) $sec2comunicacion=0;
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2comunicacion, $prcursocargosec2);
 $fnsec5=$profesorcitore->fnsec($sec2comunicacion, $fnsec5);
 
 $sec2promcta=$profesorcitore->pesocta($sec2ccaa, $sec2ccaa2);#Ciencias & Ambiente
-if($sec2ccaa=='' || $sec2ccaa2=='' || $sec2ccaa==0 || $sec2ccaa2==0) $sec2promcta=0;
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2promcta, $prcursocargosec2);
 $fnsec5=$profesorcitore->fnsec($sec2promcta, $fnsec5);
 
@@ -1535,28 +1299,26 @@ $fnsec5=$profesorcitore->fnsec($sec2rel, $fnsec5);
 $prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2inform, $prcursocargosec2);
 $fnsec5=$profesorcitore->fnsec($sec2inform, $fnsec5);
 
-$prcursocargosec2=$profesorcitore->cursocargonormalsec($sec2mat, $prcursocargosec2);
-
 $fnsec5=$profesorcitore->fnsec($sec2condu, $fnsec5);
 
-if($sec2rel=='-2'){
-    $valorreligion5=0;
-}else{
-    $valorreligion5=$sec2rel;
-}
-
-$secpuntajealumno2=$profesorcitore->puntajealumnosec(round($sec2mat,0), round($sec2comunicacion,0), $sec2ing, round($sec2promcta,0), $sec2hge, $sec2civ, $sec2ppff, $sec2ept, $sec2edufis, $sec2arte, $valorreligion5,$sec2inform);
+$secpuntajealumno2=$profesorcitore->puntajealumnosec(round($sec2mat,0), round($sec2comunicacion,0), $sec2ing, round($sec2promcta,0), $sec2hge, $sec2civ, $sec2ppff, $sec2ept, $sec2edufis, $sec2arte, $sec2rel, $sec2inform);
 
 if($sec2edufis==-2 || $sec2rel==-2) {
-$promediante2=11;
+    $promediante2=11;
 }else{ 
-$promediante2=12;
-};#si hay exonerados que se divida entre 8
-#$promedio1=round($secpuntajealumno1/$promediante1,2);
+    $promediante2=12;
+};
+
 $promedio2=$profesorcitore->promedioal($secpuntajealumno2,$promediante2);
 
+#matematica
+if($sec2mat==0) $sec2mat='FN';if($sec2mat=='-1') $sec2mat='R';
+#mat
+if($sec2tri=='' || $sec2tri==0) $sec2tri='FN';if($sec2tri=='-1') $sec2tri='R';
+#raz_mat
+if($sec2geo=='' || $sec2geo==0) $sec2geo='FN';if($sec2geo=='-1') $sec2geo='R';
 #comunicacion
-if($sec2comunicacion=="" || $sec2com==0) $sec2com="FN";if($sec2com=="-1") $sec2com="R";
+if($sec2comunicacion=='' || $sec2com==0) $sec2com='FN';if($sec2com=='-1') $sec2com='R';
 #ingles
 if($sec2ing=="" || $sec2ing==0) $sec2ing="FN";if($sec2ing=="-1") $sec2ing="R";
 #ccaa
@@ -1579,39 +1341,37 @@ if($sec2rel=="" || $sec2rel==0) $sec2rel="FN";if($sec2rel=="-1") $sec2rel="R";if
 if($sec2inform=="" || $sec2inform==0) $sec2inform="FN";if($sec2inform=="-1") $sec2inform="R";
 #conducta
 if($sec2condu=="" || $sec2condu==0) $sec2condu="FN";if($sec2condu=="-1") $sec2condu="R";
-$mat2=round($sec2mat,0);
-if($mat2=="0") $mat2="FN";
 
-echo "
-<td>$mat2</td>
-<td>$sec2comunicacion</td>
-<td>$sec2ing</td>
-<td>$sec2promcta</td>
-<td>$sec2hge</td>
-<td>$sec2civ</td>
-<td>$sec2ppff</td>
-<td>$sec2ept</td>
-<td>$sec2edufis</td>
-<td>$sec2arte</td>
-<td>$sec2rel</td>
-<td>$sec2inform</td>
-<td>$sec2condu</td>
+?>
+
+<td style="<?php echo $sec2mat=='FN'?'color:red':''; ?>"><?=$sec2mat?></td>
+<td style="<?php echo $sec2comunicacion=='FN'?'color:red':''; ?>"><?=$sec2comunicacion?></td>
+<td style="<?php echo $sec2ing=='FN'?'color:red':''; ?>"><?=$sec2ing?></td>
+<td style="<?php echo $sec2promcta=='FN'?'color:red':''; ?>"><?=$sec2promcta?></td>
+<td style="<?php echo $sec2hge=='FN'?'color:red':''; ?>"><?=$sec2hge?></td>
+<td style="<?php echo $sec2civ=='FN'?'color:red':''; ?>"><?=$sec2civ?></td>
+<td style="<?php echo $sec2ppff=='FN'?'color:red':''; ?>"><?=$sec2ppff?></td>
+<td style="<?php echo $sec2ept=='FN'?'color:red':''; ?>"><?=$sec2ept?></td>
+<td style="<?php echo $sec2edufis=='FN'?'color:red':''; ?>"><?=$sec2edufis?></td>
+<td style="<?php echo $sec2arte=='FN'?'color:red':''; ?>"><?=$sec2arte?></td>
+<td style="<?php echo $sec2rel=='FN'?'color:red':''; ?>"><?=$sec2rel?></td>
+<td style="<?php echo $sec2inform=='FN'?'color:red':''; ?>"><?=$sec2inform?></td>
+<td style="<?php echo $sec2condu=='FN'?'color:red':''; ?>"><?=$sec2condu?></td>
     
-<td>$sec2tri</td>
-<td>$sec2alg</td>
-<td>$promtrial</td>
-<td>$sec2geo</td>
+<td style="<?php echo $sec2tri=='FN'?'color:red':''; ?>"><?=$sec2tri?></td>
+<td style="<?php echo $sec2geo=='FN'?'color:red':''; ?>"><?=$sec2geo?></td>
 
-<td>$sec2com</td>
-<td>$sec2rv</td>
+<td style="<?php echo $sec2com=='FN'?'color:red':''; ?>"><?=$sec2com?></td>
+<td style="<?php echo $sec2rv=='FN'?'color:red':''; ?>"><?=$sec2rv?></td>
 
-<td>$sec2ccaa</td>
-<td>$sec2ccaa2</td>
+<td style="<?php echo $sec2ccaa=='FN'?'color:red':''; ?>"><?=$sec2ccaa?></td>
+<td style="<?php echo $sec2ccaa2=='FN'?'color:red':''; ?>"><?=$sec2ccaa2?></td>
 
-<td>$promedio2</td>
-<td>$secpuntajealumno2</td>
-<td>$prcursocargosec2</td>
-<td>$fnsec5</td>";
+<td><?=$promedio2?></td>
+<td><?=$secpuntajealumno2?></td>
+<td><?=$prcursocargosec2?></td>
+<td><?=$fnsec5?></td>
+<?
 #reinicilializa
 $fnsec5=0;$prcursocargosec2=0;$secpuntajealumno2=0;$promedio2=0;$sec2tri=0;$sec2alg=0;
 $sec2geo=0;$mat2=0;$sec2com=0;$sec2ing=0;$sec2ccaa=0;$sec2ccaa2=0;$sec2promcta=0;$sec2hge=0;$sec2civ=0;

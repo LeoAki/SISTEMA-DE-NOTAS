@@ -237,7 +237,7 @@ class Docente extends Conection {
            ae.paterno,
            ae.materno,
            ae.nombres,
-           ase.fj4,ase.fi4,ase.t4,
+           ase.fj1,ase.fi1,ase.t1,
            s.nombreseccion
            from Alumno_Seccion ase
            inner join Alumno ae
@@ -322,7 +322,7 @@ class Docente extends Conection {
     public function NOTASCONSOLIDADOTUTORIA1($codigoalumnoseccion) {
         $cone = new Conection();
         $cone->CONECT();
-        $notasalumnosregistro = mysql_query("
+        $notasalumnosregistro = mysql_query('
            select ar.idregistro,
                asin.asinatura,
                asin.abreviatura,
@@ -332,8 +332,8 @@ class Docente extends Conection {
                on ar.idregistro=r.codigo
                inner join Asinatura asin
                on asin.codigo= r.codigoasinatura
-               where idalumnoseccion=$codigoalumnoseccion
-               order by ar.idregistro;");
+               where idalumnoseccion=' . $codigoalumnoseccion . '
+               order by ar.idregistro;');
         $cone->CLOSE();
         unset($cone);
         return $notasalumnosregistro;
@@ -342,7 +342,7 @@ class Docente extends Conection {
     public function NOTASCONSOLIDADOTUTORIAINiCIAL($codigoalumnoseccion) {
         $cone = new Conection();
         $cone->CONECT();
-        $notasalumnosregistro = mysql_query("
+        $notasalumnosregistro = mysql_query('
            select ar.idregistro,
                asin.asinatura,
                asin.abreviatura,
@@ -351,14 +351,16 @@ class Docente extends Conection {
                ar.promedio2,
                ar.promedio3,
                ar.promedio4,
-               ar.promedio5
+               ar.promedio5,
+               ar.promedio6,
+               ar.promedio7
                from Alumno_Registroinicial ar
                inner join Registro r
                on ar.idregistro=r.codigo
                inner join Asinatura asin
                on asin.codigo= r.codigoasinatura
-               where idalumnoseccion=$codigoalumnoseccion
-           order by ar.idregistro;");
+               where idalumnoseccion=' . $codigoalumnoseccion . '
+           order by ar.idregistro;');
         $cone->CLOSE();
         unset($cone);
         return $notasalumnosregistro;
@@ -407,13 +409,13 @@ class Docente extends Conection {
     public function ALUMNOSDEMITUTORIA2($codigodoseccion) {#sube esto y actualiza
         $cone = new Conection();
         $cone->CONECT();
-        $misalumnos = mysql_query("
+        $misalumnos = mysql_query('
        SELECT ase.idalumnoseccion, ase.nroorden, p.paterno, p.materno, p.nombres, ase.msn1, s.nombreseccion
 	FROM Alumno_Seccion ase
 	INNER JOIN Alumno ae ON ase.idalumno = ae.codigo
 	INNER JOIN Persona p ON ae.idpersona = p.codigo
 	INNER JOIN Seccion s ON ase.idseccion = s.codigo
-	WHERE s.codigo=" . $codigodoseccion . "  order by ase.nroorden;");
+	WHERE s.codigo=' . $codigodoseccion . '  order by ase.nroorden;');
         $cone->CLOSE();
         unset($cone);
         return $misalumnos;
@@ -421,12 +423,11 @@ class Docente extends Conection {
 
     public function aprobadoareanormal($nota, $sumando) {
         if ($nota > 12) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando + 1;
         } else {
-            $sumando = $sumando + 0;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function aprobadoareaespecial($nota, $sumando) {
@@ -440,48 +441,57 @@ class Docente extends Conection {
     }
 
     public function cursocargonormalpr($nota, $sumando) {
-
         if ($nota > 0 and $nota < 13) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando + 1;
         } else {
-            $sumando;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function cursocargonormalsec($nota, $sumando) {
         if ($nota > 0 and $nota < 11) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando + 1;
         } else {
-            $sumando;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function puntajealumnopr($mat, $com, $art, $persoc, $educfis, $educrel, $ing, $comp, $ccaa) {
-        $sumatotal = $mat + $com + $art + $persoc + $educfis + $educrel + $ing + $comp + $ccaa;
-        if ($sumatotal < -5)
-            $sumatotal = 0;
-        return $sumatotal;
+        $sumatotal = 0;
+        if ($mat == '-1' || $com == '-1' || $art == '-1' || $persoc == '-1' || $educfis == '-1' || $educrel == '-1' || $ing == '-1' || $comp == '-1' || $ccaa == '-1') {
+            return 0;
+        } else {
+            if ($educrel == '-2') {
+                $sumatotal = $mat + $com + $art + $persoc + $educfis + $ing + $comp + $ccaa;
+            } else {
+                $sumatotal = $mat + $com + $art + $persoc + $educfis + $educrel + $ing + $comp + $ccaa;
+            }
+            return $sumatotal;
+        }
     }
 
     public function puntajealumnosec($uno, $dos, $tres, $cuatro, $cinco, $seis, $siete, $ocho, $nueve, $diez, $once, $doce) {
-        $sumatotal = $uno + $dos + $tres + $cuatro + $cinco + $seis + $siete + $ocho + $nueve + $diez + $once + $doce;
-        if ($sumatotal < -4)
-            $sumatotal = 0;
-        return $sumatotal;
+        $sumatotal = 0;
+        if ($uno == '-1' || $dos == '-1' || $tres == '-1' || $cuatro == '-1' || $cinco == '-1' || $seis == '-1' || $siete == '-1' || $ocho == '-1' || $nueve == '-1' || $diez == '-1' || $once == '-1' || $doce == '-1') {
+            return 0;
+        } else {
+            if ($once == '-2') {
+                $sumatotal = $uno + $dos + $tres + $cuatro + $cinco + $seis + $siete + $ocho + $nueve + $diez + $doce;
+            } else {
+                $sumatotal = $uno + $dos + $tres + $cuatro + $cinco + $seis + $siete + $ocho + $nueve + $diez + $once + $doce;
+            }
+            return $sumatotal;
+        }
     }
 
     public function promedioal($suma, $dividendo) {
-        $prom = round($suma / $dividendo, 2);
-        return $prom;
+        return round($suma / $dividendo, 2);
     }
 
     public function pesomat($doble, $num1, $num2) {
-        $suma = round(( ($doble * 4) + ($num1 * 2) + ($num2 * 2) ) / 8, 0);
-        return $suma;
+        return round(( ($doble * 4) + ($num1 * 2) + ($num2 * 2) ) / 8, 0);
     }
 
     public function pesomatbasico($mat, $razmat) {
@@ -503,7 +513,7 @@ class Docente extends Conection {
         } else if ($com == '-1' || $razv == '-1') {
             $suma = '-1';
         } else {
-            $suma = round(( ($com * 5) + ($razv * 2) ) / 7, 0);
+            $suma = round(( ($com * 6) + ($razv * 2) ) / 8, 0);
         }
         return $suma;
     }
@@ -566,32 +576,29 @@ class Docente extends Conection {
 
     public function cursocargonormalpr2($nota, $sumando) {
         if ($nota > 0 and $nota < 11) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando + 1;
         } else {
-            $sumando;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function fnpr($nota, $sumando) {
         if ($nota == 0) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando + 1;
         } else {
-            $sumando;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function fnsec($nota, $sumando) {
         if ($nota == 0) {
-            $new = 1;
-            $sumando = $sumando + $new;
+            return $sumando = $sumando + 1;
         } else {
-            $sumando;
+            return $sumando;
         }
-        return $sumando;
+        return 0;
     }
 
     public function NOTASCONSOLIDADOTUTORIA111($codigoalumnoseccion) {

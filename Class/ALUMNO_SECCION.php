@@ -231,7 +231,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATE($codigoalumnoseccion){
         try {
             $this->CONECT();
-            mysql_query('UPDATE Alumno_Seccion SET msn4=\''.$this->MSN4.'\' where idalumnoseccion=\''.$codigoalumnoseccion.'\'') or die (mysql_error());
+            mysql_query('UPDATE Alumno_Seccion SET msn1=\''.$this->MSN1.'\' where idalumnoseccion=\''.$codigoalumnoseccion.'\'') or die (mysql_error());
             $this->CLOSE();
         } catch (Exception $exc) {
             echo 'Ups! Lo lamentamos ah ocurrido el siguiente error: '.$exc;
@@ -240,7 +240,7 @@ class ALUMNO_SECCION extends Conection{
     public function UPDATEFIT($codigoalumnoseccion2){
             try {
                 $this->CONECT();
-                mysql_query("UPDATE Alumno_Seccion SET fj4='".$this->FJ4."', fi4='".$this->FI4."', t4='".$this->T4."'
+                mysql_query("UPDATE Alumno_Seccion SET fj1='".$this->FJ1."', fi1='".$this->FI1."', t1='".$this->T1."'
                     where idalumnoseccion='".$codigoalumnoseccion2."'") or
                         die (mysql_error());
                 $this->CLOSE();
